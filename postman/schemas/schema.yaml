@@ -18,13 +18,37 @@ paths:
                   items: 
                     $ref: '#/components/schemas/country'
                 examples:
-                    usa:
-                        summary: US
-                        value: { 
-                            name: 'United States of America',
-                            iso3Code: 'USA',
-                            currencies: [{ name: 'US Dollar', iso3Code: 'USD', symbol: '$' }]
-                        }
+                    small_list:
+                        summary: Returns two countries with 
+                        value: [
+                            { 
+                                "name": "United States of America",
+                                "iso3Code": "USA",
+                                "currencies": [
+                                    {
+                                        "name": "US Dollar",
+                                        "iso3Code": "USD",
+                                        "symbol": "$"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Philippines",
+                                "iso3Code": "PHL",
+                                "currencies": [
+                                    {
+                                        "name": "Philipine Peso",
+                                        "iso3Code": "PHL",
+                                        "symbol": "₱"
+                                    },
+                                    {
+                                        "name": "US Dollar",
+                                        "iso3Code": "USD",
+                                        "symbol": "$"
+                                    }
+                                ]
+                            }
+                        ]
 components:
   securitySchemes:
     bearerAuth:
@@ -45,7 +69,7 @@ components:
           type: string
           maxLength: 3
           minLength: 3
-          pattern: '^\[A-Z]{3}\$'
+          pattern: '^[A-Z]{3}$'
         currencies:
           type: array
           items: 
@@ -63,7 +87,7 @@ components:
           type: string
           maxLength: 3
           minLength: 3
-          pattern: '^\[A-Z]{3}\$'
+          pattern: '^[A-Z]{3}$'
         symbol:
           type: string
           maxLength: 3
@@ -84,7 +108,7 @@ components:
       properties:
         code:
           type: string
-          pattern: '^\[A-Z]{2}[0-9]{3}\$'
+          pattern: '^[A-Z]{2}[0-9]{3}$'
           description: 'User facing error code that can be used to look up error details by support'
         message:
           type: string

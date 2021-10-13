@@ -1,13 +1,13 @@
 {
     "info": {
-        "_postman_id": "8731150c-0a62-4b08-ad8e-58ca4ef12d6d",
+        "_postman_id": "4453518e-9089-42bb-8d66-7e3c222107ce",
         "name": "Transfer API",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
     },
     "item": [
         {
             "name": "Countries with Currencies",
-            "id": "1314cf7a-84c2-4e4d-8ec9-cf974f499f6d",
+            "id": "ba9b467a-612d-44e6-8d40-9b3424a06dfb",
             "request": {
                 "method": "GET",
                 "header": [],
@@ -25,7 +25,7 @@
             },
             "response": [
                 {
-                    "id": "013a58bb-42bf-4d14-8f85-487ecea87715",
+                    "id": "5a25186c-da17-497b-8fec-1592ea5d7410",
                     "name": "The list of countries and currencies available as a transfer destination",
                     "originalRequest": {
                         "method": "GET",
@@ -59,7 +59,7 @@
                     ],
                     "cookie": [],
                     "responseTime": null,
-                    "body": "{\n \"name\": \"United States of America\",\n \"iso3Code\": \"USA\",\n \"currencies\": [\n  {\n   \"name\": \"US Dollar\",\n   \"iso3Code\": \"USD\",\n   \"symbol\": \"$\"\n  }\n ]\n}"
+                    "body": "[\n    {\n        \"name\": \"United States of America\",\n        \"iso3Code\": \"USA\",\n        \"currencies\": [\n            {\n                \"name\": \"US Dollar\",\n                \"iso3Code\": \"USD\",\n                \"symbol\": \"$\"\n            }\n        ]\n    },\n    {\n        \"name\": \"Philippines\",\n        \"iso3Code\": \"PHL\",\n        \"currencies\": [\n            {\n                \"name\": \"Philipine Peso\",\n                \"iso3Code\": \"PHL\",\n                \"symbol\": \"₱\"\n            }\n        ]\n    }\n]"
                 }
             ]
         }
@@ -76,7 +76,7 @@
     },
     "variable": [
         {
-            "id": "3eef7c0a-d7f9-4ef3-b7d0-0929de8770ed",
+            "id": "8fac3631-4d52-4ccf-ab77-8e2092bc216a",
             "key": "baseUrl",
             "value": "localhost:3000",
             "type": "string"
