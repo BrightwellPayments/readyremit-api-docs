@@ -12,7 +12,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                    "raw": "{{baseUrl}}/transfer/options/countriescurrencies",
+                    "raw": "{{baseUrl}}/transfer/options/countriescurrencies?error",
                     "host": [
                         "{{baseUrl}}"
                     ],
@@ -20,13 +20,20 @@
                         "transfer",
                         "options",
                         "countriescurrencies"
+                    ],
+                    "query": [
+                        {
+                            "key": "error",
+                            "value": null,
+                            "type": "text"
+                        }
                     ]
                 }
             },
             "response": [
                 {
                     "id": "5a25186c-da17-497b-8fec-1592ea5d7410",
-                    "name": "The list of countries and currencies available as a transfer destination",
+                    "name": "200 Success",
                     "originalRequest": {
                         "method": "GET",
                         "header": [
@@ -60,26 +67,91 @@
                     "cookie": [],
                     "responseTime": null,
                     "body": "[\n    {\n        \"name\": \"United States of America\",\n        \"iso3Code\": \"USA\",\n        \"currencies\": [\n            {\n                \"name\": \"US Dollar\",\n                \"iso3Code\": \"USD\",\n                \"symbol\": \"$\"\n            }\n        ]\n    },\n    {\n        \"name\": \"Philippines\",\n        \"iso3Code\": \"PHL\",\n        \"currencies\": [\n            {\n                \"name\": \"Philipine Peso\",\n                \"iso3Code\": \"PHL\",\n                \"symbol\": \"₱\"\n            }\n        ]\n    }\n]"
+                },
+                {
+                    "id": "b241195d-30d3-43dd-a923-668823adc33b",
+                    "name": "500 Server error",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/transfer/options/countriescurrencies?error=",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "transfer",
+                                "options",
+                                "countriescurrencies"
+                            ],
+                            "query": [
+                                {
+                                    "key": "error",
+                                    "value": ""
+                                }
+                            ]
+                        }
+                    },
+                    "status": "Internal Server Error",
+                    "code": 500,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json",
+                            "description": "",
+                            "type": "text"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n    \"errors\": [\n        {\n            \"message\": \"It's all broked up!\",\n            \"description\": \"Example of a 500 exception\",\n            \"code\": \"RR500\"\n        }\n    ]\n}"
                 }
             ]
         }
     ],
     "auth": {
-        "type": "bearer",
-        "bearer": [
+        "type": "apikey",
+        "apikey": [
             {
-                "key": "token",
-                "value": "<Bearer Token>",
+                "key": "value",
+                "value": "{{apiKey}}",
+                "type": "string"
+            },
+            {
+                "key": "key",
+                "value": "x-api-key",
                 "type": "string"
             }
         ]
     },
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "id": "fe21b625-fd9f-48bc-9e09-f1c4d891ab03",
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "id": "a6114a47-d36f-41e0-aba9-f05d9eae3905",
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        }
+    ],
     "variable": [
         {
-            "id": "8fac3631-4d52-4ccf-ab77-8e2092bc216a",
+            "id": "13fd1b44-4e1d-4610-8a0c-698992c2cae5",
             "key": "baseUrl",
-            "value": "localhost:3000",
-            "type": "string"
+            "value": "localhost:3000"
         }
     ]
 }

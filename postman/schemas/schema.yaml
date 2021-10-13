@@ -10,7 +10,7 @@ paths:
         summary: 'Countries with Currencies'
         responses:
           '200':
-            description: 'The list of countries and currencies available as a transfer destination'
+            description: 'Success'
             content:
               application/json:
                 schema:
@@ -49,6 +49,22 @@ paths:
                                 ]
                             }
                         ]
+          '500':
+              description: 'Server error'
+              content:
+                application/json:
+                  schema:
+                    $ref: '#/components/schemas/errorPayload'
+                  examples:
+                    server_error:
+                      summary: 'Server error'
+                      value: {
+                          "errors": [{
+                              "message": "It's all broked up",
+                              "description": "Example of a 500 exception",
+                              "code": "RR500"
+                          }]
+                      }
 components:
   securitySchemes:
     bearerAuth:
