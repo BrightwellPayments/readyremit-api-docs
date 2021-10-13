@@ -1,0 +1,85 @@
+{
+    "info": {
+        "_postman_id": "8731150c-0a62-4b08-ad8e-58ca4ef12d6d",
+        "name": "Transfer API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Countries with Currencies",
+            "id": "1314cf7a-84c2-4e4d-8ec9-cf974f499f6d",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/transfer/options/countriescurrencies",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "transfer",
+                        "options",
+                        "countriescurrencies"
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "013a58bb-42bf-4d14-8f85-487ecea87715",
+                    "name": "The list of countries and currencies available as a transfer destination",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/transfer/options/countriescurrencies",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "transfer",
+                                "options",
+                                "countriescurrencies"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n \"name\": \"United States of America\",\n \"iso3Code\": \"USA\",\n \"currencies\": [\n  {\n   \"name\": \"US Dollar\",\n   \"iso3Code\": \"USD\",\n   \"symbol\": \"$\"\n  }\n ]\n}"
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "bearer",
+        "bearer": [
+            {
+                "key": "token",
+                "value": "<Bearer Token>",
+                "type": "string"
+            }
+        ]
+    },
+    "variable": [
+        {
+            "id": "3eef7c0a-d7f9-4ef3-b7d0-0929de8770ed",
+            "key": "baseUrl",
+            "value": "localhost:3000",
+            "type": "string"
+        }
+    ]
+}

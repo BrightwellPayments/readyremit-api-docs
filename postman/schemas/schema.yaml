@@ -5,59 +5,77 @@ info:
 servers:
   - url: 'localhost:3000'
 paths:
-    /transfer/options/countriescurrencies:
-        get:
-            summary: 'Returns a list of countries and currencies available as a transfer destination'
-            responses:
-                '200':
-                    description: ''
-                    content:
-                        application/json:
-                            schema:
-                                type: array
-                                items: 
-                                    $ref: '#/components/schemas/country'
+  /transfer/options/countriescurrencies:
+    get:
+        summary: 'Countries with Currencies'
+        responses:
+          '200':
+            description: 'The list of countries and currencies available as a transfer destination'
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items: 
+                    $ref: '#/components/schemas/country'
+                examples:
+                    usa:
+                        summary: US
+                        value: { 
+                            name: 'United States of America',
+                            iso3Code: 'USA',
+                            currencies: [{ name: 'US Dollar', iso3Code: 'USD', symbol: '$' }]
+                        }
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     country:
-        type: object
-        required:
+      type: object
+      required:
         - name
         - iso3Code
         - currencies
-        properties:
-            name: 
-                type: string
-            iso3Code:
-                type: string
-                maxLength: 3
-            currencies:
-                type: array
-                items: 
-                    $ref: '#/components/schemas/currency'
+      properties:
+        name: 
+          type: string
+        iso3Code:
+          type: string
+          maxLength: 3
+          minLength: 3
+          pattern: '^\[A-Z]{3}\$'
+        currencies:
+          type: array
+          items: 
+            $ref: '#/components/schemas/currency'
     currency:
-        type: object
-        required:
+      type: object
+      required:
         - name
         - iso3Code
         - symbol
-        properties:
-            name:
-                type: string
-            iso3Code:
-                type: string
-                maxLength: 3
-            symbol:
-                type: string
+      properties:
+        name:
+          type: string
+        iso3Code:
+          type: string
+          maxLength: 3
+          minLength: 3
+          pattern: '^\[A-Z]{3}\$'
+        symbol:
+          type: string
+          maxLength: 3
     errorPayload:
         type: object
         required:
-        - errors
+          - errors
         properties: 
-            errors:
-                type: array
-                items:
-                  $ref: '#/components/schemas/error'
+          errors:
+            type: array
+            items:
+              $ref: '#/components/schemas/error'
     error:
       type: object
       required:
@@ -66,11 +84,13 @@ components:
       properties:
         code:
           type: string
-          pattern: '[A-Z][A-Z][0-9]'
+          pattern: '^\[A-Z]{2}[0-9]{3}\$'
           description: 'User facing error code that can be used to look up error details by support'
         message:
           type: string
           description: 'User facing error message'
         description:
-            type: string
-            description: 'Detailed explanation of the error meant for debugging'
+          type: string
+          description: 'Detailed explanation of the error meant for debugging'
+security:
+  - bearerAuth: []
