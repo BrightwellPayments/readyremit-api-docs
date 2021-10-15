@@ -5,8 +5,8 @@ info:
 servers:
   - url: 'localhost:3000'
 paths:
-  /transfer/options/countriescurrencies:
-    get:
+    /transfer/options/countriescurrencies:
+      get:
         summary: 'Countries with Currencies'
         responses:
           '200':
@@ -65,6 +65,117 @@ paths:
                               "code": "RR500"
                           }]
                       }
+    /transfer/rates:
+        post:
+            summary: 'Rates'
+            requestBody:
+                description: Rates payload
+                content: 
+                    'application/json':
+                        schema:
+                            type: object
+                            required:
+                                - countryIso3Code
+                                - currencyIso3Code
+                            properties:
+                                countryIso3Code:
+                                    type: string
+                                    maxLength: 3
+                                    minLength: 3
+                                    pattern: '^[A-Z]{3}$'
+                                currencyIso3Code:
+                                    type: string
+                                    maxLength: 3
+                                    minLength: 3
+                                    pattern: '^[A-Z]{3}$'
+            responses:
+                '200':
+                    description: 'Success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    rate:
+                                        type: integer
+                                        minimum: 0
+                                    effectiveLimit:
+                                        type: object
+                                        $ref: '#/components/schemas/money'
+                            examples:
+                                rates:
+                                    summary: Returns two countries with 
+                                    value: {
+                                        "rate": 12312,
+                                        "effectiveLimit": {
+                                            "amount": {
+                                                "value": 510500,
+                                                "currency": {
+                                                    "name": "United States Dollar",
+                                                    "ios3Code": "USD",
+                                                    "decimalPlaces": 2
+                                                }
+                                            },
+                                            "message": "Cannot exceed bank limit of $1,000.00"
+                                        }
+                                    }
+                '500':
+                    description: 'Server error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                            examples:
+                                server_error:
+                                    summary: 'Server error'
+                                    value: {
+                                        "errors": [{
+                                            "message": "It's all broked up",
+                                            "description": "Example of a 500 exception",
+                                            "code": "RR500"
+                                        }]
+                                    }
+    /user:
+        get:
+            summary: 'User'
+            responses:
+                '200':
+                    description: 'Success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    sourceCurrency:
+                                        type: object
+                                        $ref: '#/components/schemas/currency'
+                            examples:
+                                rates:
+                                    summary: Returns two countries with 
+                                    value: {
+                                        "sourceCurrency": {
+                                                "name": "United States Dollar",
+                                                "iso3Code": "USD",
+                                                "symbol": "$",
+                                                "decimalPlaces": 2
+                                        }
+                                    }
+                '500':
+                    description: 'Server error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                            examples:
+                                server_error:
+                                    summary: 'Server error'
+                                    value: {
+                                        "errors": [{
+                                            "message": "It's all broked up",
+                                            "description": "Example of a 500 exception",
+                                            "code": "RR500"
+                                        }]
+                                    }
 components:
   securitySchemes:
     bearerAuth:
@@ -96,6 +207,7 @@ components:
         - name
         - iso3Code
         - symbol
+        - decimalPlaces
       properties:
         name:
           type: string
@@ -107,6 +219,30 @@ components:
         symbol:
           type: string
           maxLength: 3
+        decimalPlaces:
+          type: integer
+          minimum: 0
+          maximum: 3
+    money:
+        type: object
+        properties:
+            value: 
+                type: integer
+                minimum: 0
+            currency:
+                type: object
+                $ref: '#/components/schemas/currency'
+    limit:
+        type: object
+        required:
+            - amount
+            - message
+        properties:
+            amount:
+                type: object
+                $ref: '#/components/schemas/money'
+            message:
+                type: string
     errorPayload:
         type: object
         required:
