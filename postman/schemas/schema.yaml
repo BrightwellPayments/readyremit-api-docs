@@ -28,7 +28,8 @@ paths:
                                     {
                                         "name": "US Dollar",
                                         "iso3Code": "USD",
-                                        "symbol": "$"
+                                        "symbol": "$",
+                                        "decimalPlaces": 2
                                     }
                                 ]
                             },
@@ -39,12 +40,14 @@ paths:
                                     {
                                         "name": "Philipine Peso",
                                         "iso3Code": "PHL",
-                                        "symbol": "₱"
+                                        "symbol": "₱",
+                                        "decimalPlaces": 2
                                     },
                                     {
                                         "name": "US Dollar",
                                         "iso3Code": "USD",
-                                        "symbol": "$"
+                                        "symbol": "$",
+                                        "decimalPlaces": 2
                                     }
                                 ]
                             }
@@ -75,15 +78,21 @@ paths:
                         schema:
                             type: object
                             required:
-                                - countryIso3Code
-                                - currencyIso3Code
+                                - dstCountryIso3Code
+                                - dstCurrencyIso3Code
                             properties:
-                                countryIso3Code:
+                                dstCountryIso3Code:
                                     type: string
                                     maxLength: 3
                                     minLength: 3
                                     pattern: '^[A-Z]{3}$'
-                                currencyIso3Code:
+                                dstCurrencyIso3Code:
+                                    type: string
+                                    maxLength: 3
+                                    minLength: 3
+                                    pattern: '^[A-Z]{3}$'
+                                srcCurrencyIso3Code:
+                                    description: 'Currency of the source account. Defaults to the source currency of the users default account or only account. If no account is present and no currency is provided this will return a 400 No Source Account'
                                     type: string
                                     maxLength: 3
                                     minLength: 3
@@ -113,12 +122,126 @@ paths:
                                                 "currency": {
                                                     "name": "United States Dollar",
                                                     "ios3Code": "USD",
+                                                    "symbol": "$",
                                                     "decimalPlaces": 2
                                                 }
                                             },
                                             "message": "Cannot exceed bank limit of $1,000.00"
                                         }
                                     }
+                '500':
+                    description: 'Server error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                            examples:
+                                server_error:
+                                    summary: 'Server error'
+                                    value: {
+                                        "errors": [{
+                                            "message": "It's all broked up",
+                                            "description": "Example of a 500 exception",
+                                            "code": "RR500"
+                                        }]
+                                    }
+    /transfer/quotes:
+        post:
+            summary: 'Quotes'
+            requestBody:
+                description: Quotes payload
+                content: 
+                    'application/json':
+                        schema:
+                            type: object
+                            required:
+                                - dstCountryIso3Code
+                                - dstCurrencyIso3Code
+                                - srcCurrencyIso3Code
+                                - amount
+                                - transferMethod
+                            properties:
+                                dstCountryIso3Code:
+                                    type: string
+                                    maxLength: 3
+                                    minLength: 3
+                                    pattern: '^[A-Z]{3}$'
+                                dstCurrencyIso3Code:
+                                    type: string
+                                    maxLength: 3
+                                    minLength: 3
+                                    pattern: '^[A-Z]{3}$'
+                                srcCurrencyIso3Code:
+                                    type: string
+                                    maxLength: 3
+                                    minLength: 3
+                                    pattern: '^[A-Z]{3}$'
+                                amount:
+                                    type: integer
+                                    minimum: 1
+            responses:
+                '200':
+                    description: 'Success'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/quote'
+                            examples:
+                                rates:
+                                    summary: Returns two countries with 
+                                    value: [
+                                        {
+                                            "sendAmount": {
+                                                "value": 510500,
+                                                "currency": {
+                                                    "name": "United States Dollar",
+                                                    "iso3Code": "USD",
+                                                    "symbol": "$",
+                                                    "decimalPlaces": 2
+                                                }
+                                            },
+                                            "receiveAmount": {
+                                                "value": 744599,
+                                                "currency": {
+                                                    "name": "United States Dollar",
+                                                    "iso3Code": "INR",
+                                                    "symbol": "$",
+                                                    "decimalPlaces": 0
+                                                }
+                                            },
+                                            "rate": 12312,
+                                            "adjustments": [
+                                                {
+                                                    "label": "Transfer Fee",
+                                                    "amount": {
+                                                        "value": 29900,
+                                                        "currency": {
+                                                            "name": "United States Dollar",
+                                                            "iso3Code": "USD",
+                                                            "symbol": "$",
+                                                            "decimalPlaces": 2
+                                                        }
+                                                    }
+                                                }
+                                            ],
+                                            "totalCost": {
+                                                "value": 1029900,
+                                                "currency": {
+                                                    "name": "United States Dollar",
+                                                    "iso3Code": "USD",
+                                                    "symbol": "$",
+                                                    "decimalPlaces": 2
+                                                }
+                                            },
+                                            "disclosures": [],
+                                            "nextStep": {
+                                                "type": "RECIPIENT_DETAILS",
+                                                "title": "Recipient Details"
+                                            }
+                                        }
+                                    ]
                 '500':
                     description: 'Server error'
                     content:
@@ -243,15 +366,60 @@ components:
                 $ref: '#/components/schemas/money'
             message:
                 type: string
-    errorPayload:
+    flowStep:
         type: object
         required:
-          - errors
-        properties: 
-          errors:
-            type: array
-            items:
-              $ref: '#/components/schemas/error'
+            - type
+            - title
+        properties:
+            type:
+                type: string
+            title:
+                type: string
+    adjustment:
+        type: object
+        required:
+            - label
+            - amount
+        properties:
+            label:
+                type: string
+            amount:
+                type: object
+                $ref: '#/components/schemas/money'
+    quote:
+        type: object
+        required:
+            - sendAmount
+            - receiveAmount
+            - rate
+            - adjustments
+            - totalCost
+            - disclosures
+        properties:
+            sendAmount:
+                type: object
+                $ref: '#/components/schemas/money'
+            receiveAmount:
+                type: object
+                $ref: '#/components/schemas/money'
+            rate:
+                type: integer
+            adjustments:
+                type: array
+                items:
+                    $ref: '#/components/schemas/adjustment'
+            totalCost:
+                type: object
+                $ref: '#/components/schemas/money'
+            disclosures:
+                type: array
+                items:
+                    type: string
+    errorPayload:
+        type: array
+        items:
+            $ref: '#/components/schemas/error'
     error:
       type: object
       required:

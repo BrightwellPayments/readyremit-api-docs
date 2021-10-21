@@ -6,289 +6,6 @@
     },
     "item": [
         {
-            "name": "Countries with Currencies",
-            "id": "ba9b467a-612d-44e6-8d40-9b3424a06dfb",
-            "protocolProfileBehavior": {
-                "disableBodyPruning": true
-            },
-            "request": {
-                "method": "GET",
-                "header": [],
-                "url": {
-                    "raw": "{{baseUrl}}/transfer/options/countriescurrencies",
-                    "host": [
-                        "{{baseUrl}}"
-                    ],
-                    "path": [
-                        "transfer",
-                        "options",
-                        "countriescurrencies"
-                    ]
-                }
-            },
-            "response": [
-                {
-                    "id": "5a25186c-da17-497b-8fec-1592ea5d7410",
-                    "name": "200 Success",
-                    "originalRequest": {
-                        "method": "GET",
-                        "header": [],
-                        "url": {
-                            "raw": "{{baseUrl}}/transfer/options/countriescurrencies",
-                            "host": [
-                                "{{baseUrl}}"
-                            ],
-                            "path": [
-                                "transfer",
-                                "options",
-                                "countriescurrencies"
-                            ]
-                        }
-                    },
-                    "status": "OK",
-                    "code": 200,
-                    "_postman_previewlanguage": "json",
-                    "header": [
-                        {
-                            "key": "Content-Type",
-                            "value": "application/json"
-                        }
-                    ],
-                    "cookie": [],
-                    "responseTime": null,
-                    "body": "[\n    {\n        \"name\": \"United States of America\",\n        \"iso3Code\": \"USA\",\n        \"currencies\": [\n            {\n                \"name\": \"US Dollar\",\n                \"iso3Code\": \"USD\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 2\n            }\n        ]\n    },\n    {\n        \"name\": \"Philippines\",\n        \"iso3Code\": \"PHL\",\n        \"currencies\": [\n            {\n                \"name\": \"Philipine Peso\",\n                \"iso3Code\": \"PHL\",\n                \"symbol\": \"₱\",\n                \"decimalPlaces\": 2\n            }\n        ]\n    }\n]"
-                },
-                {
-                    "id": "b241195d-30d3-43dd-a923-668823adc33b",
-                    "name": "500 Server error",
-                    "originalRequest": {
-                        "method": "GET",
-                        "header": [],
-                        "url": {
-                            "raw": "{{baseUrl}}/transfer/options/countriescurrencies?statusCode=500",
-                            "host": [
-                                "{{baseUrl}}"
-                            ],
-                            "path": [
-                                "transfer",
-                                "options",
-                                "countriescurrencies"
-                            ],
-                            "query": [
-                                {
-                                    "key": "statusCode",
-                                    "value": "500"
-                                }
-                            ]
-                        }
-                    },
-                    "status": "Internal Server Error",
-                    "code": 500,
-                    "_postman_previewlanguage": "json",
-                    "header": [
-                        {
-                            "description": {
-                                "content": "",
-                                "type": "text/plain"
-                            },
-                            "key": "Content-Type",
-                            "value": "application/json"
-                        }
-                    ],
-                    "cookie": [],
-                    "responseTime": null,
-                    "body": "{\n    \"errors\": [\n        {\n            \"message\": \"It's all broked up!\",\n            \"description\": \"Example of a 500 exception\",\n            \"code\": \"RR500\"\n        }\n    ]\n}"
-                },
-                {
-                    "id": "6045c9c4-1365-4788-9f3b-d646c96c8ae2",
-                    "name": "401 Missing Token",
-                    "originalRequest": {
-                        "method": "GET",
-                        "header": [],
-                        "url": {
-                            "raw": "{{baseUrl}}/transfer/options/countriescurrencies?statusCode=401",
-                            "host": [
-                                "{{baseUrl}}"
-                            ],
-                            "path": [
-                                "transfer",
-                                "options",
-                                "countriescurrencies"
-                            ],
-                            "query": [
-                                {
-                                    "key": "statusCode",
-                                    "value": "401"
-                                }
-                            ]
-                        }
-                    },
-                    "status": "Unauthorized",
-                    "code": 401,
-                    "_postman_previewlanguage": "json",
-                    "header": [
-                        {
-                            "description": {
-                                "content": "",
-                                "type": "text/plain"
-                            },
-                            "key": "Content-Type",
-                            "value": "application/json"
-                        }
-                    ],
-                    "cookie": [],
-                    "responseTime": null,
-                    "body": "{\n    \"errors\": [\n        {\n            \"message\": \"Auth token missing from request\",\n            \"description\": \"\",\n            \"code\": \"TF001\"\n        }\n    ]\n}"
-                }
-            ]
-        },
-        {
-            "name": "Rates",
-            "id": "da16cdbe-6d9b-420b-824e-61d60f6da678",
-            "protocolProfileBehavior": {
-                "disableBodyPruning": true
-            },
-            "request": {
-                "method": "POST",
-                "header": [
-                    {
-                        "key": "Content-Type",
-                        "value": "application/json"
-                    }
-                ],
-                "body": {
-                    "mode": "raw",
-                    "raw": "{\n    \"countryIso3Code\": \"USA\",\n    \"currencyIso3Code\": \"USD\"\n}",
-                    "options": {
-                        "raw": {
-                            "language": "json"
-                        }
-                    }
-                },
-                "url": {
-                    "raw": "{{baseUrl}}/transfer/rates?error",
-                    "host": [
-                        "{{baseUrl}}"
-                    ],
-                    "path": [
-                        "transfer",
-                        "rates"
-                    ],
-                    "query": [
-                        {
-                            "key": "error",
-                            "value": null,
-                            "type": "text"
-                        }
-                    ]
-                }
-            },
-            "response": [
-                {
-                    "id": "e07be1e6-5ddd-4272-bcc4-44d7ac9d2c52",
-                    "name": "Success",
-                    "originalRequest": {
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "locale",
-                                "value": "en_us"
-                            },
-                            {
-                                "name": "Content-Type",
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\n    \"countryIso3Code\": \"PHL\",\n    \"currencyIso3Code\": \"PHP\"\n}",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
-                                }
-                            }
-                        },
-                        "url": {
-                            "raw": "{{baseUrl}}/transfer/rates",
-                            "host": [
-                                "{{baseUrl}}"
-                            ],
-                            "path": [
-                                "transfer",
-                                "rates"
-                            ]
-                        }
-                    },
-                    "_postman_previewlanguage": "json",
-                    "header": [
-                        {
-                            "key": "Content-Type",
-                            "value": "application/json",
-                            "enabled": true
-                        }
-                    ],
-                    "cookie": [],
-                    "responseTime": null,
-                    "body": "{\n    \"rate\": 12312,\n    \"effectiveLimit\": {\n        \"amount\": {\n            \"value\": 510500,\n            \"currencyIso3Code\": \"USD\",\n            \"currency\": {\n                \"name\": \"United States Dollar\",\n                \"ios3Code\": \"USD\",\n                \"decimalPlaces\": 2\n            }\n        },\n        \"message\": \"Cannot exceed bank limit of 1000\"\n    }\n}"
-                },
-                {
-                    "id": "1a6ee65d-a5d8-41ad-a369-d20010f555d9",
-                    "name": "Server Error",
-                    "originalRequest": {
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "locale",
-                                "value": "en_us"
-                            },
-                            {
-                                "name": "Content-Type",
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\n    \"countryIso3Code\": \"PHL\",\n    \"currencyIso3Code\": \"PHP\"\n}",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
-                                }
-                            }
-                        },
-                        "url": {
-                            "raw": "{{baseUrl}}/transfer/rates?statusCode=500",
-                            "host": [
-                                "{{baseUrl}}"
-                            ],
-                            "path": [
-                                "transfer",
-                                "rates"
-                            ],
-                            "query": [
-                                {
-                                    "key": "statusCode",
-                                    "value": "500"
-                                }
-                            ]
-                        }
-                    },
-                    "_postman_previewlanguage": "json",
-                    "header": [
-                        {
-                            "key": "Content-Type",
-                            "value": "application/json",
-                            "enabled": true
-                        }
-                    ],
-                    "cookie": [],
-                    "responseTime": null,
-                    "body": "{\n    \"rate\": 12312,\n    \"effectiveLimit\": {\n        \"amount\": {\n            \"value\": 510500,\n            \"currencyIso3Code\": \"USD\",\n            \"currency\": {\n                \"name\": \"United States Dollar\",\n                \"ios3Code\": \"USD\",\n                \"decimalPlaces\": 3\n            }\n        },\n        \"message\": \"Cannot exceed bank limit of 1000\"\n    }\n}"
-                }
-            ]
-        },
-        {
             "name": "User",
             "id": "6da3dfa6-d84e-45ef-a8b3-72f0bb00f760",
             "protocolProfileBehavior": {
@@ -390,7 +107,422 @@
                     ],
                     "cookie": [],
                     "responseTime": null,
-                    "body": "{\n    \"errors\": [\n        {\n            \"message\": \"It's all broked up\",\n            \"description\": \"Example of a 500 exception\",\n            \"code\": \"RR500\"\n        }\n    ]\n}"
+                    "body": "[\n    {\n        \"message\": \"It's all broked up\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]\n"
+                }
+            ]
+        },
+        {
+            "name": "Countries with Currencies",
+            "id": "ba9b467a-612d-44e6-8d40-9b3424a06dfb",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/transfer/options/countriescurrencies",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "transfer",
+                        "options",
+                        "countriescurrencies"
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "5a25186c-da17-497b-8fec-1592ea5d7410",
+                    "name": "200 Success",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/transfer/options/countriescurrencies",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "transfer",
+                                "options",
+                                "countriescurrencies"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"country\": {\n            \"name\": \"United States of America\",\n            \"iso3Code\": \"USA123\"\n        },\n        \"currencies\": [\n            {\n                \"name\": \"US Dollar\",\n                \"iso3Code\": \"USD\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 2\n            }\n        ]\n    },\n    {\n        \"country\": {\n            \"name\": \"Philippines\",\n            \"iso3Code\": \"PHL\"\n        },\n        \"currencies\": [\n            {\n                \"name\": \"Philipine Peso\",\n                \"iso3Code\": \"PHL\",\n                \"symbol\": \"₱\",\n                \"decimalPlaces\": 2\n            }\n        ]\n    }\n]"
+                },
+                {
+                    "id": "b241195d-30d3-43dd-a923-668823adc33b",
+                    "name": "500 Server error",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/transfer/options/countriescurrencies?statusCode=500",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "transfer",
+                                "options",
+                                "countriescurrencies"
+                            ],
+                            "query": [
+                                {
+                                    "key": "statusCode",
+                                    "value": "500"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "Internal Server Error",
+                    "code": 500,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "description": {
+                                "content": "",
+                                "type": "text/plain"
+                            },
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"It's all broked up!\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]"
+                },
+                {
+                    "id": "6045c9c4-1365-4788-9f3b-d646c96c8ae2",
+                    "name": "401 Missing Token",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/transfer/options/countriescurrencies?statusCode=401",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "transfer",
+                                "options",
+                                "countriescurrencies"
+                            ],
+                            "query": [
+                                {
+                                    "key": "statusCode",
+                                    "value": "401"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "Unauthorized",
+                    "code": 401,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "description": {
+                                "content": "",
+                                "type": "text/plain"
+                            },
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n    \"errors\": [\n        {\n            \"message\": \"Auth token missing from request\",\n            \"description\": \"\",\n            \"code\": \"TF001\"\n        }\n    ]\n}"
+                }
+            ]
+        },
+        {
+            "name": "Rates",
+            "id": "da16cdbe-6d9b-420b-824e-61d60f6da678",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"dstCountryIso3Code\": \"USA\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/transfer/rates",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "transfer",
+                        "rates"
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "e07be1e6-5ddd-4272-bcc4-44d7ac9d2c52",
+                    "name": "Success",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "locale",
+                                "value": "en_us"
+                            },
+                            {
+                                "name": "Content-Type",
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"countryIso3Code\": \"PHL\",\n    \"currencyIso3Code\": \"PHP\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/transfer/rates",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "transfer",
+                                "rates"
+                            ]
+                        }
+                    },
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json",
+                            "enabled": true
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n    \"rate\": 12312,\n    \"effectiveLimit\": {\n        \"amount\": {\n            \"value\": 510500,\n            \"currency\": {\n                \"name\": \"United States Dollar\",\n                \"iso3Code\": \"USD123\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 2\n            }\n        },\n        \"message\": \"Cannot exceed bank limit of 1000\"\n    }\n}"
+                },
+                {
+                    "id": "1a6ee65d-a5d8-41ad-a369-d20010f555d9",
+                    "name": "Server Error",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "locale",
+                                "value": "en_us"
+                            },
+                            {
+                                "name": "Content-Type",
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"countryIso3Code\": \"PHL\",\n    \"currencyIso3Code\": \"PHP\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/transfer/rates?statusCode=500",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "transfer",
+                                "rates"
+                            ],
+                            "query": [
+                                {
+                                    "key": "statusCode",
+                                    "value": "500"
+                                }
+                            ]
+                        }
+                    },
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json",
+                            "enabled": true
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"It's all broked up!\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]"
+                }
+            ]
+        },
+        {
+            "name": "Quotes",
+            "id": "09abe96a-509d-4b40-b2e1-fa2cbb7f68f7",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"dstCountryIso3Code\": \"USA\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"amount\": 30000\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/transfer/quotes",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "transfer",
+                        "quotes"
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "e4f9c615-c864-4404-885c-8a0b90e005bc",
+                    "name": "Success",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "locale",
+                                "value": "en_us"
+                            },
+                            {
+                                "name": "Content-Type",
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"dstCountryIso3Code\": \"USA\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"amount\": 30000\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/transfer/quotes",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "transfer",
+                                "quotes"
+                            ]
+                        }
+                    },
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json",
+                            "enabled": true
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"sendAmount\": {\n            \"value\": 510500,\n            \"currency\": {\n                \"name\": \"United States Dollar\",\n                \"iso3Code\": \"USD\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 2\n            }\n        },\n        \"receiveAmount\": {\n            \"value\": 744599,\n            \"currency\": {\n                \"name\": \"United States Dollar\",\n                \"iso3Code\": \"INR\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 0\n            }\n        },\n        \"rate\": 12312,\n        \"adjustments\": [\n            {\n                \"label\": \"Transfer Fee\",\n                \"amount\": {\n                    \"value\": 29900,\n                    \"currency\": {\n                        \"name\": \"United States Dollar\",\n                        \"iso3Code\": \"USD\",\n                        \"symbol\": \"$\",\n                        \"decimalPlaces\": 2\n                    }\n                }\n            }\n        ],\n        \"totalCost\": {\n            \"value\": 1029900,\n            \"currency\": {\n                \"name\": \"United States Dollar\",\n                \"iso3Code\": \"USD\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 2\n            }\n        },\n        \"disclosures\": [],\n        \"nextStep\": {\n            \"type\": \"RECIPIENT_DETAILS\",\n            \"title\": \"Recipient Details\"\n        }\n    }\n]"
+                },
+                {
+                    "id": "84a143d3-a2eb-4b36-b503-51519fbf2321",
+                    "name": "Server Error",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "locale",
+                                "value": "en_us"
+                            },
+                            {
+                                "name": "Content-Type",
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"countryIso3Code\": \"PHL\",\n    \"currencyIso3Code\": \"PHP\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/transfer/rates?statusCode=500",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "transfer",
+                                "rates"
+                            ],
+                            "query": [
+                                {
+                                    "key": "statusCode",
+                                    "value": "500"
+                                }
+                            ]
+                        }
+                    },
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json",
+                            "enabled": true
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"It's all broked up!\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]"
                 }
             ]
         }
