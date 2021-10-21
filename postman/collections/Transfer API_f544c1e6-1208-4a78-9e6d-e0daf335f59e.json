@@ -162,7 +162,7 @@
                     ],
                     "cookie": [],
                     "responseTime": null,
-                    "body": "[\n    {\n        \"country\": {\n            \"name\": \"United States of America\",\n            \"iso3Code\": \"USA123\"\n        },\n        \"currencies\": [\n            {\n                \"name\": \"US Dollar\",\n                \"iso3Code\": \"USD\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 2\n            }\n        ]\n    },\n    {\n        \"country\": {\n            \"name\": \"Philippines\",\n            \"iso3Code\": \"PHL\"\n        },\n        \"currencies\": [\n            {\n                \"name\": \"Philipine Peso\",\n                \"iso3Code\": \"PHL\",\n                \"symbol\": \"₱\",\n                \"decimalPlaces\": 2\n            }\n        ]\n    }\n]"
+                    "body": "[\n    {\n        \"country\": {\n            \"name\": \"United States of America\",\n            \"iso3Code\": \"USA\"\n        },\n        \"currencies\": [\n            {\n                \"name\": \"US Dollar\",\n                \"iso3Code\": \"USD\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 2\n            }\n        ]\n    },\n    {\n        \"country\": {\n            \"name\": \"Philippines\",\n            \"iso3Code\": \"PHL\"\n        },\n        \"currencies\": [\n            {\n                \"name\": \"Philipine Peso\",\n                \"iso3Code\": \"PHL\",\n                \"symbol\": \"₱\",\n                \"decimalPlaces\": 2\n            }\n        ]\n    }\n]"
                 },
                 {
                     "id": "b241195d-30d3-43dd-a923-668823adc33b",
@@ -373,6 +373,8 @@
                             ]
                         }
                     },
+                    "status": "Internal Server Error",
+                    "code": 500,
                     "_postman_previewlanguage": "json",
                     "header": [
                         {
@@ -512,6 +514,8 @@
                             ]
                         }
                     },
+                    "status": "Internal Server Error",
+                    "code": 500,
                     "_postman_previewlanguage": "json",
                     "header": [
                         {

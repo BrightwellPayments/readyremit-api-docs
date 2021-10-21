@@ -16,14 +16,27 @@ paths:
                 schema:
                   type: array
                   items: 
-                    $ref: '#/components/schemas/country'
+                    type: object
+                    required:
+                        - country
+                        - currencies
+                    properties:
+                        country: 
+                            type: object
+                            $ref: '#/components/schemas/country'
+                        currencies:
+                            type: array
+                            items:
+                                $ref: '#/components/schemas/currency'
                 examples:
                     small_list:
                         summary: Returns two countries with 
                         value: [
                             { 
-                                "name": "United States of America",
-                                "iso3Code": "USA",
+                                "country": {
+                                    "name": "United States of America",
+                                    "iso3Code": "USA",
+                                },
                                 "currencies": [
                                     {
                                         "name": "US Dollar",
@@ -34,8 +47,10 @@ paths:
                                 ]
                             },
                             {
-                                "name": "Philippines",
-                                "iso3Code": "PHL",
+                                "country": {
+                                    "name": "Philippines",
+                                    "iso3Code": "PHL",
+                                },
                                 "currencies": [
                                     {
                                         "name": "Philipine Peso",
@@ -138,13 +153,14 @@ paths:
                             examples:
                                 server_error:
                                     summary: 'Server error'
-                                    value: {
-                                        "errors": [{
+                                    value: [
+                                        {
                                             "message": "It's all broked up",
                                             "description": "Example of a 500 exception",
                                             "code": "RR500"
-                                        }]
-                                    }
+                                        }
+                                    ]
+                                    
     /transfer/quotes:
         post:
             summary: 'Quotes'
@@ -159,7 +175,6 @@ paths:
                                 - dstCurrencyIso3Code
                                 - srcCurrencyIso3Code
                                 - amount
-                                - transferMethod
                             properties:
                                 dstCountryIso3Code:
                                     type: string
@@ -311,7 +326,6 @@ components:
       required:
         - name
         - iso3Code
-        - currencies
       properties:
         name: 
           type: string
@@ -320,10 +334,6 @@ components:
           maxLength: 3
           minLength: 3
           pattern: '^[A-Z]{3}$'
-        currencies:
-          type: array
-          items: 
-            $ref: '#/components/schemas/currency'
     currency:
       type: object
       required:
