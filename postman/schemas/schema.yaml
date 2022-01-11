@@ -5,9 +5,25 @@ info:
 servers:
   - url: 'localhost:3000'
 paths:
+    /transfer/ping:
+      get:
+          summary: 'Checks availability of the API'
+          responses:
+              '200':
+                description: 'Success'
+    /transfer/health:
+      get:
+          summary: 'Check the health of the API and all dependencies'
+          responses:
+              '200':
+                description: 'Success'
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/health'
     /transfer/options/countriescurrencies:
       get:
-        summary: 'Countries with Currencies'
+        summary: 'Gets a list of countries with currencies that are available for remittance.'
         responses:
           '200':
             description: 'Success'
@@ -83,87 +99,9 @@ paths:
                               "code": "RR500"
                           }]
                       }
-    /transfer/rates:
-        post:
-            summary: 'Rates'
-            requestBody:
-                description: Rates payload
-                content: 
-                    'application/json':
-                        schema:
-                            type: object
-                            required:
-                                - dstCountryIso3Code
-                                - dstCurrencyIso3Code
-                            properties:
-                                dstCountryIso3Code:
-                                    type: string
-                                    maxLength: 3
-                                    minLength: 3
-                                    pattern: '^[A-Z]{3}$'
-                                dstCurrencyIso3Code:
-                                    type: string
-                                    maxLength: 3
-                                    minLength: 3
-                                    pattern: '^[A-Z]{3}$'
-                                srcCurrencyIso3Code:
-                                    description: 'Currency of the source account. Defaults to the source currency of the users default account or only account. If no account is present and no currency is provided this will return a 400 No Source Account'
-                                    type: string
-                                    maxLength: 3
-                                    minLength: 3
-                                    pattern: '^[A-Z]{3}$'
-            responses:
-                '200':
-                    description: 'Success'
-                    content:
-                        application/json:
-                            schema:
-                                type: object
-                                properties:
-                                    rate:
-                                        type: integer
-                                        minimum: 0
-                                    effectiveLimit:
-                                        type: object
-                                        $ref: '#/components/schemas/money'
-                            examples:
-                                rates:
-                                    summary: Returns two countries with 
-                                    value: {
-                                        "rate": 12312,
-                                        "effectiveLimit": {
-                                            "amount": {
-                                                "value": 510500,
-                                                "currency": {
-                                                    "name": "United States Dollar",
-                                                    "ios3Code": "USD",
-                                                    "symbol": "$",
-                                                    "decimalPlaces": 2
-                                                }
-                                            },
-                                            "message": "Cannot exceed bank limit of $1,000.00"
-                                        }
-                                    }
-                '500':
-                    description: 'Server error'
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/errorPayload'
-                            examples:
-                                server_error:
-                                    summary: 'Server error'
-                                    value: [
-                                        {
-                                            "message": "It's all broked up",
-                                            "description": "Example of a 500 exception",
-                                            "code": "RR500"
-                                        }
-                                    ]
-                                    
     /transfer/quotes:
         post:
-            summary: 'Quotes'
+            summary: 'Get a transfer quote given a corridor and amount'
             requestBody:
                 description: Quotes payload
                 content: 
@@ -174,6 +112,8 @@ paths:
                                 - dstCountryIso3Code
                                 - dstCurrencyIso3Code
                                 - srcCurrencyIso3Code
+                                - transferMethod
+                                - quoteBy
                                 - amount
                             properties:
                                 dstCountryIso3Code:
@@ -191,6 +131,16 @@ paths:
                                     maxLength: 3
                                     minLength: 3
                                     pattern: '^[A-Z]{3}$'
+                                transferMethod:
+                                    type: string
+                                    enum:
+                                        - 'BANK_ACCOUNT'
+                                        - 'CASH_PICKUP'
+                                quoteBy:
+                                    type: string
+                                    enum:
+                                        - 'SEND_AMOUNT'
+                                        - 'RECEIVE_AMOUNT'
                                 amount:
                                     type: integer
                                     minimum: 1
@@ -273,12 +223,320 @@ paths:
                                             "code": "RR500"
                                         }]
                                     }
+    /transfer/sender/fields:
+        post:
+            summary: 'Get a list of required fields for creating or updating a Sender record for a given corridor.'
+            requestBody:
+                description: Corridor passed in to get required fields
+                content: 
+                    'application/json':
+                        schema:
+                            $ref: '#/components/schemas/corridor'
+            responses:
+                '200':
+                    description: 'Success'
+                    content: 
+                        'application/json':
+                            schema:
+                                type: object
+                                required:
+                                    - required
+                                    - fieldSets
+                                properties:
+                                    required:
+                                        type: boolean
+                                    fieldSets:
+                                        type: array
+                                        items:
+                                            $ref: '#/components/schemas/fieldSet'
+                '500':
+                    description: 'Server error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+    /transfer/sender:
+        post:
+            summary: 'Create a sender record. Only the minimum required fields will be validated outside the context of a corridor.'
+            requestBody:
+                description: List of fields to create the sender
+                content: 
+                    'application/json':
+                        schema:
+                            type: array
+                            items:
+                                $ref: '#/components/schemas/fieldValue'
+            responses:
+                '200':
+                    description: 'Success'
+                    content: 
+                        'application/json':
+                            schema:
+                                type: object
+                                $ref: '#/components/schemas/sender'
+                '400':
+                    description: 'Invalid or missing data'
+                    content:
+                        'application/json':
+                            schema:
+                                type: object
+                                required:
+                                    - fieldSets
+                                properties:
+                                    fieldSets:
+                                        type: array
+                                        items:
+                                            $ref: '#/components/schemas/fieldSet'
+                '500':
+                    description: 'Server error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+        put:
+            summary: 'Update a sender record. Only the minimum required fields will be validated outside the context of a corridor.'
+            requestBody:
+                description: List of fields to update the sender
+                content: 
+                    'application/json':
+                        schema:
+                            type: array
+                            items:
+                                $ref: '#/components/schemas/fieldValue'
+            responses:
+                '200':
+                    description: 'Success'
+                    content: 
+                        'application/json':
+                            schema:
+                                type: object
+                                $ref: '#/components/schemas/sender'
+                '400':
+                    description: 'Invalid or missing data'
+                    content:
+                        'application/json':
+                            schema:
+                                type: object
+                                required:
+                                    - fieldSets
+                                properties:
+                                    fieldSets:
+                                        type: array
+                                        items:
+                                            $ref: '#/components/schemas/fieldSet'
+                '500':
+                    description: 'Server error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+    /transfer/sender/{id}:
+        parameters:
+        - name: id
+          in: path
+          required: true
+          description: the sender identifier
+          schema:
+            type: string
+        delete:
+            summary: 'Deletes a sender record'
+            responses:
+                200:
+                    description: '200 Success'
+    /transfer/recipient/fields:
+        post:
+            summary: 'Get a list of required fields for creating or updating a Recipient record for a given corridor.'
+            requestBody:
+                description: Corridor passed in to get required fields
+                content: 
+                    'application/json':
+                        schema:
+                            allOf:
+                            - type: object
+                              $ref: '#/components/schemas/corridor'
+                            - type: object 
+                              properties:
+                                recipientType:
+                                    type: string
+                                    enum:
+                                    - MYSELF
+                                    - SOMEONE_ELSE
+                                    - BUSINESS
+            responses:
+                '200':
+                    description: 'Success'
+                    content: 
+                        'application/json':
+                            schema:
+                                type: object
+                                required:
+                                    - required
+                                    - fieldSets
+                                properties:
+                                    required:
+                                        type: boolean
+                                    fieldSets:
+                                        type: array
+                                        items:
+                                            $ref: '#/components/schemas/fieldSet'
+                '500':
+                    description: 'Server error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+    /transfer/recipient:
+        post:
+            summary: 'Create a recipient record. Only the minimum required fields will be validated outside the context of a corridor.'
+            requestBody:
+                description: List of fields to create the recipient
+                content: 
+                    'application/json':
+                        schema:
+                            type: array
+                            items:
+                                $ref: '#/components/schemas/fieldValue'
+            responses:
+                '200':
+                    description: 'Success'
+                    content: 
+                        'application/json':
+                            schema:
+                                type: object
+                                $ref: '#/components/schemas/recipient'
+                '400':
+                    description: 'Invalid or missing data'
+                    content:
+                        'application/json':
+                            schema:
+                                type: object
+                                required:
+                                    - fieldSets
+                                properties:
+                                    fieldSets:
+                                        type: array
+                                        items:
+                                            $ref: '#/components/schemas/fieldSet'
+                '500':
+                    description: 'Server error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+        put:
+            summary: 'Update a recipient record. Only the minimum required fields will be validated outside the context of a corridor.'
+            requestBody:
+                description: List of fields to update the recipient
+                content: 
+                    'application/json':
+                        schema:
+                            type: array
+                            items:
+                                $ref: '#/components/schemas/fieldValue'
+            responses:
+                '200':
+                    description: 'Success'
+                    content: 
+                        'application/json':
+                            schema:
+                                type: object
+                                $ref: '#/components/schemas/recipient'
+                '400':
+                    description: 'Invalid or missing data'
+                    content:
+                        'application/json':
+                            schema:
+                                type: object
+                                required:
+                                    - fieldSets
+                                properties:
+                                    fieldSets:
+                                        type: array
+                                        items:
+                                            $ref: '#/components/schemas/fieldSet'
+                '500':
+                    description: 'Server error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+    /transfer/recipient/{id}:
+        parameters:
+        - name: id
+          in: path
+          required: true
+          description: the recipient identifier
+          schema:
+            type: string
+        delete:
+            summary: 'Deletes a recipient record'
+            responses:
+                200:
+                    description: '200 Success'
+    /transfer/options/countriescurrencies/{countryIso3Code}/{currencyIso3Code}/banks:
+        get:
+            summary: 'Get a list of destination banks available for the given country currency'
+            parameters:
+              - in: path
+                name: countryIso3Code
+                schema:
+                    type: string
+                    maxLength: 3
+                    minLength: 3
+                    pattern: '^[A-Z]{3}$'
+                required: true
+                description: ISO code of destination country
+              - in: path
+                name: currencyIso3Code
+                schema:
+                    type: string
+                    maxLength: 3
+                    minLength: 3
+                    pattern: '^[A-Z]{3}$'
+                required: true
+                description: ISO code of destination currency
+            responses:
+                '200':
+                    description: 'Success'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/selection'
+                '500':
+                    description: 'Server error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+    /transfer/options/countriescurrencies/banks/{bankId}/branches:
+        get:
+            summary: 'Get a list of bank branches given a bank'
+            parameters:
+              - in: path
+                name: bankId
+                schema:
+                    type: string
+                required: true
+                description: ID of selected bank
+            responses:
+                '200':
+                    description: 'Success'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/selection'
+                '500':
+                    description: 'Server error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
     /user:
         get:
             summary: 'User'
             responses:
                 '200':
-                    description: 'Success'
+                    description: '200 Success'
                     content:
                         application/json:
                             schema:
@@ -321,6 +579,61 @@ components:
       scheme: bearer
       bearerFormat: JWT
   schemas:
+    selection:
+        type: object
+        required:
+            - name
+            - value
+        properties:
+            name:
+                type: string
+            value:
+                type: string
+    health:
+        type: object
+        required:
+            - name
+            - status
+        properties:
+            name:
+                type: string
+            status:
+                type: string
+                enum:
+                    - AVAILABLE
+                    - ERROR
+            dependencies:
+                type: array
+                items:
+                    $ref: '#/components/schemas/health'
+    corridor:
+        type: object
+        required:
+            - dstCountryIso3Code
+            - dstCurrencyIso3Code
+            - srcCurrencyIso3Code
+            - transferMethod
+        properties:
+            dstCountryIso3Code:
+                type: string
+                maxLength: 3
+                minLength: 3
+                pattern: '^[A-Z]{3}$'
+            dstCurrencyIso3Code:
+                type: string
+                maxLength: 3
+                minLength: 3
+                pattern: '^[A-Z]{3}$'
+            srcCurrencyIso3Code:
+                type: string
+                maxLength: 3
+                minLength: 3
+                pattern: '^[A-Z]{3}$'
+            transferMethod:
+                type: string
+                enum:
+                    - 'BANK_ACCOUNT'
+                    - 'CASH_PICKUP'
     country:
       type: object
       required:
@@ -426,6 +739,111 @@ components:
                 type: array
                 items:
                     type: string
+    fieldSet:
+        type: object
+        required:
+            - id
+            - name
+            - fields
+        properties:
+            id:
+                type: string
+            name:
+                type: string
+            fields:
+                type: array
+                items:
+                    oneOf:
+                    - $ref: '#/components/schemas/textField'
+    baseField:
+        type: object
+        required:
+            - fieldType
+            - name
+            - id
+            - required
+            - validationErrors
+        properties:
+            fieldType: 
+                type: string
+                enum:
+                    - 'TEXT'
+            id:
+                type: string
+            name:
+                type: string
+            hintText:
+                type: string
+            required:
+                type: boolean
+            validationErrors:
+                type: array
+                items:
+                    $ref: '#/components/schemas/error'
+    textField:
+        allOf:
+            - $ref: '#/components/schemas/baseField'
+            - type: object
+              properties:
+                placeholderText:
+                    type: string
+                minLength:
+                    type: number
+                maxLength:
+                    type: number
+                regex:
+                    type: string
+                value:
+                    type: string
+    fieldValue:
+        type: object
+        required: 
+            - fieldId
+            - fieldType
+            - value
+        properties:
+            fieldId:
+                type: string
+            fieldType:
+                type: string
+                enum:
+                    - 'TEXT'
+            value:
+                anyOf:
+                    - $ref: '#/components/schemas/textFieldValue'
+                    - $ref: '#/components/schemas/amountFieldValue'
+    textFieldValue:
+        type: string
+    amountFieldValue:
+        type: object
+        required:
+            - units
+            - currencyIso3Code
+        properties:
+            units:
+                type: number
+            currencyIso3Code:
+                type: string
+                maxLength: 3
+                minLength: 3
+                pattern: '^[A-Z]{3}$'                      
+    sender:
+        type: object
+        properties:
+            id:
+                type: number
+            firstName:
+                type: string
+            lastName:
+                type: string
+            addressLine1:
+                type: string
+            addressLine2:
+                type: string
+            city:
+                type: string
+            stateProvince:
+                type: string
     errorPayload:
         type: array
         items:
