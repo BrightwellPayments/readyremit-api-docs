@@ -559,7 +559,7 @@
                     ],
                     "cookie": [],
                     "responseTime": null,
-                    "body": "[\n    {\n        \"sendAmount\": {\n            \"value\": 510500,\n            \"currency\": {\n                \"name\": \"United States Dollar\",\n                \"iso3Code\": \"USD\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 2\n            }\n        },\n        \"receiveAmount\": {\n            \"value\": 744599,\n            \"currency\": {\n                \"name\": \"United States Dollar\",\n                \"iso3Code\": \"INR\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 0\n            }\n        },\n        \"rate\": 12312,\n        \"adjustments\": [\n            {\n                \"label\": \"Transfer Fee\",\n                \"amount\": {\n                    \"value\": 29900,\n                    \"currency\": {\n                        \"name\": \"United States Dollar\",\n                        \"iso3Code\": \"USD\",\n                        \"symbol\": \"$\",\n                        \"decimalPlaces\": 2\n                    }\n                }\n            }\n        ],\n        \"totalCost\": {\n            \"value\": 1029900,\n            \"currency\": {\n                \"name\": \"United States Dollar\",\n                \"iso3Code\": \"USD\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 2\n            }\n        },\n        \"disclosures\": []\n    }\n]"
+                    "body": "[\n    {\n        \"quoteId\": \"ABC123\",\n        \"sendAmount\": {\n            \"value\": 510500,\n            \"currency\": {\n                \"name\": \"United States Dollar\",\n                \"iso3Code\": \"USD\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 2\n            }\n        },\n        \"receiveAmount\": {\n            \"value\": 744599,\n            \"currency\": {\n                \"name\": \"Indian Rupee\",\n                \"iso3Code\": \"INR\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 0\n            }\n        },\n        \"rate\": 12312,\n        \"adjustments\": [\n            {\n                \"label\": \"Transfer Fee\",\n                \"amount\": {\n                    \"value\": 29900,\n                    \"currency\": {\n                        \"name\": \"United States Dollar\",\n                        \"iso3Code\": \"USD\",\n                        \"symbol\": \"$\",\n                        \"decimalPlaces\": 2\n                    }\n                }\n            }\n        ],\n        \"totalCost\": {\n            \"value\": 1029900,\n            \"currency\": {\n                \"name\": \"United States Dollar\",\n                \"iso3Code\": \"USD\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 2\n            }\n        },\n        \"disclosures\": []\n    }\n]"
                 },
                 {
                     "id": "84a143d3-a2eb-4b36-b503-51519fbf2321",
@@ -629,7 +629,7 @@
                 "header": [],
                 "body": {
                     "mode": "raw",
-                    "raw": "{\n    \"dstCountryIso3Code\": \"USA\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\"\n}",
+                    "raw": "{\n    \"dstCountryIso3Code\": \"USA\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\",\n    \"senderId\": \"ABC123\"\n}",
                     "options": {
                         "raw": {
                             "language": "json"
@@ -936,12 +936,13 @@
                     }
                 },
                 "url": {
-                    "raw": "{{base_url}}/sender",
+                    "raw": "{{base_url}}/sender/ABC123",
                     "host": [
                         "{{base_url}}"
                     ],
                     "path": [
-                        "sender"
+                        "sender",
+                        "ABC123"
                     ]
                 }
             },
@@ -1165,7 +1166,7 @@
                 "header": [],
                 "body": {
                     "mode": "raw",
-                    "raw": "{\n    \"dstCountryIso3Code\": \"USA\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\",\n    \"recipientType\": \"BUSINESS\"\n}",
+                    "raw": "{\n    \"dstCountryIso3Code\": \"USA\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\",\n    \"recipientType\": \"BUSINESS\",\n}",
                     "options": {
                         "raw": {
                             "language": "json"
@@ -1799,6 +1800,127 @@
             ]
         },
         {
+            "name": "Get Purposes of Remittance",
+            "id": "5f4b127a-ff01-48a3-8d79-1532a5693d37",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/options/purposesofremittance",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "options",
+                        "purposesofremittance"
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "fea63cde-1091-4b44-83c3-6df16f7fa56b",
+                    "name": "200 Success",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/options/purposesofremittance",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "options",
+                                "purposesofremittance"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"name\": \"Payroll\",\n        \"id\": \"PAYROLL\"\n    },\n    {\n        \"name\": \"Gift\",\n        \"id\": \"GIFT\"\n    }\n]"
+                },
+                {
+                    "id": "2b78eba1-6783-4ce4-9194-392310113995",
+                    "name": "500 Server error",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/options/purposesofremittance",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "options",
+                                "purposesofremittance"
+                            ]
+                        }
+                    },
+                    "status": "Internal Server Error",
+                    "code": 500,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "description": {
+                                "content": "",
+                                "type": "text/plain"
+                            },
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"It's all broked up!\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]"
+                },
+                {
+                    "id": "0f651888-63bd-47ed-9432-da667df0acfd",
+                    "name": "401 Missing Token",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/options/purposesofremittance",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "options",
+                                "purposesofremittance"
+                            ]
+                        }
+                    },
+                    "status": "Unauthorized",
+                    "code": 401,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "description": {
+                                "content": "",
+                                "type": "text/plain"
+                            },
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n    \"errors\": [\n        {\n            \"message\": \"Auth token missing from request\",\n            \"description\": \"\",\n            \"code\": \"TF001\"\n        }\n    ]\n}"
+                }
+            ]
+        },
+        {
             "name": "Banks",
             "id": "faa9c261-e86c-47d3-9279-3692f39dcb80",
             "protocolProfileBehavior": {
@@ -2085,7 +2207,7 @@
                 ],
                 "body": {
                     "mode": "raw",
-                    "raw": "{\n    \"quoteId\": \"abc123\",\n    \"recipientId\": \"123455\",\n    \"recipientAccountId\": \"abcdef\"\n}",
+                    "raw": "{\n    \"dstCountryIso3Code\": \"USA\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\",\n    \"quoteBy\": \"SEND_AMOUNT\",\n    \"amount\": 1000,\n    \"senderId\": \"1\",\n    \"recipientId\": \"123455\",\n    \"recipientAccountId\": \"abcdef\",\n    \"purposeOfRemittance\": \"PAYROLL\"\n}",
                     "options": {
                         "raw": {
                             "language": "json"
@@ -2121,7 +2243,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"countryIso3Code\": \"PHL\",\n    \"currencyIso3Code\": \"PHP\"\n}",
+                            "raw": "{\n    \"dstCountryIso3Code\": \"USA\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\",\n    \"quoteBy\": \"SEND_AMOUNT\",\n    \"amount\": 1000,\n    \"senderId\": \"1\",\n    \"recipientId\": \"123455\",\n    \"recipientAccountId\": \"abcdef\"\n}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -2150,7 +2272,7 @@
                     ],
                     "cookie": [],
                     "responseTime": null,
-                    "body": "{\n    \"rate\": 12312,\n    \"effectiveLimit\": {\n        \"money\": {\n            \"units\": 510500,\n            \"currency\": {\n                \"name\": \"United States Dollar\",\n                \"iso3Code\": \"USD123\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 2\n            }\n        },\n        \"message\": \"Cannot exceed bank limit of 1000\"\n    }\n}"
+                    "body": "{\n    \"transferId\": \"ABC123\",\n    \"quote\": {\n        \"sendAmount\": {\n            \"value\": 510500,\n            \"currency\": {\n                \"name\": \"United States Dollar\",\n                \"iso3Code\": \"USD\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 2\n            }\n        },\n        \"receiveAmount\": {\n            \"value\": 744599,\n            \"currency\": {\n                \"name\": \"Indian Rupee\",\n                \"iso3Code\": \"INR\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 0\n            }\n        },\n        \"rate\": 12312,\n        \"adjustments\": [\n            {\n                \"label\": \"Transfer Fee\",\n                \"amount\": {\n                    \"value\": 29900,\n                    \"currency\": {\n                        \"name\": \"United States Dollar\",\n                        \"iso3Code\": \"USD\",\n                        \"symbol\": \"$\",\n                        \"decimalPlaces\": 2\n                    }\n                }\n            }\n        ],\n        \"totalCost\": {\n            \"value\": 1029900,\n            \"currency\": {\n                \"name\": \"United States Dollar\",\n                \"iso3Code\": \"USD\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 2\n            }\n        }\n    },\n    \"senderDetails\": {\n        \"title\": \"Sender Details\",\n        \"fields\": [\n            {\n                \"fieldId\": \"FIRST_NAME\",\n                \"fieldType\": \"TEXT\",\n                \"label\": \"First Name\",\n                \"required\": true,\n                \"value\": \"Hugh\"\n            },\n            {\n                \"fieldId\": \"PHONE_NUMBER\",\n                \"fieldType\": \"PHONE\",\n                \"label\": \"Phone Numher\",\n                \"required\": false,\n                \"value\": { \"countryIso3Code\": \"USA\", \"countryCode\": 1, \"number\": \"5551234567\" }\n            }\n        ]\n    },\n    \"recipientDetails\": {\n        \"title\": \"Sender Details\",\n        \"fields\": [\n            {\n                \"fieldId\": \"FIRST_NAME\",\n                \"fieldType\": \"TEXT\",\n                \"label\": \"First Name\",\n                \"required\": true,\n                \"value\": \"Hugh\"\n            },\n            {\n                \"fieldId\": \"PHONE_NUMBER\",\n                \"fieldType\": \"PHONE\",\n                \"label\": \"Phone Numher\",\n                \"required\": false,\n                \"value\": { \"countryIso3Code\": \"USA\", \"countryCode\": 1, \"number\": \"5551234567\" }\n            }\n        ]\n    },\n    \"recipientAccountDetails\": {\n        \"title\": \"Sender Details\",\n        \"fields\": [\n            {\n                \"fieldId\": \"FIRST_NAME\",\n                \"fieldType\": \"TEXT\",\n                \"label\": \"First Name\",\n                \"required\": true,\n                \"value\": \"Hugh\"\n            },\n            {\n                \"fieldId\": \"PHONE_NUMBER\",\n                \"fieldType\": \"PHONE\",\n                \"label\": \"Phone Numher\",\n                \"required\": false,\n                \"value\": { \"countryIso3Code\": \"USA\", \"countryCode\": 1, \"number\": \"5551234567\" }\n            }\n        ]\n    },\n    \"disclaimers\": [\n        \n    ]\n}"
                 },
                 {
                     "id": "017d068d-a12f-4cb2-b158-634687273dff",
@@ -2206,6 +2328,42 @@
                     "cookie": [],
                     "responseTime": null,
                     "body": "[\n    {\n        \"message\": \"It's all broked up!\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]"
+                },
+                {
+                    "id": "53587c48-d78b-4ef5-ad77-13d1d201a21a",
+                    "name": "Success (Invalid)",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"quoteId\": \"abc123\",\n    \"senderId\": \"1\",\n    \"recipientId\": \"123455\",\n    \"recipientAccountId\": \"abcdef\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/transfer",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "transfer"
+                            ]
+                        }
+                    },
+                    "_postman_previewlanguage": null,
+                    "header": null,
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": null
                 }
             ]
         }
@@ -2249,7 +2407,7 @@
     ],
     "variable": [
         {
-            "id": "e31d3474-d90f-4dde-a82a-36bbb14c39aa",
+            "id": "dc8181cd-2731-4c40-b7ef-fe291e1f851b",
             "key": "base_url",
             "value": "{{base_url}}/transfer"
         }
