@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: readmeio/github-readme-sync@v2
         with:
-          readme-oas-key: drqTce6Uq8M79LpvZPj9SbLHBcglUKkz:6202c2f5525ed747334f5cc5
+          readme-oas-key: drqTce6Uq8M79LpvZPj9SbLHBcglUKkz:6202cb15a970a55c163c752d
            
           # OPTIONAL CONFIG, use if necessary
           oas-file-path: './postman/schemas/schema.yaml'
