@@ -1,0 +1,3306 @@
+{
+    "info": {
+        "_postman_id": "4453518e-9089-42bb-8d66-7e3c222107ce",
+        "name": "Transfer API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Login",
+            "id": "3289c291-f40f-4340-978e-0aac0e2de8b5",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "auth": {
+                    "type": "apikey",
+                    "apikey": [
+                        {
+                            "key": "value",
+                            "value": "PMAK-6165becc5a96f80046c6a18c-48385e850ad1a9165f7f3315bd85d64308",
+                            "type": "string"
+                        },
+                        {
+                            "key": "key",
+                            "value": "x-api-key",
+                            "type": "string"
+                        }
+                    ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"client_id\": \"4wHcz0sybaBugNpndO4ergapJS6HiFd7\",\n    \"client_secret\": \"C14EhtrgS_MsXQ_W2YySvCfOqPqZvKdAMi1rmsY6P_dJ_HQF7xh2en1a59xIBaX1\",\n    \"audience\": \"https://transfer.readyremit.com\",\n    \"grant_type\": \"client_credentials\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "https://brightwell.us.auth0.com/oauth/token",
+                    "protocol": "https",
+                    "host": [
+                        "brightwell",
+                        "us",
+                        "auth0",
+                        "com"
+                    ],
+                    "path": [
+                        "oauth",
+                        "token"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Ping",
+            "id": "43f79212-4836-432e-bb6d-91cfc74cfedf",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer esyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkRDVkRPOGk5QjVOaWxMYWtyelBWOCJ9.eyJodHRwczovL2FwaS5yZWFkeXJlbWl0LmNvbS91c2VyX2lkIjoiYWJjMTIzIiwiaXNzIjoiaHR0cHM6Ly9icmlnaHR3ZWxsLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiI0d0hjejBzeWJhQnVnTnBuZE80ZXJnYXBKUzZIaUZkN0BjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly90cmFuc2Zlci5yZWFkeXJlbWl0LmNvbSIsImlhdCI6MTYzNTg4ODg5NCwiZXhwIjoxNjM1OTc1Mjk0LCJhenAiOiI0d0hjejBzeWJhQnVnTnBuZE80ZXJnYXBKUzZIaUZkNyIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.FqyfUD75HyouagCt6RUqHHbqlVtIZJjWybpcw7iVuypK3ZJxw1CtQBLBfDRWYqtOaAYxzBAg9uRTtruHak5WvyepWx_tv-gCWVHwVsWoKAozi4RFY3NrLvb1hnVHRt1IHjoheyUdlT-8vGCuXDd0v5BTXSI78xR5MFrPl9Zvhc0Dl22_Km0FhxpkL88uVlaIDHCMedEm55AAE-H-yg9YFeCsTUWP4ag_KQZTdEu4imSINcFm7dLjA4wDI79TWV-4zUz0Oc6XglzPdkGYZrwRcM1flZQ8dKKayoqgrA3dZLPmdo7yqhlj3Xg7TQ-i9UeTxAhx9C-Hmc5kzUhfZWZplQ",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "Accept-Language",
+                        "value": "en-us",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/ping",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "ping"
+                    ],
+                    "query": [
+                        {
+                            "key": "error",
+                            "value": null,
+                            "type": "text",
+                            "disabled": true
+                        }
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "cf53a4db-b8de-4260-ae49-dfbc5acb9337",
+                    "name": "Success",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/ping",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "ping"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": ""
+                },
+                {
+                    "id": "c8de2b35-3af0-4526-ae67-1d571dfa9920",
+                    "name": "Server error",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/ping?statusCode=500",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "ping"
+                            ],
+                            "query": [
+                                {
+                                    "key": "statusCode",
+                                    "value": "500"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "Internal Server Error",
+                    "code": 500,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"It's all broked up\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]\n"
+                }
+            ]
+        },
+        {
+            "name": "Health",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "id": "867647e4-2235-44d5-bc4b-e08a0a347458",
+                        "exec": [
+                            ""
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "id": "e0b95c53-bff6-47b1-b323-34ca9208f7ea",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer esyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkRDVkRPOGk5QjVOaWxMYWtyelBWOCJ9.eyJodHRwczovL2FwaS5yZWFkeXJlbWl0LmNvbS91c2VyX2lkIjoiYWJjMTIzIiwiaXNzIjoiaHR0cHM6Ly9icmlnaHR3ZWxsLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiI0d0hjejBzeWJhQnVnTnBuZE80ZXJnYXBKUzZIaUZkN0BjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly90cmFuc2Zlci5yZWFkeXJlbWl0LmNvbSIsImlhdCI6MTYzNTg4ODg5NCwiZXhwIjoxNjM1OTc1Mjk0LCJhenAiOiI0d0hjejBzeWJhQnVnTnBuZE80ZXJnYXBKUzZIaUZkNyIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.FqyfUD75HyouagCt6RUqHHbqlVtIZJjWybpcw7iVuypK3ZJxw1CtQBLBfDRWYqtOaAYxzBAg9uRTtruHak5WvyepWx_tv-gCWVHwVsWoKAozi4RFY3NrLvb1hnVHRt1IHjoheyUdlT-8vGCuXDd0v5BTXSI78xR5MFrPl9Zvhc0Dl22_Km0FhxpkL88uVlaIDHCMedEm55AAE-H-yg9YFeCsTUWP4ag_KQZTdEu4imSINcFm7dLjA4wDI79TWV-4zUz0Oc6XglzPdkGYZrwRcM1flZQ8dKKayoqgrA3dZLPmdo7yqhlj3Xg7TQ-i9UeTxAhx9C-Hmc5kzUhfZWZplQ",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Accept-Language",
+                        "value": "en-us",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/health",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "health"
+                    ],
+                    "query": [
+                        {
+                            "key": "error",
+                            "value": null,
+                            "type": "text",
+                            "disabled": true
+                        }
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "14a656e6-bd41-41a0-a29d-e1b50ae2ec52",
+                    "name": "Success",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/health",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "health"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n    \"name\": \"TRANSFER_API\",\n    \"status\": \"AVAILABLE\",\n    \"dependencies\": [\n        {\n            \"name\": \"Mastercard\",\n            \"status\": \"AVAILABLE\"\n        }\n    ]\n}"
+                },
+                {
+                    "id": "4e25e809-8a0d-442c-abb3-a402f60159e5",
+                    "name": "Server error",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/health?statusCode=500",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "health"
+                            ],
+                            "query": [
+                                {
+                                    "key": "statusCode",
+                                    "value": "500"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "Internal Server Error",
+                    "code": 500,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"It's all broked up\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]\n"
+                }
+            ]
+        },
+        {
+            "name": "User",
+            "id": "6da3dfa6-d84e-45ef-a8b3-72f0bb00f760",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/user?statusCode=500",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "user"
+                    ],
+                    "query": [
+                        {
+                            "key": "statusCode",
+                            "value": "500"
+                        },
+                        {
+                            "key": "error",
+                            "value": null,
+                            "type": "text",
+                            "disabled": true
+                        }
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "9489ebed-9443-4e94-b468-2b9fafc1e1f9",
+                    "name": "Success",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/user",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "user"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n    \"sourceCurrency\": {\n        \"name\": \"United States Dollar\",\n        \"iso3Code\": \"USD\",\n        \"symbol\": \"$\",\n        \"decimalPlaces\": 2\n    }\n}"
+                },
+                {
+                    "id": "8e2f3a0e-cab2-447f-acde-32971aca6889",
+                    "name": "Server error",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/user?statusCode=500",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "user"
+                            ],
+                            "query": [
+                                {
+                                    "key": "statusCode",
+                                    "value": "500"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "Internal Server Error",
+                    "code": 500,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"It's all broked up\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]\n"
+                }
+            ]
+        },
+        {
+            "name": "Countries with Currencies",
+            "id": "ba9b467a-612d-44e6-8d40-9b3424a06dfb",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/options/countriescurrencies",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "options",
+                        "countriescurrencies"
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "5a25186c-da17-497b-8fec-1592ea5d7410",
+                    "name": "200 Success",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/options/countriescurrencies",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "options",
+                                "countriescurrencies"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"country\": {\n            \"name\": \"United States of America\",\n            \"iso3Code\": \"USA\"\n        },\n        \"currencies\": [\n            {\n                \"name\": \"US Dollar\",\n                \"iso3Code\": \"USD\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 2\n            }\n        ]\n    },\n    {\n        \"country\": {\n            \"name\": \"Philippines\",\n            \"iso3Code\": \"PHL\"\n        },\n        \"currencies\": [\n            {\n                \"name\": \"Philipine Peso\",\n                \"iso3Code\": \"PHP\",\n                \"symbol\": \"₱\",\n                \"decimalPlaces\": 2\n            }\n        ]\n    }\n]"
+                },
+                {
+                    "id": "b241195d-30d3-43dd-a923-668823adc33b",
+                    "name": "500 Server error",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/options/countriescurrencies?statusCode=500",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "options",
+                                "countriescurrencies"
+                            ],
+                            "query": [
+                                {
+                                    "key": "statusCode",
+                                    "value": "500"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "Internal Server Error",
+                    "code": 500,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "description": {
+                                "content": "",
+                                "type": "text/plain"
+                            },
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"It's all broked up!\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]"
+                },
+                {
+                    "id": "6045c9c4-1365-4788-9f3b-d646c96c8ae2",
+                    "name": "401 Missing Token",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/options/countriescurrencies?statusCode=401",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "options",
+                                "countriescurrencies"
+                            ],
+                            "query": [
+                                {
+                                    "key": "statusCode",
+                                    "value": "401"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "Unauthorized",
+                    "code": 401,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "description": {
+                                "content": "",
+                                "type": "text/plain"
+                            },
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n    \"errors\": [\n        {\n            \"message\": \"Auth token missing from request\",\n            \"description\": \"\",\n            \"code\": \"TF001\"\n        }\n    ]\n}"
+                }
+            ]
+        },
+        {
+            "name": "Get Transfer Types",
+            "id": "6aafb230-050c-4638-9c58-6fd56e17eb81",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/options/transfertypes?dstCountryIso3Code=RUS&dstCurrencyIso3Code=RUB&srcCurrencyIso3Code=USD",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "options",
+                        "transfertypes"
+                    ],
+                    "query": [
+                        {
+                            "key": "dstCountryIso3Code",
+                            "value": "RUS",
+                            "type": "text"
+                        },
+                        {
+                            "key": "dstCurrencyIso3Code",
+                            "value": "RUB",
+                            "type": "text"
+                        },
+                        {
+                            "key": "srcCurrencyIso3Code",
+                            "value": "USD",
+                            "type": "text"
+                        }
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "9a2bf0c6-d9aa-4b5b-8c84-fb7bf54d93ab",
+                    "name": "200 Success",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/options/transfertypes",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "options",
+                                "transfertypes"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"name\": \"Bank Transfer\",\n        \"id\": \"BANK_TRANSFER\"\n    }\n]"
+                },
+                {
+                    "id": "317deaff-081e-4bc1-8a9e-faed59dabf93",
+                    "name": "500 Server error",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/options/purposesofremittance",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "options",
+                                "purposesofremittance"
+                            ]
+                        }
+                    },
+                    "status": "Internal Server Error",
+                    "code": 500,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "description": {
+                                "content": "",
+                                "type": "text/plain"
+                            },
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"It's all broked up!\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]"
+                },
+                {
+                    "id": "af85d11e-5bc8-4dbe-9c00-4f3346db4f46",
+                    "name": "401 Missing Token",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/options/purposesofremittance",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "options",
+                                "purposesofremittance"
+                            ]
+                        }
+                    },
+                    "status": "Unauthorized",
+                    "code": 401,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "description": {
+                                "content": "",
+                                "type": "text/plain"
+                            },
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n    \"errors\": [\n        {\n            \"message\": \"Auth token missing from request\",\n            \"description\": \"\",\n            \"code\": \"TF001\"\n        }\n    ]\n}"
+                }
+            ]
+        },
+        {
+            "name": "Quotes",
+            "id": "09abe96a-509d-4b40-b2e1-fa2cbb7f68f7",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{base_url}}/quotes?dstCountryIso3Code=RUS&dstCurrencyIso3Code=RUB&srcCurrencyIso3Code=USD&transferMethod=BANK_TRANSFER&quoteBy=SEND_AMOUNT&amount=1000",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "quotes"
+                    ],
+                    "query": [
+                        {
+                            "key": "dstCountryIso3Code",
+                            "value": "RUS"
+                        },
+                        {
+                            "key": "dstCurrencyIso3Code",
+                            "value": "RUB"
+                        },
+                        {
+                            "key": "srcCurrencyIso3Code",
+                            "value": "USD"
+                        },
+                        {
+                            "key": "transferMethod",
+                            "value": "BANK_TRANSFER"
+                        },
+                        {
+                            "key": "quoteBy",
+                            "value": "SEND_AMOUNT"
+                        },
+                        {
+                            "key": "amount",
+                            "value": "1000"
+                        }
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "e4f9c615-c864-4404-885c-8a0b90e005bc",
+                    "name": "Success",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "locale",
+                                "value": "en_us"
+                            },
+                            {
+                                "name": "Content-Type",
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/quotes?dstCountryIso3Code=RUS&dstCurrencyIso3Code=RUB&srcCurrencyIso3Code=USD&transferMethod=BANK_TRANSFER&quoteBy=SEND_AMOUNT&amount=1000",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "quotes"
+                            ],
+                            "query": [
+                                {
+                                    "key": "dstCountryIso3Code",
+                                    "value": "RUS"
+                                },
+                                {
+                                    "key": "dstCurrencyIso3Code",
+                                    "value": "RUB"
+                                },
+                                {
+                                    "key": "srcCurrencyIso3Code",
+                                    "value": "USD"
+                                },
+                                {
+                                    "key": "transferMethod",
+                                    "value": "BANK_TRANSFER"
+                                },
+                                {
+                                    "key": "quoteBy",
+                                    "value": "SEND_AMOUNT"
+                                },
+                                {
+                                    "key": "amount",
+                                    "value": "1000"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json",
+                            "enabled": true
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"sendAmount\": {\n            \"value\": 1000,\n            \"currency\": {\n                \"name\": \"United States Dollar\",\n                \"iso3Code\": \"USD\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 2\n            }\n        },\n        \"receiveAmount\": {\n            \"value\": 78730,\n            \"currency\": {\n                \"name\": \"Russian Ruble\",\n                \"iso3Code\": \"RUB\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 2\n            }\n        },\n        \"rate\": 78.7300,\n        \"adjustments\": [\n            {\n                \"label\": \"Transfer Fee\",\n                \"amount\": {\n                    \"value\": 799,\n                    \"currency\": {\n                        \"name\": \"United States Dollar\",\n                        \"iso3Code\": \"USD\",\n                        \"symbol\": \"$\",\n                        \"decimalPlaces\": 2\n                    }\n                }\n            }\n        ],\n        \"totalCost\": {\n            \"value\": 1799,\n            \"currency\": {\n                \"name\": \"United States Dollar\",\n                \"iso3Code\": \"USD\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 2\n            }\n        },\n        \"disclosures\": [\n            {\n                \"format\": \"html\",\n                \"content\": \"<div class='rr-disclaimer'>Recipient will get the money <strong>same business day</strong></div>\",\n            }\n        ]\n    }\n]"
+                },
+                {
+                    "id": "84a143d3-a2eb-4b36-b503-51519fbf2321",
+                    "name": "Server Error",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "locale",
+                                "value": "en_us"
+                            },
+                            {
+                                "name": "Content-Type",
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"countryIso3Code\": \"PHL\",\n    \"currencyIso3Code\": \"PHP\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/quotes?statusCode=500",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "quotes"
+                            ],
+                            "query": [
+                                {
+                                    "key": "statusCode",
+                                    "value": "500"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "Internal Server Error",
+                    "code": 500,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json",
+                            "enabled": true
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"It's all broked up!\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]"
+                },
+                {
+                    "id": "47c9976a-1419-42b8-8ec7-6da567e88ba0",
+                    "name": "Invalid Data",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/quotes?dstCountryIso3Code=RUS&dstCurrencyIso3Code=RUB&srcCurrencyIso3Code=USD&transferMethod=BANK_TRANSFER&quoteBy=SEND_AMOUNT&amount=1000",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "quotes"
+                            ],
+                            "query": [
+                                {
+                                    "key": "dstCountryIso3Code",
+                                    "value": "RUS"
+                                },
+                                {
+                                    "key": "dstCurrencyIso3Code",
+                                    "value": "RUB"
+                                },
+                                {
+                                    "key": "srcCurrencyIso3Code",
+                                    "value": "USD"
+                                },
+                                {
+                                    "key": "transferMethod",
+                                    "value": "BANK_TRANSFER"
+                                },
+                                {
+                                    "key": "quoteBy",
+                                    "value": "SEND_AMOUNT"
+                                },
+                                {
+                                    "key": "amount",
+                                    "value": "1000"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "Bad Request",
+                    "code": 400,
+                    "_postman_previewlanguage": "json",
+                    "header": null,
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"Destination country should be 3 characters\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]"
+                }
+            ]
+        },
+        {
+            "name": "Sender Fields",
+            "id": "fe859bad-98a5-46a7-a41e-73f8bcd7076c",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true,
+                "disabledSystemHeaders": {}
+            },
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"dstCountryIso3Code\": \"RUS\",\n    \"dstCurrencyIso3Code\": \"RUB\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{base_url}}/sender/fields",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "sender",
+                        "fields"
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "a9ac6960-6a29-47b3-a847-bb4a43e39b49",
+                    "name": "Success (sender info required)",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"dstCountryIso3Code\": \"RUS\",\n    \"dstCurrencyIso3Code\": \"RUB\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/sender/fields",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "sender",
+                                "fields"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json",
+                            "description": "",
+                            "type": "default"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n    \"required\": true,\n    \"fieldSets\": [\n    {\n        \"fieldSetId\": \"SENDER_DETAILS\",\n        \"fieldSetName\": \"Sender Personal Info\",\n        \"fields\": [\n            {\n                \"fieldType\": \"TEXT\",\n                \"name\": \"Sender First Name\",\n                \"placeholderText\": null,\n                \"hintText\": \"Do the thing please\",\n                \"minLength\": 1,\n                \"maxLength\": 4,\n                \"regex\": \"^([a-zA-Z \\\\u00C0-\\\\u017F\\\\-\\\\'\\\\/])*$\",\n                \"isRequired\": false,\n                \"fieldId\": \"senderLastName2\",\n                \"value\": null,\n                \"validationErrors\": [\n                    {\n                        \"message\": \"First name needs to be no longer than 8 alpha numeric characters\",\n                        \"code\": \"US908\"\n                    }\n                ]\n            },\n            {\n                \"fieldType\": \"TEXT\",\n                \"name\": \"Sender Last/Family Name\",\n                \"placeholderText\": null,\n                \"hintText\": \"Do the thing please\",\n                \"minLength\": 1,\n                \"maxLength\": 4,\n                \"regex\": \"^([a-zA-Z \\\\u00C0-\\\\u017F\\\\-\\\\'\\\\/])*$\",\n                \"isRequired\": false,\n                \"fieldId\": \"senderLastName2\",\n                \"value\": \"Smith\",\n                \"validationErrors\": [\n                    {\n                        \"message\": \"First name needs to be no longer than 8 alpha numeric characters\",\n                        \"code\": \"US908\"\n                    }\n                ]\n            }\n        ]\n    }\n    ]\n}"
+                },
+                {
+                    "id": "bbeeda54-6fa3-40fd-b60a-2e862f819f75",
+                    "name": "Success (sender info NOT required)",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"dstCountryIso3Code\": \"USA\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/sender/fields?statusCode=400",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "sender",
+                                "fields"
+                            ],
+                            "query": [
+                                {
+                                    "key": "statusCode",
+                                    "value": "400"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": null,
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n    \"required\": false,\n    \"fieldSets\": []\n}"
+                },
+                {
+                    "id": "d14b3c40-c6cd-4602-9433-a72a3d6d29b9",
+                    "name": "Server Error",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "locale",
+                                "value": "en_us"
+                            },
+                            {
+                                "name": "Content-Type",
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"dstCountryIso3Code\": \"ERROR\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/sender/fields?statusCode=500",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "sender",
+                                "fields"
+                            ],
+                            "query": [
+                                {
+                                    "key": "statusCode",
+                                    "value": "500"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "Internal Server Error",
+                    "code": 500,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json",
+                            "enabled": true
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"It's all broked up!\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]"
+                }
+            ]
+        },
+        {
+            "name": "Get Sender",
+            "id": "376765a4-de62-4227-bc53-2fbc41205a2a",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true,
+                "disabledSystemHeaders": {}
+            },
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"dstCountryIso3Code\": \"RUS\",\n    \"dstCurrencyIso3Code\": \"RUB\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{base_url}}/sender/12345",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "sender",
+                        "12345"
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "7ddfba30-e0db-4f21-907f-462ecf9ce453",
+                    "name": "Success",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"dstCountryIso3Code\": \"RUS\",\n    \"dstCurrencyIso3Code\": \"RUB\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/sender/fields",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "sender",
+                                "fields"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json",
+                            "description": "",
+                            "type": "default"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n    \"id\": \"566\",\n    \"firstName\": \"Joshua\",\n    \"lastName\": \"Garcia\",\n    \"additionalFields\": [\n        { \n            \"id\": \"PHONE_NUMBER\",\n            \"type\": \"PHONE_NUMBER\",\n            \"value\": { \"countryIso3Code\": \"USA\", \"countryPhoneCode\": 1, \"number\": \"555-555-5555\" }\n        },\n        {\n            \"id\": \"HOME_CURRENCY\",\n            \"type\": \"AMOUNT\",\n            \"value\": {  \"units\": 12313, \"currencyIso3Code\": \"PHP\" }\n        }\n    ]\n}"
+                },
+                {
+                    "id": "b5dbfc98-5459-474b-9e12-c7a945fe53f4",
+                    "name": "Sender Not Found",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"dstCountryIso3Code\": \"USA\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/sender/12345",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "sender",
+                                "12345"
+                            ]
+                        }
+                    },
+                    "status": "Bad Request",
+                    "code": 400,
+                    "_postman_previewlanguage": "json",
+                    "header": null,
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"No sender found matching ID 12345\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR404\"\n    }\n]"
+                },
+                {
+                    "id": "3a365b16-4d8e-4b9c-ac20-32caf65f5225",
+                    "name": "Server Error",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "locale",
+                                "value": "en_us"
+                            },
+                            {
+                                "name": "Content-Type",
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"dstCountryIso3Code\": \"ERROR\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/sender/fields?statusCode=500",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "sender",
+                                "fields"
+                            ],
+                            "query": [
+                                {
+                                    "key": "statusCode",
+                                    "value": "500"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "Internal Server Error",
+                    "code": 500,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json",
+                            "enabled": true
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"It's all broked up!\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]"
+                }
+            ]
+        },
+        {
+            "name": "Create Sender",
+            "id": "779d7c51-ca5c-4d2e-b0e5-32de4e6a623d",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"senderType\": \"BUSINESS\",\n    \"fields\": [\n        {\n            \"id\": \"businessName\",\n            \"type\": \"TEXT\",\n            \"value\": \"InCruises\"\n        },\n        {\n            \"id\": \"addressLine1\",\n            \"type\": \"TEXT\",\n            \"value\": \"St. 1- Lot #3\"\n        },\n        {\n            \"id\": \"addressLine2\",\n            \"type\": \"TEXT\",\n            \"value\": \"Suite 500\"\n        },\n        {\n            \"id\": \"city\",\n            \"type\": \"TEXT\",\n            \"value\": \"Guaynabo\"\n        },\n        {\n            \"id\": \"stateProvince\",\n            \"type\": \"TEXT\",\n            \"value\": \"Puerto Rico\"\n        },\n        {\n            \"id\": \"postalCode\",\n            \"type\": \"TEXT\",\n            \"value\": \"00968\"\n        }\n    ]\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{base_url}}/sender",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "sender"
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "a7cbabc2-1c16-41aa-b1fc-988c35627cd0",
+                    "name": "201 Success",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"senderType\": \"BUSINESS\",\n    \"fields\": [\n        {\n            \"id\": \"businessName\",\n            \"type\": \"TEXT\",\n            \"value\": \"InCruises\"\n        },\n        {\n            \"id\": \"addressLine1\",\n            \"type\": \"TEXT\",\n            \"value\": \"St. 1- Lot #3\"\n        },\n        {\n            \"id\": \"addressLine2\",\n            \"type\": \"TEXT\",\n            \"value\": \"Suite 500\"\n        },\n        {\n            \"id\": \"city\",\n            \"type\": \"TEXT\",\n            \"value\": \"Guaynabo\"\n        },\n        {\n            \"id\": \"stateProvince\",\n            \"type\": \"TEXT\",\n            \"value\": \"Puerto Rico\"\n        },\n        {\n            \"id\": \"postalCode\",\n            \"type\": \"TEXT\",\n            \"value\": \"00968\"\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/sender",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "sender"
+                            ]
+                        }
+                    },
+                    "status": "Created",
+                    "code": 201,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json",
+                            "description": "",
+                            "type": "text"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n    \"id\": \"566\",\n    \"firstName\": \"Joshua\",\n    \"lastName\": \"Garcia\",\n    \"additionalFields\": [\n        { \n            \"id\": \"PHONE_NUMBER\",\n            \"type\": \"PHONE_NUMBER\",\n            \"value\": { \"countryIso3Code\": \"USA\", \"countryPhoneCode\": 1, \"number\": \"555-555-5555\" }\n        },\n        {\n            \"id\": \"HOME_CURRENCY\",\n            \"type\": \"AMOUNT\",\n            \"value\": {  \"units\": 12313, \"currencyIso3Code\": \"PHP\" }\n        }\n    ]\n}"
+                },
+                {
+                    "id": "64bcb7cf-4bde-49b6-97e8-914a55a462d1",
+                    "name": "200 Invalid Data",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"senderType\": \"BUSINESS\",\n    \"fields\": [\n        \n        {\n            \"id\": \"addressLine1\",\n            \"type\": \"TEXT\",\n            \"value\": \"St. 1- Lot #3\"\n        },\n        {\n            \"id\": \"addressLine2\",\n            \"type\": \"TEXT\",\n            \"value\": \"Suite 500\"\n        },\n        {\n            \"id\": \"city\",\n            \"type\": \"TEXT\",\n            \"value\": \"Guaynabo\"\n        },\n        {\n            \"id\": \"stateProvince\",\n            \"type\": \"TEXT\",\n            \"value\": \"Puerto Rico\"\n        },\n        {\n            \"id\": \"postalCode\",\n            \"type\": \"TEXT\",\n            \"value\": \"00968\"\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/sender",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "sender"
+                            ]
+                        }
+                    },
+                    "status": "Bad Request",
+                    "code": 400,
+                    "_postman_previewlanguage": "json",
+                    "header": null,
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"It's all broked up!\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]"
+                },
+                {
+                    "id": "369c5e19-fa2d-44df-bd8f-7fa5271f60a5",
+                    "name": "500 Server Error",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"fields\": [\n        {\n            \"fieldId\": \"ZIP\",\n            \"fieldType\": \"AMOUNT\",\n            \"value\": { \"units\": 12313, \"currencyIso3Code\": \"PHP\" }\n        },\n        {\n            \"fieldId\": \"firstName\",\n            \"fieldType\": \"TEXT\",\n            \"value\": \"Joe\"\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/sender",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "sender"
+                            ]
+                        }
+                    },
+                    "status": "Internal Server Error",
+                    "code": 500,
+                    "_postman_previewlanguage": "json",
+                    "header": null,
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"It's all broked up!\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]"
+                }
+            ]
+        },
+        {
+            "name": "Update Sender",
+            "id": "9215946c-a825-47bd-936c-fafc0d57a922",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"fields\": [\n        {\n            \"fieldId\": \"ZIP\",\n            \"fieldType\": \"AMOUNT\",\n            \"value\": { \"units\": 12313, \"currencyIso3Code\": \"PHP\" }\n        },\n        {\n            \"fieldId\": \"firstName\",\n            \"fieldType\": \"TEXT\",\n            \"value\": \"Joe\"\n        }\n    ]\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{base_url}}/sender/ABC123",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "sender",
+                        "ABC123"
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "5c30b4b9-a4e1-45dd-80bb-c2b32c20081d",
+                    "name": "200 Success",
+                    "originalRequest": {
+                        "method": "PUT",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"fields\": [\n        {\n            \"fieldId\": \"ZIP\",\n            \"fieldType\": \"AMOUNT\",\n            \"value\": { \"units\": 12313, \"currencyIso3Code\": \"PHP\" }\n        },\n        {\n            \"fieldId\": \"firstName\",\n            \"fieldType\": \"TEXT\",\n            \"value\": \"Joe\"\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/sender",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "sender"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": null,
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n    \"id\": \"566\",\n    \"firstName\": \"Joshua\",\n    \"lastName\": \"Garcia\",\n    \"additionalFields\": [\n        { \n            \"id\": \"PHONE_NUMBER\",\n            \"type\": \"PHONE_NUMBER\",\n            \"value\": { \"countryIso3Code\": \"USA\", \"countryPhoneCode\": 1, \"number\": \"555-555-5555\" }\n        },\n        {\n            \"id\": \"HOME_CURRENCY\",\n            \"type\": \"AMOUNT\",\n            \"value\": {  \"units\": 12313, \"currencyIso3Code\": \"PHP\" }\n        }\n    ]\n}"
+                },
+                {
+                    "id": "17306971-985a-4097-9323-d86f1ecbd7d0",
+                    "name": "400 Invalid Data",
+                    "originalRequest": {
+                        "method": "PUT",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[\n    {\n        \"fieldSetId\": \"Personal Info\",\n        \"fields\": [\n            {\n                \"fieldId\": \"firstName\",\n                \"fieldType\": \"AMOUNT\",\n                \"value\": { \"units\": 12313, \"currencyIso3Code\": \"PHP\" }\n            }\n        ]\n    },\n    {\n        \"fieldSetId\": \"Address\",\n        \"fields\": [\n            {\n                \"fieldId\": \"City\",\n                \"value\": \"Atlanta\"\n            }\n        ]\n    }\n]",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/sender",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "sender"
+                            ]
+                        }
+                    },
+                    "status": "Bad Request",
+                    "code": 400,
+                    "_postman_previewlanguage": "json",
+                    "header": null,
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"Must be more than 1 character\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\",\n        \"fieldId\": \"senderFirstName\" //OPTIONAL\n    },\n    {\n        \"message\": \"Can't use an emoji\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\",\n        \"fieldId\": \"senderFirstName\" //OPTIONAL\n    },\n    {\n        \"message\": \"Must be more than 1 character\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\",\n        \"fieldId\": \"senderLastName\" //OPTIONAL\n    }\n]\n\n{\n    \"required\": true,\n    \"fieldSets\": [\n        {\n            \"fieldSetId\": \"SENDER_DETAILS\",\n            \"fieldSetName\": \"Sender Personal Info\",\n            \"fields\": [\n                {\n                    \"fieldType\": \"TEXT\",\n                    \"name\": \"Sender First Name\",\n                    \"placeholderText\": null,\n                    \"hintText\": \"Do the thing please\",\n                    \"minLength\": 1,\n                    \"maxLength\": 4,\n                    \"regex\": \"^([a-zA-Z \\\\u00C0-\\\\u017F\\\\-\\\\'\\\\/])*$\",\n                    \"isRequired\": false,\n                    \"fieldId\": \"senderLastName2\",\n                    \"value\": null,\n                    \"validationErrors\": [\n                        {\n                            \"message\": \"First name needs to be no longer than 8 alpha numeric characters\",\n                            \"code\": \"US908\"\n                        }\n                    ]\n                },\n                {\n                    \"fieldType\": \"TEXT\",\n                    \"name\": \"Sender Last/Family Name\",\n                    \"placeholderText\": null,\n                    \"hintText\": \"Do the thing please\",\n                    \"minLength\": 1,\n                    \"maxLength\": 4,\n                    \"regex\": \"^([a-zA-Z \\\\u00C0-\\\\u017F\\\\-\\\\'\\\\/])*$\",\n                    \"isRequired\": false,\n                    \"fieldId\": \"senderLastName2\",\n                    \"value\": \"Smith\",\n                    \"validationErrors\": [\n                        {\n                            \"message\": \"First name needs to be no longer than 8 alpha numeric characters\",\n                            \"code\": \"US908\"\n                        }\n                    ]\n                }\n            ]\n        }\n    ]\n}"
+                },
+                {
+                    "id": "9e56ac8a-c61a-4588-9129-233841b5e226",
+                    "name": "500 Server Error",
+                    "originalRequest": {
+                        "method": "PUT",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"fields\": [\n        {\n            \"fieldId\": \"ZIP\",\n            \"fieldType\": \"AMOUNT\",\n            \"value\": { \"units\": 12313, \"currencyIso3Code\": \"PHP\" }\n        },\n        {\n            \"fieldId\": \"firstName\",\n            \"fieldType\": \"TEXT\",\n            \"value\": \"Joe\"\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/sender",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "sender"
+                            ]
+                        }
+                    },
+                    "status": "Internal Server Error",
+                    "code": 500,
+                    "_postman_previewlanguage": "json",
+                    "header": null,
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"It's all broked up!\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]"
+                }
+            ]
+        },
+        {
+            "name": "Delete Sender",
+            "id": "32043904-f77f-473c-b13e-711fa3e380bc",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/sender/1",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "sender",
+                        "1"
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "2f8cae81-ccec-4980-988a-8efc58b79ef4",
+                    "name": "400 Invalid Data",
+                    "originalRequest": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/sender/BAD_ID",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "sender",
+                                "BAD_ID"
+                            ]
+                        }
+                    },
+                    "status": "Bad Request",
+                    "code": 400,
+                    "_postman_previewlanguage": "json",
+                    "header": null,
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"Sender ID not valid\",\n        \"description\": \"Sender ID must be a valid integer\",\n        \"code\": \"RR500\"\n    }\n]"
+                },
+                {
+                    "id": "1bbde6b7-b095-4b42-9272-92a5a3e6fb50",
+                    "name": "200 Success",
+                    "originalRequest": {
+                        "method": "DELETE",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"fields\": [\n        {\n            \"fieldId\": \"ZIP\",\n            \"fieldType\": \"AMOUNT\",\n            \"value\": { \"units\": 12313, \"currencyIso3Code\": \"PHP\" }\n        },\n        {\n            \"fieldId\": \"firstName\",\n            \"fieldType\": \"TEXT\",\n            \"value\": \"Joe\"\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/sender/1",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "sender",
+                                "1"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": null,
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": ""
+                },
+                {
+                    "id": "a266c7b8-f8a1-4aad-a79b-d147cd1e7ded",
+                    "name": "500 Server Error",
+                    "originalRequest": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/sender/1",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "sender",
+                                "1"
+                            ]
+                        }
+                    },
+                    "status": "Internal Server Error",
+                    "code": 500,
+                    "_postman_previewlanguage": "json",
+                    "header": null,
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"It's all broked up!\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]"
+                }
+            ]
+        },
+        {
+            "name": "Recipient Fields",
+            "id": "f0901218-7fd4-4a51-a2fc-dfd56465d3b6",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"dstCountryIso3Code\": \"RUS\",\n    \"dstCurrencyIso3Code\": \"RUB\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\",\n    \"recipientType\": \"BUSINESS\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{base_url}}/recipient/fields",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "recipient",
+                        "fields"
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "5f2d251d-ece2-4258-a271-6a09fdf4751d",
+                    "name": "Success",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"dstCountryIso3Code\": \"RUS\",\n    \"dstCurrencyIso3Code\": \"RUB\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\",\n    \"recipientType\": \"MYSELF\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/recipient/fields",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "recipient",
+                                "fields"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": null,
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n    \"fields\": [\n        {\n            \"fieldSetId\": \"RECIPIENT_PERSONAL_INFO\",\n            \"fieldSetName\": \"Recipient Personal Info\",\n            \"fields\": [\n                {\n                    \"fieldType\": \"TEXT\",\n                    \"name\": \"Tax Registration Reason Code (KPP)\",\n                    \"placeholderText\": null,\n                    \"hintText\": \"Enter Tax Registration Reason Code\",\n                    \"minLength\": 1,\n                    \"maxLength\": 4,\n                    \"regex\": \"^([a-zA-Z \\\\u00C0-\\\\u017F\\\\-\\\\'\\\\/])*$\",\n                    \"isRequired\": false,\n                    \"fieldId\": \"TaxRegistrationReasonCode\",\n                    \"value\": null,\n                    \"validationErrors\": []\n                }\n            ]\n        }\n    ]\n}"
+                },
+                {
+                    "id": "6eae28c3-6658-44f4-9259-471f9a5014a2",
+                    "name": "Server Error",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "locale",
+                                "value": "en_us"
+                            },
+                            {
+                                "name": "Content-Type",
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"countryIso3Code\": \"PHL\",\n    \"currencyIso3Code\": \"PHP\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/recipient/fields",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "recipient",
+                                "fields"
+                            ]
+                        }
+                    },
+                    "status": "Internal Server Error",
+                    "code": 500,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json",
+                            "enabled": true
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"It's all broked up!\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]"
+                }
+            ]
+        },
+        {
+            "name": "Get Recipient",
+            "id": "47ded3d9-e076-4d21-8c2d-a8e82e3dde80",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true,
+                "disabledSystemHeaders": {}
+            },
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"dstCountryIso3Code\": \"RUS\",\n    \"dstCurrencyIso3Code\": \"RUB\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{base_url}}/recipient/12345",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "recipient",
+                        "12345"
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "e15bce8a-0823-4861-90e9-622f57e96487",
+                    "name": "Success",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"dstCountryIso3Code\": \"RUS\",\n    \"dstCurrencyIso3Code\": \"RUB\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/sender/fields",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "sender",
+                                "fields"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json",
+                            "description": "",
+                            "type": "default"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n    \"id\": \"566\",\n    \"fields\": [\n        { \n            \"id\": \"PHONE_NUMBER\",\n            \"type\": \"PHONE_NUMBER\",\n            \"value\": { \"countryIso3Code\": \"USA\", \"countryPhoneCode\": 1, \"number\": \"555-555-5555\" }\n        },\n        {\n            \"id\": \"HOME_CURRENCY\",\n            \"type\": \"AMOUNT\",\n            \"value\": {  \"units\": 12313, \"currencyIso3Code\": \"PHP\" }\n        }\n    ]\n}"
+                },
+                {
+                    "id": "5e0805cd-f7cf-4128-89f4-a9aef1a44ed9",
+                    "name": "Recipient Not Found",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"dstCountryIso3Code\": \"USA\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/sender/12345",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "sender",
+                                "12345"
+                            ]
+                        }
+                    },
+                    "status": "Internal Server Error",
+                    "code": 500,
+                    "_postman_previewlanguage": "json",
+                    "header": null,
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"No sender found matching ID 12345\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR404\"\n    }\n]"
+                },
+                {
+                    "id": "70c280a8-b976-47f9-9590-03a64a6688eb",
+                    "name": "Server Error",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "locale",
+                                "value": "en_us"
+                            },
+                            {
+                                "name": "Content-Type",
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"dstCountryIso3Code\": \"ERROR\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/sender/fields?statusCode=500",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "sender",
+                                "fields"
+                            ],
+                            "query": [
+                                {
+                                    "key": "statusCode",
+                                    "value": "500"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "Internal Server Error",
+                    "code": 500,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json",
+                            "enabled": true
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"It's all broked up!\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]"
+                }
+            ]
+        },
+        {
+            "name": "Create Recipient",
+            "id": "0c8ba9a7-919d-496d-8ced-92b7b2a4cef6",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"dstCountryIso3Code\": \"USA\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\",\n    \"senderId\": 11,\n    \"fields\": [\n        {\n            \"id\": \"firstName\",\n            \"type\": \"TEXT\",\n            \"value\": \"Angelo\"\n        },\n        {\n            \"id\": \"lastName\",\n            \"type\": \"TEXT\",\n            \"value\": \"Angelo\"\n        },\n        {\n            \"id\": \"phoneNumber\",\n            \"type\": \"PHONE_NUMBER\",\n            \"value\": { \"countryIso3Code\": \"USA\", \"countryPhoneCode\": 1, \"number\": \"404-555-1101\" }\n        }\n    ]\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{base_url}}/recipient",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "recipient"
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "b54c7f83-832d-4c7c-9fa0-b29ceaac86b3",
+                    "name": "Success (Valid)",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"dstCountryIso3Code\": \"USA\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\",\n    \"fields\": [\n        {\n            \"id\": \"firstName\",\n            \"type\": \"TEXT\",\n            \"value\": \"Angelo\"\n        },\n        {\n            \"id\": \"lastName\",\n            \"type\": \"TEXT\",\n            \"value\": \"Angelo\"\n        },\n        {\n            \"id\": \"phoneNumber\",\n            \"type\": \"PHONE_NUMBER\",\n            \"value\": { \"countryIso3Code\": \"USA\", \"countryPhoneCode\": 1, \"number\": \"404-555-1101\" }\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/recipient",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "recipient"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json",
+                            "description": "",
+                            "type": "default"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n    \"id\": \"566\",\n    \"firstName\": \"Angelo\",\n    \"lastName\": \"Garcia\",\n    \"additionalFields\": [\n        { \n            \"id\": \"phoneNumber\",\n            \"type\": \"PHONE_NUMBER\",\n            \"value\": { \"countryIso3Code\": \"USA\", \"countryPhoneCode\": 1, \"number\": \"555-555-5555\" }\n        }\n    ]\n}"
+                },
+                {
+                    "id": "357feef5-8877-41b4-8097-5b8956415799",
+                    "name": "Success (Invalid)",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"dstCountryIso3Code\": \"USA\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\",\n    \"fieldSets\": [\n        {\n            \"fieldSetId\": \"SENDER_DETAILS\",\n            \"fields\": [\n                {\n                    \"fieldId\": \"firstName\",\n                    \"fieldType\": \"AMOUNT\",\n                    \"value\": { \"units\": 12313, \"currencyIso3Code\": \"PHP\" }\n                }\n            ]\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/recipient",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "recipient"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": null,
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n    \"required\": true,\n    \"fieldSets\": [\n        {\n            \"fieldSetId\": \"SENDER_DETAILS\",\n            \"fieldSetName\": \"Sender Personal Info\",\n            \"fields\": [\n                {\n                    \"fieldType\": \"TEXT\",\n                    \"name\": \"Sender First Name\",\n                    \"placeholderText\": null,\n                    \"hintText\": \"Do the thing please\",\n                    \"minLength\": 1,\n                    \"maxLength\": 4,\n                    \"regex\": \"^([a-zA-Z \\\\u00C0-\\\\u017F\\\\-\\\\'\\\\/])*$\",\n                    \"isRequired\": false,\n                    \"fieldId\": \"senderLastName2\",\n                    \"value\": null,\n                    \"validationErrors\": [\n                        {\n                            \"message\": \"First name needs to be no longer than 8 alpha numeric characters\",\n                            \"code\": \"US908\"\n                        }\n                    ]\n                },\n                {\n                    \"fieldType\": \"TEXT\",\n                    \"name\": \"Sender Last/Family Name\",\n                    \"placeholderText\": null,\n                    \"hintText\": \"Do the thing please\",\n                    \"minLength\": 1,\n                    \"maxLength\": 4,\n                    \"regex\": \"^([a-zA-Z \\\\u00C0-\\\\u017F\\\\-\\\\'\\\\/])*$\",\n                    \"isRequired\": false,\n                    \"fieldId\": \"senderLastName2\",\n                    \"value\": \"Smith\",\n                    \"validationErrors\": [\n                        {\n                            \"message\": \"First name needs to be no longer than 8 alpha numeric characters\",\n                            \"code\": \"US908\"\n                        }\n                    ]\n                }\n            ]\n        }\n    ]\n}"
+                }
+            ]
+        },
+        {
+            "name": "Update Recipient",
+            "id": "6879aba3-657d-4b23-9e94-ed81ccce6917",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"dstCountryIso3Code\": \"USA\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\",\n    \"fields\": [\n        {\n            \"id\": \"firstName\",\n            \"type\": \"AMOUNT\",\n            \"value\": { \"units\": 12313, \"currencyIso3Code\": \"PHP\" }\n        }\n    ]\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{base_url}}/recipient",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "recipient"
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "79ba53d2-c573-45b4-a049-4f47cac90686",
+                    "name": "Success (Invalid)",
+                    "originalRequest": {
+                        "method": "PUT",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"dstCountryIso3Code\": \"USA\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\",\n    \"fieldSets\": [\n        {\n            \"fieldSetId\": \"SENDER_DETAILS\",\n            \"fields\": [\n                {\n                    \"fieldId\": \"firstName\",\n                    \"fieldType\": \"AMOUNT\",\n                    \"value\": { \"units\": 12313, \"currencyIso3Code\": \"PHP\" }\n                }\n            ]\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/recipient",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "recipient"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": null,
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n    \"required\": true,\n    \"fieldSets\": [\n        {\n            \"fieldSetId\": \"SENDER_DETAILS\",\n            \"fieldSetName\": \"Sender Personal Info\",\n            \"fields\": [\n                {\n                    \"fieldType\": \"TEXT\",\n                    \"name\": \"Sender First Name\",\n                    \"placeholderText\": null,\n                    \"hintText\": \"Do the thing please\",\n                    \"minLength\": 1,\n                    \"maxLength\": 4,\n                    \"regex\": \"^([a-zA-Z \\\\u00C0-\\\\u017F\\\\-\\\\'\\\\/])*$\",\n                    \"isRequired\": false,\n                    \"fieldId\": \"senderLastName2\",\n                    \"value\": null,\n                    \"validationErrors\": [\n                        {\n                            \"message\": \"First name needs to be no longer than 8 alpha numeric characters\",\n                            \"code\": \"US908\"\n                        }\n                    ]\n                },\n                {\n                    \"fieldType\": \"TEXT\",\n                    \"name\": \"Sender Last/Family Name\",\n                    \"placeholderText\": null,\n                    \"hintText\": \"Do the thing please\",\n                    \"minLength\": 1,\n                    \"maxLength\": 4,\n                    \"regex\": \"^([a-zA-Z \\\\u00C0-\\\\u017F\\\\-\\\\'\\\\/])*$\",\n                    \"isRequired\": false,\n                    \"fieldId\": \"senderLastName2\",\n                    \"value\": \"Smith\",\n                    \"validationErrors\": [\n                        {\n                            \"message\": \"First name needs to be no longer than 8 alpha numeric characters\",\n                            \"code\": \"US908\"\n                        }\n                    ]\n                }\n            ]\n        }\n    ]\n}"
+                },
+                {
+                    "id": "6b7fea81-5435-44e8-9076-12ebd74d6cbc",
+                    "name": "Success (Valid)",
+                    "originalRequest": {
+                        "method": "PUT",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"dstCountryIso3Code\": \"USA\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\",\n    \"fieldSets\": [\n        {\n            \"fieldSetId\": \"SENDER_DETAILS\",\n            \"fields\": [\n                {\n                    \"fieldId\": \"firstName\",\n                    \"fieldType\": \"AMOUNT\",\n                    \"value\": { \"units\": 12313, \"currencyIso3Code\": \"PHP\" }\n                }\n            ]\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/recipient",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "recipient"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": null,
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n    \"id\": \"12345\",\n    \"firstName\": \"ASDF\",\n    \"lastName\": \"GHJK\",\n    \"phoneNumber\": { \"countryIso3Code\": \"USA\", \"countryPhoneCode\": 1, \"number\": \"555-555-5555\" },\n    \"additionalFields\": [\n        {\n            \"id\": \"HOME_CURRENCY\",\n            \"type\": \"AMOUNT\",\n            \"value\": {  \"units\": 12313, \"currencyIso3Code\": \"PHP\" }\n        }\n    ]\n}"
+                }
+            ]
+        },
+        {
+            "name": "Delete Recipient",
+            "id": "da9179b1-6497-4a60-a204-c6c7d561186e",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/recipient/1",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "recipient",
+                        "1"
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "b9bf53ce-01ad-4ff0-839c-b33c28aea43d",
+                    "name": "400 Invalid Data",
+                    "originalRequest": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/recipient/BAD_ID",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "recipient",
+                                "BAD_ID"
+                            ]
+                        }
+                    },
+                    "status": "Bad Request",
+                    "code": 400,
+                    "_postman_previewlanguage": "json",
+                    "header": null,
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"Recipient ID not valid\",\n        \"description\": \"Recipient ID must be a valid integer\",\n        \"code\": \"RR500\"\n    }\n]"
+                },
+                {
+                    "id": "ad86788c-e096-4e80-a6ad-03abc1d8c849",
+                    "name": "200 Success",
+                    "originalRequest": {
+                        "method": "DELETE",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"fields\": [\n        {\n            \"fieldId\": \"ZIP\",\n            \"fieldType\": \"AMOUNT\",\n            \"value\": { \"units\": 12313, \"currencyIso3Code\": \"PHP\" }\n        },\n        {\n            \"fieldId\": \"firstName\",\n            \"fieldType\": \"TEXT\",\n            \"value\": \"Joe\"\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/recipient/1",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "recipient",
+                                "1"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": null,
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": ""
+                },
+                {
+                    "id": "12011671-f00d-4a32-97c3-b4abbe6d9054",
+                    "name": "500 Server Error",
+                    "originalRequest": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/recipient/1",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "recipient",
+                                "1"
+                            ]
+                        }
+                    },
+                    "status": "Internal Server Error",
+                    "code": 500,
+                    "_postman_previewlanguage": "json",
+                    "header": null,
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"It's all broked up!\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]"
+                }
+            ]
+        },
+        {
+            "name": "Recipient Account Fields",
+            "id": "d220d28d-b0ce-4947-a6b3-4cb3f04ea6a5",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"dstCountryIso3Code\": \"USA\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\",\n    \"recipientType\": \"BUSINESS\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{base_url}}/recipientaccount/fields",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "recipientaccount",
+                        "fields"
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "d945c665-7f5d-4d66-ad6a-a8c069865e02",
+                    "name": "Success",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"dstCountryIso3Code\": \"USA\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\",\n    \"recipientType\": \"BUSINESS\",\n    \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/recpientaccount/fields",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "recpientaccount",
+                                "fields"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": null,
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n    \"required\": true,\n    \"fields\": [\n        {\n            \"fieldSetId\": \"ACCOUNT\",\n            \"fieldSetName\": \"Account Info\",\n            \"fields\": [\n                {\n                    \"fieldType\": \"TEXT\",\n                    \"name\": \"Account Number\",\n                    \"placeholderText\": null,\n                    \"hintText\": \"Do the thing please\",\n                    \"minLength\": 1,\n                    \"maxLength\": 4,\n                    \"regex\": \"^([a-zA-Z \\\\u00C0-\\\\u017F\\\\-\\\\'\\\\/])*$\",\n                    \"isRequired\": false,\n                    \"fieldId\": \"senderLastName2\",\n                    \"value\": null,\n                    \"validationErrors\": [\n                        {\n                            \"message\": \"First name needs to be no longer than 8 alpha numeric characters\",\n                            \"code\": \"US908\"\n                        }\n                    ]\n                },\n                {\n                    \"fieldType\": \"BANK_BRANCH\",\n                    \"name\": \"Account Number\",\n                    \"placeholderText\": null,\n                    \"hintText\": \"Do the thing please\",\n                    \"minLength\": 1,\n                    \"maxLength\": 4,\n                    \"regex\": \"^([a-zA-Z \\\\u00C0-\\\\u017F\\\\-\\\\'\\\\/])*$\",\n                    \"isRequired\": false,\n                    \"fieldId\": \"senderLastName2\",\n                    \"value\": null,\n                    \"validationErrors\": [\n                        {\n                            \"message\": \"First name needs to be no longer than 8 alpha numeric characters\",\n                            \"code\": \"US908\"\n                        }\n                    ]\n                },\n                {\n                    \"fieldType\": \"TEXT\",\n                    \"name\": \"Sender Last/Family Name\",\n                    \"placeholderText\": null,\n                    \"hintText\": \"Do the thing please\",\n                    \"minLength\": 1,\n                    \"maxLength\": 4,\n                    \"regex\": \"^([a-zA-Z \\\\u00C0-\\\\u017F\\\\-\\\\'\\\\/])*$\",\n                    \"isRequired\": false,\n                    \"fieldId\": \"senderLastName2\",\n                    \"value\": \"Smith\",\n                    \"validationErrors\": [\n                        {\n                            \"message\": \"First name needs to be no longer than 8 alpha numeric characters\",\n                            \"code\": \"US908\"\n                        }\n                    ]\n                }\n            ]\n        }\n    ]\n}"
+                },
+                {
+                    "id": "d0bc4fdf-df6f-4994-a3a7-cf193afaacc9",
+                    "name": "Server Error",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "locale",
+                                "value": "en_us"
+                            },
+                            {
+                                "name": "Content-Type",
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"countryIso3Code\": \"PHL\",\n    \"currencyIso3Code\": \"PHP\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/recpientaccount/fields",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "recpientaccount",
+                                "fields"
+                            ]
+                        }
+                    },
+                    "status": "Internal Server Error",
+                    "code": 500,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json",
+                            "enabled": true
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"It's all broked up!\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]"
+                }
+            ]
+        },
+        {
+            "name": "Create Recipient Account",
+            "id": "72d4349f-4784-4d45-9f82-cdc906037709",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"dstCountryIso3Code\": \"USA\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\",\n    \"fields\": [\n        {\n            \"id\": \"bankId\",\n            \"type\": \"NUMBER\",\n            \"value\": \"78\"\n        },\n        {\n            \"id\": \"branchId\",\n            \"type\": \"NUMBER\",\n            \"value\": \"99\"\n        },\n        {\n            \"id\": \"accountNumber\",\n            \"type\": \"TEXT\",\n            \"value\": \"1234556677\"\n        }\n    ]\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{base_url}}/recipientaccount",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "recipientaccount"
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "db5057ab-bda1-40e7-98b9-ccccae86cd22",
+                    "name": "Success (Invalid)",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"dstCountryIso3Code\": \"USA\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\",\n    \"fieldSets\": [\n        {\n            \"fieldSetId\": \"SENDER_DETAILS\",\n            \"fields\": [\n                {\n                    \"fieldId\": \"firstName\",\n                    \"fieldType\": \"AMOUNT\",\n                    \"value\": { \"units\": 12313, \"currencyIso3Code\": \"PHP\" }\n                }\n            ]\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/recipientaccount",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "recipientaccount"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": null,
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n    \"required\": true,\n    \"fieldSets\": [\n        {\n            \"fieldSetId\": \"SENDER_DETAILS\",\n            \"fieldSetName\": \"Sender Personal Info\",\n            \"fields\": [\n                {\n                    \"fieldType\": \"TEXT\",\n                    \"name\": \"Sender First Name\",\n                    \"placeholderText\": null,\n                    \"hintText\": \"Do the thing please\",\n                    \"minLength\": 1,\n                    \"maxLength\": 4,\n                    \"regex\": \"^([a-zA-Z \\\\u00C0-\\\\u017F\\\\-\\\\'\\\\/])*$\",\n                    \"isRequired\": false,\n                    \"fieldId\": \"senderLastName2\",\n                    \"value\": null,\n                    \"validationErrors\": [\n                        {\n                            \"message\": \"First name needs to be no longer than 8 alpha numeric characters\",\n                            \"code\": \"US908\"\n                        }\n                    ]\n                },\n                {\n                    \"fieldType\": \"TEXT\",\n                    \"name\": \"Sender Last/Family Name\",\n                    \"placeholderText\": null,\n                    \"hintText\": \"Do the thing please\",\n                    \"minLength\": 1,\n                    \"maxLength\": 4,\n                    \"regex\": \"^([a-zA-Z \\\\u00C0-\\\\u017F\\\\-\\\\'\\\\/])*$\",\n                    \"isRequired\": false,\n                    \"fieldId\": \"senderLastName2\",\n                    \"value\": \"Smith\",\n                    \"validationErrors\": [\n                        {\n                            \"message\": \"First name needs to be no longer than 8 alpha numeric characters\",\n                            \"code\": \"US908\"\n                        }\n                    ]\n                }\n            ]\n        }\n    ]\n}"
+                },
+                {
+                    "id": "f1603bd1-21d7-4367-b103-aa193869bd4f",
+                    "name": "Success (Valid)",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"dstCountryIso3Code\": \"USA\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\",\n    \"recipientId\": 7,\n    \"fields\": [\n        {\n            \"id\": \"bankId\",\n            \"type\": \"NUMBER\",\n            \"value\": \"78\"\n        },\n        {\n            \"id\": \"branchId\",\n            \"type\": \"NUMBER\",\n            \"value\": \"99\"\n        },\n        {\n            \"id\": \"accountNumber\",\n            \"type\": \"TEXT\",\n            \"value\": \"1234556677\"\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/recipientaccount",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "recipientaccount"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": null,
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n    \"id\": \"12345\",\n    \"accountNumber\": \"1234556677\",\n    \"additionalFields\": [\n        {\n            \"id\": \"bankId\",\n            \"type\": \"NUMBER\",\n            \"value\": \"78\"\n        },\n        {\n            \"id\": \"branchId\",\n            \"type\": \"NUMBER\",\n            \"value\": \"99\"\n        }\n    ]\n}"
+                }
+            ]
+        },
+        {
+            "name": "Get Purposes of Remittance",
+            "id": "5f4b127a-ff01-48a3-8d79-1532a5693d37",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/options/purposesofremittance",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "options",
+                        "purposesofremittance"
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "fea63cde-1091-4b44-83c3-6df16f7fa56b",
+                    "name": "200 Success",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/options/purposesofremittance",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "options",
+                                "purposesofremittance"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"name\": \"Payroll\",\n        \"id\": \"PAYROLL\"\n    },\n    {\n        \"name\": \"Gift\",\n        \"id\": \"GIFT\"\n    }\n]"
+                },
+                {
+                    "id": "2b78eba1-6783-4ce4-9194-392310113995",
+                    "name": "500 Server error",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/options/purposesofremittance",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "options",
+                                "purposesofremittance"
+                            ]
+                        }
+                    },
+                    "status": "Internal Server Error",
+                    "code": 500,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "description": {
+                                "content": "",
+                                "type": "text/plain"
+                            },
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"It's all broked up!\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]"
+                },
+                {
+                    "id": "0f651888-63bd-47ed-9432-da667df0acfd",
+                    "name": "401 Missing Token",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/options/purposesofremittance",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "options",
+                                "purposesofremittance"
+                            ]
+                        }
+                    },
+                    "status": "Unauthorized",
+                    "code": 401,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "description": {
+                                "content": "",
+                                "type": "text/plain"
+                            },
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n    \"errors\": [\n        {\n            \"message\": \"Auth token missing from request\",\n            \"description\": \"\",\n            \"code\": \"TF001\"\n        }\n    ]\n}"
+                }
+            ]
+        },
+        {
+            "name": "Banks",
+            "id": "faa9c261-e86c-47d3-9279-3692f39dcb80",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/options/banks?countryIso3Code=IND",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "options",
+                        "banks"
+                    ],
+                    "query": [
+                        {
+                            "key": "countryIso3Code",
+                            "value": "IND"
+                        }
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "ab279ed9-539b-4667-b812-c94233664b1b",
+                    "name": "200 Success",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/options/banks?countryIso3Code=IND",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "options",
+                                "banks"
+                            ],
+                            "query": [
+                                {
+                                    "key": "countryIso3Code",
+                                    "value": "IND"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"name\": \"Bank of India\",\n        \"id\": \"1\"\n    },\n    {\n        \"name\": \"Indian Bank #2\",\n        \"id\": \"2\"\n    }\n]"
+                },
+                {
+                    "id": "6d9e95bd-6c55-41b6-b90f-84ae06b1d309",
+                    "name": "500 Server error",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/options/banks?countryIso3Code=IND&statusCode=500",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "options",
+                                "banks"
+                            ],
+                            "query": [
+                                {
+                                    "key": "countryIso3Code",
+                                    "value": "IND"
+                                },
+                                {
+                                    "key": "statusCode",
+                                    "value": "500"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "Internal Server Error",
+                    "code": 500,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "description": {
+                                "content": "",
+                                "type": "text/plain"
+                            },
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"It's all broked up!\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]"
+                },
+                {
+                    "id": "135f4136-1326-44ee-a767-cb72e1a31287",
+                    "name": "401 Missing Token",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/options/banks?countryIso3Code=IND&statusCode=401",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "options",
+                                "banks"
+                            ],
+                            "query": [
+                                {
+                                    "key": "countryIso3Code",
+                                    "value": "IND"
+                                },
+                                {
+                                    "key": "statusCode",
+                                    "value": "401"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "Unauthorized",
+                    "code": 401,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "description": {
+                                "content": "",
+                                "type": "text/plain"
+                            },
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n    \"errors\": [\n        {\n            \"message\": \"Auth token missing from request\",\n            \"description\": \"\",\n            \"code\": \"TF001\"\n        }\n    ]\n}"
+                }
+            ]
+        },
+        {
+            "name": "Bank Branches",
+            "id": "eb0c3963-96fa-4221-9356-c5c5d01f7d97",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/options/banks/ID123/branches",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "options",
+                        "banks",
+                        "ID123",
+                        "branches"
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "97fbc182-215b-46a4-952f-8c11dbd150a3",
+                    "name": "200 Success",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/options/banks/ID123/branches",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "options",
+                                "banks",
+                                "ID123",
+                                "branches"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"name\": \"Branch #1\",\n        \"id\": \"1\"\n    },\n    {\n        \"name\": \"Branch #2\",\n        \"id\": \"2\"\n    }\n]"
+                },
+                {
+                    "id": "785b37d1-943e-46ec-ac9c-d6584607ff2e",
+                    "name": "500 Server error",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/options/banks/ID123/branches?statusCode=500",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "options",
+                                "banks",
+                                "ID123",
+                                "branches"
+                            ],
+                            "query": [
+                                {
+                                    "key": "statusCode",
+                                    "value": "500"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "Internal Server Error",
+                    "code": 500,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "description": {
+                                "content": "",
+                                "type": "text/plain"
+                            },
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"It's all broked up!\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]"
+                },
+                {
+                    "id": "3cbd6490-edb8-4495-a1e4-280a049446b8",
+                    "name": "401 Missing Token",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/options/banks/ID123/branches?statusCode=401",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "options",
+                                "banks",
+                                "ID123",
+                                "branches"
+                            ],
+                            "query": [
+                                {
+                                    "key": "statusCode",
+                                    "value": "401"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "Unauthorized",
+                    "code": 401,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "description": {
+                                "content": "",
+                                "type": "text/plain"
+                            },
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n    \"errors\": [\n        {\n            \"message\": \"Auth token missing from request\",\n            \"description\": \"\",\n            \"code\": \"TF001\"\n        }\n    ]\n}"
+                }
+            ]
+        },
+        {
+            "name": "Preview Transfer",
+            "id": "608438ba-0a65-4b79-8684-5439bc66bd32",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"dstCountryIso3Code\": \"USA\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\",\n    \"quoteBy\": \"SEND_AMOUNT\",\n    \"amount\": 1000,\n    \"senderId\": \"1\",\n    \"recipientId\": \"123455\",\n    \"recipientAccountId\": \"abcdef\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{base_url}}/preview",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "preview"
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "b915d365-d44b-42d7-8a63-12320f072ce3",
+                    "name": "Success",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "locale",
+                                "value": "en_us"
+                            },
+                            {
+                                "name": "Content-Type",
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"dstCountryIso3Code\": \"USA\",\n    \"dstCurrencyIso3Code\": \"RUB\",\n    \"srcCurrencyIso3Code\": \"RUS\",\n    \"transferMethod\": \"BANK_ACCOUNT\",\n    \"quoteBy\": \"SEND_AMOUNT\",\n    \"amount\": 1000,\n    \"senderId\": \"1\",\n    \"recipientId\": \"123455\",\n    \"recipientAccountId\": \"abcdef\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/preview",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "preview"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json",
+                            "enabled": true
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n    \"quote\": {\n        \"sendAmount\": {\n            \"value\": 510500,\n            \"currency\": {\n                \"name\": \"United States Dollar\",\n                \"iso3Code\": \"USD\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 2\n            }\n        },\n        \"receiveAmount\": {\n            \"value\": 744599,\n            \"currency\": {\n                \"name\": \"Indian Rupee\",\n                \"iso3Code\": \"INR\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 0\n            }\n        },\n        \"rate\": 12312,\n        \"adjustments\": [\n            {\n                \"label\": \"Transfer Fee\",\n                \"amount\": {\n                    \"value\": 29900,\n                    \"currency\": {\n                        \"name\": \"United States Dollar\",\n                        \"iso3Code\": \"USD\",\n                        \"symbol\": \"$\",\n                        \"decimalPlaces\": 2\n                    }\n                }\n            }\n        ],\n        \"totalCost\": {\n            \"value\": 1029900,\n            \"currency\": {\n                \"name\": \"United States Dollar\",\n                \"iso3Code\": \"USD\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 2\n            }\n        }\n    },\n    \"senderDetails\": {\n        \"title\": \"Sender Details\",\n        \"fields\": [\n            {\n                \"fieldId\": \"FIRST_NAME\",\n                \"fieldType\": \"TEXT\",\n                \"label\": \"First Name\",\n                \"required\": true,\n                \"value\": \"Hugh\"\n            },\n            {\n                \"fieldId\": \"PHONE_NUMBER\",\n                \"fieldType\": \"PHONE\",\n                \"label\": \"Phone Numher\",\n                \"required\": false,\n                \"value\": { \"countryIso3Code\": \"USA\", \"countryCode\": 1, \"number\": \"5551234567\" }\n            }\n        ]\n    },\n    \"recipientDetails\": {\n        \"title\": \"Sender Details\",\n        \"fields\": [\n            {\n                \"fieldId\": \"FIRST_NAME\",\n                \"fieldType\": \"TEXT\",\n                \"label\": \"First Name\",\n                \"required\": true,\n                \"value\": \"Hugh\"\n            },\n            {\n                \"fieldId\": \"PHONE_NUMBER\",\n                \"fieldType\": \"PHONE\",\n                \"label\": \"Phone Numher\",\n                \"required\": false,\n                \"value\": { \"countryIso3Code\": \"USA\", \"countryCode\": 1, \"number\": \"5551234567\" }\n            }\n        ]\n    },\n    \"recipientAccountDetails\": {\n        \"title\": \"Sender Details\",\n        \"fields\": [\n            {\n                \"fieldId\": \"FIRST_NAME\",\n                \"fieldType\": \"TEXT\",\n                \"label\": \"First Name\",\n                \"required\": true,\n                \"value\": \"Hugh\"\n            },\n            {\n                \"fieldId\": \"PHONE_NUMBER\",\n                \"fieldType\": \"PHONE\",\n                \"label\": \"Phone Numher\",\n                \"required\": false,\n                \"value\": { \"countryIso3Code\": \"USA\", \"countryCode\": 1, \"number\": \"5551234567\" }\n            }\n        ]\n    },\n    \"disclaimers\": [\n        \n    ]\n}"
+                },
+                {
+                    "id": "53587c48-d78b-4ef5-ad77-13d1d201a21a",
+                    "name": "Success (Invalid)",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"quoteId\": \"abc123\",\n    \"senderId\": \"1\",\n    \"recipientId\": \"123455\",\n    \"recipientAccountId\": \"abcdef\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/preview",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "preview"
+                            ]
+                        }
+                    },
+                    "_postman_previewlanguage": null,
+                    "header": null,
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": null
+                },
+                {
+                    "id": "017d068d-a12f-4cb2-b158-634687273dff",
+                    "name": "Server Error",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "locale",
+                                "value": "en_us"
+                            },
+                            {
+                                "name": "Content-Type",
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"countryIso3Code\": \"PHL\",\n    \"currencyIso3Code\": \"PHP\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/preview?statusCode=500",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "preview"
+                            ],
+                            "query": [
+                                {
+                                    "key": "statusCode",
+                                    "value": "500"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "Internal Server Error",
+                    "code": 500,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json",
+                            "enabled": true
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"It's all broked up!\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]"
+                }
+            ]
+        },
+        {
+            "name": "Create Transfer",
+            "id": "d54f9c7d-7d97-4f6b-b3f3-7e433d1b1437",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"dstCountryIso3Code\": \"USA\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\",\n    \"quoteBy\": \"SEND_AMOUNT\",\n    \"amount\": 1000,\n    \"senderId\": \"1\",\n    \"recipientId\": \"123455\",\n    \"recipientAccountId\": \"abcdef\",\n    \"purposeOfRemittance\": \"PAYROLL\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{base_url}}/transfer",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "transfer"
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "ce928d3a-5563-4afa-8048-08c8672e0552",
+                    "name": "Success",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "locale",
+                                "value": "en_us"
+                            },
+                            {
+                                "name": "Content-Type",
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"dstCountryIso3Code\": \"USA\",\n    \"dstCurrencyIso3Code\": \"USD\",\n    \"srcCurrencyIso3Code\": \"USD\",\n    \"transferMethod\": \"BANK_ACCOUNT\",\n    \"quoteBy\": \"SEND_AMOUNT\",\n    \"amount\": 1000,\n    \"senderId\": \"1\",\n    \"recipientId\": \"123455\",\n    \"recipientAccountId\": \"abcdef\",\n    \"purposeOfRemittance\": \"PAYROLL\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/transfer",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "transfer"
+                            ]
+                        }
+                    },
+                    "status": "Created",
+                    "code": 201,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json",
+                            "enabled": true
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n    \"transferId\": \"ABC123\",\n    \"confirmationNumber\": \"2781712983\",\n    \"quote\": {\n        \"sendAmount\": {\n            \"value\": 510500,\n            \"currency\": {\n                \"name\": \"United States Dollar\",\n                \"iso3Code\": \"USD\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 2\n            }\n        },\n        \"receiveAmount\": {\n            \"value\": 744599,\n            \"currency\": {\n                \"name\": \"Indian Rupee\",\n                \"iso3Code\": \"INR\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 0\n            }\n        },\n        \"rate\": 12312,\n        \"adjustments\": [\n            {\n                \"label\": \"Transfer Fee\",\n                \"amount\": {\n                    \"value\": 29900,\n                    \"currency\": {\n                        \"name\": \"United States Dollar\",\n                        \"iso3Code\": \"USD\",\n                        \"symbol\": \"$\",\n                        \"decimalPlaces\": 2\n                    }\n                }\n            }\n        ],\n        \"totalCost\": {\n            \"value\": 1029900,\n            \"currency\": {\n                \"name\": \"United States Dollar\",\n                \"iso3Code\": \"USD\",\n                \"symbol\": \"$\",\n                \"decimalPlaces\": 2\n            }\n        }\n    },\n    \"senderDetails\": {\n        \"title\": \"Sender Details\",\n        \"fields\": [\n            {\n                \"fieldId\": \"FIRST_NAME\",\n                \"fieldType\": \"TEXT\",\n                \"label\": \"First Name\",\n                \"required\": true,\n                \"value\": \"Hugh\"\n            },\n            {\n                \"fieldId\": \"PHONE_NUMBER\",\n                \"fieldType\": \"PHONE\",\n                \"label\": \"Phone Numher\",\n                \"required\": false,\n                \"value\": { \"countryIso3Code\": \"USA\", \"countryCode\": 1, \"number\": \"5551234567\" }\n            }\n        ]\n    },\n    \"recipientDetails\": {\n        \"title\": \"Sender Details\",\n        \"fields\": [\n            {\n                \"fieldId\": \"FIRST_NAME\",\n                \"fieldType\": \"TEXT\",\n                \"label\": \"First Name\",\n                \"required\": true,\n                \"value\": \"Hugh\"\n            },\n            {\n                \"fieldId\": \"PHONE_NUMBER\",\n                \"fieldType\": \"PHONE\",\n                \"label\": \"Phone Numher\",\n                \"required\": false,\n                \"value\": { \"countryIso3Code\": \"USA\", \"countryCode\": 1, \"number\": \"5551234567\" }\n            }\n        ]\n    },\n    \"recipientAccountDetails\": {\n        \"title\": \"Sender Details\",\n        \"fields\": [\n            {\n                \"fieldId\": \"FIRST_NAME\",\n                \"fieldType\": \"TEXT\",\n                \"label\": \"First Name\",\n                \"required\": true,\n                \"value\": \"Hugh\"\n            },\n            {\n                \"fieldId\": \"PHONE_NUMBER\",\n                \"fieldType\": \"PHONE\",\n                \"label\": \"Phone Numher\",\n                \"required\": false,\n                \"value\": { \"countryIso3Code\": \"USA\", \"countryCode\": 1, \"number\": \"5551234567\" }\n            }\n        ]\n    },\n    \"disclaimers\": [\n        \n    ]\n}"
+                },
+                {
+                    "id": "250009f0-f5ba-42c8-8844-9a2c5a43e5d5",
+                    "name": "Server Error",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "locale",
+                                "value": "en_us"
+                            },
+                            {
+                                "name": "Content-Type",
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"countryIso3Code\": \"PHL\",\n    \"currencyIso3Code\": \"PHP\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/rates?statusCode=500",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "rates"
+                            ],
+                            "query": [
+                                {
+                                    "key": "statusCode",
+                                    "value": "500"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "Internal Server Error",
+                    "code": 500,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json",
+                            "enabled": true
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "[\n    {\n        \"message\": \"It's all broked up!\",\n        \"description\": \"Example of a 500 exception\",\n        \"code\": \"RR500\"\n    }\n]"
+                },
+                {
+                    "id": "35104ee2-fc8d-47a2-b240-3de463ac2ee4",
+                    "name": "Success (Invalid)",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"quoteId\": \"abc123\",\n    \"senderId\": \"1\",\n    \"recipientId\": \"123455\",\n    \"recipientAccountId\": \"abcdef\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/transfer",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "transfer"
+                            ]
+                        }
+                    },
+                    "_postman_previewlanguage": null,
+                    "header": null,
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": null
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "apikey",
+        "apikey": [
+            {
+                "key": "value",
+                "value": "PMAK-6165becc5a96f80046c6a18c-48385e850ad1a9165f7f3315bd85d64308",
+                "type": "string"
+            },
+            {
+                "key": "key",
+                "value": "x-api-key",
+                "type": "string"
+            }
+        ]
+    },
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "id": "6ee40d99-7bc6-491c-935e-94da099a2feb",
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "id": "80426ff5-799b-4661-9714-4630a3b98978",
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        }
+    ],
+    "variable": [
+        {
+            "id": "e4dc29b5-7137-4485-8c14-9df4735fddfa",
+            "key": "base_url",
+            "value": "{{base_url}}/transfer"
+        }
+    ]
+}
