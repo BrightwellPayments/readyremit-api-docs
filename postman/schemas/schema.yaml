@@ -969,11 +969,6 @@ components:
                 enum:
                     - AVAILABLE
                     - ERROR
-            dependencies:
-                type: array
-                description: A list of sub-dependencies
-                items:
-                    $ref: '#/components/schemas/health'
     corridor:
         type: object
         required:
