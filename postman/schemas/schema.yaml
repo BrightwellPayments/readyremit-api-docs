@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: '0.1'
+  version: '1.0'
   title: 'Transfer'
 servers:
   - url: 'https://apim-readyremit-dev-eastus-001.azure-api.net/v1'
