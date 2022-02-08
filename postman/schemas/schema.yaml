@@ -1,9 +1,9 @@
 openapi: 3.0.0
 info:
-  version: '1.0'
+  version: '0.1'
   title: 'Transfer'
 servers:
-  - url: 'localhost:3000'
+  - url: 'https://apim-readyremit-dev-eastus-001.azure-api.net/v1'
 paths:
     /transfer/health:
       get:
@@ -14,24 +14,24 @@ paths:
               - Health
           responses:
             200:
-                description: 'Success'
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/health'
-                        examples:
-                            success:
-                                summary: 'Success'
-                                value: {
-                                    "name": "TRANSFER_API",
-                                    "status": "AVAILABLE",
-                                    "dependencies": [
-                                        {
-                                            "name": "Database",
-                                            "status": "AVAILABLE"
-                                        }
-                                    ]
-                                }
+              description: 'Success'
+              content:
+                application/json:
+                    schema:
+                        $ref: '#/components/schemas/health'
+                    examples:
+                        success:
+                            summary: 'Success'
+                            value: {
+                                "name": "TRANSFER_API",
+                                "status": "AVAILABLE",
+                                "dependencies": [
+                                    {
+                                        "name": "Database",
+                                        "status": "AVAILABLE"
+                                    }
+                                ]
+                            }
             500:
               description: 'Server error'
               content:
@@ -152,7 +152,10 @@ paths:
             type: string
         get:
             operationId: 'getTransferTypes'
-            summary: 'Get a list of available transfer types for a corridor'
+            summary: Get Transfer Types
+            description: 'Get a list of available transfer types for a corridor'
+            tags:
+                - Transfer Types
             responses:
                 '200':
                     description: 'Success'
@@ -959,13 +962,16 @@ components:
         properties:
             name:
                 type: string
+                description: Name of the dependency
             status:
                 type: string
+                description: Status of the dependency, either AVAILABLE or ERROR
                 enum:
                     - AVAILABLE
                     - ERROR
             dependencies:
                 type: array
+                description: A list of sub-dependencies
                 items:
                     $ref: '#/components/schemas/health'
     corridor:
