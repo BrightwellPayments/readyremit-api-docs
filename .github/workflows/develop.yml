@@ -1,9 +1,9 @@
+
 name: Sync OAS to ReadMe
 on:
   push:
     branches:
-      - master
-      - main
+      - develop
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,4 +15,4 @@ jobs:
            
           # OPTIONAL CONFIG, use if necessary
           oas-file-path: './postman/schemas/schema.yaml'
-          # api-version: 'v1.0.0'
+          api-version: 'v0.1.0'
