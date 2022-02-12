@@ -215,6 +215,8 @@ paths:
             operationId: getPurposesOfRemittance
             summary: Get Purposes of Remittance
             description: Get a list of available remittance purposes for a corridor
+            tags:
+                - Get Purposes of Remittance
             responses:
                 200:
                     description: Success
