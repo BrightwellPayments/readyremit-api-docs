@@ -17,5 +17,5 @@ DIAGRAM
 
 1. A unique *senderId* for each sender account you support. <a href="https://documenter.getpostman.com/view/8773841/UVksNEt7#7ecc57ba-7c37-49ee-b333-b273402d455a" target="_blank">Create Recipient</a> and <a href="https://documenter.getpostman.com/view/8773841/UVksNEt7#307570a9-6f20-4d53-bb02-ed826cce5473" target="_blank">Get Recipients</a> require a *senderId*.
 
-# ReadyRemit REST API
+# REST API
 
