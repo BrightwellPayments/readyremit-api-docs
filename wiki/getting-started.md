@@ -13,7 +13,7 @@ To become a ReadyRemit early adopter, browse to the <a href="https://brightwell.
 
 Once you sign up, Brightwell will provide you with the following:
 
-1. A *client_id* and a *client_secret* for each of your ReadyRemit client applications. Each application passes these two values to the ReadyRemit REST API in return for an access token required by other API operations.
+1. A *client_id* and a *client_secret* (required for authentication) for each of your ReadyRemit client applications. 
 
-1. A unique *senderId* (required by certain ReadyRemit REST API operations) for each sender account you support.
+1. A unique *senderId* (required by certain API operations) for each sender account you support.
 
