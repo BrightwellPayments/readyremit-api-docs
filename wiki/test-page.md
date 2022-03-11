@@ -1,6 +1,6 @@
 ---
 title: Test Page
-excerpt: Writers use this page to test markdown to html.
+excerpt: For markdown-to-html rendering tests.
 slug: test-page
 category: 6202c91258ac9600635fb56b
 ---
