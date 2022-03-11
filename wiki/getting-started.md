@@ -9,9 +9,11 @@ This website describes the ReadyRemit Cloud Service, and explains to [fintech](h
 
 DIAGRAM
 
-To become a ReadyRemit early adopter, browse to the <a href="https://brightwell.com/contact-us/" target="_blank">Brightwell Contact</a> page, scroll to the *Get in touch* form, type your name and email, choose *ReadyRemit* from the dropdown menu, add a comment, and click Submit. Once you sign up, Brightwell will provide you with the following:
+To become a ReadyRemit early adopter, browse to the <a href="https://brightwell.com/contact-us/" target="_blank">Brightwell Contact</a> page, scroll to the *Get in touch* form, type your name and email, choose *ReadyRemit* from the dropdown menu, add a comment, and click Submit. 
 
-1. A unique set of credentials for each of your ReadyRemit client applications. These credentials consist of a *client_id* and a *client_secret*. Each client application passes these two values to the ReadyRemit REST API in return for an access token required by other API operations.
+Once you sign up, Brightwell will provide you with the following:
+
+1. A *client_id* and a *client_secret* for each of your ReadyRemit client applications. Each application passes these two values to the ReadyRemit REST API in return for an access token required by other API operations.
 
 1. A unique *senderId* (required by certain ReadyRemit REST API operations) for each sender account you support.
 
