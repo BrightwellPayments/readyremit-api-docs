@@ -1,7 +1,7 @@
 ---
-title: "Getting Started"
+title: Getting Started
 excerpt: ""
-slug: "getting-started"
+slug: getting-started
 category: 6202c91258ac9600635fb56b
 ---
 
