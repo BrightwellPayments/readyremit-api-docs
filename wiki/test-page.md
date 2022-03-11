@@ -23,10 +23,61 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 # Code Snippets
 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
 ``` js
 const Player = {
   getHand: Fun([], UInt),
   seeOutcome: Fun([UInt], Null),
 };
 ```
+
+# Lists
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+## Compact ordered
+
+1. Blue bell
+1. Blue jeans
+1. Blue yonder
+
+## Compact unordered
+
+* Blue bell
+* Blue jeans
+* Blue yonder
+
+# Inline text
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+|Markdown|HTML|
+|-|-|
+|`*snowman*`|`<em>snowman</em>`|
+|`_snowman_`|`<em>snowman</em>`|
+|`**snowman**`|`<strong>snowman</strong>`|
+|`__snowman__`|`<strong>snowman</strong>`|
+|`` `snowman` ``|`<code>snowman</code>`|
+|`~~snowman~~`|`<del>snowman</del>`|
+|`> one` <br> `> two`|`<blockquote><p>one two</p></blockquote>`|
+|`https://github.com`|`<a href="https://github.com">https://github.com</a>`|
+|`[Github](https://github.com)`|`<a href="https://github.com">Github</a>`|
+|`![logo](pic.png)`|`<img src="pic.png"`|
+
+# HTML
+
+## HTML Table
+
+<table>
+  <thead>
+    <tr><th>&nbsp;</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>English</td><td>One</td><td>Two</td><td>Three</td><td>Four</td><td>Five</td></tr>
+    <tr><td>Français</td><td>Un</td><td>Deux</td><td>Trois</td><td>Quatre</td><td>Cinq</td></tr>
+    <tr><td>日本語</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td></tr>
+    <tr><td>Deutsche</td><td>Ein</td><td>Zwei</td><td>Drei</td><td>Vier</td><td>Funf</td></tr>
+  </tbody>
+</table>
 
