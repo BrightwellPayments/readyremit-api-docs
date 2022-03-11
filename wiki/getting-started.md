@@ -27,9 +27,7 @@ To modify your fintech application to leverage the ReadyRemit Service, complete 
 
 1. Peruse the <a href="https://documenter.getpostman.com/view/8773841/UVksNEt7" target="_blank">ReadyRemit Postman Documentation Site</a>.
 
-1. Access the ReadyRemit Postman collection (in a way to be determined).
-
-1. Call Get Access Token to obtain an access token required by all other API operations.
+1. In the ReadyRemit Postman Collection, call Get Access Token to obtain an access token required by all other API operations.
 
 1. Call Get Countries and Currencies to get possible recipient countries and currencies.
 
