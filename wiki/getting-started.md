@@ -1,13 +1,10 @@
 ---
 title: "Getting Started"
-excerpt: "these are my files"
+excerpt: "Access the ReadyRemit Cloud Service REST API."
 slug: "getting-started"
 category: 6202c91258ac9600635fb56b
 ---
 
-# Getting Started
+# Introduction
 
-1. Do this
-2. Do that
-3. Do the other 
-1. And then another (Matt)
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
