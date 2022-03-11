@@ -7,4 +7,5 @@ category: 6202c91258ac9600635fb56b
 
 # Introduction
 
-The ReadyRemit Cloud Service performs [remittances](https://en.wikipedia.org/wiki/Remittance) on cross-border [corridors](https://remittanceprices.worldbank.org/en/countrycorridors) for [fintech](https://en.wikipedia.org/wiki/Financial_technology) applications which access the service REST API described on this site.
+The ReadyRemit Cloud Service performs [remittances](https://en.wikipedia.org/wiki/Remittance) on cross-border [corridors](https://remittanceprices.worldbank.org/en/countrycorridors) for [fintech](https://en.wikipedia.org/wiki/Financial_technology) web, mobile/native, and single-page applications that access the service REST API described on this site.
+
