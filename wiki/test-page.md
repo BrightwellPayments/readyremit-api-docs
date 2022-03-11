@@ -1,6 +1,6 @@
 ---
 title: Test Page
-excerpt: Testing markdown to html.
+excerpt: Writers use this page to test markdown to html.
 slug: test-page
 category: 6202c91258ac9600635fb56b
 ---
@@ -330,6 +330,19 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 1. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
 
+# Tables
+
+Lorem ipsum dolor sit amete, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+||1|2|3|4|5|
+|-|-|-|-|-|-|
+|English|One|Two|Three|Four|Five|
+|Français|Un|Deux|Trois|Quatre|Cinq|
+|日本語|一|二|三|四|五|
+|Deutsche|Ein|Zwei|Drei|Vier|Funf|
+
+Lorem ipsum dolor sit amete, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
 # Inline text
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -349,7 +362,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 # HTML
 
-## Table
+## HTML Tables
 
 <table>
   <thead>
