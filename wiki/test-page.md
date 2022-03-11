@@ -347,3 +347,16 @@ This image is 200 x 120:
 
 <p><img src="https://files.readme.io/a004a5c-img-800.png" width=200 height=120 loading="lazy"></p>
 
+# Videos
+
+You can [link to a video](https://youtu.be/HCT-FurFVLQ) or embed a video. Lorem ipsum dolor sit amete, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+<p class="ratio ratio-16x9 mx-auto" style="max-width:600px;">
+  <iframe 
+    src="https://www.youtube.com/embed/HCT-FurFVLQ" 
+    frameborder="0"  
+    allowfullscreen>
+  </iframe>
+</p>
+
+Lorem ipsum dolor sit amete, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amete, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
