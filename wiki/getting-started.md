@@ -13,7 +13,7 @@ This website describes the ReadyRemit Cloud Service, and explains to [fintech](h
 
 ReadyRemit REST API operations enable you to create the following workflow for your end users:
 
-DIAGRAM
+<p><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-workflow.png" width=700 height=512 loading="lazy"></p>
 
 # Directions
 
