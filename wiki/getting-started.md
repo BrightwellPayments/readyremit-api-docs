@@ -9,11 +9,14 @@ This website describes the ReadyRemit Cloud Service, and explains to [fintech](h
 
 <p><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-map.png" width=700 height=393 loading="lazy"></p>
 
-To become a ReadyRemit early adopter, browse to the <a href="https://brightwell.com/contact-us/" target="_blank">Brightwell Contact</a> page, scroll to the *Get in touch* form, type your name and email, choose *ReadyRemit* from the dropdown menu, add a comment, and click Submit. 
+# Directions
 
-Once you sign up, Brightwell will provide you with the following:
+To modify your fintech application to leverage the ReadyRemit Service, complete the following steps:
 
-1. A *client_id* and a *client_secret* (required for authentication) for each of your ReadyRemit client applications. 
+1. Contact Brightwell via the *Get in touch* form on the <a href="https://brightwell.com/contact-us/" target="_blank">Brightwell Contact</a> page. Fill in your name and email, mention *ReadyRemit* in the comment, and click Submit. Once you sign up, Brightwell will provide you with the following:
 
-1. A unique *senderId* (required by certain API operations) for each sender account you support.
+    * A *client_id* and a *client_secret* (required for authentication) for each of your ReadyRemit client applications. 
+    * A unique *senderId* (required by certain API operations) for each sender account you support.
 
+
+1. sss
