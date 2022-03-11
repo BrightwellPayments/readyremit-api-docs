@@ -1,6 +1,6 @@
 ---
 title: Test Page
-excerpt: For markdown-to-html rendering tests.
+excerpt: ""
 slug: test-page
 category: 6202c91258ac9600635fb56b
 ---
