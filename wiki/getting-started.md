@@ -15,7 +15,7 @@ DIAGRAM
 
 ## How to sign up
 
-To become a ReadyRemit early adopter, browse to [Brightwell Contact page](https://brightwell.com/contact-us/), scroll to the *Get in touch* form, type your name and email, choose ReadyRemit from the dropdown menu, add a comment, and click Submit. Once you sign up, Brightwell provides you with the following:
+To become a ReadyRemit early adopter, browse to the <a href="https://brightwell.com/contact-us/" target="_blank">Brightwell Contact page</a>, scroll to the *Get in touch* form, type your name and email, choose ReadyRemit from the dropdown menu, add a comment, and click Submit. Once you sign up, Brightwell provides you with the following:
 
 1. A unique set of credentials for each of your ReadyRemit client applications. These credentials consist of a `client_id` and a `client_secret`. Each client application uses these two values obtain an access token.
 
