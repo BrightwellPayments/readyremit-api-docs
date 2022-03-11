@@ -22,16 +22,16 @@ To modify your fintech application to leverage the ReadyRemit Service, complete 
 1. Contact Brightwell via the *Get in touch* form on the <a href="https://brightwell.com/contact-us/" target="_blank">Brightwell Contact</a> page. Fill in your name and email, mention *ReadyRemit* in the comment, and click Submit. Once you sign up, Brightwell will provide you with the following:
 
     * A *client_id* and a *client_secret* (required for authentication) for each of your ReadyRemit client applications. 
-    * A unique *senderId* (required by certain API operations) for each sender account you support.
+    * A unique *senderId* (required by certain API operations) for each sender account you register.
     * Access to the Postman ReadyRemit collection.
 
 1. Peruse the <a href="https://documenter.getpostman.com/view/8773841/UVksNEt7" target="_blank">ReadyRemit Postman Documentation Site</a>.
 
-1. In the ReadyRemit Postman Collection, call <a href="https://documenter.getpostman.com/view/8773841/UVksNEt7#231a6946-f65e-4d25-bb45-8192da72177e" target="_blank">Create Access Token</a> to obtain the access token required by all other ReadyRemit REST API operations.
+1. In the ReadyRemit Postman Collection, call <a href="https://documenter.getpostman.com/view/8773841/UVksNEt7#231a6946-f65e-4d25-bb45-8192da72177e" target="_blank">Create Access Token</a> to obtain an access token required by all other ReadyRemit REST API operations.
 
-1. Call Get Countries and Currencies to get possible recipient countries and currencies.
+1. Call <a href="https://documenter.getpostman.com/view/8773841/UVksNEt7#8f01eb59-3eb5-4eea-8e5a-f7f5e97e4d36" target="_blank">Get Countries and Currencies</a> to get a list of the recipient countries/currencies you support.
 
-1. Call Get Quote to return the destination amount and fees.
+1. Call <a href="https://documenter.getpostman.com/view/8773841/UVksNEt7#0b582301-8de2-4610-88ba-df0fad04f024" target="_blank">Get Quote</a> to return the recipient amount (based on the sender amount and the exchange rate) and fees.
 
 1. Call Get Sender Fields.
 
