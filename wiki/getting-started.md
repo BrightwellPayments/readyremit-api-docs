@@ -9,6 +9,12 @@ This website describes the ReadyRemit Cloud Service, and explains to [fintech](h
 
 <p><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-map.png" width=700 height=393 loading="lazy"></p>
 
+# Application Workflow
+
+ReadyRemit REST API operations enable you to create the following workflow for your end users:
+
+DIAGRAM
+
 # Directions
 
 To modify your fintech application to leverage the ReadyRemit Service, complete the following steps:
@@ -18,5 +24,30 @@ To modify your fintech application to leverage the ReadyRemit Service, complete 
     * A *client_id* and a *client_secret* (required for authentication) for each of your ReadyRemit client applications. 
     * A unique *senderId* (required by certain API operations) for each sender account you support.
 
+1. Peruse the <a href="https://documenter.getpostman.com/view/8773841/UVksNEt7" target="_blank">ReadyRemit Postman Documentation Site</a>.
 
-1. sss
+1. Access the ReadyRemit Postman collection (in a way to be determine).
+
+1. Call Get Access Token to obtain an access token required by all other API operations.
+
+1. Call Get Countries and Currencies to get possible recipient countries and currencies.
+
+1. Call Get Quote to return the destination amount and fees.
+
+1. Call Get Sender Fields.
+
+1. Call Create Sender.
+
+1. Call Get Recipient Fields.
+
+1. Call Create Recipient.
+
+1. Call Get Recipient Account Fields.
+
+1. Call Get Banks.
+
+1. Call Get Bank Branches.
+
+1. Call Create Recipient Account.
+
+1. Call Execute Transfer.
