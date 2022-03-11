@@ -386,21 +386,15 @@ Lorem ipsum dolor sit amete, consectetur adipiscing elit, sed do eiusmod tempor 
 
 Lorem ipsum dolor sit amete, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
-## Bootstrap 5.x forms
+## Readme form
 
-<form>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+<div ng-class="{'form-group': true, inactive: inactive(), upgrade: to_upgrade(), 'table': true, 'has-error': !!smartform.$errors[input_name]}" form-group="appearance.promos[0].title" label="Promo Title" class="chunky ng-scope form-group table">
+  <!-- ngIf: label --><label ng-if="label" for="appearance.promos[0].title_qnweq" class="form-group-label table-cell ng-binding ng-scope"><i class="fa fa-warning"></i>Promo Title <span class="form-group-upgrade">premium</span></label><!-- end ngIf: label -->
+  <div class="table-cell form-group-form">
+    <div class="upgrade-overlay">
+      <div>This feature requires an upgrade<br><a href="" ng-click="changePlan(upgrade_plan)" class="btn btn-primary"><i class="fa fa-unlock-alt"></i>&nbsp;&nbsp;Unlock Feature</a></div>
+    </div>
+    <div ng-transclude=""><input type="text" ng-model="p.appearance.promos[0].title" class="form-control ng-pristine ng-untouched ng-valid ng-scope" id="appearance.promos[0].title_qnweq"></div>
+    <div class="show_error ng-binding"></div>
   </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
-  </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+</div>
