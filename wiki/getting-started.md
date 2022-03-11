@@ -23,6 +23,7 @@ To modify your fintech application to leverage the ReadyRemit Service, complete 
 
     * A *client_id* and a *client_secret* (required for authentication) for each of your ReadyRemit client applications. 
     * A unique *senderId* (required by certain API operations) for each sender account you support.
+    * Access to the Postman ReadyRemit collection.
 
 1. Peruse the <a href="https://documenter.getpostman.com/view/8773841/UVksNEt7" target="_blank">ReadyRemit Postman Documentation Site</a>.
 
