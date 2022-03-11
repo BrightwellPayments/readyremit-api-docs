@@ -206,3 +206,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 # Images
 
 <p><img ng-src="https://files.readme.io/a004a5c-img-800.png" src="https://files.readme.io/a004a5c-img-800.png"></p>
+
+Lorem ipsum dolor sit amete, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+<p><img src="https://files.readme.io/a004a5c-img-800.png" class="img-fluid mx-auto d-block" width=700 loading="lazy"></p>
+
+Lorem ipsum dolor sit amete, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
