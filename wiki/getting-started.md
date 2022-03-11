@@ -11,11 +11,7 @@ This website describes the ReadyRemit Cloud Service which performs [remittances]
 
 DIAGRAM
 
-[Fintech](https://en.wikipedia.org/wiki/Financial_technology) applications access the service via the [ReadyRemit REST API](https://documenter.getpostman.com/view/8773841/UVksNEt7).
-
-## How to sign up
-
-To become a ReadyRemit early adopter, browse to the <a href="https://brightwell.com/contact-us/" target="_blank">Brightwell Contact</a> page, scroll to the *Get in touch* form, type your name and email, choose *ReadyRemit* from the dropdown menu, add a comment, and click Submit. Once you sign up, Brightwell provides you with the following:
+[Fintech](https://en.wikipedia.org/wiki/Financial_technology) applications access the service via the [ReadyRemit REST API](https://documenter.getpostman.com/view/8773841/UVksNEt7). To become a ReadyRemit early adopter, browse to the <a href="https://brightwell.com/contact-us/" target="_blank">Brightwell Contact</a> page, scroll to the *Get in touch* form, type your name and email, choose *ReadyRemit* from the dropdown menu, add a comment, and click Submit. Once you sign up, Brightwell provides you with the following:
 
 1. A unique set of credentials for each of your ReadyRemit client applications. These credentials consist of a *client_id* and a *client_secret*. Each client application passes these two values to <a href="https://documenter.getpostman.com/view/8773841/UVksNEt7#231a6946-f65e-4d25-bb45-8192da72177e" target="_blank">Create Access Token</a> which returns an access token required by all other ReadyRemit API operations.
 
