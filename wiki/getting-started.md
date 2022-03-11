@@ -1,6 +1,5 @@
 ---
 title: "Getting Started"
-excerpt: "Access the ReadyRemit REST API."
 slug: "getting-started"
 category: 6202c91258ac9600635fb56b
 ---
