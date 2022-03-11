@@ -351,12 +351,6 @@ This image is 200 x 120:
 
 You can [link to a video](https://youtu.be/HCT-FurFVLQ) or embed a video. Lorem ipsum dolor sit amete, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
-<p class="ratio ratio-16x9 mx-auto" style="max-width:600px;">
-  <iframe 
-    src="https://www.youtube.com/embed/HCT-FurFVLQ" 
-    frameborder="0"  
-    allowfullscreen>
-  </iframe>
-</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HCT-FurFVLQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Lorem ipsum dolor sit amete, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amete, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
