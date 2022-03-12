@@ -627,7 +627,7 @@ paths:
             summary: Get Quotes
             description: Get a transfer quote given a corridor and amount
             tags:
-                - Get Quotes
+                - Helpers
             requestBody:
                 description: Quotes payload
                 content: 
