@@ -92,17 +92,15 @@ paths:
             required: true
             schema:
               type: string
-          - in: query
-            name: transferMethod
-            description: How the recipient will receive the funds.
+          - name: transferMethod
+            in: query
             required: true
+            description: Method of transfer.
             schema:
-              items:
-                type: string
-                enum:
-                  - BANK_ACCOUNT
-                  - CASH_PICKUP
-                default: BANK_ACCOUNT
+              type: string
+              enum:
+              - 'BANK_ACCOUNT'
+              - 'CASH_PICKUP'
         responses:
                 '200':
                     description: 'Success'
