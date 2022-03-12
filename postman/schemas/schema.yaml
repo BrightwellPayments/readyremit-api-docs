@@ -982,7 +982,7 @@ paths:
             summary: Create Recipient
             description: Create a recipient record. Only the minimum required fields will be validated outside the context of a corridor.
             tags:
-                - Crate Recipient
+                - Create Recipient
             requestBody:
                 description: List of fields to create the recipient
                 content: 
