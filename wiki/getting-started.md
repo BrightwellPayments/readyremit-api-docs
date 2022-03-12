@@ -7,7 +7,7 @@ category: 6202c91258ac9600635fb56b
 
 This website explains to [fintech](https://en.wikipedia.org/wiki/Financial_technology) application developers how to programmatically leverage, via a REST API, the ReadyRemit Cloud Service which performs [remittances](https://en.wikipedia.org/wiki/Remittance) on cross-border [corridors](https://remittanceprices.worldbank.org/en/countrycorridors):
 
-<div><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-map.png" width=700 height=393 loading="lazy"></div>
+<div><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-map.png" width=700 height=405 loading="lazy"></div>
 
 # Authentication
 
