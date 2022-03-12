@@ -9,6 +9,14 @@ This website explains to [fintech](https://en.wikipedia.org/wiki/Financial_techn
 
 <div><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-map.png" width=700 height=405 loading="lazy"></div>
 
+# Sign up
+
+To enable your fintech applications to leverage ReadyRemit, contact Brightwell via the *Get in touch* form on the <a href="https://brightwell.com/contact-us/" target="_blank">Brightwell Contact</a> page. Fill in your name and email, mention *ReadyRemit* in the comment, and click Submit. Once you sign up, Brightwell will provide you with the following:
+
+    * A *client_id* and a *client_secret* (required for authentication) for each of your ReadyRemit client applications. 
+    * A unique *senderId* (required by certain API operations) for each sender entity you register.
+    * Access to the ReadyRemit Postman Collection described in the corresponding Postman Documentation.
+
 # Authentication
 
 ReadyRemit uses the <a href="https://auth0.com/docs/get-started/authentication-and-authorization-flow/client-credentials-flow" target="_blank">Client Credentials Flow</a> of the <a href="https://auth0.com/" target="_blank">Auth0</a> Platform for authentication:
@@ -66,17 +74,7 @@ To accommodate, ReadyRemit provides two operations, *Get Recipient Fields* and *
 
 # Sending money
 
-To modify your fintech application to send money via the ReadyRemit Service, complete the following steps:
-
-1. Contact Brightwell via the *Get in touch* form on the <a href="https://brightwell.com/contact-us/" target="_blank">Brightwell Contact</a> page. Fill in your name and email, mention *ReadyRemit* in the comment, and click Submit. Once you sign up, Brightwell will provide you with the following:
-
-    * A *client_id* and a *client_secret* (required for authentication) for each of your ReadyRemit client applications. 
-    * A unique *senderId* (required by certain API operations) for each sender account you register.
-    * Access to the Postman ReadyRemit collection.
-
-1. Peruse the <a href="https://documenter.getpostman.com/view/8773841/UVksNEt7" target="_blank">ReadyRemit Postman Documentation Site</a>.
-
-1. In the ReadyRemit Postman Collection, call <a href="https://documenter.getpostman.com/view/8773841/UVksNEt7#231a6946-f65e-4d25-bb45-8192da72177e" target="_blank">Create Access Token</a> to obtain an access token required by all other ReadyRemit REST API operations.
+1. Call <a href="https://documenter.getpostman.com/view/8773841/UVksNEt7#231a6946-f65e-4d25-bb45-8192da72177e" target="_blank">Create Access Token</a> to obtain an access token required by all other ReadyRemit REST API operations.
 
 1. Call <a href="https://documenter.getpostman.com/view/8773841/UVksNEt7#8f01eb59-3eb5-4eea-8e5a-f7f5e97e4d36" target="_blank">Get Countries and Currencies</a> to get a list of the recipient countries/currencies you support.
 
