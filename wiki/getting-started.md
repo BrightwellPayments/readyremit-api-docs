@@ -35,6 +35,69 @@ The fields necessary for building user-facing forms to collect recipient informa
 
 <div><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-variable-fields.png" width=600 height=307 loading="lazy"></div>
 
+To accommodate, ReadyRemit provides two operations, *Get Recipient Fields* and *Get Recipient Account Fields*, that return response bodies containing a field definitions. Here is an example:
+
+``` json
+{
+  "fieldSets": [
+    {
+      "fieldSetId": "PERSONAL_INFORMATION",
+      "fieldSetName": "Personal information",
+      "fields": [
+        {
+          "fieldType": "PHONE_NUMBER",
+          "fieldId": "PHONE_NUMBER",
+          "name": "Phone Number",
+          "isRequired": false
+        },
+        {
+          "fieldType": "TEXT",
+          "fieldId": "FIRST_NAME",
+          "name": "First Name",
+          "isRequired": true
+        },
+        {
+          "fieldType": "TEXT",
+          "fieldId": "EMAIL",
+          "name": "Email",
+          "isRequired": false
+        },
+        {
+          "fieldType": "TEXT",
+          "fieldId": "NATIONALITY",
+          "name": "Nationality",
+          "isRequired": false
+        },
+        {
+          "fieldType": "TEXT",
+          "fieldId": "LAST_NAME",
+          "name": "Last Name",
+          "isRequired": true
+        },
+        {
+          "fieldType": "TEXT",
+          "fieldId": "DATE_OF_BIRTH",
+          "name": "Date of Birth",
+          "isRequired": false
+        }
+      ]
+    },
+    {
+      "fieldSetId": "Customer_Division_Designer",
+      "fieldSetName": "Customer Division Designer",
+      "fields": [
+        {
+          "fieldType": "TEXT",
+          "fieldId": "COMPANY_NAME",
+          "name": "Company Name",
+          "isRequired": false
+        }
+      ]
+    }
+  ]
+}
+```
+
 # Sending money
 
 To modify your fintech application to send money via the ReadyRemit Service, complete the following steps:
