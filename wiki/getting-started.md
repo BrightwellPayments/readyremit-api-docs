@@ -27,15 +27,15 @@ The ReadyRemit service supports recipient and sender entities. However, while th
 
 <div><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-senders-recipients.png" width=700 height=436 loading="lazy"></div>
 
-So, for the time being, ReadyRemit early adopters manually submit information about sender entities to Brightwell in exchange for *senderId*s. required by various REST API operations. 
+So, for the time being, ReadyRemit early adopters manually submit information about sender entities to Brightwell in exchange for *senderIds* required by various REST API operations. 
 
-# Sending money workflow
+# Variable fields
 
-The following diagram illustrates the steps you might present to your end users:
+The fields necessary for building user-facing forms to collect recipient information (and, subsequently, to `POST` recipient and recipient-account data to ReadyRemit) vary depending on country, currency, transfer method, and recipient type. For example, the fields necessary to define a recipient with a bank account in India (Indian Rupee) differ from those necessary to define a recipient in the Philippines (Philippine Peso) expecting a cash remittance:
 
-<div><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-workflow.png" width=700 height=512 loading="lazy"></div>
+<div><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-variable-fields.png" width=600 height=307 loading="lazy"></div>
 
-# Sending money operations
+# Sending money
 
 To modify your fintech application to send money via the ReadyRemit Service, complete the following steps:
 
