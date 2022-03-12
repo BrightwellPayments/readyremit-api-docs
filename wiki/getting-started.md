@@ -44,54 +44,20 @@ To accommodate, ReadyRemit provides two operations, *Get Recipient Fields* and *
       "fieldSetId": "PERSONAL_INFORMATION",
       "fieldSetName": "Personal information",
       "fields": [
-        {
-          "fieldType": "PHONE_NUMBER",
-          "fieldId": "PHONE_NUMBER",
-          "name": "Phone Number",
-          "isRequired": false
-        },
-        {
-          "fieldType": "TEXT",
-          "fieldId": "FIRST_NAME",
-          "name": "First Name",
-          "isRequired": true
-        },
-        {
-          "fieldType": "TEXT",
-          "fieldId": "EMAIL",
-          "name": "Email",
-          "isRequired": false
-        },
-        {
-          "fieldType": "TEXT",
-          "fieldId": "NATIONALITY",
-          "name": "Nationality",
-          "isRequired": false
-        },
-        {
-          "fieldType": "TEXT",
-          "fieldId": "LAST_NAME",
-          "name": "Last Name",
-          "isRequired": true
-        },
-        {
-          "fieldType": "TEXT",
-          "fieldId": "DATE_OF_BIRTH",
-          "name": "Date of Birth",
-          "isRequired": false
-        }
+        {"fieldType": "PHONE_NUMBER", "fieldId": "PHONE_NUMBER", "name": "Phone Number", "isRequired": false },
+        {"fieldType": "TEXT", "fieldId": "FIRST_NAME", "name": "First Name", "isRequired": true },
+        {"fieldType": "TEXT", "fieldId": "EMAIL", "name": "Email", "isRequired": false },
+        {"fieldType": "TEXT", "fieldId": "NATIONALITY", "name": "Nationality", "isRequired": false },
+        {"fieldType": "TEXT", "fieldId": "LAST_NAME", "name": "Last Name", "isRequired": true },
+        {"fieldType": "TEXT", "fieldId": "DATE_OF_BIRTH", "name": "Date of Birth", "isRequired": false }
       ]
     },
     {
-      "fieldSetId": "Customer_Division_Designer",
-      "fieldSetName": "Customer Division Designer",
+      "fieldSetId": "...",
+      "fieldSetName": "...",
       "fields": [
-        {
-          "fieldType": "TEXT",
-          "fieldId": "COMPANY_NAME",
-          "name": "Company Name",
-          "isRequired": false
-        }
+        {"fieldType": "...", "fieldId": "...", "name": "...", "isRequired": false },
+        {"fieldType": "...", "fieldId": "...", "name": "...", "isRequired": false }
       ]
     }
   ]
