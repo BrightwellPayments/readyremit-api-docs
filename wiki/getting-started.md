@@ -9,13 +9,13 @@ This website describes the ReadyRemit Cloud Service, and explains to [fintech](h
 
 <p><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-map.png" width=700 height=393 loading="lazy"></p>
 
-# Application Workflow
+# Application workflow
 
 ReadyRemit REST API operations enable you to create the following workflow for your end users:
 
 <p><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-workflow.png" width=700 height=512 loading="lazy"></p>
 
-# Directions
+# Steps for sending money
 
 To modify your fintech application to leverage the ReadyRemit Service, complete the following steps:
 
