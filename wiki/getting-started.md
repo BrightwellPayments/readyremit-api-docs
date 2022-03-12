@@ -21,11 +21,13 @@ When you sign up to use ReadyRemit, Brightwell creates a configuration for your 
 
 This *access_token* is independent of any authentication workflow your app performs for end users.
 
-# Senders and recipients
+# Recipients and senders
 
-The ReadyRemit service supports sender and sender account entities. However, the ReadyRemit REST API does not yet include operations for dynamically creating, getting, updating, and deleting sender and sender account entities. So, ReadyRemit early adopters manually submit information about sender entities to Brightwell in exchange for *senderId*s. 
+The ReadyRemit service supports recipient and sender entities. However, while the ReadyRemit REST API includes operations for dynamically creating, getting, updating, and deleting recipient entities, it does not yet include the same operations for sender entities:
 
-<div><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-senders-receivers.png" width=700 height=436 loading="lazy"></div>
+<div><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-senders-recipients.png" width=700 height=436 loading="lazy"></div>
+
+So, for the time being, ReadyRemit early adopters manually submit information about sender entities to Brightwell in exchange for *senderId*s. required by various REST API operations. 
 
 # Sending money workflow
 
