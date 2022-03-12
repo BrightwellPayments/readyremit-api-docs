@@ -82,7 +82,7 @@ paths:
         parameters:
           - in: query
             name: dstCurrencyIso3Code
-            description: See currency codes.
+            description: See [currency codes](https://en.wikipedia.org/wiki/ISO_4217).
             required: true
             schema:
               type: string
