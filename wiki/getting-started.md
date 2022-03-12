@@ -9,15 +9,17 @@ This website describes the ReadyRemit Cloud Service, and explains to [fintech](h
 
 <p><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-map.png" width=700 height=393 loading="lazy"></p>
 
-# Application workflow
+# Use Cases
 
-ReadyRemit REST API operations enable you to create the following workflow for your end users:
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+# Sending money
+
+The following diagram illustrates the steps you might present to your end users:
 
 <p><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-workflow.png" width=700 height=512 loading="lazy"></p>
 
-# Steps for sending money
-
-To modify your fintech application to leverage the ReadyRemit Service, complete the following steps:
+To modify your fintech application to send money via the ReadyRemit Service, complete the following steps:
 
 1. Contact Brightwell via the *Get in touch* form on the <a href="https://brightwell.com/contact-us/" target="_blank">Brightwell Contact</a> page. Fill in your name and email, mention *ReadyRemit* in the comment, and click Submit. Once you sign up, Brightwell will provide you with the following:
 
