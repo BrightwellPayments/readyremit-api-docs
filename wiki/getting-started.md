@@ -13,9 +13,9 @@ This website explains to [fintech](https://en.wikipedia.org/wiki/Financial_techn
 
 To enable your fintech applications to leverage ReadyRemit, contact Brightwell via the *Get in touch* form on the <a href="https://brightwell.com/contact-us/" target="_blank">Brightwell Contact</a> page. Fill in your name and email, mention *ReadyRemit* in the comment, and click Submit. Once you sign up, Brightwell will provide you with the following:
 
-    * A *client_id* and a *client_secret* (required for authentication) for each of your ReadyRemit client applications. 
-    * A unique *senderId* (required by certain API operations) for each sender entity you register.
-    * Access to the ReadyRemit Postman Collection described in the corresponding Postman Documentation.
+* A *client_id* and a *client_secret* (required for authentication) for each of your ReadyRemit client applications. 
+* A unique *senderId* (required by certain API operations) for each sender entity you register.
+* Access to the ReadyRemit Postman Collection described in the corresponding Postman Documentation.
 
 # Authentication
 
