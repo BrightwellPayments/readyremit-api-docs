@@ -96,7 +96,6 @@ paths:
             name: transferMethod
             description: How the recipient will receive the funds.
             required: true
-            explode: true
             schema:
               type: array
               items:
