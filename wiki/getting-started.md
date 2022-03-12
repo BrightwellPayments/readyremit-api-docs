@@ -5,11 +5,9 @@ slug: getting-started
 category: 6202c91258ac9600635fb56b
 ---
 
-The ReadyRemit Cloud Service performs [remittances](https://en.wikipedia.org/wiki/Remittance) on cross-border [corridors](https://remittanceprices.worldbank.org/en/countrycorridors):
+This website explains to [fintech](https://en.wikipedia.org/wiki/Financial_technology) application developers how to programmatically leverage, via a REST API, the ReadyRemit Cloud Service which performs [remittances](https://en.wikipedia.org/wiki/Remittance) on cross-border [corridors](https://remittanceprices.worldbank.org/en/countrycorridors):
 
 <p><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-map.png" width=700 height=393 loading="lazy"></p>
-
-This website explains to [fintech](https://en.wikipedia.org/wiki/Financial_technology) application developers how to programmatically leverage the service via the ReadyRemit REST API.
 
 # Implementing use cases
 
