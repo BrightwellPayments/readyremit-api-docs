@@ -72,6 +72,79 @@ paths:
                                 ]
                             }
                         ]
+    /quote:
+      get:
+        operationId: getQuote
+        summary: Get Quote
+        description: Given a sender amount and a corridor, this operation returns a quote including the receiver amount, fees, and disclosures. The calling application can present the quote to the end user who can decide whether to proceed with the transfer.
+        tags:
+            - Helpers
+        parameters:
+          - in: query
+            name: dstCurrencyIso3Code
+            description: See currency codes.
+            required: true
+            schema:
+              type: string
+        responses:
+                '200':
+                    description: 'Success'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/quote'
+                            examples:
+                                rates:
+                                    summary: Returns two countries with 
+                                    value: [
+                                        {
+                                            "sendAmount": {
+                                                "value": 10000,
+                                                "currency": {
+                                                    "name": "United States Dollar",
+                                                    "iso3Code": "USD",
+                                                    "symbol": "$",
+                                                    "decimalPlaces": 2
+                                                }
+                                            },
+                                            "receiveAmount": {
+                                                "value": 753591,
+                                                "currency": {
+                                                    "name": "Indian Rupee",
+                                                    "iso3Code": "INR",
+                                                    "symbol": "₹",
+                                                    "decimalPlaces": 2
+                                                }
+                                            },
+                                            "rate": 753591,
+                                            "adjustments": [
+                                                {
+                                                    "label": "Transfer Fee",
+                                                    "amount": {
+                                                        "value": 299,
+                                                        "currency": {
+                                                            "name": "United States Dollar",
+                                                            "iso3Code": "USD",
+                                                            "symbol": "$",
+                                                            "decimalPlaces": 2
+                                                        }
+                                                    }
+                                                }
+                                            ],
+                                            "totalCost": {
+                                                "value": 10299,
+                                                "currency": {
+                                                    "name": "United States Dollar",
+                                                    "iso3Code": "USD",
+                                                    "symbol": "$",
+                                                    "decimalPlaces": 2
+                                                }
+                                            },
+                                            "disclosures": []
+                                        }
+                                    ]
     /transfer/options/transfertypes:
         parameters:
         - name: dstCountryIso3Code
