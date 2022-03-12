@@ -8,8 +8,8 @@ servers:
 paths:
     /countries-and-currencies:
       get:
-        operationId: getCountriesAndCurrencies
-        summary: Get Countries and Currencies
+        operationId: getCountries
+        summary: Get Countries
         description: This operation returns an array of country/currency records available to the calling application. Each record includes a country object and an array of currency objects. The calling application can present these records to the end user who can choose a recipient country and currency.
         tags:
             - Helpers
