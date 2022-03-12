@@ -33,20 +33,16 @@ To modify your fintech application to leverage the ReadyRemit Service, complete 
 
 1. Call <a href="https://documenter.getpostman.com/view/8773841/UVksNEt7#0b582301-8de2-4610-88ba-df0fad04f024" target="_blank">Get Quote</a> to return the recipient amount (based on the sender amount and the exchange rate) and fees.
 
-1. Call Get Sender Fields.
+1. Call <a href="https://documenter.getpostman.com/view/8773841/UVksNEt7#4ec3357f-a4a5-4f53-aca8-1d2c7049a636" target="_blank">Get Recipient Fields</a> ...
 
-1. Call Create Sender.
+1. Call <a href="https://documenter.getpostman.com/view/8773841/UVksNEt7#7ecc57ba-7c37-49ee-b333-b273402d455a" target="_blank">Create Recipient</a> ...
 
-1. Call Get Recipient Fields.
+1. Call <a href="https://documenter.getpostman.com/view/8773841/UVksNEt7#c0c343a1-9a82-48ff-81a5-4a8e5397e503" target="_blank">Get Banks</a> ...
 
-1. Call Create Recipient.
+1. Call <a href="https://documenter.getpostman.com/view/8773841/UVksNEt7#0baa42f9-245f-4d1f-8fe8-b1cf795e851d" target="_blank">Get Bank Branches</a> ...
 
-1. Call Get Recipient Account Fields.
+1. Call <a href="https://documenter.getpostman.com/view/8773841/UVksNEt7#653ea7bf-e34b-4272-8d49-8d84ba7a7d34" target="_blank">Get Recipient Account Fields</a> ...
 
-1. Call Get Banks.
+1. Call <a href="https://documenter.getpostman.com/view/8773841/UVksNEt7#b8d89873-5827-456e-a2d7-b94f6de7b078" target="_blank">Create Recipient Account</a> ...
 
-1. Call Get Bank Branches.
-
-1. Call Create Recipient Account.
-
-1. Call Execute Transfer.
+1. Call <a href="https://documenter.getpostman.com/view/8773841/UVksNEt7#a8d5f9cd-9f84-41c7-8fd4-b9356559c35f" target="_blank">Execute Transfer</a> ...
