@@ -101,6 +101,7 @@ paths:
               enum:
               - 'BANK_ACCOUNT'
               - 'CASH_PICKUP'
+              default: 'BANK_ACCOUNT'
         responses:
                 '200':
                     description: 'Success'
