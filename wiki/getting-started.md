@@ -37,7 +37,7 @@ The ReadyRemit service supports recipient and sender entities. However, while th
 
 So, for the time being, ReadyRemit early adopters manually submit information about sender entities to Brightwell in exchange for *senderIds* required by various REST API operations. 
 
-# Variable fields
+# Dynamic fields
 
 The fields necessary for building user-facing forms to collect recipient information (and, subsequently, to `POST` recipient and recipient-account data to ReadyRemit) vary depending on country, currency, transfer method, and recipient type. For example, the fields necessary to define a recipient with a bank account in India (Indian Rupee) differ from those necessary to define a recipient in the Philippines (Philippine Peso) expecting a cash remittance:
 
@@ -71,6 +71,14 @@ To accommodate, ReadyRemit provides two operations, *Get Recipient Fields* and *
   ]
 }
 ```
+
+## `DATE`
+
+## DROPDOWN
+
+## PHONE_NUMBER
+
+## TEXT
 
 # Sending money
 
