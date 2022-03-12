@@ -78,30 +78,30 @@ This section describes how to use ReadyRemit REST API operations to send money f
 
 <div><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-use-ops.png" width=600 height=160 loading="lazy"></div>
 
-1. Create an access token
+1. Create an access token.
 
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-1. Establish recipient country
+1. Establish the recipient country.
 
-1. Establish transfer method
+1. Establish the transfer method.
 
-1. Establish transfer amount
+1. Establish the transfer amount.
 
-1. Calculate a quote
+1. Calculate a quote.
 
-1. Establish recipient type
+1. Establish the recipient type.
 
-1. Establish recipient fields
+1. Establish the recipient fields.
 
-1. Create a recipient entity in ReadyRemit
+1. Create a recipient entity in ReadyRemit.
 
-1. Establish recipient account fields
+1. Establish the recipient-account fields.
 
-1. Establish recipient bank
+1. Establish the recipient bank.
 
-1. Establish recipient branch
+1. Establish the recipient branch.
 
-1. Create a recipient-account entity in ReadyRemit
+1. Create a recipient-account entity in ReadyRemit.
 
-1. Execute the transfer
+1. Execute the transfer.
