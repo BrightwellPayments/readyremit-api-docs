@@ -21,11 +21,13 @@ When you sign up to use ReadyRemit, Brightwell creates a configuration for your 
 
 This *access_token* is independent of any authentication workflow your app performs for end users.
 
-# Sending money
+# Sending money workflow
 
 The following diagram illustrates the steps you might present to your end users:
 
 <div><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-workflow.png" width=700 height=512 loading="lazy"></div>
+
+# Sending money operations
 
 To modify your fintech application to send money via the ReadyRemit Service, complete the following steps:
 
