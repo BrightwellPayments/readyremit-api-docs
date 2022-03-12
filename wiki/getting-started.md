@@ -74,9 +74,9 @@ To accommodate, ReadyRemit provides two operations, *Get Recipient Fields* and *
 
 # Sending money
 
-This section describes how to use ReadyRemit REST API operations to send money from a sender to a recipient. The operations help you build relevant forms for end-user input, instantiate receiver and receiver-account objects in ReadyRemit, and complete the transfer of funds:
+This section describes how to use ReadyRemit REST API operations to send money from a sender to a recipient. The operations help you (1) build relevant forms for end-user input, (2) instantiate receiver and receiver-account objects in ReadyRemit, and (3) complete the transfer of funds:
 
-DIAGRAM
+<div><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-use-ops.png" width=600 height=160 loading="lazy"></div>
 
 1. Call <a href="https://documenter.getpostman.com/view/8773841/UVksNEt7#231a6946-f65e-4d25-bb45-8192da72177e" target="_blank">Create Access Token</a> to obtain an access token required by all other ReadyRemit REST API operations.
 
