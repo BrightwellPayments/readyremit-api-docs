@@ -17,7 +17,7 @@ ReadyRemit uses the <a href="https://auth0.com/docs/get-started/authentication-a
 
 When you sign up to use ReadyRemit, Brightwell creates a configuration for your app in the Auth0 ReadyRemit account, and provides you with a *client_id* and a *client_secret* which, at start up, your app reads from an enviroment file, and trades (via an API call to Auth0) for an *access_token*. This *access_token* gives your app access to ReadyRemit REST API operations:
 
-DIAGRAM
+<p style="margin-top:24px;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-auth-bearer.png" width=700 height=100 loading="lazy"></p>
 
 # Implementing use cases
 
