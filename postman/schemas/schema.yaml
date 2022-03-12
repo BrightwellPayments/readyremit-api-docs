@@ -97,7 +97,6 @@ paths:
             description: How the recipient will receive the funds.
             required: true
             schema:
-              type: array
               items:
                 type: string
                 enum:
