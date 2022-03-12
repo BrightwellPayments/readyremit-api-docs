@@ -13,7 +13,7 @@ This website explains to [fintech](https://en.wikipedia.org/wiki/Financial_techn
 
 ReadyRemit uses the <a href="https://auth0.com/docs/get-started/authentication-and-authorization-flow/client-credentials-flow" target="_blank">Client Credentials Flow</a> of the <a href="https://auth0.com/" target="_blank">Auth0</a> Platform for authentication:
 
-DIAGRAM
+<p style="margin-top:24px;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-auth0.png" width=700 height=346 loading="lazy"></p>
 
 # Implementing use cases
 
