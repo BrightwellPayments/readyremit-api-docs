@@ -1,60 +1,17 @@
 openapi: 3.0.0
 info:
   version: '1.0'
-  title: 'Transfer'
+  title: 'ReadyRemit'
 servers:
-  - url: 'https://apim-readyremit-dev-eastus-001.azure-api.net/v1'
+  - url: 'https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1'
 paths:
-    /transfer/health:
+    /countries-and-currencies:
       get:
-          operationId: 'getHealth'
-          summary: 'Get health'
-          description: 'Check the health of the API and all dependencies'
-          tags:
-              - Health
-          responses:
-            200:
-              description: 'Success'
-              content:
-                application/json:
-                    schema:
-                        $ref: '#/components/schemas/health'
-                    examples:
-                        success:
-                            summary: 'Success'
-                            value: {
-                                "name": "TRANSFER_API",
-                                "status": "AVAILABLE",
-                                "dependencies": [
-                                    {
-                                        "name": "Database",
-                                        "status": "AVAILABLE"
-                                    }
-                                ]
-                            }
-            500:
-              description: 'Server error'
-              content:
-                application/json:
-                  schema:
-                    $ref: '#/components/schemas/errorPayload'
-                  examples:
-                    server_error:
-                      summary: 'Server error'
-                      value: {
-                          "errors": [{
-                              "message": "It's all broked up",
-                              "description": "Example of a 500 exception",
-                              "code": "RR500"
-                          }]
-                      }
-    /transfer/options/countriescurrencies:
-      get:
-        operationId: getCountriesWithCurrencies
-        summary: Get Countries with Currencies
-        description: Gets a list of countries with currencies that are available for remittance.
+        operationId: getCountriesAndCurrencies
+        summary: Get Countries and Currencies
+        description: This operation returns an array of country/currency records available to the calling application. Each record includes a country object and an array of currency objects. The calling application can present these records to the end user who can choose a recipient country and currency.
         tags:
-            - Countries with Currencies
+            - Helpers
         responses:
           200:
             description: Success
