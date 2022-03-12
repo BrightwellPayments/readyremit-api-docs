@@ -86,12 +86,14 @@ paths:
             required: true
             schema:
               type: string
+              default: 'IND'
           - in: query
             name: srcCurrencyIso3Code
             description: See [currency codes](https://en.wikipedia.org/wiki/ISO_4217).
             required: true
             schema:
               type: string
+              default: 'USD'
           - name: transferMethod
             in: query
             required: true
