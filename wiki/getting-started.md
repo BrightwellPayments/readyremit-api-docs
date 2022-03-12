@@ -19,7 +19,7 @@ When you sign up to use ReadyRemit, Brightwell creates a configuration for your 
 
 <p style="margin-top:24px;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-auth-bearer.png" width=700 height=100 loading="lazy"></p>
 
-This *access_token* is independent of any authentication workflow you app performs for end users.
+This *access_token* is independent of any authentication workflow your app performs for end users.
 
 # Implementing use cases
 
