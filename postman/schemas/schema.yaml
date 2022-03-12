@@ -4,6 +4,7 @@ info:
   title: 'ReadyRemit'
 servers:
   - url: 'https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1'
+  - url: 'https://readyremit.us.auth0.com/oauth/token'
 paths:
     /countries-and-currencies:
       get:
