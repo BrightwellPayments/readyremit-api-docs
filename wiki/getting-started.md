@@ -35,7 +35,7 @@ The fields necessary for building user-facing forms to collect recipient informa
 
 <div><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-variable-fields.png" width=600 height=307 loading="lazy"></div>
 
-To accommodate, ReadyRemit provides two operations, *Get Recipient Fields* and *Get Recipient Account Fields*, that return response bodies containing a field definitions. Here is an example:
+To accommodate, ReadyRemit provides two operations, *Get Recipient Fields* and *Get Recipient Account Fields*, that return response bodies containing sets of field definitions. Here is an example:
 
 ``` json
 {
