@@ -21,6 +21,10 @@ When you sign up to use ReadyRemit, Brightwell creates a configuration for your 
 
 This *access_token* is independent of any authentication workflow your app performs for end users.
 
+# Sender information
+
+The ReadyRemit service supports sender and sender account entities. However, the ReadyRemit REST API does not yet include operations for dynamically creating, getting, updating, and deleting sender and sender account entities. So, ReadyRemit early adopters manually submit information about sender entities to Brightwell in exchange for *senderId*s. 
+
 # Sending money workflow
 
 The following diagram illustrates the steps you might present to your end users:
