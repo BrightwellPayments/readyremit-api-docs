@@ -1,7 +1,7 @@
 ---
 openapi: 3.0.0
 info:
-  title: ReadyRemit
+  title: Operations
   version: "1.0"
 servers:
 - url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
