@@ -74,13 +74,13 @@ To accommodate, ReadyRemit provides two operations, *Get Recipient Fields* and *
 
 Supported field types are the following:
 
-## `DATE`
+### `DATE`
 
-## `DROPDOWN`
+### `DROPDOWN`
 
-## `PHONE_NUMBER`
+### `PHONE_NUMBER`
 
-## `TEXT`
+### `TEXT`
 
 # Sending money
 
