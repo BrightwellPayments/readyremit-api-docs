@@ -28,6 +28,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/getAccessTokenResponse200'
+      security: []
     servers:
     - url: https://readyremit.us.auth0.com
   /banks:
