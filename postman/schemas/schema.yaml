@@ -4,7 +4,7 @@ info:
   title: ReadyRemit
   version: "1.0"
 servers:
-- url: https://placeholder.com
+- url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
 security:
 - bearerAuth: []
 paths:
@@ -13,7 +13,7 @@ paths:
       tags:
       - Authentication
       summary: Get Access Token
-      description: See the [Developer Guide](https://readyremit.readme.io/docs#authentication).
+      description: This is the description.
       operationId: getAccessToken
       requestBody:
         description: List of fields to create the recipient account
@@ -62,8 +62,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/idNameArray'
-    servers:
-    - url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
   /banks/{id}/branches:
     get:
       tags:
@@ -87,8 +85,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/idNameArray'
-    servers:
-    - url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
   /countries-and-currencies:
     get:
       tags:
@@ -105,8 +101,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/getCountriesResponse200'
-    servers:
-    - url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
   /quote:
     get:
       tags:
@@ -178,8 +172,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/quote'
-    servers:
-    - url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
   /recipient-fields:
     get:
       tags:
@@ -227,8 +219,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/fieldSetsObject'
-    servers:
-    - url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
   /recipients:
     get:
       tags:
@@ -279,8 +269,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/errorPayload'
-    servers:
-    - url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
   /recipients/{id}:
     get:
       tags:
@@ -350,8 +338,6 @@ paths:
       responses:
         "200":
           description: 200 Success
-    servers:
-    - url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
   /recipient-account-fields:
     get:
       tags:
@@ -399,8 +385,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/fieldSetsObject'
-    servers:
-    - url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
   /recipients/{id}/accounts:
     get:
       tags:
@@ -444,8 +428,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/errorPayload'
-    servers:
-    - url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
   /recipients/{id}/accounts/{accId}:
     get:
       tags:
@@ -541,8 +523,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/errorPayload'
-    servers:
-    - url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
   /transfers:
     post:
       tags:
@@ -559,8 +539,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/errorPayload'
-    servers:
-    - url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
 components:
   schemas:
     createRecipientRequest:
@@ -859,12 +837,16 @@ components:
       properties:
         client_id:
           type: string
+          default: rrBlzRSPg5U7xjvFfZx19iifiuB6Pkuc
         client_secret:
           type: string
+          default: vvSts6__lEUd_OkppaVnKqY4VVr05hsdTr5ny7nsz_6t471UrK-24t7St9h2Aht_
         audience:
           type: string
+          default: readyremit-transferapi
         grant_type:
           type: string
+          default: client_credentials
     getAccessTokenResponse200:
       type: object
       properties:
