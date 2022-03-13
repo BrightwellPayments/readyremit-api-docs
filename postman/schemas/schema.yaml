@@ -14,7 +14,7 @@ paths:
       tags:
       - Authentication
       summary: Get Access Token
-      description: See the [Developer Guide](https://readyremit.readme.io/docs#authentication).
+      description: This is the description.
       operationId: getAccessToken
       requestBody:
         description: List of fields to create the recipient account
