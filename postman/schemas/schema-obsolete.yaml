@@ -1,0 +1,1918 @@
+openapi: 3.0.0
+info:
+  version: '1.0'
+  title: 'ReadyRemit'
+servers:
+  - url: 'https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1'
+  - url: 'https://readyremit.us.auth0.com/oauth/token'
+paths:
+    /countries-and-currencies:
+      get:
+        operationId: getCountries
+        summary: Get Countries
+        description: This operation returns an array of country/currency records available to the calling application. Each record includes a country object and an array of currency objects. The calling application can present these records to the end user who can choose a recipient country and currency.
+        tags:
+            - Helpers
+        responses:
+          200:
+            description: Success
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items: 
+                    type: object
+                    required:
+                        - country
+                        - currencies
+                    properties:
+                        country: 
+                            type: object
+                            $ref: '#/components/schemas/country'
+                        currencies:
+                            type: array
+                            items:
+                                $ref: '#/components/schemas/currency'
+                examples:
+                    small_list:
+                        summary: Small list
+                        value: [
+                            { 
+                                "country": {
+                                    "name": "United States of America",
+                                    "iso3Code": "USA",
+                                },
+                                "currencies": [
+                                    {
+                                        "name": "US Dollar",
+                                        "iso3Code": "USD",
+                                        "symbol": "$",
+                                        "decimalPlaces": 2
+                                    }
+                                ]
+                            },
+                            {
+                                "country": {
+                                    "name": "Philippines",
+                                    "iso3Code": "PHL",
+                                },
+                                "currencies": [
+                                    {
+                                        "name": "Philipine Peso",
+                                        "iso3Code": "PHL",
+                                        "symbol": "₱",
+                                        "decimalPlaces": 2
+                                    },
+                                    {
+                                        "name": "US Dollar",
+                                        "iso3Code": "USD",
+                                        "symbol": "$",
+                                        "decimalPlaces": 2
+                                    }
+                                ]
+                            }
+                        ]
+    /quote:
+      get:
+        operationId: getQuote
+        summary: Get Quote
+        description: Given a sender amount and a corridor, this operation returns a quote including the receiver amount, fees, and disclosures. The calling application can present the quote to the end user who can decide whether to proceed with the transfer.
+        tags:
+            - Helpers
+        parameters:
+          - in: query
+            name: dstCurrencyIso3Code
+            description: See [currency codes](https://en.wikipedia.org/wiki/ISO_4217).
+            required: true
+            schema:
+              type: string
+              default: 'IND'
+          - in: query
+            name: srcCurrencyIso3Code
+            description: See [currency codes](https://en.wikipedia.org/wiki/ISO_4217).
+            required: true
+            schema:
+              type: string
+              default: 'USD'
+          - name: transferMethod
+            in: query
+            required: true
+            description: Method of transfer.
+            schema:
+              type: string
+              enum:
+              - 'BANK_ACCOUNT'
+              - 'CASH_PICKUP'
+              default: 'BANK_ACCOUNT'
+        responses:
+                '200':
+                    description: 'Success'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/quote'
+                            examples:
+                                rates:
+                                    summary: Returns two countries with 
+                                    value: [
+                                        {
+                                            "sendAmount": {
+                                                "value": 10000,
+                                                "currency": {
+                                                    "name": "United States Dollar",
+                                                    "iso3Code": "USD",
+                                                    "symbol": "$",
+                                                    "decimalPlaces": 2
+                                                }
+                                            },
+                                            "receiveAmount": {
+                                                "value": 753591,
+                                                "currency": {
+                                                    "name": "Indian Rupee",
+                                                    "iso3Code": "INR",
+                                                    "symbol": "₹",
+                                                    "decimalPlaces": 2
+                                                }
+                                            },
+                                            "rate": 753591,
+                                            "adjustments": [
+                                                {
+                                                    "label": "Transfer Fee",
+                                                    "amount": {
+                                                        "value": 299,
+                                                        "currency": {
+                                                            "name": "United States Dollar",
+                                                            "iso3Code": "USD",
+                                                            "symbol": "$",
+                                                            "decimalPlaces": 2
+                                                        }
+                                                    }
+                                                }
+                                            ],
+                                            "totalCost": {
+                                                "value": 10299,
+                                                "currency": {
+                                                    "name": "United States Dollar",
+                                                    "iso3Code": "USD",
+                                                    "symbol": "$",
+                                                    "decimalPlaces": 2
+                                                }
+                                            },
+                                            "disclosures": []
+                                        }
+                                    ]
+    /transfer/options/transfertypes:
+        parameters:
+        - name: dstCountryIso3Code
+          in: query
+          required: true
+          description: Three digit ISO code representing the destination country
+          schema:
+            type: string
+        - name: dstCurrencyIso3Code
+          in: query
+          required: true
+          description: Three digit ISO code representing the destination currency
+          schema:
+            type: string
+        - name: srcCurrencyIso3Code
+          in: query
+          required: true
+          description: Three digit ISO code representing the source currency
+          schema:
+            type: string
+        get:
+            operationId: getTransferTypes
+            summary: Get Transfer Types
+            description: Get a list of available transfer types for a corridor
+            tags:
+                - Transfer Types
+            responses:
+                200:
+                    description: Success
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items: 
+                                    $ref: '#/components/schemas/selection'
+                            examples:
+                                success:
+                                    summary: Success
+                                    value: [
+                                        {
+                                            "name": "Bank Transfer",
+                                            "id": "BANK_TRANSFER"
+                                        }
+                                    ]
+
+                500:
+                    description: Server error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                            examples:
+                                server_error:
+                                    summary: 'Server error'
+                                    value: {
+                                        "errors": [{
+                                            "message": "It's all broked up",
+                                            "description": "Example of a 500 exception",
+                                            "code": "RR500"
+                                        }]
+                                    }
+    /transfer/options/purposesofremittance:
+        parameters:
+        - name: dstCountryIso3Code
+          in: query
+          required: true
+          description: Three digit ISO code representing the destination country
+          schema:
+            type: string
+        - name: dstCurrencyIso3Code
+          in: query
+          required: true
+          description: Three digit ISO code representing the destination currency
+          schema:
+            type: string
+        - name: srcCurrencyIso3Code
+          in: query
+          required: true
+          description: Three digit ISO code representing the source currency
+          schema:
+            type: string
+        get:
+            operationId: getPurposesOfRemittance
+            summary: Get Purposes of Remittance
+            description: Get a list of available remittance purposes for a corridor
+            tags:
+                - Get Purposes of Remittance
+            responses:
+                200:
+                    description: Success
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items: 
+                                    $ref: '#/components/schemas/selection'
+                            examples:
+                                success:
+                                    summary: Success
+                                    value: [
+                                        {
+                                            "name": "Family Maintenance",
+                                            "id": "FAMILY_MAINTENANCE"
+                                        },
+                                        {
+                                            "name": "Education",
+                                            "id": "EDUCATION"
+                                        },
+                                        {
+                                            "name": "Personal",
+                                            "id": "PERSONAL"
+                                        }
+                                    ]
+                '500':
+                    description: 'Server error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                            examples:
+                                server_error:
+                                    summary: 'Server error'
+                                    value: {
+                                        "errors": [{
+                                            "message": "It's all broked up",
+                                            "description": "Example of a 500 exception",
+                                            "code": "RR500"
+                                        }]
+                                    }
+    /transfer/options/banks:
+        get:
+            operationId: getBanks
+            summary: Get Banks
+            description: Get a list of destination banks available for the given country currency
+            tags:
+                - Get Banks
+            parameters:
+              - in: query
+                name: countryIso3Code
+                schema:
+                    type: string
+                    maxLength: 3
+                    minLength: 3
+                    pattern: '^[A-Z]{3}$'
+                required: true
+                description: ISO code of destination country
+              - in: query
+                name: currencyIso3Code
+                schema:
+                    type: string
+                    maxLength: 3
+                    minLength: 3
+                    pattern: '^[A-Z]{3}$'
+                required: true
+                description: ISO code of destination currency
+            responses:
+                '200':
+                    description: 'Success'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/selection'
+                '500':
+                    description: 'Server error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                            examples:
+                                server_error:
+                                    summary: 'Server error'
+                                    value: {
+                                        "errors": [{
+                                            "message": "It's all broked up",
+                                            "description": "Example of a 500 exception",
+                                            "code": "RR500"
+                                        }]
+                                    }
+    /transfer/options/banks/{bankId}/branches:
+        get:
+            operationId: getBankBranches
+            summary: Get Bank Branches
+            description: Get a list of bank branches given a bank
+            tags:
+                - Get Bank Branches
+            parameters:
+              - in: path
+                name: bankId
+                schema:
+                    type: string
+                required: true
+                description: ID of selected bank
+            responses:
+                '200':
+                    description: 'Success'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/selection'
+                '500':
+                    description: 'Server error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                            examples:
+                                server_error:
+                                    summary: 'Server error'
+                                    value: {
+                                        "errors": [{
+                                            "message": "It's all broked up",
+                                            "description": "Example of a 500 exception",
+                                            "code": "RR500"
+                                        }]
+                                    }
+    /transfer/options/senderfields:
+        parameters:
+        - name: dstCountryIso3Code
+          in: query
+          required: true
+          description: Three digit ISO code representing the destination country
+          schema:
+            type: string
+        - name: dstCurrencyIso3Code
+          in: query
+          required: true
+          description: Three digit ISO code representing the destination currency
+          schema:
+            type: string
+        - name: srcCurrencyIso3Code
+          in: query
+          required: true
+          description: Three digit ISO code representing the source currency
+          schema:
+            type: string
+        - name: transferMethod
+          in: query
+          required: true
+          description: Method of transfer
+          schema:
+            type: string
+            enum:
+            - 'BANK_ACCOUNT'
+            - 'CASH_PICKUP'
+        get:
+            operationId: getSenderFields
+            summary: Get Sender Fields
+            description: Get a list of required fields for creating or updating a Sender record for a given corridor.
+            tags:
+                - Get Sender Fields
+            responses:
+                200:
+                    description: Success
+                    content: 
+                        'application/json':
+                            schema:
+                                type: object
+                                required:
+                                    - fieldSets
+                                properties:
+                                    fieldSets:
+                                        type: array
+                                        items:
+                                            $ref: '#/components/schemas/fieldSet'
+                            examples:
+                                success:
+                                    summary: Success
+                                    value: {
+                                        "fieldSets": [
+                                            {
+                                                "fieldSetId": "SENDER_DETAILS",
+                                                "fieldSetName": "Sender Personal Info",
+                                                "fields": [
+                                                    {
+                                                        "fieldId": "FIRST_NAME",
+                                                        "fieldType": "TEXT",
+                                                        "name": "Sender First Name",
+                                                        "placeholderText": "Sender First Name",
+                                                        "hintText": "Do the thing please",
+                                                        "minLength": 1,
+                                                        "maxLength": 50,
+                                                        "regex": "^([a-zA-Z \\u00C0-\\u017F\\-\\'\\/])*$",
+                                                        "isRequired": false
+                                                    },
+                                                    {
+                                                        "fieldId": "LAST_NAME",
+                                                        "fieldType": "TEXT",
+                                                        "name": "Sender Last/Family Name",
+                                                        "placeholderText": "Sender Last Name",
+                                                        "hintText": "Do the thing please",
+                                                        "minLength": 1,
+                                                        "maxLength": 50,
+                                                        "regex": "^([a-zA-Z \\u00C0-\\u017F\\-\\'\\/])*$",
+                                                        "isRequired": false
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                500:
+                    description: 'Server error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                            examples:
+                                server_error:
+                                    summary: 'Server error'
+                                    value: {
+                                        "errors": [{
+                                            "message": "It's all broked up",
+                                            "description": "Example of a 500 exception",
+                                            "code": "RR500"
+                                        }]
+                                    }
+    /transfer/options/recipientfields:
+        parameters:
+        - name: dstCountryIso3Code
+          in: query
+          required: true
+          description: Three digit ISO code representing the destination country
+          schema:
+            type: string
+        - name: dstCurrencyIso3Code
+          in: query
+          required: true
+          description: Three digit ISO code representing the destination currency
+          schema:
+            type: string
+        - name: srcCurrencyIso3Code
+          in: query
+          required: true
+          description: Three digit ISO code representing the source currency
+          schema:
+            type: string
+        - name: transferMethod
+          in: query
+          required: true
+          description: Method of transfer
+          schema:
+            type: string
+            enum:
+            - 'BANK_ACCOUNT'
+            - 'CASH_PICKUP'
+        - name: recipientType
+          in: query
+          required: true
+          description: Type of recipient
+          schema:
+            type: string
+            enum:
+            - MYSELF
+            - SOMEONE_ELSE
+            - BUSINESS
+        get:
+            operationId: getRecipientFields
+            summary: Get Recipient Fields
+            description: Get a list of required fields for creating or updating a Recipient record for a given corridor.
+            tags:
+                - Get Recipient Fields
+            responses:
+                200:
+                    description: Success
+                    content: 
+                        'application/json':
+                            schema:
+                                type: object
+                                required:
+                                    - fieldSets
+                                properties:
+                                    fieldSets:
+                                        type: array
+                                        items:
+                                            $ref: '#/components/schemas/fieldSet'
+                            examples:
+                                success:
+                                    summary: Success
+                                    value: {
+                                        "fieldSets": [
+                                            {
+                                                "fieldSetId": "RECIPIENT_DETAILS",
+                                                "fieldSetName": "Recipient Personal Info",
+                                                "fields": [
+                                                    {
+                                                        "fieldId": "FIRST_NAME",
+                                                        "fieldType": "TEXT",
+                                                        "name": "Recipient First Name",
+                                                        "placeholderText": "Recipient First Name",
+                                                        "hintText": "Do the thing please",
+                                                        "minLength": 1,
+                                                        "maxLength": 50,
+                                                        "regex": "^([a-zA-Z \\u00C0-\\u017F\\-\\'\\/])*$",
+                                                        "isRequired": false
+                                                    },
+                                                    {
+                                                        "fieldId": "LAST_NAME",
+                                                        "fieldType": "TEXT",
+                                                        "name": "Recipient Last/Family Name",
+                                                        "placeholderText": "Recipient Last Name",
+                                                        "hintText": "Do the thing please",
+                                                        "minLength": 1,
+                                                        "maxLength": 50,
+                                                        "regex": "^([a-zA-Z \\u00C0-\\u017F\\-\\'\\/])*$",
+                                                        "isRequired": false
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                500:
+                    description: Server error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                            examples:
+                                server_error:
+                                    summary: 'Server error'
+                                    value: {
+                                        "errors": [{
+                                            "message": "It's all broked up",
+                                            "description": "Example of a 500 exception",
+                                            "code": "RR500"
+                                        }]
+                                    }
+    /transfer/options/recipientaccountfields:
+        parameters:
+        - name: dstCountryIso3Code
+          in: query
+          required: true
+          description: Three digit ISO code representing the destination country
+          schema:
+            type: string
+        - name: dstCurrencyIso3Code
+          in: query
+          required: true
+          description: Three digit ISO code representing the destination currency
+          schema:
+            type: string
+        - name: srcCurrencyIso3Code
+          in: query
+          required: true
+          description: Three digit ISO code representing the source currency
+          schema:
+            type: string
+        - name: transferMethod
+          in: query
+          required: true
+          description: Method of transfer
+          schema:
+            type: string
+            enum:
+            - 'BANK_ACCOUNT'
+            - 'CASH_PICKUP'
+        get:
+            operationId: getRecipientAccountFields
+            summary: Get Recipient Account Fields
+            description: Get a list of required fields for creating or updating a Recipient Account record for a given corridor.
+            tags:
+                - Get Recipient Account Fields
+            responses:
+                200:
+                    description: Success
+                    content: 
+                        'application/json':
+                            schema:
+                                type: object
+                                required:
+                                    - fieldSets
+                                properties:
+                                    fieldSets:
+                                        type: array
+                                        items:
+                                            $ref: '#/components/schemas/fieldSet'
+                '500':
+                    description: 'Server error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                            examples:
+                                server_error:
+                                    summary: 'Server error'
+                                    value: {
+                                        "errors": [{
+                                            "message": "It's all broked up",
+                                            "description": "Example of a 500 exception",
+                                            "code": "RR500"
+                                        }]
+                                    }
+    /transfer/quotes:
+        parameters:
+        - name: dstCountryIso3Code
+          in: query
+          required: true
+          description: Three digit ISO code representing the destination country
+          schema:
+            type: string
+        - name: dstCurrencyIso3Code
+          in: query
+          required: true
+          description: Three digit ISO code representing the destination currency
+          schema:
+            type: string
+        - name: srcCurrencyIso3Code
+          in: query
+          required: true
+          description: Three digit ISO code representing the source currency
+          schema:
+            type: string
+        - name: transferMethod
+          in: query
+          required: true
+          description: Method of transfer
+          schema:
+            type: string
+            enum:
+            - 'BANK_ACCOUNT'
+            - 'CASH_PICKUP'
+        - name: quoteBy
+          in: query
+          required: true
+          description: Flag indicating either quoting the transfer by send or receive amount
+          schema:
+            type: string
+            enum:
+            - 'SEND_AMOUNT'
+            - 'RECEIVE_AMOUNT'
+        - name: amount
+          in: query
+          required: true
+          description: Send or receive amount
+          schema:
+            type: number
+        get:
+            operationId: getQuotes
+            summary: Get Quotes
+            description: Get a transfer quote given a corridor and amount
+            tags:
+                - Helpers
+            requestBody:
+                description: Quotes payload
+                content: 
+                    'application/json':
+                        schema:
+                            type: object
+                            required:
+                                - dstCountryIso3Code
+                                - dstCurrencyIso3Code
+                                - srcCurrencyIso3Code
+                                - transferMethod
+                                - quoteBy
+                                - amount
+                            properties:
+                                dstCountryIso3Code:
+                                    type: string
+                                    maxLength: 3
+                                    minLength: 3
+                                    pattern: '^[A-Z]{3}$'
+                                dstCurrencyIso3Code:
+                                    type: string
+                                    maxLength: 3
+                                    minLength: 3
+                                    pattern: '^[A-Z]{3}$'
+                                srcCurrencyIso3Code:
+                                    type: string
+                                    maxLength: 3
+                                    minLength: 3
+                                    pattern: '^[A-Z]{3}$'
+                                transferMethod:
+                                    type: string
+                                quoteBy:
+                                    type: string
+                                    enum:
+                                        - 'SEND_AMOUNT'
+                                        - 'RECEIVE_AMOUNT'
+                                amount:
+                                    type: integer
+                                    minimum: 1
+            responses:
+                '200':
+                    description: 'Success'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/quote'
+                            examples:
+                                rates:
+                                    summary: Returns two countries with 
+                                    value: [
+                                        {
+                                            "sendAmount": {
+                                                "value": 10000,
+                                                "currency": {
+                                                    "name": "United States Dollar",
+                                                    "iso3Code": "USD",
+                                                    "symbol": "$",
+                                                    "decimalPlaces": 2
+                                                }
+                                            },
+                                            "receiveAmount": {
+                                                "value": 753591,
+                                                "currency": {
+                                                    "name": "Indian Rupee",
+                                                    "iso3Code": "INR",
+                                                    "symbol": "₹",
+                                                    "decimalPlaces": 2
+                                                }
+                                            },
+                                            "rate": 753591,
+                                            "adjustments": [
+                                                {
+                                                    "label": "Transfer Fee",
+                                                    "amount": {
+                                                        "value": 299,
+                                                        "currency": {
+                                                            "name": "United States Dollar",
+                                                            "iso3Code": "USD",
+                                                            "symbol": "$",
+                                                            "decimalPlaces": 2
+                                                        }
+                                                    }
+                                                }
+                                            ],
+                                            "totalCost": {
+                                                "value": 10299,
+                                                "currency": {
+                                                    "name": "United States Dollar",
+                                                    "iso3Code": "USD",
+                                                    "symbol": "$",
+                                                    "decimalPlaces": 2
+                                                }
+                                            },
+                                            "disclosures": []
+                                        }
+                                    ]
+                '500':
+                    description: 'Server error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                            examples:
+                                server_error:
+                                    summary: 'Server error'
+                                    value: {
+                                        "errors": [{
+                                            "message": "It's all broked up",
+                                            "description": "Example of a 500 exception",
+                                            "code": "RR500"
+                                        }]
+                                    }
+    /transfer/sender:
+        post:
+            operationId: createSender
+            summary: Create Sender
+            description: Create a sender record. Only the minimum required fields will be validated outside the context of a corridor.
+            tags:
+                - Create Sender
+            requestBody:
+                description: List of fields to create the sender
+                content: 
+                    'application/json':
+                        schema:
+                            type: object
+                            required:
+                                - fields
+                            properties:
+                                fields:
+                                    type: array
+                                    items:
+                                        $ref: '#/components/schemas/fieldValue'
+            responses:
+                201:
+                    description: 'Success'
+                    content: 
+                        'application/json':
+                            schema:
+                                type: object
+                                $ref: '#/components/schemas/sender'
+                            examples:
+                                success:
+                                    summary: Success
+                                    value: {
+                                        "id": "440bd978-0116-4143-8466-445fe566e3a2",
+                                        "firstName": "Joshua",
+                                        "lastName": "Garcia",
+                                        "fields": [
+                                            { 
+                                                "id": "PHONE_NUMBER",
+                                                "type": "PHONE_NUMBER",
+                                                "value": { "countryIso3Code": "USA", "countryPhoneCode": 1, "number": "555-555-5555" }
+                                            }
+                                        ]
+                                    }
+                400:
+                    description: 'Invalid or missing data'
+                    content:
+                        'application/json':
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                500:
+                    description: 'Server error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                            examples:
+                                server_error:
+                                    summary: 'Server error'
+                                    value: {
+                                        "errors": [{
+                                            "message": "It's all broked up",
+                                            "description": "Example of a 500 exception",
+                                            "code": "RR500"
+                                        }]
+                                    }
+        put:
+            operationId: updateSender
+            summary: Update Sender
+            description: 'Update a sender record. Only the minimum required fields will be validated outside the context of a corridor.'
+            tags:
+                - Update Sender
+            requestBody:
+                description: List of fields to update the sender
+                content: 
+                    'application/json':
+                        schema:
+                            type: array
+                            items:
+                                $ref: '#/components/schemas/fieldValue'
+            responses:
+                200:
+                    description: Success
+                    content: 
+                        'application/json':
+                            schema:
+                                type: object
+                                $ref: '#/components/schemas/sender'
+                            examples:
+                                success:
+                                    summary: Success
+                                    value: {
+                                        "id": "440bd978-0116-4143-8466-445fe566e3a2",
+                                        "firstName": "Joshua",
+                                        "lastName": "Garcia",
+                                        "fields": [
+                                            { 
+                                                "id": "PHONE_NUMBER",
+                                                "type": "PHONE_NUMBER",
+                                                "value": { "countryIso3Code": "USA", "countryPhoneCode": 1, "number": "555-555-5555" }
+                                            }
+                                        ]
+                                    }
+                400:
+                    description: 'Invalid or missing data'
+                    content:
+                        'application/json':
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                500:
+                    description: 'Server error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                            examples:
+                                server_error:
+                                    summary: 'Server error'
+                                    value: {
+                                        "errors": [{
+                                            "message": "It's all broked up",
+                                            "description": "Example of a 500 exception",
+                                            "code": "RR500"
+                                        }]
+                                    }
+    /transfer/sender/{id}:
+        get:
+            operationId: getSender
+            summary: Get Sender
+            description: Get a sender record by ID
+            tags:
+                - Get Sender
+            parameters:
+              - in: path
+                name: id
+                schema:
+                    type: string
+                required: true
+                description: ID of selected sender
+            responses:
+                200:
+                    description: Success
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/sender'
+                            examples:
+                                success:
+                                    summary: Success
+                                    value: {
+                                        "id": "440bd978-0116-4143-8466-445fe566e3a2",
+                                        "firstName": "Joshua",
+                                        "lastName": "Garcia",
+                                        "fields": [
+                                            { 
+                                                "id": "PHONE_NUMBER",
+                                                "type": "PHONE_NUMBER",
+                                                "value": { "countryIso3Code": "USA", "countryPhoneCode": 1, "number": "555-555-5555" }
+                                            }
+                                        ]
+                                    }
+                500:
+                    description: 'Server error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                            examples:
+                                server_error:
+                                    summary: 'Server error'
+                                    value: {
+                                        "errors": [{
+                                            "message": "It's all broked up",
+                                            "description": "Example of a 500 exception",
+                                            "code": "RR500"
+                                        }]
+                                    }
+        delete:
+            operationId: deleteSender
+            summary: Delete Sender
+            description: Deletes a sender record
+            tags:
+                - Delete Sender
+            parameters:
+              - in: path
+                name: id
+                schema:
+                    type: string
+                required: true
+                description: ID of selected sender
+            responses:
+                200:
+                    description: '200 Success'
+    /transfer/recipient:
+        post:
+            operationId: createRecipient
+            summary: Create Recipient
+            description: Create a recipient record. Only the minimum required fields will be validated outside the context of a corridor.
+            tags:
+                - Create Recipient
+            requestBody:
+                description: List of fields to create the recipient
+                content: 
+                    'application/json':
+                        schema:
+                            type: array
+                            items:
+                                $ref: '#/components/schemas/fieldValue'
+            responses:
+                200:
+                    description: 'Success'
+                    content: 
+                        'application/json':
+                            schema:
+                                type: object
+                                $ref: '#/components/schemas/recipient'
+                            examples:
+                                success:
+                                    summary: Success
+                                    value: {
+                                        "id": "440bd978-0116-4143-8466-445fe566e3a2",
+                                        "firstName": "Joshua",
+                                        "lastName": "Garcia",
+                                        "recipientType": "INDIVIDUAL",
+                                        "fields": [
+                                            { 
+                                                "id": "PHONE_NUMBER",
+                                                "type": "PHONE_NUMBER",
+                                                "value": { "countryIso3Code": "USA", "countryPhoneCode": 1, "number": "555-555-5555" }
+                                            }
+                                        ]
+                                    }
+                400:
+                    description: Invalid or missing data
+                    content:
+                        'application/json':
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                500:
+                    description: Server error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                            examples:
+                                server_error:
+                                    summary: 'Server error'
+                                    value: {
+                                        "errors": [{
+                                            "message": "It's all broked up",
+                                            "description": "Example of a 500 exception",
+                                            "code": "RR500"
+                                        }]
+                                    }
+        put:
+            operationId: updateRecipient
+            summary: Update Recipient
+            description: Update a recipient record. Only the minimum required fields will be validated outside the context of a corridor.
+            tags:
+                - Update Recipient
+            requestBody:
+                description: List of fields to update the recipient
+                content: 
+                    'application/json':
+                        schema:
+                            type: array
+                            items:
+                                $ref: '#/components/schemas/fieldValue'
+            responses:
+                '200':
+                    description: 'Success'
+                    content: 
+                        'application/json':
+                            schema:
+                                type: object
+                                $ref: '#/components/schemas/recipient'
+                            examples:
+                                success:
+                                    summary: Success
+                                    value: {
+                                        "id": "440bd978-0116-4143-8466-445fe566e3a2",
+                                        "firstName": "Joshua",
+                                        "lastName": "Garcia",
+                                        "recipientType": "INDIVIDUAL",
+                                        "fields": [
+                                            { 
+                                                "id": "PHONE_NUMBER",
+                                                "type": "PHONE_NUMBER",
+                                                "value": { "countryIso3Code": "USA", "countryPhoneCode": 1, "number": "555-555-5555" }
+                                            }
+                                        ]
+                                    }
+                '400':
+                    description: 'Invalid or missing data'
+                    content:
+                        'application/json':
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                '500':
+                    description: 'Server error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                            examples:
+                                server_error:
+                                    summary: 'Server error'
+                                    value: {
+                                        "errors": [{
+                                            "message": "It's all broked up",
+                                            "description": "Example of a 500 exception",
+                                            "code": "RR500"
+                                        }]
+                                    }
+    /transfer/recipient/{id}:
+        get:
+            operationId: getRecipient
+            summary: Get Recipient
+            description: Get a recipient record by ID
+            tags:
+                - Get Recipient
+            parameters:
+              - in: path
+                name: id
+                schema:
+                    type: string
+                required: true
+                description: ID of selected recipient
+            responses:
+                200:
+                    description: Success
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/recipient'
+                            examples:
+                                success:
+                                    summary: Success
+                                    value: {
+                                        "id": "440bd978-0116-4143-8466-445fe566e3a2",
+                                        "firstName": "Joshua",
+                                        "lastName": "Garcia",
+                                        "recipientType": "INDIVIDUAL",
+                                        "fields": [
+                                            { 
+                                                "id": "PHONE_NUMBER",
+                                                "type": "PHONE_NUMBER",
+                                                "value": { "countryIso3Code": "USA", "countryPhoneCode": 1, "number": "555-555-5555" }
+                                            }
+                                        ]
+                                    }
+                '500':
+                    description: 'Server error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                            examples:
+                                server_error:
+                                    summary: 'Server error'
+                                    value: {
+                                        "errors": [{
+                                            "message": "It's all broked up",
+                                            "description": "Example of a 500 exception",
+                                            "code": "RR500"
+                                        }]
+                                    }
+        delete:
+            operationId: deleteRecipient
+            summary: Delete Recipient
+            description: Deletes a recipient record
+            tags:
+                - Delete Recipient
+            parameters:
+              - in: path
+                name: id
+                schema:
+                    type: string
+                required: true
+                description: ID of selected recipient
+            responses:
+                200:
+                    description: '200 Success'
+    /transfer/recipientaccount:
+        post:
+            operationId: createRecipientAccount
+            summary: Create Recipient Account
+            description: Create a recipient account record. Only the minimum required fields will be validated outside the context of a corridor.
+            tags:
+                - Create Recipient Account
+            requestBody:
+                description: List of fields to create the recipient account
+                content: 
+                    'application/json':
+                        schema:
+                            type: object
+                            required:
+                                - dstCountryIso3Code
+                                - dstCurrencyIso3Code
+                                - srcCurrencyIso3Code
+                                - transferMethod
+                            properties:
+                                dstCountryIso3Code:
+                                    type: string
+                                    maxLength: 3
+                                    minLength: 3
+                                    pattern: '^[A-Z]{3}$'
+                                dstCurrencyIso3Code:
+                                    type: string
+                                    maxLength: 3
+                                    minLength: 3
+                                    pattern: '^[A-Z]{3}$'
+                                srcCurrencyIso3Code:
+                                    type: string
+                                    maxLength: 3
+                                    minLength: 3
+                                    pattern: '^[A-Z]{3}$'
+                                transferMethod:
+                                    type: string
+                                    enum:
+                                        - 'BANK_ACCOUNT'
+                                        - 'CASH_PICKUP'
+                                fields:
+                                    type: array
+                                    items:
+                                        $ref: '#/components/schemas/fieldValue'
+            responses:
+                200:
+                    description: Success
+                    content: 
+                        'application/json':
+                            schema:
+                                type: object
+                                $ref: '#/components/schemas/recipientAccount'
+                            examples:
+                                success:
+                                    summary: Success
+                                    value: {
+                                        "id": "440bd978-0116-4143-8466-445fe566e3a2",
+                                        "fields": [
+                                            { 
+                                                "id": "ACCOUNT_NUMBER",
+                                                "type": "STRING",
+                                                "value": "5551114444"
+                                            }
+                                        ]
+                                    }
+                '400':
+                    description: 'Invalid or missing data'
+                    content:
+                        'application/json':
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                '500':
+                    description: 'Server error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                            examples:
+                                server_error:
+                                    summary: 'Server error'
+                                    value: {
+                                        "errors": [{
+                                            "message": "It's all broked up",
+                                            "description": "Example of a 500 exception",
+                                            "code": "RR500"
+                                        }]
+                                    }
+        put:
+            operationId: putRecipientAccount
+            summary: Update Recipient Account
+            description: Update a recipient account record. Only the minimum required fields will be validated outside the context of a corridor.
+            tags:
+                - Update Recipient Account
+            requestBody:
+                description: List of fields to update the recipient account
+                content: 
+                    'application/json':
+                        schema:
+                            type: array
+                            items:
+                                $ref: '#/components/schemas/fieldValue'
+            responses:
+                '200':
+                    description: 'Success'
+                    content: 
+                        'application/json':
+                            schema:
+                                type: object
+                                $ref: '#/components/schemas/recipientAccount'
+                            examples:
+                                success:
+                                    summary: Success
+                                    value: {
+                                        "id": "440bd978-0116-4143-8466-445fe566e3a2",
+                                        "fields": [
+                                            { 
+                                                "id": "ACCOUNT_NUMBER",
+                                                "type": "STRING",
+                                                "value": "5551114444"
+                                            }
+                                        ]
+                                    }
+                '400':
+                    description: 'Invalid or missing data'
+                    content:
+                        'application/json':
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                '500':
+                    description: 'Server error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                            examples:
+                                server_error:
+                                    summary: 'Server error'
+                                    value: {
+                                        "errors": [{
+                                            "message": "It's all broked up",
+                                            "description": "Example of a 500 exception",
+                                            "code": "RR500"
+                                        }]
+                                    }
+    /transfer/recipientaccount/{id}:
+        parameters:
+        - name: id
+          in: path
+          required: true
+          description: the recipient account identifier
+          schema:
+            type: string
+        delete:
+            operationId: deleteRecipientAccount
+            summary: Delete Recipient Account
+            description: Deletes a recipient account record
+            tags:
+                - Delete Recipient Account
+            responses:
+                200:
+                    description: '200 Success'
+                400:
+                    description: '400 Invalid'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                500:
+                    description: 'Server error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                            examples:
+                                server_error:
+                                    summary: 'Server error'
+                                    value: {
+                                        "errors": [{
+                                            "message": "It's all broked up",
+                                            "description": "Example of a 500 exception",
+                                            "code": "RR500"
+                                        }]
+                                    }
+    /transfer/preview:
+        post:
+            operationId: previewTransfer
+            summary: Preview Transfer
+            description: Submit information for a transfer to check for validation errors and preview the expected result. No transfer is actually submitted.
+            tags:
+                - Preview Transfer
+            requestBody:
+                description: Information about the transfer to preview
+                content: 
+                    'application/json':
+                        schema:
+                            allOf:
+                            - $ref: '#/components/schemas/baseField'
+                            - type: object
+                              properties:
+                                quoteBy:
+                                    type: string
+                                    enum: 
+                                        - SEND_AMOUNT
+                                        - RECEIVE_AMOUNT
+                                amount:
+                                    type: number
+                                senderId:
+                                    type: string
+                                recipientId:
+                                    type: string
+                                recipientAccountId:
+                                    type: string
+            responses:
+                '200':
+                    description: 'Success'
+                    content: 
+                        'application/json':
+                            schema:
+                                type: object
+                                $ref: '#/components/schemas/transfer'
+                            examples:
+                                success:
+                                    summary: 'Success'
+                                    value: {
+                                        "quote": {
+                                            "sendAmount": {
+                                                "value": 510500,
+                                                "currency": {
+                                                    "name": "United States Dollar",
+                                                    "iso3Code": "USD",
+                                                    "symbol": "$",
+                                                    "decimalPlaces": 2
+                                                }
+                                            },
+                                            "receiveAmount": {
+                                                "value": 744599,
+                                                "currency": {
+                                                    "name": "Indian Rupee",
+                                                    "iso3Code": "INR",
+                                                    "symbol": "$",
+                                                    "decimalPlaces": 0
+                                                }
+                                            },
+                                            "rate": 12312,
+                                            "adjustments": [
+                                                {
+                                                    "label": "Transfer Fee",
+                                                    "amount": {
+                                                        "value": 29900,
+                                                        "currency": {
+                                                            "name": "United States Dollar",
+                                                            "iso3Code": "USD",
+                                                            "symbol": "$",
+                                                            "decimalPlaces": 2
+                                                        }
+                                                    }
+                                                }
+                                            ],
+                                            "totalCost": {
+                                                "value": 1029900,
+                                                "currency": {
+                                                    "name": "United States Dollar",
+                                                    "iso3Code": "USD",
+                                                    "symbol": "$",
+                                                    "decimalPlaces": 2
+                                                }
+                                            }
+                                        },
+                                        "sender": {
+                                            "title": "Sender Details",
+                                            "fields": [
+                                                {
+                                                    "fieldId": "FIRST_NAME",
+                                                    "fieldType": "TEXT",
+                                                    "label": "First Name",
+                                                    "required": true,
+                                                    "value": "Hugh"
+                                                },
+                                                {
+                                                    "fieldId": "PHONE_NUMBER",
+                                                    "fieldType": "PHONE",
+                                                    "label": "Phone Numher",
+                                                    "required": false,
+                                                    "value": { "countryIso3Code": "USA", "countryCode": 1, "number": "5551234567" }
+                                                }
+                                            ]
+                                        },
+                                        "recipientDetails": {
+                                            "title": "Sender Details",
+                                            "fields": [
+                                                {
+                                                    "fieldId": "FIRST_NAME",
+                                                    "fieldType": "TEXT",
+                                                    "label": "First Name",
+                                                    "required": true,
+                                                    "value": "Hugh"
+                                                },
+                                                {
+                                                    "fieldId": "PHONE_NUMBER",
+                                                    "fieldType": "PHONE",
+                                                    "label": "Phone Numher",
+                                                    "required": false,
+                                                    "value": { "countryIso3Code": "USA", "countryCode": 1, "number": "5551234567" }
+                                                }
+                                            ]
+                                        },
+                                        "recipientAccountDetails": {
+                                            "title": "Sender Details",
+                                            "fields": [
+                                                {
+                                                    "fieldId": "FIRST_NAME",
+                                                    "fieldType": "TEXT",
+                                                    "label": "First Name",
+                                                    "required": true,
+                                                    "value": "Hugh"
+                                                },
+                                                {
+                                                    "fieldId": "PHONE_NUMBER",
+                                                    "fieldType": "PHONE",
+                                                    "label": "Phone Numher",
+                                                    "required": false,
+                                                    "value": { "countryIso3Code": "USA", "countryCode": 1, "number": "5551234567" }
+                                                }
+                                            ]
+                                        },
+                                        "disclaimers": [
+                                            
+                                        ]
+                                    }
+                '400':
+                    description: 'Invalid or missing data'
+                    content:
+                        'application/json':
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                '500':
+                    description: 'Server error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                            examples:
+                                server_error:
+                                    summary: 'Server error'
+                                    value: {
+                                        "errors": [{
+                                            "message": "It's all broked up",
+                                            "description": "Example of a 500 exception",
+                                            "code": "RR500"
+                                        }]
+                                    }
+    /user:
+        get:
+            operationId: 'getUser'
+            summary: 'User'
+            responses:
+                '200':
+                    description: '200 Success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    sourceCurrency:
+                                        type: object
+                                        $ref: '#/components/schemas/currency'
+                            examples:
+                                rates:
+                                    summary: Returns two countries with 
+                                    value: {
+                                        "sourceCurrency": {
+                                                "name": "United States Dollar",
+                                                "iso3Code": "USD",
+                                                "symbol": "$",
+                                                "decimalPlaces": 2
+                                        }
+                                    }
+                '500':
+                    description: 'Server error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/errorPayload'
+                            examples:
+                                server_error:
+                                    summary: 'Server error'
+                                    value: {
+                                        "errors": [{
+                                            "message": "It's all broked up",
+                                            "description": "Example of a 500 exception",
+                                            "code": "RR500"
+                                        }]
+                                    }
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    selection:
+        type: object
+        required:
+            - name
+            - id
+        properties:
+            name:
+                type: string
+            id:
+                type: string
+    health:
+        type: object
+        required:
+            - name
+            - status
+        properties:
+            name:
+                type: string
+                description: Name of the dependency
+            status:
+                type: string
+                description: Status of the dependency, either AVAILABLE or ERROR
+                enum:
+                    - AVAILABLE
+                    - ERROR
+    corridor:
+        type: object
+        required:
+            - dstCountryIso3Code
+            - dstCurrencyIso3Code
+            - srcCurrencyIso3Code
+            - transferMethod
+        properties:
+            dstCountryIso3Code:
+                type: string
+                maxLength: 3
+                minLength: 3
+                pattern: '^[A-Z]{3}$'
+            dstCurrencyIso3Code:
+                type: string
+                maxLength: 3
+                minLength: 3
+                pattern: '^[A-Z]{3}$'
+            srcCurrencyIso3Code:
+                type: string
+                maxLength: 3
+                minLength: 3
+                pattern: '^[A-Z]{3}$'
+            transferMethod:
+                type: string
+                enum:
+                    - 'BANK_ACCOUNT'
+                    - 'CASH_PICKUP'
+    country:
+      type: object
+      required:
+        - name
+        - iso3Code
+      properties:
+        name: 
+          type: string
+        iso3Code:
+          type: string
+          maxLength: 3
+          minLength: 3
+          pattern: '^[A-Z]{3}$'
+    currency:
+      type: object
+      required:
+        - name
+        - iso3Code
+        - symbol
+        - decimalPlaces
+      properties:
+        name:
+          type: string
+        iso3Code:
+          type: string
+          maxLength: 3
+          minLength: 3
+          pattern: '^[A-Z]{3}$'
+        symbol:
+          type: string
+          maxLength: 3
+        decimalPlaces:
+          type: integer
+          minimum: 0
+          maximum: 3
+    money:
+        type: object
+        properties:
+            value: 
+                type: integer
+                minimum: 0
+            currency:
+                type: object
+                $ref: '#/components/schemas/currency'
+    limit:
+        type: object
+        required:
+            - amount
+            - message
+        properties:
+            amount:
+                type: object
+                $ref: '#/components/schemas/money'
+            message:
+                type: string
+    flowStep:
+        type: object
+        required:
+            - type
+            - title
+        properties:
+            type:
+                type: string
+            title:
+                type: string
+    adjustment:
+        type: object
+        required:
+            - label
+            - amount
+        properties:
+            label:
+                type: string
+            amount:
+                type: object
+                $ref: '#/components/schemas/money'
+    quote:
+        type: object
+        required:
+            - sendAmount
+            - receiveAmount
+            - rate
+            - adjustments
+            - totalCost
+            - disclosures
+        properties:
+            sendAmount:
+                type: object
+                $ref: '#/components/schemas/money'
+            receiveAmount:
+                type: object
+                $ref: '#/components/schemas/money'
+            rate:
+                type: integer
+            adjustments:
+                type: array
+                items:
+                    $ref: '#/components/schemas/adjustment'
+            totalCost:
+                type: object
+                $ref: '#/components/schemas/money'
+            disclosures:
+                type: array
+                items:
+                    type: string
+    fieldSet:
+        type: object
+        required:
+            - id
+            - name
+            - fields
+        properties:
+            id:
+                type: string
+            name:
+                type: string
+            fields:
+                type: array
+                items:
+                  $ref: '#/components/schemas/textField'
+    baseField:
+        type: object
+        required:
+            - fieldType
+            - name
+            - id
+            - required
+            - validationErrors
+        properties:
+            fieldType: 
+                type: string
+                enum:
+                    - 'TEXT'
+            id:
+                type: string
+            name:
+                type: string
+            hintText:
+                type: string
+            required:
+                type: boolean
+            validationErrors:
+                type: array
+                items:
+                    $ref: '#/components/schemas/error'
+    textField:
+        allOf:
+            - $ref: '#/components/schemas/baseField'
+            - type: object
+              properties:
+                placeholderText:
+                    type: string
+                minLength:
+                    type: number
+                maxLength:
+                    type: number
+                regex:
+                    type: string
+                value:
+                    type: string
+    fieldValue:
+        type: object
+        required: 
+            - id
+            - type
+            - value
+        properties:
+            id:
+                type: string
+            type:
+                type: string
+                enum:
+                    - TEXT
+            value:
+                type: object
+                anyOf:
+                  - type: string
+                  - type: object
+                    required:
+                        - units
+                        - currencyIso3Code
+                    properties:
+                        units:
+                            type: number
+                        currencyIso3Code:
+                            type: string
+                            maxLength: 3
+                            minLength: 3
+                            pattern: '^[A-Z]{3}$'        
+    sender:
+        type: object
+        properties:
+            id:
+                type: string
+            firstName:
+                type: string
+            lastName:
+                type: string
+            companyName:
+                type: string
+            fields:
+                type: array
+                items:
+                    $ref: '#/components/schemas/fieldValue'
+    recipient:
+        type: object
+        properties:
+            id:
+                type: string
+            firstName:
+                type: string
+            lastName:
+                type: string
+            companyName:
+                type: string
+            fields:
+                type: array
+                items:
+                    $ref: '#/components/schemas/fieldValue'
+    recipientAccount:
+        type: object
+        properties:
+            id:
+                type: string
+            fields:
+                type: array
+                items:
+                    $ref: '#/components/schemas/fieldValue'
+    transfer:
+        type: object
+        properties:
+            quote:
+                $ref: '#/components/schemas/quote'
+            sender:
+                $ref: '#/components/schemas/sender'
+            recipient:
+                $ref: '#/components/schemas/recipient'
+            recipientAccount:
+                $ref: '#/components/schemas/recipientAccount'
+            disclaimers:
+                type: array
+                items:
+                    type: string
+    errorPayload:
+        type: array
+        items:
+            $ref: '#/components/schemas/error'
+    error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          pattern: '^[A-Z]{2}[0-9]{3}$'
+          description: 'User facing error code that can be used to look up error details by support'
+        message:
+          type: string
+          description: 'User facing error message'
+        description:
+          type: string
+          description: 'Detailed explanation of the error meant for debugging'
+security:
+  - bearerAuth: []
