@@ -4,7 +4,7 @@ info:
   title: ReadyRemit
   version: "1.0"
 servers:
-- url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
+- url: https://placeholder.com
 security:
 - bearerAuth: []
 paths:
@@ -62,6 +62,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/idNameArray'
+    servers:
+    - url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
   /banks/{id}/branches:
     get:
       tags:
@@ -85,6 +87,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/idNameArray'
+    servers:
+    - url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
   /countries-and-currencies:
     get:
       tags:
@@ -101,6 +105,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/getCountriesResponse200'
+    servers:
+    - url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
   /quote:
     get:
       tags:
@@ -172,6 +178,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/quote'
+    servers:
+    - url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
   /recipient-fields:
     get:
       tags:
@@ -219,6 +227,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/fieldSetsObject'
+    servers:
+    - url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
   /recipients:
     get:
       tags:
@@ -269,6 +279,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/errorPayload'
+    servers:
+    - url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
   /recipients/{id}:
     get:
       tags:
@@ -338,6 +350,8 @@ paths:
       responses:
         "200":
           description: 200 Success
+    servers:
+    - url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
   /recipient-account-fields:
     get:
       tags:
@@ -385,6 +399,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/fieldSetsObject'
+    servers:
+    - url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
   /recipients/{id}/accounts:
     get:
       tags:
@@ -428,6 +444,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/errorPayload'
+    servers:
+    - url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
   /recipients/{id}/accounts/{accId}:
     get:
       tags:
@@ -523,6 +541,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/errorPayload'
+    servers:
+    - url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
   /transfers:
     post:
       tags:
@@ -539,6 +559,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/errorPayload'
+    servers:
+    - url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
 components:
   schemas:
     createRecipientRequest:
