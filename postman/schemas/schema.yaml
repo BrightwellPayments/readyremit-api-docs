@@ -1,11 +1,10 @@
 ---
 openapi: 3.0.0
 info:
-  title: REST API
+  title: ReadyRemit
   version: "1.0"
 servers:
 - url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
-- url: https://readyremit.us.auth0.com
 security:
 - bearerAuth: []
 paths:
@@ -14,7 +13,7 @@ paths:
       tags:
       - Authentication
       summary: Get Access Token
-      description: This is the description.
+      description: See the [Developer Guide](https://readyremit.readme.io/docs#authentication).
       operationId: getAccessToken
       requestBody:
         description: List of fields to create the recipient account
@@ -29,6 +28,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/getAccessTokenResponse200'
+    servers:
+    - url: https://readyremit.us.auth0.com
   /banks:
     get:
       tags:
@@ -835,16 +836,12 @@ components:
       properties:
         client_id:
           type: string
-          default: rrBlzRSPg5U7xjvFfZx19iifiuB6Pkuc
         client_secret:
           type: string
-          default: vvSts6__lEUd_OkppaVnKqY4VVr05hsdTr5ny7nsz_6t471UrK-24t7St9h2Aht_
         audience:
           type: string
-          default: readyremit-transferapi
         grant_type:
           type: string
-          default: client_credentials
     getAccessTokenResponse200:
       type: object
       properties:
