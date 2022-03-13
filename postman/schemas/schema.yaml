@@ -14,7 +14,8 @@ paths:
       tags:
       - Authentication
       summary: Get Access Token
-      description: This is the description.
+      description: >
+        <div><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-auth0.png" width=700 height=346 loading="lazy"></div>
       operationId: getAccessToken
       requestBody:
         description: List of fields to create the recipient account
