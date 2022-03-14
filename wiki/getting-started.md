@@ -34,7 +34,7 @@ To get an access token, call [Get Access Token](https://readyremit.readme.io/ref
 
 ## Get a list of countries
 
-ReadyRemit enables you to populate your user interface with a list of countries and (where necessary) currencies:
+ReadyRemit enables you to populate your user interface with the names and ISO 3-letter codes of countries and (where necessary) currencies:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-countries-and-currencies.png" width=450 loading="lazy"></div>
 
