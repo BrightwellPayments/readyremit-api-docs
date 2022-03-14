@@ -7,7 +7,7 @@ category: 6202c91258ac9600635fb56b
 
 # ReadyRemit v1
 
-### Sender operations
+### ReadyRemit v1: Sender operations
 
 The ReadyRemit service supports recipient and sender entities. However, while the ReadyRemit REST API includes operations for dynamically creating, getting, updating, and deleting recipient entities, it does not yet include the same operations for sender entities:
 
@@ -15,6 +15,6 @@ The ReadyRemit service supports recipient and sender entities. However, while th
 
 So, ReadyRemit early adopters manually submit information about sender entities to Brightwell in exchange for *senderIds* required by various REST API operations (e.g. [Create Recipient](https://readyremit.readme.io/reference/createrecipient)).
 
-### Quote by sender
+### ReadyRemit v1: Quote by sender
 
 ReadyRemit allows client applications to perform quote calculations based on the send amount, but not on the recipient amount. So, [Get Quote](https://readyremit.readme.io/reference/getquote) ignores the `quoteBy` query parameter. 

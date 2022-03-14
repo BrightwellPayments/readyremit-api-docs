@@ -46,7 +46,7 @@ Establishing a quote is based on the following values:
 |-|-|
 |`dstCountryIso3Code`|Same as Recipient Country obtained in the previous step.|
 |`dstCurrencyIso3Code`|Same as Recipient Currency obtained in the previous step.|
-|`srcCurrencyIso3Code`|The sender currency is part of the sender |
+|`srcCurrencyIso3Code`|See [sss]().|
 |`transferMethod`||
 |`quoteBy`||
 |`amount`||
