@@ -40,7 +40,7 @@ ReadyRemit enables you to populate your user interface with a list of countries 
 
 Obtaining country and currency information is a factor in determining amounts, fees, and disclosures. 
 
-To obtain countries and currencies, call [Get Countries](https://dash.readme.com/project/readyremit/v0.1/refs/getcountries).
+To obtain countries and currencies, call [Get Countries](https://readyremit.readme.io/reference/getcountries).
 
 ## Get a quote
 
