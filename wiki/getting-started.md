@@ -28,9 +28,7 @@ When you sign up to use ReadyRemit, Brightwell creates a configuration for your 
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-auth-bearer.png" width=700 loading="lazy"></div>
 
-This *access_token* gives your application access to the ReadyRemit service. It is independent of any authentication workflow your app performs for your end users.
-
-To get an access token, call [Get Access Token](https://readyremit.readme.io/reference/getaccesstoken). 
+This *access_token* gives your application access to the ReadyRemit service. It is independent of any authentication workflow your app performs for your end users. To get an access token, call [Get Access Token](https://readyremit.readme.io/reference/getaccesstoken). 
 
 ## Get a list of countries
 
@@ -38,9 +36,7 @@ ReadyRemit enables you to populate your user interface with the names and ISO 3-
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-countries-and-currencies.png" width=450 loading="lazy"></div>
 
-An [ISO 3-letter country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) and an [ISO 3-letter currency code](https://en.wikipedia.org/wiki/ISO_4217) are factors in determining amounts, fees, and disclosures. 
-
-To obtain countries and currencies, call [Get Countries](https://readyremit.readme.io/reference/getcountries).
+An [ISO 3-letter country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) and an [ISO 3-letter currency code](https://en.wikipedia.org/wiki/ISO_4217) are factors in determining amounts, fees, and disclosures. To obtain countries and currencies, call [Get Countries](https://readyremit.readme.io/reference/getcountries).
 
 ## Get a quote
 
