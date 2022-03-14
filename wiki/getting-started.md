@@ -14,11 +14,9 @@ To enable your fintech applications to leverage ReadyRemit, contact Brightwell v
 * A *client_id* and a *client_secret* for each application that accesses ReadyRemit (required for authentication). 
 * A *senderId* for each sender entity you register with ReadyRemit (required by certain API operations).
 
-# Implement a transfer
-
 Applications use ReadyRemit REST API operations to make cross-border payments from senders to recipients. The operations enable applications to (1) build relevant forms for end-user input, (2) instantiate receiver and receiver-account objects in ReadyRemit, and (3) make payments:
 
-<div><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-use-ops.png" width=600 loading="lazy"></div>
+<div style="margin:24px 0;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-use-ops.png" width=600 loading="lazy"></div>
 
 1. Call [Get Access Token](https://readyremit.readme.io/reference/getaccesstoken). ReadyRemit uses the <a href="https://auth0.com/docs/get-started/authentication-and-authorization-flow/client-credentials-flow" target="_blank">Client Credentials Flow</a> of the <a href="https://auth0.com/" target="_blank">Auth0</a> Platform for authentication:
 
