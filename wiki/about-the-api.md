@@ -5,7 +5,7 @@ slug: about-the-api
 category: 6202c91258ac9600635fb56b
 ---
 
-# Status Code
+# Status Codes
 
 ### 200 OK
 
