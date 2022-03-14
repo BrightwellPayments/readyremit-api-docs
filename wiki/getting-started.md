@@ -77,7 +77,7 @@ Then, call [Create Recipient](https://readyremit.readme.io/reference/createrecip
 
 ## Get recipient account fields
 
-The fields necessary for building a user-facing form to collect recipient *account* information is also dependent on the characteristics of the remittance corridor. To discovery these fields, call [Get Recipient Account Fields](https://readyremit.readme.io/reference/getrecipientaccountfields).
+The fields necessary for building a user-facing form to collect recipient *account* information also vary depending on the characteristics of the remittance corridor. To discovery these fields, call [Get Recipient Account Fields](https://readyremit.readme.io/reference/getrecipientaccountfields).
 
 ## Get banks and branches
 
