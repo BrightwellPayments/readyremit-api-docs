@@ -20,7 +20,7 @@ Applications use ReadyRemit REST API operations to make cross-border payments fr
 
 ## Get an access token
 
-Call [Get Access Token](https://readyremit.readme.io/reference/getaccesstoken). ReadyRemit uses the <a href="https://auth0.com/docs/get-started/authentication-and-authorization-flow/client-credentials-flow" target="_blank">Client Credentials Flow</a> of the <a href="https://auth0.com/" target="_blank">Auth0</a> Platform for authentication:
+ReadyRemit uses the <a href="https://auth0.com/docs/get-started/authentication-and-authorization-flow/client-credentials-flow" target="_blank">Client Credentials Flow</a> of the <a href="https://auth0.com/" target="_blank">Auth0</a> Platform for authentication:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-auth0.png" width=700 loading="lazy"></div>
 
@@ -28,7 +28,9 @@ When you sign up to use ReadyRemit, Brightwell creates a configuration for your 
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-auth-bearer.png" width=700 loading="lazy"></div>
 
-This *access_token* gives your application access to the ReadyRemit service. It is independent of any authentication workflow your app performs for end users.
+This *access_token* gives your application access to the ReadyRemit service. It is independent of any authentication workflow your app performs for your end users.
+
+To get an access token, call [Get Access Token](https://readyremit.readme.io/reference/getaccesstoken). 
 
 ## Get a list of countries
 
