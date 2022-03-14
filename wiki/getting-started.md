@@ -69,7 +69,7 @@ Then, to determine required recipient fields, call [Get Recipient Fields](https:
 
 ## Create a recipient
 
-Once you obtain the required and optional recipient fields for the remittance corridor, you can iterate over the response body to build and display a form for the end user:
+Once you obtain the required and optional recipient fields for the previously specified remittance corridor, you can iterate over the response body to build and display a form for the end user:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipient.png" width=470 loading="lazy"></div>
 
@@ -77,7 +77,7 @@ Then, call [Create Recipient](https://readyremit.readme.io/reference/createrecip
 
 ## Get recipient account fields
 
-The fields necessary for building a user-facing form to collect recipient *account* information also vary depending on the characteristics of the remittance corridor. To discovery these fields, call [Get Recipient Account Fields](https://readyremit.readme.io/reference/getrecipientaccountfields).
+The fields necessary for building a user-facing form to collect recipient *account* information also vary depending on the characteristics of the remittance corridor. To discovery the relevant fields, call [Get Recipient Account Fields](https://readyremit.readme.io/reference/getrecipientaccountfields).
 
 ## Get banks and branches
 
