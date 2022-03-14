@@ -61,7 +61,13 @@ Once you've obtained the information in the table, call [Get Quote](https://read
 
 ## Get recipient fields
 
-Call [Get Recipient Fields](https://readyremit.readme.io/reference/getrecipientfields).
+The fields necessary for building user-facing forms to collect recipient information (to create recipient entities in ReadyRemit) vary depending on country, currency, transfer method, and recipient type. See [ReadyRemit v1: Field Types](https://readyremit.readme.io/docs/change-log#readyremit-v1-field-types) for details.
+
+First, obtain [recipient type](https://readyremit.readme.io/docs/change-log#readyremit-v1-recipient-types) from the end user:
+
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipient-type.png" width=220 loading="lazy"></div>
+
+Then, to determine required recipient fields, call [Get Recipient Fields](https://readyremit.readme.io/reference/getrecipientfields).
 
 ## Create a recipient
 
