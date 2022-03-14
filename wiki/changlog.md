@@ -17,4 +17,4 @@ So, ReadyRemit early adopters manually submit information about sender entities 
 
 ### ReadyRemit v1: Quote by sender
 
-ReadyRemit allows client applications to perform quote calculations based on the send amount, but not on the recipient amount. So, [Get Quote](https://readyremit.readme.io/reference/getquote) ignores the `quoteBy` query parameter. 
+ReadyRemit allows client applications to perform quote calculations based on the send amount, but not on the recipient amount. So, [Get Quote](https://readyremit.readme.io/reference/getquote) ignores the `quoteBy` query parameter.
