@@ -38,11 +38,13 @@ ReadyRemit enables you to populate your user interface with a list of countries 
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-countries-and-currencies.png" width=450 loading="lazy"></div>
 
-Obtaining country and currency information is a factor in determining amounts, fees, and disclosures. 
+An [ISO 3-letter country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) and an [ISO 3-letter currency code](https://en.wikipedia.org/wiki/ISO_4217) are factors in determining amounts, fees, and disclosures. 
 
 To obtain countries and currencies, call [Get Countries](https://readyremit.readme.io/reference/getcountries).
 
 ## Get a quote
+
+In addition to destination country and currency ISO 3 codes, 
 
 Obtain the send amount and the transfer method from the end user.
 
