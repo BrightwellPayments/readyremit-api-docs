@@ -34,9 +34,13 @@ To get an access token, call [Get Access Token](https://readyremit.readme.io/ref
 
 ## Get a list of countries
 
-Call [Get Countries](https://dash.readme.com/project/readyremit/v0.1/refs/getcountries) to obtain an array of countries and relevant currencies. You can display this content to end users for selection.
+ReadyRemit enables you to populate your user interface with a list of countries and (where necessary) currencies:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-countries-and-currencies.png" width=450 loading="lazy"></div>
+
+Obtaining country and currency information is a factor in determining amounts, fees, and disclosures. 
+
+To obtain countries and currencies, call [Get Countries](https://dash.readme.com/project/readyremit/v0.1/refs/getcountries).
 
 ## Get a quote
 
