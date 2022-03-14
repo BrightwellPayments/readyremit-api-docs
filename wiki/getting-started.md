@@ -83,14 +83,32 @@ The fields necessary for building a user-facing form to collect recipient *accou
 
 ## Get banks and branches
 
-The recipient-account form you build for the end user may need to include dropdowns for the banks and associated branches in the specified country. Call [Get Banks](https://readyremit.readme.io/reference/getbanks) and [Get Bank Branches](https://readyremit.readme.io/reference/getbankbranches) to retrieve these arrays. Then, build and present a form:
-
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipient-account.png" width=470 loading="lazy"></div>
+The recipient-account form you build for the end user may need to include dropdowns for the banks and associated branches in the specified country. Call [Get Banks](https://readyremit.readme.io/reference/getbanks) and [Get Bank Branches](https://readyremit.readme.io/reference/getbankbranches) to retrieve these arrays. Then, 
 
 ## Create a recipient account
 
-Call [Create Recipient Account](https://readyremit.readme.io/reference/createrecipientaccount).
+With bank and branch information in hand, you can build and present a form:
+
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipient-account.png" width=470 loading="lazy"></div>
+
+Then, call [Create Recipient Account](https://readyremit.readme.io/reference/createrecipientaccount) to create a recipient-account entity in ReadyRemit.
 
 ## Execute the transfer
+
+You should now have all the information you need to execute the transfer:
+
+```
+PUT INTO A TABLE
+dstCountryIso3Code
+dstCurrencyIso3Code
+srcCurrencyIso3Code
+transferMethod
+quoteBy
+amount
+senderId
+recipientId
+recipientAccountId
+purposeOfRemittance
+```
 
 Call [Execute Transfer](https://readyremit.readme.io/reference/executetransfer)
