@@ -47,7 +47,7 @@ Establishing a quote is based on the following values:
 |`dstCountryIso3Code`|Same as Recipient Country obtained in the previous step.|
 |`dstCurrencyIso3Code`|Same as Recipient Currency obtained in the previous step.|
 |`srcCurrencyIso3Code`|See [ReadyRemit v1: Sender operations](https://readyremit.readme.io/docs/change-log#readyremit-v1-sender-operations).|
-|`transferMethod`||
+|`transferMethod`|See [ReadyRemit v1: Transfer methods](https://readyremit.readme.io/docs/change-log#readyremit-v1-transfer-methods).|
 |`quoteBy`|See [ReadyRemit v1: Quote by sender](https://readyremit.readme.io/docs/change-log#readyremit-v1-quote-by-sender).|
 |`amount`|See [ReadyRemit v1: Quote by sender](https://readyremit.readme.io/docs/change-log#readyremit-v1-quote-by-sender).|
 
