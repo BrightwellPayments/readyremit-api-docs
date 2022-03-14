@@ -16,7 +16,7 @@ To enable your fintech applications to leverage ReadyRemit, contact Brightwell v
 
 # Implement a transfer
 
-This section describes how to use ReadyRemit REST API operations to send money from a sender to a recipient. The operations help you (1) build relevant forms for end-user input, (2) instantiate receiver and receiver-account objects in ReadyRemit, and (3) complete the transfer of funds:
+Applications use ReadyRemit REST API operations to make cross-border payments from senders to recipients. The operations enable applications to (1) build relevant forms for end-user input, (2) instantiate receiver and receiver-account objects in ReadyRemit, and (3) make payments:
 
 <div><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-use-ops.png" width=600 loading="lazy"></div>
 
