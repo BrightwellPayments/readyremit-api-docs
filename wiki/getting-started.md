@@ -81,9 +81,9 @@ The fields necessary for building a user-facing form to collect recipient *accou
 
 ## Get banks and branches
 
-Call [Get Banks](https://readyremit.readme.io/reference/getbanks).
+The recipient-account form you build for the end user may need to include a drop down for the banks and associated branches in the specified country. Call [Get Banks](https://readyremit.readme.io/reference/getbanks) and [Get Bank Branches](https://readyremit.readme.io/reference/getbankbranches) to retrieve these arrays. Then, build and present a form:
 
-Call [Get Bank Branches]().
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipient-account.png" width=470 loading="lazy"></div>
 
 ## Create a recipient account
 
