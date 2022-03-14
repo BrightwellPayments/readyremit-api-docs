@@ -1,7 +1,7 @@
 ---
-title: Limitations
+title: Changelog
 excerpt: ""
-slug: limitations
+slug: Changelog
 category: 6202c91258ac9600635fb56b
 ---
 
