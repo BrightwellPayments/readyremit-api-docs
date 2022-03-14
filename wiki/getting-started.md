@@ -40,6 +40,17 @@ An [ISO 3-letter country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)
 
 ## Get a quote
 
+Establishing a quote is based on the following values:
+
+|Key|Description|
+|-|-|
+|`dstCountryIso3Code`|Same as Recipient Country obtained in the previous step.|
+|`dstCurrencyIso3Code`|Same as Recipient Currency obtained in the previous step.|
+|`srcCurrencyIso3Code`|The sender currency is part of the sender |
+|`transferMethod`||
+|`quoteBy`||
+|`amount`||
+
 In addition to destination country and currency ISO 3 codes, 
 
 Obtain the send amount and the transfer method from the end user.
