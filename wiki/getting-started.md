@@ -18,7 +18,9 @@ Applications use ReadyRemit REST API operations to make cross-border payments fr
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-use-ops.png" width=600 loading="lazy"></div>
 
-> **NOTE**: The follow workflow focuses on creating a new recipient entity and recipient-account entity (in ReadyRemit), and sending funds from a previously defined sender account to the new recipient account. Other workflows (not described here) are important, too, like selecting an existing recipient and recipient account, creating a new account for an existing recipient, modifying a recipient record, etc.
+# New recipient workflow
+
+The follow workflow focuses on creating a new recipient entity and recipient-account entity (in ReadyRemit), and sending funds from a previously defined sender account to the new recipient account. Other workflows (not described here) are important, too, like selecting an existing recipient and recipient account, creating a new account for an existing recipient, modifying a recipient record, etc.
 
 ## Get an access token
 
