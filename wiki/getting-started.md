@@ -47,13 +47,13 @@ Establishing a quote is based on the following values:
 |`dstCountryIso3Code`|Same as Recipient Country obtained in the previous step.|
 |`dstCurrencyIso3Code`|Same as Recipient Currency obtained in the previous step.|
 |`srcCurrencyIso3Code`|See [ReadyRemit v1: Sender operations](https://readyremit.readme.io/docs/change-log#readyremit-v1-sender-operations).|
-|`transferMethod`|See [ReadyRemit v1: Transfer methods](https://readyremit.readme.io/docs/change-log#readyremit-v1-transfer-methods).|
-|`quoteBy`|See [ReadyRemit v1: Quote by sender](https://readyremit.readme.io/docs/change-log#readyremit-v1-quote-by-sender).|
-|`amount`|See [ReadyRemit v1: Quote by sender](https://readyremit.readme.io/docs/change-log#readyremit-v1-quote-by-sender).|
+|`transferMethod`|You need to obtain this. See [ReadyRemit v1: Transfer methods](https://readyremit.readme.io/docs/change-log#readyremit-v1-transfer-methods).|
+|`quoteBy`|Not implemented yet. See [ReadyRemit v1: Quote by sender](https://readyremit.readme.io/docs/change-log#readyremit-v1-quote-by-sender).|
+|`amount`|You need to obtain this.|
 
-In addition to destination country and currency ISO 3 codes, 
+Many applications obtain sender amount and transfer method from the end user:
 
-Obtain the send amount and the transfer method from the end user.
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-sender-amount-and-transfer-method.png" width=450 loading="lazy"></div>
 
 Call [Get Quote](https://readyremit.readme.io/reference/getquote) to obtain the recipient amount, fees, and disclosures. You can display the quote to the end user for approval.
 
