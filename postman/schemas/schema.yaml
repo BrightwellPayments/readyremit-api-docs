@@ -1,7 +1,7 @@
 ---
 openapi: 3.0.0
 info:
-  title: ReadyRemit
+  title: API Reference
   description: For details, see the [ReadyRemit Developer Portal](https://developer.readyremit.com).
   version: "1.0"
 servers:
@@ -159,11 +159,7 @@ paths:
         style: form
         explode: true
         schema:
-          type: string
-          default: BANK_ACCOUNT
-          enum:
-          - BANK_ACCOUNT
-          - CASH_PICKUP
+          $ref: '#/components/schemas/transferMethods'
       - name: quoteBy
         in: query
         description: This is the description.
@@ -171,11 +167,7 @@ paths:
         style: form
         explode: true
         schema:
-          type: string
-          default: SEND_AMOUNT
-          enum:
-          - SEND_AMOUNT
-          - RECEIVE_AMOUNT
+          $ref: '#/components/schemas/quoteBy'
       - name: amount
         in: query
         description: This is the description.
@@ -606,6 +598,12 @@ components:
       enum:
       - BANK_ACCOUNT
       - CASH_PICKUP
+    quoteBy:
+      type: string
+      default: SEND_AMOUNT
+      enum:
+      - SEND_AMOUNT
+      - RECEIVE_AMOUNT
     string3uc:
       maxLength: 3
       minLength: 3
@@ -922,20 +920,11 @@ components:
       type: object
       properties:
         dstCountryIso3Code:
-          maxLength: 3
-          minLength: 3
-          pattern: ^[A-Z]{3}$
-          type: string
+          $ref: '#/components/schemas/string3uc'
         dstCurrencyIso3Code:
-          maxLength: 3
-          minLength: 3
-          pattern: ^[A-Z]{3}$
-          type: string
+          $ref: '#/components/schemas/string3uc'
         transferMethod:
-          type: string
-          enum:
-          - BANK_ACCOUNT
-          - CASH_PICKUP
+          $ref: '#/components/schemas/transferMethods'
         fields:
           type: array
           items:
@@ -946,10 +935,7 @@ components:
       - type: object
         properties:
           quoteBy:
-            type: string
-            enum:
-            - SEND_AMOUNT
-            - RECEIVE_AMOUNT
+            $ref: '#/components/schemas/quoteBy'
           amount:
             type: number
           senderId:
