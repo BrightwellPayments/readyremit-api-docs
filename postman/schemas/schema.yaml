@@ -17,7 +17,7 @@ paths:
       description: When you sign up to use ReadyRemit, Brightwell provides (for each of your apps) a `client_id`, `client_secret`, `audience`, and `grant_type` which the app trades (via this operation) for an `access_token` that, subsequently, gives the app access to the other ReadyRemit REST API operations.
       operationId: getAccessToken
       requestBody:
-        description: List of fields to create the recipient account
+        description: Object containing the four required fields.
         content:
           application/json:
             schema:
