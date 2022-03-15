@@ -91,7 +91,7 @@ paths:
       parameters:
       - name: id
         in: path
-        description: The `bankId`.
+        description: bankId.
         required: true
         style: simple
         explode: false
@@ -236,7 +236,7 @@ paths:
       parameters:
       - name: sender
         in: query
-        description: This is the description.
+        description: This operation returns all the recipient records associated with the specified `senderId`.
         required: true
         style: form
         explode: true
@@ -255,10 +255,10 @@ paths:
       tags:
       - Recipients
       summary: Create Recipient
-      description: Create a recipient record. Only the minimum required fields will be validated outside the context of a corridor.
+      description: This operation creates a recipient record.
       operationId: createRecipient
       requestBody:
-        description: List of fields to create the recipient
+        description: This is the description.
         content:
           application/json:
             schema:
@@ -281,7 +281,7 @@ paths:
       tags:
       - Recipients
       summary: Get Recipient
-      description: Get a recipient record by ID
+      description: This operation returns a recipient record.
       operationId: getRecipient
       parameters:
       - name: id
@@ -303,7 +303,7 @@ paths:
       tags:
       - Recipients
       summary: Update Recipient
-      description: Update a recipient record by ID
+      description: This operation updates an entire recipient record.
       operationId: updateRecipient
       parameters:
       - name: id
@@ -331,7 +331,7 @@ paths:
       tags:
       - Recipients
       summary: Delete Recipient
-      description: Deletes a recipient record
+      description: This operation deletes a recipient record.
       operationId: deleteRecipient
       parameters:
       - name: id
@@ -395,12 +395,12 @@ paths:
       tags:
       - Recipient Accounts
       summary: Get Recipient Accounts
-      description: This is the description.
+      description: This operation returns an array of recipient account records associated with the specified Recipient ID.
       operationId: getRecipientAccounts
       parameters:
       - name: id
         in: path
-        description: ID of selected recipient
+        description: Recipient ID
         required: true
         style: simple
         explode: false
@@ -413,12 +413,12 @@ paths:
       tags:
       - Recipient Accounts
       summary: Create Recipient Account
-      description: This is the description.
+      description: This operation creates a recipient account record.
       operationId: createRecipientAccount
       parameters:
       - name: id
         in: path
-        description: ID of selected recipient
+        description: Recipient ID
         required: true
         style: simple
         explode: false
@@ -438,12 +438,12 @@ paths:
       tags:
       - Recipient Accounts
       summary: Get Recipient Account
-      description: This is the description.
+      description: This operation returns a recipient account record.
       operationId: getRecipientAccount
       parameters:
       - name: id
         in: path
-        description: the recipient identifier
+        description: Recipient ID
         required: true
         style: simple
         explode: false
@@ -451,7 +451,7 @@ paths:
           type: string
       - name: accId
         in: path
-        description: the recipient account identifier
+        description: Recipient Account ID
         required: true
         style: simple
         explode: false
@@ -464,12 +464,12 @@ paths:
       tags:
       - Recipient Accounts
       summary: Update Recipient Account
-      description: This is the description.
+      description: This operation updates an entire recipient account record.
       operationId: putRecipientAccount
       parameters:
       - name: id
         in: path
-        description: the recipient identifier
+        description: Recipient ID
         required: true
         style: simple
         explode: false
@@ -477,7 +477,7 @@ paths:
           type: string
       - name: accId
         in: path
-        description: the recipient account identifier
+        description: Recipient Account ID
         required: true
         style: simple
         explode: false
@@ -500,12 +500,12 @@ paths:
       tags:
       - Recipient Accounts
       summary: Delete Recipient Account
-      description: This is the description.
+      description: This operation deletes a recipient account record.
       operationId: deleteRecipientAccount
       parameters:
       - name: id
         in: path
-        description: the recipient identifier
+        description: Recipient ID
         required: true
         style: simple
         explode: false
@@ -513,7 +513,7 @@ paths:
           type: string
       - name: accId
         in: path
-        description: the recipient account identifier
+        description: Recipient Account ID
         required: true
         style: simple
         explode: false
@@ -533,7 +533,7 @@ paths:
       tags:
       - Transfers
       summary: Execute Transfer
-      description: This is the description.
+      description: This operation performs a sender-to-recipient transfer of funds.
       operationId: executeTransfer
       responses:
         "200":
