@@ -1,7 +1,7 @@
 ---
 openapi: 3.0.0
 info:
-  title: API Reference
+  title: ReadyRemit
   description: For details, see the [ReadyRemit Developer Portal](https://developer.readyremit.com).
   version: "1.0"
 servers:
@@ -14,7 +14,7 @@ paths:
       tags:
       - Authentication
       summary: Get Access Token
-      description: When you sign up to use ReadyRemit, Brightwell provides each of your apps with *client_id*, *client_secret*, *audience*, and *grant_type* values which, at start up, your app reads from an enviroment file, and trades (via this operation) for an access_token that, subsequently, gives your app access to the other ReadyRemit REST API operations.
+      description: When you sign up to use ReadyRemit, Brightwell provides (for each of your apps) a `client_id`, `client_secret`, `audience`, and `grant_type` which your app trades (via this operation) for an `access_token` that, subsequently, gives your app access to the other ReadyRemit REST API operations.
       operationId: getAccessToken
       requestBody:
         description: List of fields to create the recipient account
@@ -49,7 +49,7 @@ paths:
       tags:
       - Banks and Branches
       summary: Get Banks
-      description: Given a country code, this operation returns an array of banks in that country.
+      description: Given a `countryIso3Code`, this operation returns an array of banks located in that country.
       operationId: getBanks
       parameters:
       - name: countryIso3Code
@@ -86,7 +86,7 @@ paths:
       tags:
       - Banks and Branches
       summary: Get Bank Branches
-      description: Given a bankId, this operation returns an array of branches for that bank.
+      description: Given a `bankId`, this operation returns an array of branches for that bank.
       operationId: getBankBranches
       parameters:
       - name: id
@@ -109,7 +109,7 @@ paths:
       tags:
       - Helpers
       summary: Get Countries
-      description: This operation returns an array of country/currency records available to the calling application. Each record includes a country object and an array of currency objects. The calling application can present these records to the end user who can choose a recipient country and currency.
+      description: This operation returns an array of countries available to your app. Each record includes a country object and an array of currency objects. Your app can present these records to the end user who can choose a recipient country and currency.
       operationId: getCountries
       responses:
         "200":
@@ -125,7 +125,7 @@ paths:
       tags:
       - Helpers
       summary: Get Quote
-      description: Given a corridor and sender amount, this operation returns a quote including the receiver amount, fees, and disclosures. The calling application can present the quote to the end user who can decide whether to proceed with the transfer.
+      description: Given a corridor and sender amount, this operation returns a quote including the receiver amount, fees, and disclosures. Your app can present the quote to the end user who can decide whether to proceed with the transfer.
       operationId: getQuote
       parameters:
       - name: dstCountryIso3Code
@@ -196,7 +196,7 @@ paths:
       tags:
       - Recipients
       summary: Get Recipient Fields
-      description: Get a list of required fields for creating or updating a Recipient record for a given corridor.
+      description: Given a corridor, this operation returns the required and optional fields for a recipient record. The response body contains an array of `fieldsets`. Each fieldset consists of an id, name, and array of fields. The calling application can build a form with this data in which the end user can input recipient information.
       operationId: getRecipientFields
       parameters:
       - name: dstCountryIso3Code
