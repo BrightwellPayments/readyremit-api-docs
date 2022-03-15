@@ -209,7 +209,6 @@ paths:
           $ref: '#/components/schemas/string3uc'
       - name: transferMethod
         in: query
-        description: See [transferMethod](https://developer.readyremit.com/reference/about-the-api#transfermethod).
         required: true
         style: form
         explode: true
@@ -217,6 +216,7 @@ paths:
           $ref: '#/components/schemas/transferMethods'
       - name: recipientType
         in: query
+        description: See [recipientType](https://developer.readyremit.com/reference/about-the-api#recipienttype).
         required: true
         style: form
         explode: true
