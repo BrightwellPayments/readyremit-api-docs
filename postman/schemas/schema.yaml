@@ -2,6 +2,7 @@
 openapi: 3.0.0
 info:
   title: API Reference
+  description: For details, see the [ReadyRemit Developer Portal](https://developer.readyremit.com).
   version: "1.0"
 servers:
 - url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
@@ -13,7 +14,7 @@ paths:
       tags:
       - Authentication
       summary: Get Access Token
-      description: This is the description.
+      description: When you sign up to use ReadyRemit, Brightwell provides each of your apps with *client_id*, *client_secret*, *audience*, and *grant_type* values which, at start up, your app reads from an enviroment file, and trades (via this operation) for an access_token that, subsequently, gives your app access to the other ReadyRemit REST API operations.
       operationId: getAccessToken
       requestBody:
         description: List of fields to create the recipient account
@@ -28,6 +29,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/getAccessTokenResponse200'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unauthorized401'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/forbidden403'
       security: []
     servers:
     - url: https://readyremit.us.auth0.com
@@ -36,7 +49,7 @@ paths:
       tags:
       - Banks and Branches
       summary: Get Banks
-      description: Get a list of destination banks available for the given country currency
+      description: Given a country code, this operation returns an array of banks in that country.
       operationId: getBanks
       parameters:
       - name: countryIso3Code
@@ -62,12 +75,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/idNameArray'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
   /banks/{id}/branches:
     get:
       tags:
       - Banks and Branches
       summary: Get Bank Branches
-      description: Get a list of bank branches given a bank
+      description: Given a bankId, this operation returns an array of branches for that bank.
       operationId: getBankBranches
       parameters:
       - name: id
@@ -106,7 +125,7 @@ paths:
       tags:
       - Helpers
       summary: Get Quote
-      description: Given a sender amount and a corridor, this operation returns a quote including the receiver amount, fees, and disclosures. The calling application can present the quote to the end user who can decide whether to proceed with the transfer.
+      description: Given a corridor and sender amount, this operation returns a quote including the receiver amount, fees, and disclosures. The calling application can present the quote to the end user who can decide whether to proceed with the transfer.
       operationId: getQuote
       parameters:
       - name: dstCountryIso3Code
@@ -268,7 +287,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorPayload'
+                $ref: '#/components/schemas/errorArray'
   /recipients/{id}:
     get:
       tags:
@@ -427,7 +446,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorPayload'
+                $ref: '#/components/schemas/errorArray'
   /recipients/{id}/accounts/{accId}:
     get:
       tags:
@@ -490,7 +509,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorPayload'
+                $ref: '#/components/schemas/errorArray'
     delete:
       tags:
       - Recipient Accounts
@@ -522,7 +541,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorPayload'
+                $ref: '#/components/schemas/errorArray'
   /transfers:
     post:
       tags:
@@ -538,9 +557,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorPayload'
+                $ref: '#/components/schemas/errorArray'
 components:
   schemas:
+    forbidden403:
+      type: object
+      properties:
+        error:
+          type: string
+        error_description:
+          type: string
+        error_uri:
+          type: string
+    unauthorized401:
+      type: object
+      properties:
+        error:
+          type: string
+        error_description:
+          type: string
     createRecipientRequest:
       type: object
       properties:
@@ -807,7 +842,7 @@ components:
           type: array
           items:
             type: string
-    errorPayload:
+    errorArray:
       type: array
       items:
         $ref: '#/components/schemas/error'
@@ -820,10 +855,10 @@ components:
         code:
           pattern: ^[A-Z]{2}[0-9]{3}$
           type: string
-          description: User facing error code that can be used to look up error details by support
+          description: User-facing error code. Provide this to Brightwell support.
         message:
           type: string
-          description: User facing error message
+          description: User facing error message.
         fieldId:
           type: string
           description: Name of the offending field.
@@ -837,12 +872,16 @@ components:
       properties:
         client_id:
           type: string
+          default: '{{client_id}}'
         client_secret:
           type: string
+          default: '{{client_secret}}'
         audience:
           type: string
+          default: '{{audience}}'
         grant_type:
           type: string
+          default: '{{grant_type}}'
     getAccessTokenResponse200:
       type: object
       properties:

@@ -27,7 +27,7 @@ This page (not meant for publication) contains instructions for site administrat
     $ npm i -g openapi-to-postmanv2
     ```
 
-1. Convert *schema.yaml* (Postman) collection.json file:
+1. Convert *schema.yaml* to a (Postman) collection.json file:
 
     ```
     $ openapi2postmanv2 -s schema.yaml -o readyremit-collection.json -p -O folderStrategy=Tags,includeAuthInfoInExample=false
