@@ -154,7 +154,6 @@ paths:
           $ref: '#/components/schemas/string3uc'
       - name: transferMethod
         in: query
-        description: This is the description.
         required: true
         style: form
         explode: true
@@ -162,7 +161,6 @@ paths:
           $ref: '#/components/schemas/transferMethods'
       - name: quoteBy
         in: query
-        description: This is the description.
         required: true
         style: form
         explode: true
@@ -216,7 +214,6 @@ paths:
           $ref: '#/components/schemas/transferMethods'
       - name: recipientType
         in: query
-        description: See [recipientType](https://developer.readyremit.com/reference/about-the-api#recipienttype).
         required: true
         style: form
         explode: true
@@ -374,7 +371,6 @@ paths:
           $ref: '#/components/schemas/string3uc'
       - name: transferMethod
         in: query
-        description: This is the description.
         required: true
         style: form
         explode: true
@@ -382,7 +378,6 @@ paths:
           $ref: '#/components/schemas/transferMethods'
       - name: recipientType
         in: query
-        description: See TEST [transferMethod](https://developer.readyremit.com/reference/about-the-api#transfermethod).
         required: true
         style: form
         explode: true
@@ -586,6 +581,7 @@ components:
             $ref: '#/components/schemas/fieldValue'
     recipientTypes:
       type: string
+      description: See [recipienttype](https://developer.readyremit.com/reference/about-the-api#recipienttype).
       default: MYSELF
       enum:
       - MYSELF
@@ -593,13 +589,14 @@ components:
       - BUSINESS
     transferMethods:
       type: string
-      description: See [recipientType](https://developer.readyremit.com/reference/about-the-api#recipienttype).
+      description: See [transfermethod](https://developer.readyremit.com/reference/about-the-api#transfermethod).
       default: BANK_ACCOUNT
       enum:
       - BANK_ACCOUNT
       - CASH_PICKUP
     quoteBy:
       type: string
+      description: See [quoteby](https://developer.readyremit.com/reference/about-the-api#quoteby).
       default: SEND_AMOUNT
       enum:
       - SEND_AMOUNT
