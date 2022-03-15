@@ -354,7 +354,7 @@ paths:
       tags:
       - Recipient Accounts
       summary: Get Recipient Account Fields
-      description: Get a list of required fields for creating or updating a Recipient Account record for a given corridor.
+      description: Given a corridor, this operation returns the required and optional fields for a recipient account record. See [Custom fields](https://developer.readyremit.com/reference/about-the-api#custom-fields).
       operationId: getRecipientAccountFields
       parameters:
       - name: dstCountryIso3Code
