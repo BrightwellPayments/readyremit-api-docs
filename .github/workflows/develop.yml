@@ -12,7 +12,7 @@ jobs:
       - name: sync API spec
         uses: readmeio/github-readme-sync@v2
         with:
-          readme-oas-key: drqTce6Uq8M79LpvZPj9SbLHBcglUKkz:6202cb15a970a55c163c752d
+          readme-oas-key: ${{ secrets.README_API_KEY }}
            
           # OPTIONAL CONFIG, use if necessary
           oas-file-path: './postman/schemas/schema.yaml'
