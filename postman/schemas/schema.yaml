@@ -581,7 +581,7 @@ components:
             $ref: '#/components/schemas/fieldValue'
     recipientTypes:
       type: string
-      description: See [recipienttype](https://developer.readyremit.com/reference/about-the-api#recipienttype).
+      description: See [recipientType](https://developer.readyremit.com/reference/about-the-api#recipienttype).
       default: MYSELF
       enum:
       - MYSELF
@@ -589,14 +589,14 @@ components:
       - BUSINESS
     transferMethods:
       type: string
-      description: See [transfermethod](https://developer.readyremit.com/reference/about-the-api#transfermethod).
+      description: See [transferMethod](https://developer.readyremit.com/reference/about-the-api#transfermethod).
       default: BANK_ACCOUNT
       enum:
       - BANK_ACCOUNT
       - CASH_PICKUP
     quoteBy:
       type: string
-      description: See [quoteby](https://developer.readyremit.com/reference/about-the-api#quoteby).
+      description: See [quoteBy](https://developer.readyremit.com/reference/about-the-api#quoteby).
       default: SEND_AMOUNT
       enum:
       - SEND_AMOUNT
