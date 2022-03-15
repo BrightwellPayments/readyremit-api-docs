@@ -320,7 +320,7 @@ paths:
       parameters:
       - name: id
         in: path
-        description: ID of selected recipient
+        description: ID of recipient
         required: true
         style: simple
         explode: false
@@ -348,7 +348,7 @@ paths:
       parameters:
       - name: id
         in: path
-        description: ID of selected recipient
+        description: ID of recipient
         required: true
         style: simple
         explode: false
