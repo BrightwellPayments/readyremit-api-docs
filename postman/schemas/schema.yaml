@@ -54,7 +54,7 @@ paths:
       parameters:
       - name: countryIso3Code
         in: query
-        description: This is the description.
+        description: See [country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).
         required: false
         style: form
         explode: true
@@ -62,7 +62,7 @@ paths:
           $ref: '#/components/schemas/string3uc'
       - name: bankname
         in: query
-        description: This is the description.
+        description: The search looks for any part of `bankname` in the bank's full name.
         required: false
         style: form
         explode: true
@@ -91,7 +91,7 @@ paths:
       parameters:
       - name: id
         in: path
-        description: ID of selected bank
+        description: The `bankId`.
         required: true
         style: simple
         explode: false
