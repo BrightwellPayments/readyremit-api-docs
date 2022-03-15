@@ -168,7 +168,7 @@ paths:
           $ref: '#/components/schemas/quoteBy'
       - name: amount
         in: query
-        description: This is the description.
+        description: Sender amount.
         required: true
         style: form
         explode: true
