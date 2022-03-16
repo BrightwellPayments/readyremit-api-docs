@@ -66,15 +66,15 @@ The primary workflow focuses on creating a new recipient record and associated r
 
 ## Get an access token
 
-ReadyRemit uses the <a href="https://auth0.com/docs/get-started/authentication-and-authorization-flow/client-credentials-flow" target="_blank">Client Credentials Flow</a> of the <a href="https://auth0.com/" target="_blank">Auth0</a> Platform for authentication:
+When you sign up to use ReadyRemit, Brightwell creates a configuration for your app in the ReadyRemit account of an authentication service:
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-auth0.png" width=700 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-authentication.png" width=700 loading="lazy"></div>
 
-When you sign up to use ReadyRemit, Brightwell creates a configuration for your app in the Auth0 ReadyRemit account, and provides you with a *client_id* and a *client_secret* which, at start up, your app reads from an enviroment file, and trades (via an API call to Auth0) for an *access_token* that, subsequently, gives your app access to ReadyRemit REST API operations:
+Brightwell also provides you with credentials (i.e. `client_id`, `client_secret`, `audience`, and `grant_type`) which, at start up, your app reads from an environment file, and trades for an *access_token* that, subsequently, gives your app access to all the other ReadyRemit REST API operations:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-auth-bearer.png" width=700 loading="lazy"></div>
 
-This *access_token* gives your application access to the ReadyRemit service. It is independent of any authentication workflow your app performs for your end users. 
+Note that this authentication workflow is independent of any authentication workflow your app performs for your end users.
 
 To get an access token, call <a href="https://readyremit.readme.io/reference/getaccesstoken" target="_blank">Get Access Token</a> which returns an `access_token` for use in other API operations:
 
