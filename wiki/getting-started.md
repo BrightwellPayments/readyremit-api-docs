@@ -133,7 +133,57 @@ Many applications obtain sender amount and transfer method from the end user:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-sender-amount-and-transfer-method.png" width=450 loading="lazy"></div>
 
-Once you've obtained the information in the table, call [Get Quote](https://readyremit.readme.io/reference/getquote) to obtain the recipient amount, fees, and disclosures. Then, you can display the quote to the end user for approval:
+Once you've obtained the information in the table, call [Get Quote](https://readyremit.readme.io/reference/getquote) to obtain the recipient amount, fees, and disclosures. Here is an example:
+
+```
+{
+  "sendAmount": {
+    "value": 1000,
+    "currency": {
+      "name": "US Dollar",
+      "iso3Code": "USD",
+      "symbol": "$",
+      "decimalPlaces": 2
+    }
+  },
+  "receiveAmount": {
+    "value": 74457.6574896,
+    "currency": {
+      "name": "Indian rupee",
+      "iso3Code": "INR",
+      "symbol": "₹",
+      "decimalPlaces": 2
+    }
+  },
+  "rate": 74.4576574896,
+  "adjustments": [
+    {
+      "label": "Transfer Fee",
+      "amount": {
+        "value": 8.79,
+        "currency": {
+          "name": "US Dollar",
+          "iso3Code": "USD",
+          "symbol": "$",
+          "decimalPlaces": 2
+        }
+      }
+    }
+  ],
+  "totalCost": {
+    "value": 1008.79,
+    "currency": {
+      "name": "US Dollar",
+      "iso3Code": "USD",
+      "symbol": "$",
+      "decimalPlaces": 2
+    }
+  },
+  "disclosures": []
+}
+```
+
+Then, you can display the quote to the end user for approval:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-quote-form.png" width=470 loading="lazy"></div>
 
