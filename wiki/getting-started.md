@@ -44,13 +44,19 @@ The ReadyRemit service supports recipient and sender records. However, while the
 
 So, early adopters manually submit information about sender entities to Brightwell in exchange for *senderIds* required by some REST API operations.
 
-# OpenAPI and Postman
+# API documentation
 
-ReadyRemit provides an OpenAPI file and a Postman Collection file for REST API documentation and experimentation:
+ReadyRemit REST API documentation resides in an *openapi.yaml* file which feeds (or can feed) applications for viewing and running:
 
-* <a href="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-openapi-v1-20220315.yaml" target="_blank">readyremit-openapi-v1-20220315.yaml</a>. This file serves as the source for the [API Reference](https://developer.readyremit.com/reference) on this portal. You can also import this file into your own [SwaggerHub](https://app.swaggerhub.com) account.
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-oas-workflow.png" width=700 loading="lazy"></div>
 
-* <a href="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-postman-v1-20220315.json" target="_blank">readyremit-postman-v1-20220315.json</a>. You can import this collection file into your [Postman](https://www.postman.com) account.
+Currently, the *openapi.yaml* is viewable, but not runnable, in the ReadyRemit Developer Portal.
+
+ReadyRemit makes available this OpenAPI file and its companion Postman Collection file:
+
+* <a href="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-openapi-v1-20220315.yaml" target="_blank">readyremit-openapi-v1-20220315.yaml</a>
+
+* <a href="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-postman-v1-20220315.json" target="_blank">readyremit-postman-v1-20220315.json</a>
 
 **These files will change frequently during the early-adoption phase.**
 
