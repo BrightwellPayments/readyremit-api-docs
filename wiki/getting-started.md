@@ -9,7 +9,7 @@ Welcome to ReadyRemit v1, a cloud service that performs [remittances](https://en
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-map.png" width=700 loading="lazy"></div>
 
-# About the version
+# About this version
 
 ReadyRemit v1 is a new service, suitable for early adopters. The `v1` is called the *version number*. It corresponds to the `v1` in REST API endpoints like this:
 
