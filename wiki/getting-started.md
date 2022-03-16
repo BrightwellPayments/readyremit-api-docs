@@ -48,7 +48,7 @@ So, early adopters manually submit information about sender entities to Brightwe
 
 ReadyRemit REST API documentation resides in an *openapi.yaml* file which feeds (or can feed) applications for viewing and running:
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-oas-workflow.png" width=700 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-oas-workflow.png" width=620 loading="lazy"></div>
 
 Currently, the *openapi.yaml* is viewable, but not runnable, in the ReadyRemit Developer Portal.
 
