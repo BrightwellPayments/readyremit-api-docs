@@ -133,7 +133,9 @@ Many applications obtain sender amount and transfer method from the end user:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-sender-amount-and-transfer-method.png" width=450 loading="lazy"></div>
 
-Once you've obtained the information in the table, call [Get Quote](https://readyremit.readme.io/reference/getquote) to obtain the recipient amount, fees, and disclosures. Here is an example:
+Once you've obtained the information in the table, call [Get Quote](https://readyremit.readme.io/reference/getquote) to obtain the recipient amount, fees, and disclosures. Below is an example.
+
+> Note: The values in this example are not yet implemented correctly. Eventually, all values will be integers. See [Currency](https://developer.readyremit.com/reference/common-concepts#currency).
 
 ```
 {
