@@ -48,7 +48,7 @@ ReadyRemit provides an OpenAPI file and a Postman Collection file for REST API d
 
 * <a href="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-openapi-v1-20220315.yaml" target="_blank">readyremit-openapi-v1-20220315.yaml</a>. This file serves as the source for the [API Reference](https://developer.readyremit.com/reference) on this portal. You can also import this file into your own [SwaggerHub](https://app.swaggerhub.com) account.
 
-* [readyremit-postman-v1-20220315.json](). You can import this collection file into your [Postman](https://www.postman.com) account.
+* <a href="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-postman-v1-20220315.json" target="_blank">readyremit-postman-v1-20220315.json</a>. You can import this collection file into your [Postman](https://www.postman.com) account.
 
 These files will change frequently, especially during the early-adoption phase.
 
