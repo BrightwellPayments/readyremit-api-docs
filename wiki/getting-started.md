@@ -294,8 +294,8 @@ The fields necessary for building a user-facing form to collect recipient inform
     {
       "recipientId": "4e6e2df5-ee18-451a-b238-dba4b3b3c394",
       "senderId": "85add64d-1e36-4acb-84e1-2de9b5644001",
-      "firstName": "Aahna",
-      "lastName": "Kumar",
+      "firstName": "Snow",
+      "lastName": "White",
       "fields": []
     }
     ```
