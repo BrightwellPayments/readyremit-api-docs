@@ -19,7 +19,7 @@ ReadyRemit v1 is a new service, suitable for early adopters. The `v1` is called 
 
 In general, a version number means that, although the API (while retaining the version number) may evolve to support new endpoints, query parameters, status codes, etc., the API will remain backward compatible. 
 
-During the ReadyRemit early-adoption phase (Spring 2022), however, in response to suggestions from early adopters, `v1` may experience improvements that are not backward compatible.
+However, during the ReadyRemit early-adoption phase (Spring 2022), in response to suggestions from early adopters, `v1` may experience improvements that are not backward compatible.
 
 All changes will be described in the [Changelog](https://developer.readyremit.com/changelog).
 
@@ -32,7 +32,7 @@ To enable your fintech applications to leverage ReadyRemit, contact Brightwell v
 
 # Accessing the service
 
-Currently, the ReadyRemit service is accessible via a REST API which enables client applications to (1) build relevant forms for end-user input, (2) instantiate receiver and receiver-account objects in ReadyRemit, and (3) make cross-border payments from senders to recipients:
+The ReadyRemit service is accessible via a REST API which enables client applications to (1) build relevant forms for end-user input, (2) instantiate receiver and receiver-account objects in ReadyRemit, and (3) make cross-border payments from senders to recipients:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-use-ops.png" width=600 loading="lazy"></div>
 
