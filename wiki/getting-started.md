@@ -50,7 +50,7 @@ ReadyRemit provides an OpenAPI file and a Postman Collection file for REST API d
 
 * <a href="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-postman-v1-20220315.json" target="_blank">readyremit-postman-v1-20220315.json</a>. You can import this collection file into your [Postman](https://www.postman.com) account.
 
-These files will change frequently, especially during the early-adoption phase.
+> Note: These files will change frequently, especially during the early-adoption phase.
 
 # Primary workflow
 
