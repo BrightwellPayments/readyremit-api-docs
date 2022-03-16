@@ -5,9 +5,23 @@ slug: getting-started
 category: 6202c91258ac9600635fb56b
 ---
 
-Welcome to ReadyRemit, a cloud service that performs [remittances](https://en.wikipedia.org/wiki/Remittance) on cross-border [corridors](https://remittanceprices.worldbank.org/en/countrycorridors) for [fintech](https://en.wikipedia.org/wiki/Financial_technology) applications:
+Welcome to ReadyRemit v1, a cloud service that performs [remittances](https://en.wikipedia.org/wiki/Remittance) on cross-border [corridors](https://remittanceprices.worldbank.org/en/countrycorridors) for [fintech](https://en.wikipedia.org/wiki/Financial_technology) applications:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-map.png" width=700 loading="lazy"></div>
+
+# About the version
+
+ReadyRemit v1 is a new service, suitable for early adopters. The `v1` is called the *version number*. It corresponds to the `v1` in REST API endpoints like this:
+
+```
+/readyremit/v1/recipients
+```
+
+In general, a version number means that, although the API (while retaining the version number) may evolve to support new endpoints, query parameters, status codes, etc., the API will remain backward compatible. 
+
+During the ReadyRemit early-adoption phase (Spring 2022), however, in response to suggestions from early adopters, `v1` may experience improvements that are not backward compatible.
+
+All changes will be described in the [Changelog](https://developer.readyremit.com/changelog).
 
 # Signing up for the service
 
