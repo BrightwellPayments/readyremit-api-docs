@@ -9,6 +9,8 @@ Welcome to ReadyRemit, a cloud service that performs [remittances](https://en.wi
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-map.png" width=700 loading="lazy"></div>
 
+# Signing up for the service
+
 To enable your fintech applications to leverage ReadyRemit, contact Brightwell via the *Get in touch* form on the <a href="https://brightwell.com/contact-us/" target="_blank">Brightwell Contact</a> page. Fill in your name and email, mention *ReadyRemit* in the comment, and click Submit. Once you sign up, Brightwell will provide you with the following:
 
 * A *client_id* and a *client_secret* for each application that accesses ReadyRemit (required for authentication). 
