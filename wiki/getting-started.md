@@ -58,7 +58,7 @@ ReadyRemit makes available this OpenAPI file and its companion Postman Collectio
 
 * <a href="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-postman-v1-20220315.json" target="_blank">readyremit-postman-v1-20220315.json</a>
 
-**These files will change frequently during the early-adoption phase. All changes are recorded in the [Changelog](https://developer.readyremit.com/changelog).**
+**These files will change frequently during the early-adoption phase. All changes will be recorded in the [Changelog](https://developer.readyremit.com/changelog).**
 
 # Primary workflow
 
@@ -122,12 +122,12 @@ Establishing a quote is based on the following values:
 
 |Key|Description|
 |-|-|
-|`dstCountryIso3Code`|Same as Recipient Country obtained in the previous step.|
-|`dstCurrencyIso3Code`|Same as Recipient Currency obtained in the previous step.|
-|`srcCurrencyIso3Code`|See [ReadyRemit v1: Sender operations](https://readyremit.readme.io/docs/change-log#readyremit-v1-sender-operations).|
-|`transferMethod`|You need to obtain this. See [ReadyRemit v1: Transfer methods](https://readyremit.readme.io/docs/change-log#readyremit-v1-transfer-methods).|
-|`quoteBy`|Not implemented yet. See [ReadyRemit v1: Quote by sender](https://readyremit.readme.io/docs/change-log#readyremit-v1-quote-by-sender).|
-|`amount`|You need to obtain this.|
+|`dstCountryIso3Code`|The recipient country obtained in the previous step.|
+|`dstCurrencyIso3Code`|The recipient currency obtained in the previous step.|
+|`srcCurrencyIso3Code`|Registered when you signed up for the service.|
+|`transferMethod`|`BANK_ACCOUNT` or `CASH_PICKUP`|
+|`quoteBy`|Not implemented yet.|
+|`amount`|Obtain this value from the end user.|
 
 Many applications obtain sender amount and transfer method from the end user:
 
