@@ -185,7 +185,7 @@ Once you've obtained the information in the table, call [Get Quote](https://read
 }
 ```
 
-Then, you can display the quote to the end user for approval:
+Once you have this data, you can display the quote to the end user for approval:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-quote-form.png" width=470 loading="lazy"></div>
 
