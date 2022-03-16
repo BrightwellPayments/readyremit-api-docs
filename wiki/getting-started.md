@@ -536,15 +536,15 @@ The fields necessary for building a user-facing form to collect recipient *accou
 
 You should now have all the information needed to execute the transfer:
 
-* dstCountryIso3Code`
-* dstCurrencyIso3Code`
-* srcCurrencyIso3Code`
-* transferMethod`
-* quoteBy`
-* amount`
-* senderId`
-* recipientId`
-* recipientAccountId`
-* purposeOfRemittance`
+* dstCountryIso3Code
+* dstCurrencyIso3Code
+* srcCurrencyIso3Code
+* transferMethod
+* quoteBy
+* amount
+* senderId
+* recipientId
+* recipientAccountId
+* purposeOfRemittance
 
 Once it is implemented, you can call [Execute Transfer](https://readyremit.readme.io/reference/executetransfer). 
