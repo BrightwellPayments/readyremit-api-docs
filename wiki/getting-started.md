@@ -50,7 +50,7 @@ ReadyRemit REST API documentation resides in an *openapi.yaml* file which feeds 
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-oas-workflow.png" width=620 loading="lazy"></div>
 
-Currently, the *openapi.yaml* is viewable, but not runnable, in the ReadyRemit Developer Portal.
+Currently, in the ReadyRemit Developer Portal, the *openapi.yaml* file is viewable, but not runnable.
 
 ReadyRemit makes available this OpenAPI file and its companion Postman Collection file:
 
@@ -58,7 +58,7 @@ ReadyRemit makes available this OpenAPI file and its companion Postman Collectio
 
 * <a href="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-postman-v1-20220315.json" target="_blank">readyremit-postman-v1-20220315.json</a>
 
-**These files will change frequently during the early-adoption phase.**
+**These files will change frequently during the early-adoption phase. All changes are recorded in the [Changelog](https://developer.readyremit.com/changelog).**
 
 # Primary workflow
 
