@@ -197,7 +197,7 @@ The fields necessary for building a user-facing form to collect recipient inform
 
     <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipient-type.png" width=220 loading="lazy"></div>
 
-1. Call [Get Recipient Fields](https://readyremit.readme.io/reference/getrecipientfields) to determine appropriate field types. Here is an example from the current sandbox environment:
+1. Call [Get Recipient Fields](https://readyremit.readme.io/reference/getrecipientfields) to determine appropriate field. Here is an example from the current sandbox environment:
 
     ```
     {
