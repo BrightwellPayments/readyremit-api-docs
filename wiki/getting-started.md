@@ -36,7 +36,7 @@ The ReadyRemit service is accessible via a REST API which enables client applica
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-use-ops.png" width=600 loading="lazy"></div>
 
-The ReadyRemit service supports recipient and sender entities. However, while the ReadyRemit REST API includes operations for dynamically creating, getting, updating, and deleting recipient entities, it does not yet include the same operations for sender entities:
+The ReadyRemit service supports recipient and sender records. However, while the ReadyRemit REST API includes operations for dynamically creating, getting, updating, and deleting recipient records, it does not yet include the same operations for sender records:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-senders-recipients.png" width=700 loading="lazy"></div>
 
@@ -44,7 +44,7 @@ So, early adopters manually submit information about sender entities to Brightwe
 
 # New recipient workflow
 
-The follow workflow focuses on creating a new recipient entity and recipient-account entity (in ReadyRemit), and sending funds from a previously defined sender account to the new recipient account. Other workflows (not described here) are important, too, like selecting an existing recipient and recipient account, creating a new account for an existing recipient, modifying a recipient record, etc.
+The follow workflow focuses on creating a new recipient record and recipient-account record (in ReadyRemit), and sending funds from a previously defined sender account to the new recipient account. Other workflows (not described here) are important, too, like selecting an existing recipient and recipient account, creating a new account for an existing recipient, modifying a recipient record, etc.
 
 ## Get an access token
 
@@ -89,7 +89,7 @@ Once you've obtained the information in the table, call [Get Quote](https://read
 
 ## Get recipient fields
 
-The fields necessary for building a user-facing form to collect recipient information and create recipient entities in ReadyRemit vary depending on country, currency, transfer method, and recipient type. See [ReadyRemit v1: Field Types](https://readyremit.readme.io/docs/change-log#readyremit-v1-field-types) for details. First, obtain a [recipient type](https://readyremit.readme.io/docs/change-log#readyremit-v1-recipient-types) from the end user:
+The fields necessary for building a user-facing form to collect recipient information and create recipient records in ReadyRemit vary depending on country, currency, transfer method, and recipient type. See [ReadyRemit v1: Field Types](https://readyremit.readme.io/docs/change-log#readyremit-v1-field-types) for details. First, obtain a [recipient type](https://readyremit.readme.io/docs/change-log#readyremit-v1-recipient-types) from the end user:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipient-type.png" width=220 loading="lazy"></div>
 
@@ -101,7 +101,7 @@ Once you obtain the required and optional recipient fields for the previously sp
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipient.png" width=470 loading="lazy"></div>
 
-Then, call [Create Recipient](https://readyremit.readme.io/reference/createrecipient) to create a recipient entity in ReadyRemit.
+Then, call [Create Recipient](https://readyremit.readme.io/reference/createrecipient) to create a recipient record in ReadyRemit.
 
 ## Get recipient account fields
 
@@ -117,7 +117,7 @@ Then, with bank and branch information in hand, you can build and present a form
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipient-account.png" width=470 loading="lazy"></div>
 
-Then, call [Create Recipient Account](https://readyremit.readme.io/reference/createrecipientaccount) to create a recipient-account entity in ReadyRemit.
+Then, call [Create Recipient Account](https://readyremit.readme.io/reference/createrecipientaccount) to create a recipient-account record in ReadyRemit.
 
 ## Execute the transfer
 
