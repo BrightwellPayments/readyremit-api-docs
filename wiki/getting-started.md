@@ -264,7 +264,41 @@ The fields necessary for building a user-facing form to collect recipient inform
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipient.png" width=470 loading="lazy"></div>
 
-1. Call [Create Recipient](https://readyremit.readme.io/reference/createrecipient) to create a recipient record in ReadyRemit.
+1. Call [Create Recipient](https://readyremit.readme.io/reference/createrecipient) to create a recipient record in ReadyRemit. The request might resemble this:
+
+    ```
+    {
+      "dstCountryIso3Code": "IND",
+      "dstCurrencyIso3Code": "INR",
+      "recipientType": "MYSELF",
+      "transferMethod": "BANK_ACCOUNT",
+      "senderId": "85add64d-1e36-4acb-84e1-2de9b5644001",
+      "fields": [
+        {
+          "id": "FIRST_NAME",
+          "type": "TEXT",
+          "value": "Snow"
+        },
+        {
+          "id": "LAST_NAME",
+          "type": "TEXT",
+          "value": "White"
+        }
+      ]
+    }
+    ```
+
+    And, the response might look like this:
+
+    ```
+    {
+      "recipientId": "4e6e2df5-ee18-451a-b238-dba4b3b3c394",
+      "senderId": "85add64d-1e36-4acb-84e1-2de9b5644001",
+      "firstName": "Aahna",
+      "lastName": "Kumar",
+      "fields": []
+    }
+    ```
 
 ## Get recipient account fields
 
