@@ -54,7 +54,7 @@ ReadyRemit provides an OpenAPI file and a Postman Collection file for REST API d
 
 # Primary workflow
 
-The primary workflow focuses on creating a new recipient record and recipient-account record (in ReadyRemit), and sending funds from a previously defined sender account to the new recipient account. Other workflows (not described here) are important, too, like selecting an existing recipient and recipient account, creating a new account for an existing recipient, modifying a recipient record, etc.
+The primary workflow focuses on creating a new recipient record and and an associated recipient-account record (in ReadyRemit), and sending funds from a previously defined sender account to the new recipient account. Other workflows (not described here) are important, too, like selecting an existing recipient and recipient account, creating a new account for an existing recipient, modifying a recipient record, etc.
 
 ## Get an access token
 
