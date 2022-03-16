@@ -189,21 +189,82 @@ Once you have this data, you can display the quote to the end user for approval:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-quote-form.png" width=470 loading="lazy"></div>
 
-## Get recipient fields
-
-The fields necessary for building a user-facing form to collect recipient information and create recipient records in ReadyRemit vary depending on country, currency, transfer method, and recipient type. See [ReadyRemit v1: Field Types](https://readyremit.readme.io/docs/change-log#readyremit-v1-field-types) for details. First, obtain a [recipient type](https://readyremit.readme.io/docs/change-log#readyremit-v1-recipient-types) from the end user:
-
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipient-type.png" width=220 loading="lazy"></div>
-
-Then, to determine required recipient fields, call [Get Recipient Fields](https://readyremit.readme.io/reference/getrecipientfields).
-
 ## Create a recipient
 
-Once you obtain the required and optional recipient fields for the previously specified remittance corridor, you can iterate over the response body to build and display a form for the end user:
+The fields necessary for building a user-facing form to collect recipient information and create recipient records in ReadyRemit vary depending on country, currency, transfer method, and recipient type. 
+
+1. Obtain a [recipient type](https://readyremit.readme.io/docs/change-log#readyremit-v1-recipient-types) from the end user:
+
+    <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipient-type.png" width=220 loading="lazy"></div>
+
+1. Call [Get Recipient Fields](https://readyremit.readme.io/reference/getrecipientfields) to determine appropriate field types. Here is an example from the current sandbox environment:
+
+    ```
+    {
+      "fieldSets": [
+        {
+          "fieldSetId": "PERSONAL_INFORMATION",
+          "fieldSetName": "Personal information",
+          "fields": [
+            {
+              "fieldType": "PHONE_NUMBER",
+              "fieldId": "PHONE_NUMBER",
+              "name": "Phone Number",
+              "isRequired": false
+            },
+            {
+              "fieldType": "TEXT",
+              "fieldId": "FIRST_NAME",
+              "name": "First Name",
+              "isRequired": true
+            },
+            {
+              "fieldType": "TEXT",
+              "fieldId": "EMAIL",
+              "name": "Email",
+              "isRequired": false
+            },
+            {
+              "fieldType": "TEXT",
+              "fieldId": "NATIONALITY",
+              "name": "Nationality",
+              "isRequired": false
+            },
+            {
+              "fieldType": "TEXT",
+              "fieldId": "LAST_NAME",
+              "name": "Last Name",
+              "isRequired": true
+            },
+            {
+              "fieldType": "TEXT",
+              "fieldId": "DATE_OF_BIRTH",
+              "name": "Date of Birth",
+              "isRequired": false
+            }
+          ]
+        },
+        {
+          "fieldSetId": "Customer_Division_Designer",
+          "fieldSetName": "Customer Division Designer",
+          "fields": [
+            {
+              "fieldType": "TEXT",
+              "fieldId": "COMPANY_NAME",
+              "name": "Company Name",
+              "isRequired": false
+            }
+          ]
+        }
+      ]
+    }
+    ```
+
+1. Iterate over the fields to build and display a form for the end user:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipient.png" width=470 loading="lazy"></div>
 
-Then, call [Create Recipient](https://readyremit.readme.io/reference/createrecipient) to create a recipient record in ReadyRemit.
+1. Call [Create Recipient](https://readyremit.readme.io/reference/createrecipient) to create a recipient record in ReadyRemit.
 
 ## Get recipient account fields
 
