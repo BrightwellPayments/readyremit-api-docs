@@ -68,7 +68,18 @@ When you sign up to use ReadyRemit, Brightwell creates a configuration for your 
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-auth-bearer.png" width=700 loading="lazy"></div>
 
-This *access_token* gives your application access to the ReadyRemit service. It is independent of any authentication workflow your app performs for your end users. To get an access token, call <a href="https://readyremit.readme.io/reference/getaccesstoken" target="_blank">Get Access Token</a>.
+This *access_token* gives your application access to the ReadyRemit service. It is independent of any authentication workflow your app performs for your end users. 
+
+To get an access token, call <a href="https://readyremit.readme.io/reference/getaccesstoken" target="_blank">Get Access Token</a> which returns an `access_token` for use in other API operations:
+
+```
+{
+  "access_token": "abc",
+  "scope": "test",
+  "expires_in": 1800,
+  "token_type": "Bearer"
+}
+```
 
 ## Get a list of countries
 
