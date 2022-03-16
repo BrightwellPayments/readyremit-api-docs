@@ -46,7 +46,7 @@ So, early adopters manually submit information about sender entities to Brightwe
 
 ReadyRemit provides an OpenAPI file and a Postman Collection file for REST API documentation and experimentation:
 
-* [readyremit-openapi-v1-20220315.yaml](). This file serves as the source for the [API Reference](https://developer.readyremit.com/reference) on this portal. You can also import this file into your own [SwaggerHub](https://app.swaggerhub.com) account.
+* <a href="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-openapi-v1-20220315.yaml" target="_blank">readyremit-openapi-v1-20220315.yaml</a>. This file serves as the source for the [API Reference](https://developer.readyremit.com/reference) on this portal. You can also import this file into your own [SwaggerHub](https://app.swaggerhub.com) account.
 
 * [readyremit-postman-v1-20220315.json](). You can import this collection file into your [Postman](https://www.postman.com) account.
 
