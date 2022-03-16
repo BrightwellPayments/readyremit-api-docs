@@ -42,6 +42,14 @@ The ReadyRemit service supports recipient and sender records. However, while the
 
 So, early adopters manually submit information about sender entities to Brightwell in exchange for *senderIds* required by some REST API operations.
 
+# OpenAPI and Postman
+
+ReadyRemit provides an OpenAPI file and a Postman Collection file for REST API documentation and experimentation:
+
+* [readyremit-openapi-v1-20220315.yaml](). This file serves as the source for the [API Reference](https://developer.readyremit.com/reference) on this portal. You can also import this file into your own [SwaggerHub](https://app.swaggerhub.com) account.
+
+* [readyremit-postman-v1-20220315.json](). You can import this collection file into your Postman account. 
+
 # Primary workflow
 
 The follow workflow focuses on creating a new recipient record and recipient-account record (in ReadyRemit), and sending funds from a previously defined sender account to the new recipient account. Other workflows (not described here) are important, too, like selecting an existing recipient and recipient account, creating a new account for an existing recipient, modifying a recipient record, etc.
