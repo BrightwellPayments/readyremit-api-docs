@@ -54,9 +54,9 @@ Currently, in the ReadyRemit Developer Portal, the *openapi.yaml* file is viewab
 
 ReadyRemit makes available this OpenAPI file and its companion Postman Collection file:
 
-* <a href="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-openapi-v1-20220315.yaml" target="_blank">readyremit-openapi-v1-20220315.yaml</a>
+* <a href="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-v1-20220316-openapi.yaml" target="_blank">readyremit-v1-20220316-openapi.yaml</a>
 
-* <a href="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-postman-v1-20220315.json" target="_blank">readyremit-postman-v1-20220315.json</a>
+* <a href="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-v1-20220316-postman.json" target="_blank">readyremit-v1-20220316-postman.json</a>
 
 **These files will change frequently during the early-adoption phase. All changes will be recorded in the [Changelog](https://developer.readyremit.com/changelog).**
 
