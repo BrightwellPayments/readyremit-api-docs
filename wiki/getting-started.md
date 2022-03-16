@@ -534,20 +534,19 @@ The fields necessary for building a user-facing form to collect recipient *accou
 
 ## Execute the transfer
 
-You should now have all the information you need to execute the transfer:
+You should now have all the information needed to execute the transfer:
 
-```
-PUT INTO A TABLE
-dstCountryIso3Code
-dstCurrencyIso3Code
-srcCurrencyIso3Code
-transferMethod
-quoteBy
-amount
-senderId
-recipientId
-recipientAccountId
-purposeOfRemittance
-```
+|Key|Value|
+|-|-|
+|`dstCountryIso3Code`|sss|
+|`dstCurrencyIso3Code`|sss|
+|`srcCurrencyIso3Code`|sss|
+|`transferMethod`|sss|
+|`quoteBy`|sss|
+|`amount`|sss|
+|`senderId`|sss|
+|`recipientId`|sss|
+|`recipientAccountId`|sss|
+|`purposeOfRemittance`|sss|
 
-Call [Execute Transfer](https://readyremit.readme.io/reference/executetransfer)
+Once it is implemented, you can call [Execute Transfer](https://readyremit.readme.io/reference/executetransfer). 
