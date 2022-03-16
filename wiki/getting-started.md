@@ -300,21 +300,237 @@ The fields necessary for building a user-facing form to collect recipient inform
     }
     ```
 
-## Get recipient account fields
-
-The fields necessary for building a user-facing form to collect recipient *account* information also vary depending on the characteristics of the remittance corridor. To discovery the relevant fields, call [Get Recipient Account Fields](https://readyremit.readme.io/reference/getrecipientaccountfields).
-
-## Get banks and branches
-
-The recipient-account form you build for the end user may need to include dropdowns for the banks and associated branches in the specified country. Call [Get Banks](https://readyremit.readme.io/reference/getbanks) and [Get Bank Branches](https://readyremit.readme.io/reference/getbankbranches) to retrieve these arrays. 
-
 ## Create a recipient account
 
-Then, with bank and branch information in hand, you can build and present a form:
+The fields necessary for building a user-facing form to collect recipient *account* information also vary depending on the characteristics of the remittance corridor. 
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipient-account.png" width=470 loading="lazy"></div>
+1. Call [Get Recipient Account Fields](https://readyremit.readme.io/reference/getrecipientaccountfields). Currently, this operation returns test data:
 
-Then, call [Create Recipient Account](https://readyremit.readme.io/reference/createrecipientaccount) to create a recipient-account record in ReadyRemit.
+    ```
+    {
+      "fieldSets": [
+        {
+          "fieldSetId": "PERSONAL_INFORMATION",
+          "fieldSetName": "Personal information",
+          "fields": [
+            {
+              "validationErrors": [],
+              "fieldType": "TEXT",
+              "fieldId": "LegacyApplicationsAdministrator",
+              "name": "District Optimization Analyst",
+              "hintText": "Human Paradigm Associate",
+              "isRequired": false
+            }
+          ]
+        },
+        {
+          "fieldSetId": "Global_Paradigm_Administrator",
+          "fieldSetName": "Global Paradigm Administrator",
+          "fields": [
+            {
+              "validationErrors": [],
+              "fieldType": "UNKNOWN",
+              "fieldId": "CustomerOptimizationTechnician",
+              "name": "Central Infrastructure Officer",
+              "hintText": "Principal Group Executive",
+              "isRequired": false
+            }
+          ]
+        },
+        {
+          "fieldSetId": "Internal_Usability_Agent",
+          "fieldSetName": "Internal Usability Agent",
+          "fields": [
+            {
+              "validationErrors": [],
+              "fieldType": "UNKNOWN",
+              "fieldId": "InternalResearchDirector",
+              "name": "Product Usability Orchestrator",
+              "hintText": "Investor Applications Agent",
+              "isRequired": false
+            }
+          ]
+        },
+        {
+          "fieldSetId": "Dynamic_Directives_Associate",
+          "fieldSetName": "Dynamic Directives Associate",
+          "fields": [
+            {
+              "validationErrors": [],
+              "fieldType": "UNKNOWN",
+              "fieldId": "SeniorBrandConsultant",
+              "name": "Legacy Directives Technician",
+              "hintText": "Human Applications Consultant",
+              "isRequired": false
+            }
+          ]
+        },
+        {
+          "fieldSetId": "Dynamic_Quality_Specialist",
+          "fieldSetName": "Dynamic Quality Specialist",
+          "fields": [
+            {
+              "validationErrors": [],
+              "fieldType": "UNKNOWN",
+              "fieldId": "ProductDataLiaison",
+              "name": "Future Applications Specialist",
+              "hintText": "Principal Accounts Manager",
+              "isRequired": true
+            }
+          ]
+        },
+        {
+          "fieldSetId": "Forward_Integration_Administrator",
+          "fieldSetName": "Forward Integration Administrator",
+          "fields": [
+            {
+              "validationErrors": [],
+              "fieldType": "UNKNOWN",
+              "fieldId": "PrincipalIntegrationFacilitator",
+              "name": "National Mobility Strategist",
+              "hintText": "Future Division Officer",
+              "isRequired": false
+            }
+          ]
+        },
+        {
+          "fieldSetId": "Global_Research_Representative",
+          "fieldSetName": "Global Research Representative",
+          "fields": [
+            {
+              "validationErrors": [],
+              "fieldType": "UNKNOWN",
+              "fieldId": "LeadIdentityAdministrator",
+              "name": "Central Response Liaison",
+              "hintText": "Corporate Accounts Representative",
+              "isRequired": true
+            }
+          ]
+        },
+        {
+          "fieldSetId": "Dynamic_Paradigm_Planner",
+          "fieldSetName": "Dynamic Paradigm Planner",
+          "fields": [
+            {
+              "validationErrors": [],
+              "fieldType": "UNKNOWN",
+              "fieldId": "ForwardCreativeTechnician",
+              "name": "Human Brand Architect",
+              "hintText": "International Paradigm Agent",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    }
+    ```
+
+1. Call [Get Banks](https://readyremit.readme.io/reference/getbanks):
+
+    ```
+    [
+      {
+        "id": "IND60",
+        "name": "PUNJAB NATIONAL BANK"
+      },
+      {
+        "id": "IND30",
+        "name": "DEUTSCHE BANK"
+      },
+      {
+        "id": "IN134",
+        "name": "NAGPUR NAGARIK SAHAKARI BANK"
+      },
+      {
+        "id": "IN02",
+        "name": "ESAF SMALL FINANCE BANK LTD"
+      },
+      ...
+      ...
+    ]
+    ```
+
+1. Call [Get Bank Branches](https://readyremit.readme.io/reference/getbankbranches):
+
+    ```
+    [
+      {
+        "id": "PUNB0RTGS00",
+        "name": "Rtgs Center"
+      },
+      {
+        "id": "PUNB0368800",
+        "name": "Kaushalpuri"
+      },
+      {
+        "id": "PUNB0888200",
+        "name": "RAJNAGAR"
+      },
+      ...
+      ...
+    ]
+    ```
+
+1. Build and display a form based on the fields and bank information:
+
+    <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipient-account.png" width=470 loading="lazy"></div>
+
+1. Call [Create Recipient Account](https://readyremit.readme.io/reference/createrecipientaccount) to create a recipient-account record in ReadyRemit. The request might resemble this:
+
+    ```
+    {
+        "dstCountryIso3Code": "IND",
+        "dstCurrencyIso3Code": "INR",
+        "transferMethod": "BANK_ACCOUNT",
+        "senderId": "85add64d-1e36-4acb-84e1-2de9b5644001",
+        "recipientId": "4e6e2df5-ee18-451a-b238-dba4b3b3c394",
+        "name": "Destination Account",
+        "accountNumber": "98237498327489273",
+        "fields": [
+            {
+                "id": "bankId",
+                "type": "NUMBER",
+                "value": "78"
+            },
+            {
+                "id": "branchId",
+                "type": "NUMBER",
+                "value": "99"
+            },
+            {
+                "id": "accountNumber",
+                "type": "TEXT",
+                "value": "1234556677"
+            }
+        ]
+    }
+    ```
+
+    And, the response might look like this:
+
+    ```
+    {
+        "recipientAccountId": "faf360e5-5c14-4a98-9766-a77bfc81b0cc",
+        "accountNumber": "98237498327489273",
+        "fields": [
+            {
+                "id": "bankId",
+                "type": "NUMBER",
+                "value": "78"
+            },
+            {
+                "id": "branchId",
+                "type": "NUMBER",
+                "value": "99"
+            },
+            {
+                "id": "accountNumber",
+                "type": "TEXT",
+                "value": "1234556677"
+            }
+        ]
+    }
+    ```
 
 ## Execute the transfer
 
