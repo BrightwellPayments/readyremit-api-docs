@@ -2,7 +2,7 @@
 openapi: 3.0.0
 info:
   title: API Reference
-  description: See the [ReadyRemit v1 2022-03-16](https://developer.readyremit.com/changelog/readyremit-v1-2022-03-16).
+  description: See the [ReadyRemit Developer Portal](https://developer.readyremit.com/).
   version: "1.0"
 servers:
 - url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
@@ -14,7 +14,8 @@ paths:
       tags:
       - Authentication
       summary: Get Access Token
-      description: "When you sign up to use ReadyRemit, Brightwell provides (for each of your apps) a `client_id`, `client_secret`, `audience`, and `grant_type` which the app trades (via this operation) for an `access_token` for use with other ReadyRemit REST API operations.\n\nNote: You may be viewing this information in SwaggerHub, Postman, or the ReadyRemit API Reference. The latter does not yet support accessing the Auth0 url. \n"
+      description: |
+        When you sign up to use ReadyRemit, Brightwell provides (for each of your apps) a `client_id`, `client_secret`, `audience`, and `grant_type` which the app trades (via this operation) for an `access_token` for use with other ReadyRemit REST API operations.
       operationId: getAccessToken
       requestBody:
         description: Object containing the four required fields.
