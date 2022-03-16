@@ -58,7 +58,7 @@ ReadyRemit makes available this OpenAPI file and its companion Postman Collectio
 
 * <a href="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-v1-20220316-postman.json" target="_blank">readyremit-v1-20220316-postman.json</a>
 
-**These files will change frequently during the early-adoption phase. All changes will be recorded in the [Changelog](https://developer.readyremit.com/changelog).**
+These files will change frequently during the early-adoption phase. All changes will be recorded in the [Changelog](https://developer.readyremit.com/changelog).
 
 # Primary workflow
 
