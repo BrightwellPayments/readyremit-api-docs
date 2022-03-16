@@ -193,7 +193,7 @@ Once you have this data, you can display the quote to the end user for approval:
 
 The fields necessary for building a user-facing form to collect recipient information and create recipient records in ReadyRemit vary depending on country, currency, transfer method, and recipient type. 
 
-1. Obtain a [recipient type](https://readyremit.readme.io/docs/change-log#readyremit-v1-recipient-types) from the end user:
+1. Obtain a recipient type (`MYSELF`, `SOMEONE_ELSE`, `BUSINESS`) from the end user:
 
     <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipient-type.png" width=220 loading="lazy"></div>
 
