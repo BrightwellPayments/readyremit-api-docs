@@ -44,25 +44,9 @@ The ReadyRemit service supports recipient and sender records. However, while the
 
 So, early adopters manually submit information about sender entities to Brightwell in exchange for *senderIds* required by some REST API operations.
 
-# API documentation
-
-ReadyRemit REST API documentation resides in an *openapi.yaml* file which feeds (or can feed) applications for viewing and running:
-
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-oas-workflow.png" width=620 loading="lazy"></div>
-
-Currently, in the ReadyRemit Developer Portal, the *openapi.yaml* file is viewable, but not runnable.
-
-ReadyRemit makes available this OpenAPI file and its companion Postman Collection file:
-
-* <a href="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-v1-20220316-openapi.yaml" target="_blank">readyremit-v1-20220316-openapi.yaml</a>
-
-* <a href="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-v1-20220316-postman.json" target="_blank">readyremit-v1-20220316-postman.json</a>
-
-These files will change frequently during the early-adoption phase. All changes will be recorded in the [Changelog](https://developer.readyremit.com/changelog).
-
 # Primary workflow
 
-The primary workflow focuses on creating a new recipient record and associated recipient-account record (in ReadyRemit), and sending funds from a previously defined sender account to the new recipient account. Below are the steps.
+The primary workflow focuses on creating a new recipient record and associated recipient-account record (in ReadyRemit), and sending funds from a previously defined sender account to the new recipient account. See the [API Reference](/reference/about-the-api-reference) for information about each API operation. Below are the workflow steps.
 
 ## Get an access token
 
