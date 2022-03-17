@@ -119,12 +119,10 @@ Many applications obtain sender amount and transfer method from the end user:
 
 Once you've obtained the information in the table, call [Get Quote](https://readyremit.readme.io/reference/getquote) to obtain the recipient amount, fees, and disclosures. Below is an example.
 
-> Note: The values in this example reflect an obsolete implementation. Eventually, all currency values will be integers. See [Currency](https://developer.readyremit.com/reference/common-concepts#currency).
-
 ```
 {
   "sendAmount": {
-    "value": 1000,
+    "value": 100000,
     "currency": {
       "name": "US Dollar",
       "iso3Code": "USD",
@@ -133,7 +131,7 @@ Once you've obtained the information in the table, call [Get Quote](https://read
     }
   },
   "receiveAmount": {
-    "value": 74457.6574896,
+    "value": 7445765,
     "currency": {
       "name": "Indian rupee",
       "iso3Code": "INR",
@@ -146,7 +144,7 @@ Once you've obtained the information in the table, call [Get Quote](https://read
     {
       "label": "Transfer Fee",
       "amount": {
-        "value": 8.79,
+        "value": 879,
         "currency": {
           "name": "US Dollar",
           "iso3Code": "USD",
@@ -157,7 +155,7 @@ Once you've obtained the information in the table, call [Get Quote](https://read
     }
   ],
   "totalCost": {
-    "value": 1008.79,
+    "value": 100879,
     "currency": {
       "name": "US Dollar",
       "iso3Code": "USD",
