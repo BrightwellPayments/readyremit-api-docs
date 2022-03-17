@@ -548,5 +548,3 @@ You should now have all the information needed to execute the transfer:
 * purposeOfRemittance
 
 Once it is implemented, you can call [Execute Transfer](https://readyremit.readme.io/reference/executetransfer). 
-
-For a test.
