@@ -142,6 +142,18 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/getCountriesResponse200'
+              examples:
+                success:
+                  summary: 200 OK
+                  value:
+                  - country:
+                      name: India
+                      iso3Code: IND
+                    currencies:
+                    - name: Indian rupee
+                      iso3Code: INR
+                      symbol: ₹
+                      decimalPlaces: 2
   /quote:
     get:
       tags:
