@@ -46,7 +46,7 @@ So, early adopters manually submit information about sender entities to Brightwe
 
 # Primary workflow
 
-The primary workflow focuses on creating a new recipient record and associated recipient-account record (in ReadyRemit), and sending funds from a previously defined sender account to the new recipient account. See the [API Reference](/reference/about-the-api-reference) for information about each API operation. Below are the workflow steps.
+The primary workflow focuses on creating a new recipient in ReadyRemit, and sending funds from a previously defined sender account to the new recipient account. See the [API Reference](/reference/about-the-api-reference) for information about each API operation. Below are the workflow steps.
 
 ## Get an access token
 
