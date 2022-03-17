@@ -260,6 +260,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/fieldSetsObject'
+              examples:
+                success:
+                  summary: 200 OK
+                  value:
+                    fieldSets:
+                    - fieldSetId: PERSONAL_INFORMATION
+                      fieldSetName: Personal information
+                      fields:
+                      - fieldType: PHONE_NUMBER
+                        fieldId: PHONE_NUMBER
+                        name: Phone Number
+                        isRequired: false
+                      - fieldType: TEXT
+                        fieldId: FIRST_NAME
+                        name: First Name
+                        isRequired: true
+                      - fieldType: TEXT
+                        fieldId: EMAIL
+                        name: Email
+                        isRequired: false
+                      - fieldType: TEXT
+                        fieldId: NATIONALITY
+                        name: Nationality
+                        isRequired: false
+                      - fieldType: TEXT
+                        fieldId: LAST_NAME
+                        name: Last Name
+                        isRequired: true
+                      - fieldType: TEXT
+                        fieldId: DATE_OF_BIRTH
+                        name: Date of Birth
+                        isRequired: false
+                    - fieldSetId: Customer_Division_Designer
+                      fieldSetName: Customer Division Designer
+                      fields:
+                      - fieldType: TEXT
+                        fieldId: COMPANY_NAME
+                        name: Company Name
+                        isRequired: false
   /recipients:
     get:
       tags:
