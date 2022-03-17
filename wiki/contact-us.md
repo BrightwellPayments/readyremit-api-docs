@@ -14,6 +14,5 @@ Please direct all ReadyRemit inquiries to `sales@readyremit.com`, and include th
 
 Once you're established as a client, you will be provided with the following:
 
-* `client_id`, `client_secret`, `audience`, and `grant_type` values for each application that accesses ReadyRemit.
+* Authentication credentials (`client_id`, `client_secret`, `audience`, `grant_type`) for each application that accesses ReadyRemit.
 * A `senderId` for each sender entity you register with ReadyRemit.
-* The first set of values are required for authentication.
