@@ -2,7 +2,10 @@
 openapi: 3.0.0
 info:
   title: API Reference
-  description: See the [ReadyRemit Developer Portal](https://developer.readyremit.com/).
+  description: |
+    **Filename**: readyremit-v1-20220317-openapi.yaml
+
+    See [ReadyRemit Developer Portal](https://developer.readyremit.com/).
   version: "1.0"
 servers:
 - url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
