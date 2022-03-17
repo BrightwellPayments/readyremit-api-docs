@@ -1,0 +1,982 @@
+---
+openapi: 3.0.0
+info:
+  title: API Reference
+  description: See the [ReadyRemit Developer Portal](https://developer.readyremit.com/).
+  version: "1.0"
+servers:
+- url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
+security:
+- bearerAuth: []
+paths:
+  /oauth/token:
+    post:
+      tags:
+      - Authentication
+      summary: Get Access Token
+      description: |
+        When you sign up to use ReadyRemit, Brightwell provides (for each of your apps) a `client_id`, `client_secret`, `audience`, and `grant_type` which the app trades (via this operation) for an `access_token` for use with other ReadyRemit REST API operations.
+      operationId: getAccessToken
+      requestBody:
+        description: Object containing the four required fields.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/getAccessTokenRequest'
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAccessTokenResponse200'
+              examples:
+                success:
+                  summary: 200 OK
+                  value:
+                    access_token: abc
+                    scope: test
+                    expires_in: 1800
+                    token_type: Bearer
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unauthorized401'
+              examples:
+                unauthorized:
+                  summary: 401 unauthorized
+                  value:
+                    error: access_denied
+                    error_description: Unauthorized
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/forbidden403'
+              examples:
+                forbidden:
+                  summary: 403 Forbidden
+                  value:
+                    error: unauthorized_client
+                    error_description: Grant type 'abc' not allowed for the client.
+                    error_uri: https://auth0.com/docs/clients/client-grant-types
+      security: []
+    servers:
+    - url: https://readyremit.us.auth0.com
+  /banks:
+    get:
+      tags:
+      - Banks and Branches
+      summary: Get Banks
+      description: Given a `countryIso3Code`, this operation returns an array of banks located in that country.
+      operationId: getBanks
+      parameters:
+      - name: countryIso3Code
+        in: query
+        description: See [country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).
+        required: false
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/string3uc'
+      - name: bankname
+        in: query
+        description: The search looks for any part of `bankname` in the bank's full name.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/idNameArray'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /banks/{id}/branches:
+    get:
+      tags:
+      - Banks and Branches
+      summary: Get Bank Branches
+      description: Given a `bankId`, this operation returns an array of branches for that bank.
+      operationId: getBankBranches
+      parameters:
+      - name: id
+        in: path
+        description: bankId.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/idNameArray'
+  /countries-and-currencies:
+    get:
+      tags:
+      - Helpers
+      summary: Get Countries
+      description: This operation returns an array of countries available to the app. Each record includes a country object and an array of currency objects. The app can present these records to the end user who can choose a recipient country and currency.
+      operationId: getCountries
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/getCountriesResponse200'
+              examples:
+                success:
+                  summary: 200 OK
+                  value:
+                  - country:
+                      name: India
+                      iso3Code: IND
+                    currencies:
+                    - name: Indian rupee
+                      iso3Code: INR
+                      symbol: ₹
+                      decimalPlaces: 2
+  /quote:
+    get:
+      tags:
+      - Helpers
+      summary: Get Quote
+      description: Given a corridor and sender amount, this operation returns a quote including the exchanged amount, fees, and disclosures. The app can present the quote to the end user who can decide whether to proceed with the transfer.
+      operationId: getQuote
+      parameters:
+      - name: dstCountryIso3Code
+        in: query
+        description: See [country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).
+        required: true
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/string3uc'
+      - name: dstCurrencyIso3Code
+        in: query
+        description: See [currency codes](https://en.wikipedia.org/wiki/ISO_4217).
+        required: true
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/string3uc'
+      - name: srcCurrencyIso3Code
+        in: query
+        description: See [currency codes](https://en.wikipedia.org/wiki/ISO_4217).
+        required: true
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/string3uc'
+      - name: transferMethod
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/transferMethods'
+      - name: quoteBy
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/quoteBy'
+      - name: amount
+        in: query
+        description: Sender amount.
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: number
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/quote'
+  /recipient-fields:
+    get:
+      tags:
+      - Recipients
+      summary: Get Recipient Fields
+      description: Given a corridor, this operation returns the required and optional fields for a recipient record. See [Custom fields](https://developer.readyremit.com/reference/about-the-api#custom-fields).
+      operationId: getRecipientFields
+      parameters:
+      - name: dstCountryIso3Code
+        in: query
+        description: See [country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).
+        required: true
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/string3uc'
+      - name: dstCurrencyIso3Code
+        in: query
+        description: See [currency codes](https://en.wikipedia.org/wiki/ISO_4217).
+        required: true
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/string3uc'
+      - name: transferMethod
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/transferMethods'
+      - name: recipientType
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/recipientTypes'
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/fieldSetsObject'
+  /recipients:
+    get:
+      tags:
+      - Recipients
+      summary: Get Recipients
+      description: This is the description.
+      operationId: getRecipients
+      parameters:
+      - name: senderId
+        in: query
+        description: This operation returns all the recipient records associated with the specified `senderId`.
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/recipient'
+    post:
+      tags:
+      - Recipients
+      summary: Create Recipient
+      description: This operation creates a recipient record.
+      operationId: createRecipient
+      requestBody:
+        description: This is the description.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createRecipientRequest'
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/recipient'
+        "400":
+          description: Invalid or missing data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorArray'
+  /recipients/{id}:
+    get:
+      tags:
+      - Recipients
+      summary: Get Recipient
+      description: This operation returns a recipient record.
+      operationId: getRecipient
+      parameters:
+      - name: id
+        in: path
+        description: ID of recipient
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/recipient'
+    put:
+      tags:
+      - Recipients
+      summary: Update Recipient
+      description: This operation updates an entire recipient record.
+      operationId: updateRecipient
+      parameters:
+      - name: id
+        in: path
+        description: ID of recipient
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: List of fields to create the recipient
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createRecipientRequest'
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/recipient'
+    delete:
+      tags:
+      - Recipients
+      summary: Delete Recipient
+      description: This operation deletes a recipient record.
+      operationId: deleteRecipient
+      parameters:
+      - name: id
+        in: path
+        description: ID of recipient
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: 200 Success
+  /recipient-account-fields:
+    get:
+      tags:
+      - Recipient Accounts
+      summary: Get Recipient Account Fields
+      description: Given a corridor, this operation returns the required and optional fields for a recipient account record. See [Custom fields](https://developer.readyremit.com/reference/about-the-api#custom-fields).
+      operationId: getRecipientAccountFields
+      parameters:
+      - name: dstCountryIso3Code
+        in: query
+        description: See [country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).
+        required: true
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/string3uc'
+      - name: dstCurrencyIso3Code
+        in: query
+        description: See [currency codes](https://en.wikipedia.org/wiki/ISO_4217).
+        required: true
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/string3uc'
+      - name: transferMethod
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/transferMethods'
+      - name: recipientType
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/recipientTypes'
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/fieldSetsObject'
+  /recipients/{id}/accounts:
+    get:
+      tags:
+      - Recipient Accounts
+      summary: Get Recipient Accounts
+      description: This operation returns an array of recipient account records associated with the specified Recipient ID.
+      operationId: getRecipientAccounts
+      parameters:
+      - name: id
+        in: path
+        description: Recipient ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Success
+    post:
+      tags:
+      - Recipient Accounts
+      summary: Create Recipient Account
+      description: This operation creates a recipient account record.
+      operationId: createRecipientAccount
+      parameters:
+      - name: id
+        in: path
+        description: Recipient ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "201":
+          description: Created
+        "400":
+          description: Invalid or missing data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorArray'
+  /recipients/{id}/accounts/{accId}:
+    get:
+      tags:
+      - Recipient Accounts
+      summary: Get Recipient Account
+      description: This operation returns a recipient account record.
+      operationId: getRecipientAccount
+      parameters:
+      - name: id
+        in: path
+        description: Recipient ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: accId
+        in: path
+        description: Recipient Account ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Success
+    put:
+      tags:
+      - Recipient Accounts
+      summary: Update Recipient Account
+      description: This operation updates an entire recipient account record.
+      operationId: putRecipientAccount
+      parameters:
+      - name: id
+        in: path
+        description: Recipient ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: accId
+        in: path
+        description: Recipient Account ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/recipientAccount'
+        "400":
+          description: Invalid or missing data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorArray'
+    delete:
+      tags:
+      - Recipient Accounts
+      summary: Delete Recipient Account
+      description: This operation deletes a recipient account record.
+      operationId: deleteRecipientAccount
+      parameters:
+      - name: id
+        in: path
+        description: Recipient ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: accId
+        in: path
+        description: Recipient Account ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: 200 Success
+        "400":
+          description: 400 Invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorArray'
+  /transfers:
+    post:
+      tags:
+      - Transfers
+      summary: Execute Transfer
+      description: This operation performs a sender-to-recipient transfer of funds.
+      operationId: executeTransfer
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Invalid or missing data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorArray'
+components:
+  schemas:
+    forbidden403:
+      type: object
+      properties:
+        error:
+          type: string
+        error_description:
+          type: string
+        error_uri:
+          type: string
+    unauthorized401:
+      type: object
+      properties:
+        error:
+          type: string
+        error_description:
+          type: string
+    createRecipientRequest:
+      type: object
+      properties:
+        dstCountryIso3Code:
+          $ref: '#/components/schemas/string3uc'
+        dstCurrencyIso3Code:
+          $ref: '#/components/schemas/string3uc'
+        recipientType:
+          $ref: '#/components/schemas/recipientTypes'
+        transferMethod:
+          $ref: '#/components/schemas/transferMethods'
+        senderId:
+          type: string
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/fieldValue'
+    recipientTypes:
+      type: string
+      description: See [recipientType](https://developer.readyremit.com/reference/about-the-api#recipienttype).
+      default: MYSELF
+      enum:
+      - MYSELF
+      - SOMEONE_ELSE
+      - BUSINESS
+    transferMethods:
+      type: string
+      description: See [transferMethod](https://developer.readyremit.com/reference/about-the-api#transfermethod).
+      default: BANK_ACCOUNT
+      enum:
+      - BANK_ACCOUNT
+      - CASH_PICKUP
+    quoteBy:
+      type: string
+      description: See [quoteBy](https://developer.readyremit.com/reference/about-the-api#quoteby).
+      default: SEND_AMOUNT
+      enum:
+      - SEND_AMOUNT
+      - RECEIVE_AMOUNT
+    string3uc:
+      maxLength: 3
+      minLength: 3
+      pattern: ^[A-Z]{3}$
+      type: string
+    idName:
+      required:
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+    idNameArray:
+      type: array
+      items:
+        $ref: '#/components/schemas/idName'
+    country:
+      required:
+      - iso3Code
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+        iso3Code:
+          maxLength: 3
+          minLength: 3
+          pattern: ^[A-Z]{3}$
+          type: string
+    currency:
+      required:
+      - decimalPlaces
+      - iso3Code
+      - name
+      - symbol
+      type: object
+      properties:
+        name:
+          type: string
+        iso3Code:
+          maxLength: 3
+          minLength: 3
+          pattern: ^[A-Z]{3}$
+          type: string
+        symbol:
+          maxLength: 3
+          type: string
+        decimalPlaces:
+          maximum: 3
+          minimum: 0
+          type: integer
+    money:
+      type: object
+      properties:
+        value:
+          minimum: 0
+          type: integer
+        currency:
+          $ref: '#/components/schemas/currency'
+    adjustment:
+      required:
+      - amount
+      - label
+      type: object
+      properties:
+        label:
+          type: string
+        amount:
+          $ref: '#/components/schemas/money'
+    quote:
+      required:
+      - adjustments
+      - disclosures
+      - rate
+      - receiveAmount
+      - sendAmount
+      - totalCost
+      type: object
+      properties:
+        sendAmount:
+          $ref: '#/components/schemas/money'
+        receiveAmount:
+          $ref: '#/components/schemas/money'
+        rate:
+          type: integer
+        adjustments:
+          type: array
+          items:
+            $ref: '#/components/schemas/adjustment'
+        totalCost:
+          $ref: '#/components/schemas/money'
+        disclosures:
+          type: array
+          items:
+            type: string
+    fieldSet:
+      required:
+      - fields
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/textField'
+    baseField:
+      required:
+      - fieldType
+      - id
+      - name
+      - required
+      - validationErrors
+      type: object
+      properties:
+        fieldType:
+          type: string
+          enum:
+          - TEXT
+        id:
+          type: string
+        name:
+          type: string
+        hintText:
+          type: string
+        required:
+          type: boolean
+        validationErrors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+    textField:
+      allOf:
+      - $ref: '#/components/schemas/baseField'
+      - type: object
+        properties:
+          placeholderText:
+            type: string
+          minLength:
+            type: number
+          maxLength:
+            type: number
+          regex:
+            type: string
+          value:
+            type: string
+    fieldValue:
+      required:
+      - id
+      - type
+      - value
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - TEXT
+        value:
+          type: object
+          anyOf:
+          - type: string
+          - required:
+            - currencyIso3Code
+            - units
+            type: object
+            properties:
+              units:
+                type: number
+              currencyIso3Code:
+                maxLength: 3
+                minLength: 3
+                pattern: ^[A-Z]{3}$
+                type: string
+    sender:
+      type: object
+      properties:
+        id:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        companyName:
+          type: string
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/fieldValue'
+    recipient:
+      type: object
+      properties:
+        recipientId:
+          type: string
+        senderId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/fieldValue'
+    recipientAccount:
+      type: object
+      properties:
+        id:
+          type: string
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/fieldValue'
+    transfer:
+      type: object
+      properties:
+        quote:
+          $ref: '#/components/schemas/quote'
+        sender:
+          $ref: '#/components/schemas/sender'
+        recipient:
+          $ref: '#/components/schemas/recipient'
+        recipientAccount:
+          $ref: '#/components/schemas/recipientAccount'
+        disclaimers:
+          type: array
+          items:
+            type: string
+    errorArray:
+      type: array
+      items:
+        $ref: '#/components/schemas/error'
+    error:
+      required:
+      - code
+      - message
+      type: object
+      properties:
+        code:
+          pattern: ^[A-Z]{2}[0-9]{3}$
+          type: string
+          description: User-facing error code. Provide this to Brightwell support.
+        message:
+          type: string
+          description: User facing error message.
+        fieldId:
+          type: string
+          description: Name of the offending field.
+    getAccessTokenRequest:
+      required:
+      - audience
+      - client_id
+      - client_secret
+      - grant_type
+      type: object
+      properties:
+        client_id:
+          type: string
+          default: '{{client_id}}'
+        client_secret:
+          type: string
+          default: '{{client_secret}}'
+        audience:
+          type: string
+          default: '{{audience}}'
+        grant_type:
+          type: string
+          default: '{{grant_type}}'
+    getAccessTokenResponse200:
+      type: object
+      properties:
+        access_token:
+          type: string
+        scope:
+          type: string
+        expires_in:
+          type: integer
+        token_type:
+          type: string
+    getCountriesResponse200:
+      required:
+      - country
+      - currencies
+      type: object
+      properties:
+        country:
+          $ref: '#/components/schemas/country'
+        currencies:
+          type: array
+          items:
+            $ref: '#/components/schemas/currency'
+    fieldSetsObject:
+      required:
+      - fieldSets
+      type: object
+      properties:
+        fieldSets:
+          type: array
+          items:
+            $ref: '#/components/schemas/fieldSet'
+    id_accounts_body:
+      required:
+      - dstCountryIso3Code
+      - dstCurrencyIso3Code
+      - transferMethod
+      type: object
+      properties:
+        dstCountryIso3Code:
+          $ref: '#/components/schemas/string3uc'
+        dstCurrencyIso3Code:
+          $ref: '#/components/schemas/string3uc'
+        transferMethod:
+          $ref: '#/components/schemas/transferMethods'
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/fieldValue'
+    transfers_body:
+      allOf:
+      - $ref: '#/components/schemas/baseField'
+      - type: object
+        properties:
+          quoteBy:
+            $ref: '#/components/schemas/quoteBy'
+          amount:
+            type: number
+          senderId:
+            type: string
+          recipientId:
+            type: string
+          recipientAccountId:
+            type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
