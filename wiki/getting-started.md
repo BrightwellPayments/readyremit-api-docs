@@ -9,6 +9,8 @@ Welcome to ReadyRemit v1, a cloud service that performs [remittances](https://en
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-map.png" width=700 loading="lazy"></div>
 
+For inquiries about ReadyRemit, click [Contact Us](/wiki/contact-us).
+
 # About this version
 
 ReadyRemit v1 is a new service, currently suitable for early adopters. The `v1` is called the *version number*. It corresponds to the `v1` in REST API endpoints like this:
@@ -22,15 +24,6 @@ In general, a version number means that, although the API (while retaining the v
 However, during the ReadyRemit early-adoption phase (Spring 2022), in response to suggestions from early adopters, `v1` may experience improvements that are not backward compatible.
 
 All same-version changes will be described in dated [Changelog](https://developer.readyremit.com/changelog) posts.
-
-# Signing up for the service
-
-To enable your fintech applications to leverage ReadyRemit, contact Brightwell via the *Get in touch* form on the <a href="https://brightwell.com/contact-us/" target="_blank">Brightwell Contact</a> page. Fill in your name and email, mention *ReadyRemit* in the comment, and click Submit. Once you sign up, Brightwell will provide you with the following:
-
-* *client_id*, *client_secret*, *audience*, and *grant_type* values for each application that accesses ReadyRemit. 
-* A *senderId* for each sender entity you register with ReadyRemit.
-
-The first set of values are required for authentication.
 
 # Accessing the service
 
