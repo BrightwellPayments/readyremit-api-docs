@@ -5,11 +5,9 @@ slug: getting-started
 category: 6202c91258ac9600635fb56b
 ---
 
-Welcome to ReadyRemit v1, a cloud service that performs [remittances](https://en.wikipedia.org/wiki/Remittance) on cross-border [corridors](https://remittanceprices.worldbank.org/en/countrycorridors) for [fintech](https://en.wikipedia.org/wiki/Financial_technology) applications:
+Welcome to ReadyRemit v1, a cloud service that performs [remittances](https://en.wikipedia.org/wiki/Remittance) on cross-border [corridors](https://remittanceprices.worldbank.org/en/countrycorridors) for [fintech](https://en.wikipedia.org/wiki/Financial_technology) applications. Click [Contact Us](/wiki/contact-us) to learn more.
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-map.png" width=700 loading="lazy"></div>
-
-For inquiries about ReadyRemit, click [Contact Us](/wiki/contact-us).
 
 # About this version
 
