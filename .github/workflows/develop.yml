@@ -16,7 +16,7 @@ jobs:
            
           # OPTIONAL CONFIG, use if necessary
           oas-file-path: './postman/schemas/schema.yaml'
-          api-version: 'v0.1.0'
+          api-version: 'v1.0.0'
       - name: Release new version to NPM
         run: npx rdme docs wiki --version=1 --key ${{ secrets.README_API_KEY }}
       
