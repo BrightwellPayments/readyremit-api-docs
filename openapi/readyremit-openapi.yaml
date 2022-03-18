@@ -8,7 +8,7 @@ info:
     See [ReadyRemit Developer Portal](https://developer.readyremit.com/).
   version: "1.0"
 servers:
-- url: https://apim-readyremit-dev-eastus-001.azure-api.net/readyremit/v1
+- url: https://dev-api.readyremit.com
 security:
 - bearerAuth: []
 paths:
@@ -67,9 +67,7 @@ paths:
                     error_description: Grant type 'abc' not allowed for the client.
                     error_uri: https://auth0.com/docs/clients/client-grant-types
       security: []
-    servers:
-    - url: https://readyremit.us.auth0.com
-  /banks:
+  /readyremit/v1/banks:
     get:
       tags:
       - Banks and Branches
@@ -106,7 +104,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-  /banks/{id}/branches:
+  /readyremit/v1/banks/{id}/branches:
     get:
       tags:
       - Banks and Branches
@@ -129,7 +127,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/idNameArray'
-  /countries-and-currencies:
+  /readyremit/v1/countries-and-currencies:
     get:
       tags:
       - Helpers
@@ -157,7 +155,7 @@ paths:
                       iso3Code: INR
                       symbol: ₹
                       decimalPlaces: 2
-  /quote:
+  /readyremit/v1/quote:
     get:
       tags:
       - Helpers
@@ -218,12 +216,48 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/quote'
-  /recipient-fields:
+              examples:
+                success:
+                  summary: 200 OK
+                  value:
+                    sendAmount:
+                      value: 100000
+                      currency:
+                        name: US Dollar
+                        iso3Code: USD
+                        symbol: $
+                        decimalPlaces: 2
+                    receiveAmount:
+                      value: 7445765
+                      currency:
+                        name: Indian rupee
+                        iso3Code: INR
+                        symbol: ₹
+                        decimalPlaces: 2
+                    rate: 74.4576574896
+                    adjustments:
+                    - label: Transfer Fee
+                      amount:
+                        value: 879
+                        currency:
+                          name: US Dollar
+                          iso3Code: USD
+                          symbol: $
+                          decimalPlaces: 2
+                    totalCost:
+                      value: 100879
+                      currency:
+                        name: US Dollar
+                        iso3Code: USD
+                        symbol: $
+                        decimalPlaces: 2
+                    disclosures: []
+  /readyremit/v1/recipient-fields:
     get:
       tags:
       - Recipients
       summary: Get Recipient Fields
-      description: Given a corridor, this operation returns the required and optional fields for a recipient record. See [Custom fields](https://developer.readyremit.com/reference/about-the-api#custom-fields).
+      description: Given a corridor, this operation returns the required and optional fields for a recipient record. See [Custom fields](https://developer.readyremit.com/reference/about-the-reference#custom-fields).
       operationId: getRecipientFields
       parameters:
       - name: dstCountryIso3Code
@@ -302,7 +336,7 @@ paths:
                         fieldId: COMPANY_NAME
                         name: Company Name
                         isRequired: false
-  /recipients:
+  /readyremit/v1/recipients:
     get:
       tags:
       - Recipients
@@ -352,7 +386,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/errorArray'
-  /recipients/{id}:
+  /readyremit/v1/recipients/{id}:
     get:
       tags:
       - Recipients
@@ -421,12 +455,12 @@ paths:
       responses:
         "200":
           description: 200 Success
-  /recipient-account-fields:
+  /readyremit/v1/recipient-account-fields:
     get:
       tags:
       - Recipient Accounts
       summary: Get Recipient Account Fields
-      description: Given a corridor, this operation returns the required and optional fields for a recipient account record. See [Custom fields](https://developer.readyremit.com/reference/about-the-api#custom-fields).
+      description: Given a corridor, this operation returns the required and optional fields for a recipient account record. See [Custom fields](https://developer.readyremit.com/reference/about-the-reference#custom-fields).
       operationId: getRecipientAccountFields
       parameters:
       - name: dstCountryIso3Code
@@ -466,7 +500,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/fieldSetsObject'
-  /recipients/{id}/accounts:
+  /readyremit/v1/recipients/{id}/accounts:
     get:
       tags:
       - Recipient Accounts
@@ -509,7 +543,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/errorArray'
-  /recipients/{id}/accounts/{accId}:
+  /readyremit/v1/recipients/{id}/accounts/{accId}:
     get:
       tags:
       - Recipient Accounts
@@ -604,7 +638,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/errorArray'
-  /transfers:
+  /readyremit/v1/transfers:
     post:
       tags:
       - Transfers
@@ -657,7 +691,7 @@ components:
             $ref: '#/components/schemas/fieldValue'
     recipientTypes:
       type: string
-      description: See [recipientType](https://developer.readyremit.com/reference/about-the-api#recipienttype).
+      description: See [recipientType](https://developer.readyremit.com/reference/about-the-reference#recipienttype).
       default: MYSELF
       enum:
       - MYSELF
@@ -665,14 +699,14 @@ components:
       - BUSINESS
     transferMethods:
       type: string
-      description: See [transferMethod](https://developer.readyremit.com/reference/about-the-api#transfermethod).
+      description: See [transferMethod](https://developer.readyremit.com/reference/about-the-reference#transfermethod).
       default: BANK_ACCOUNT
       enum:
       - BANK_ACCOUNT
       - CASH_PICKUP
     quoteBy:
       type: string
-      description: See [quoteBy](https://developer.readyremit.com/reference/about-the-api#quoteby).
+      description: See [quoteBy](https://developer.readyremit.com/reference/about-the-reference#quoteby).
       default: SEND_AMOUNT
       enum:
       - SEND_AMOUNT
