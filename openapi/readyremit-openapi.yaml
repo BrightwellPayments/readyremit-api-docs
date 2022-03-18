@@ -1393,4 +1393,3 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-x-proxy-enabled: false
