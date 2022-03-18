@@ -8,7 +8,7 @@ info:
     See [ReadyRemit Developer Portal](https://developer.readyremit.com/).
   version: "1.0"
 servers:
-- url: https://dev-api.readyremit.com
+- url: https://dev-api.readyremit.com/v1
 security:
 - bearerAuth: []
 paths:
@@ -67,7 +67,7 @@ paths:
                     error_description: Grant type 'abc' not allowed for the client.
                     error_uri: https://auth0.com/docs/clients/client-grant-types
       security: []
-  /readyremit/v1/banks:
+  /banks:
     get:
       tags:
       - Banks and Branches
@@ -104,7 +104,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-  /readyremit/v1/banks/{id}/branches:
+  /banks/{id}/branches:
     get:
       tags:
       - Banks and Branches
@@ -128,7 +128,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/idNameArray'
-  /readyremit/v1/countries-and-currencies:
+  /countries-and-currencies:
     get:
       tags:
       - Helpers
@@ -156,7 +156,7 @@ paths:
                       iso3Code: INR
                       symbol: ₹
                       decimalPlaces: 2
-  /readyremit/v1/quote:
+  /quote:
     get:
       tags:
       - Helpers
@@ -253,7 +253,7 @@ paths:
                         symbol: $
                         decimalPlaces: 2
                     disclosures: []
-  /readyremit/v1/recipient-fields:
+  /recipient-fields:
     get:
       tags:
       - Recipients
@@ -350,7 +350,7 @@ paths:
                   - code: UnsupportedCountry
                     message: '''DestinationCountryISO3Code'' debe ser un país ISO 3 válido.'
                     fieldId: DestinationCountryISO3Code
-  /readyremit/v1/recipients:
+  /recipients:
     get:
       tags:
       - Recipients
@@ -468,7 +468,7 @@ paths:
                   - code: UnsupportedCountry
                     message: '''DestinationCountryISO3Code'' debe ser un país ISO 3 válido.'
                     fieldId: DestinationCountryISO3Code
-  /readyremit/v1/recipients/{id}:
+  /recipients/{id}:
     get:
       tags:
       - Recipients
@@ -573,7 +573,7 @@ paths:
                   - code: RecipientNotFound
                     message: Destinataria no encontrada.
                     description: Recipient cannot be found.
-  /readyremit/v1/recipient-account-fields:
+  /recipient-account-fields:
     get:
       tags:
       - Recipient Accounts
@@ -709,7 +709,7 @@ paths:
                   - code: UnsupportedCountry
                     message: '''DestinationCountryISO3Code'' debe ser un país ISO 3 válido.'
                     fieldId: DestinationCountryISO3Code
-  /readyremit/v1/recipients/{id}/accounts:
+  /recipients/{id}/accounts:
     get:
       tags:
       - Recipient Accounts
@@ -795,7 +795,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/errorArray'
-  /readyremit/v1/recipients/{id}/accounts/{accId}:
+  /recipients/{id}/accounts/{accId}:
     get:
       tags:
       - Recipient Accounts
@@ -890,7 +890,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/errorArray'
-  /readyremit/v1/transfers:
+  /transfers:
     post:
       tags:
       - Transfers
