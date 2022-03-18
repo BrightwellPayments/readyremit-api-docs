@@ -841,7 +841,7 @@ paths:
       parameters:
       - name: id
         in: path
-        description: Recipient ID
+        description: Recipient identifier.
         required: true
         style: simple
         explode: false
@@ -849,7 +849,7 @@ paths:
           type: string
       - name: accId
         in: path
-        description: Recipient Account ID
+        description: Recipient account identifier.
         required: true
         style: simple
         explode: false
@@ -858,6 +858,32 @@ paths:
       responses:
         "200":
           description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/recipientAccount'
+              examples:
+                Success:
+                  summary: Success
+                  value:
+                    recipientAccountId: e27c7395-b46a-4b9b-89fd-cd6a3da7fd85
+                    accountNumber: "98237498327489273"
+                    fields:
+                    - id: bankId
+                      type: NUMBER
+                      value: "78"
+                    - id: branchId
+                      type: NUMBER
+                      value: "99"
+                    - id: accountNumber
+                      type: TEXT
+                      value: "1234556677"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorArray'
     put:
       tags:
       - Recipient Accounts
@@ -867,7 +893,7 @@ paths:
       parameters:
       - name: id
         in: path
-        description: Recipient ID
+        description: Recipient identifier.
         required: true
         style: simple
         explode: false
@@ -875,7 +901,7 @@ paths:
           type: string
       - name: accId
         in: path
-        description: Recipient Account ID
+        description: Recipient account identifier.
         required: true
         style: simple
         explode: false
@@ -903,7 +929,7 @@ paths:
       parameters:
       - name: id
         in: path
-        description: Recipient ID
+        description: Recipient identifier.
         required: true
         style: simple
         explode: false
@@ -911,7 +937,7 @@ paths:
           type: string
       - name: accId
         in: path
-        description: Recipient Account ID
+        description: Recipient account identifier.
         required: true
         style: simple
         explode: false
