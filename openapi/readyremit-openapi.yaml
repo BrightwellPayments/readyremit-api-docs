@@ -714,7 +714,7 @@ paths:
       tags:
       - Recipient Accounts
       summary: Get Recipient Accounts
-      description: This operation returns an array of recipient account records associated with the specified Recipient ID.
+      description: This operation returns an array of recipient account records associated with the specified recipient identifier.
       operationId: getRecipientAccounts
       parameters:
       - name: id
@@ -728,6 +728,42 @@ paths:
       responses:
         "200":
           description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/recipient'
+              examples:
+                Success:
+                  summary: Success
+                  value:
+                    accounts:
+                    - recipientAccountId: e27c7395-b46a-4b9b-89fd-cd6a3da7fd85
+                      accountNumber: "98237498327489273"
+                      fields:
+                      - id: bankId
+                        type: NUMBER
+                        value: "78"
+                      - id: branchId
+                        type: NUMBER
+                        value: "99"
+                      - id: accountNumber
+                        type: TEXT
+                        value: "1234556677"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorArray'
+              examples:
+                NotFound:
+                  summary: Not Found
+                  value:
+                  - code: RecipientNotFound
+                    message: Destinataria no encontrada.
+                    description: Recipient cannot be found.
     post:
       tags:
       - Recipient Accounts
