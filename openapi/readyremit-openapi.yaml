@@ -156,6 +156,16 @@ paths:
                       iso3Code: INR
                       symbol: ₹
                       decimalPlaces: 2
+  /ping:
+    get:
+      tags:
+      - Helpers
+      summary: Ping
+      description: This operation returns "OK" if the service is alive and well.
+      operationId: ping
+      responses:
+        "200":
+          description: Success
   /quote:
     get:
       tags:
