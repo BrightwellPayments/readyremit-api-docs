@@ -34,8 +34,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/getAccessTokenResponse200'
               examples:
-                success:
-                  summary: 200 OK
+                Success:
+                  summary: Success
                   value:
                     access_token: abc
                     scope: test
@@ -48,8 +48,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/unauthorized401'
               examples:
-                unauthorized:
-                  summary: 401 unauthorized
+                Unauthorized:
+                  summary: Unauthorized
                   value:
                     error: access_denied
                     error_description: Unauthorized
@@ -60,8 +60,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/forbidden403'
               examples:
-                forbidden:
-                  summary: 403 Forbidden
+                Forbidden:
+                  summary: Forbidden
                   value:
                     error: unauthorized_client
                     error_description: Grant type 'abc' not allowed for the client.
@@ -109,7 +109,8 @@ paths:
       tags:
       - Banks and Branches
       summary: Get Bank Branches
-      description: Given a `bankId`, this operation returns an array of branches for that bank.
+      description: |
+        Given a `bankId`, this operation returns an array of branches for that bank. A `bankId` is 1-5 characters. If a `bankId` is 1-5 characters, but the `bankId` does not exist in the database, this operation returns a zero-length array. If the `bankId` is more than 5 characters, this operation returns a status code of 400.
       operationId: getBankBranches
       parameters:
       - name: id
@@ -144,8 +145,8 @@ paths:
                 items:
                   $ref: '#/components/schemas/getCountriesResponse200'
               examples:
-                success:
-                  summary: 200 OK
+                Success:
+                  summary: Success
                   value:
                   - country:
                       name: India
@@ -217,8 +218,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/quote'
               examples:
-                success:
-                  summary: 200 OK
+                Success:
+                  summary: Success
                   value:
                     sendAmount:
                       value: 100000
@@ -298,8 +299,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/fieldSetsObject'
               examples:
-                success:
-                  summary: 200 OK
+                Success:
+                  summary: Success
                   value:
                     fieldSets:
                     - fieldSetId: PERSONAL_INFORMATION
@@ -336,17 +337,30 @@ paths:
                         fieldId: COMPANY_NAME
                         name: Company Name
                         isRequired: false
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorArray'
+              examples:
+                UnsupportedCountry:
+                  summary: UnsupportedCountry
+                  value:
+                  - code: UnsupportedCountry
+                    message: '''DestinationCountryISO3Code'' debe ser un país ISO 3 válido.'
+                    fieldId: DestinationCountryISO3Code
   /readyremit/v1/recipients:
     get:
       tags:
       - Recipients
       summary: Get Recipients
-      description: This is the description.
+      description: This operation returns all the recipient records associated with the specified `senderId`.
       operationId: getRecipients
       parameters:
       - name: senderId
         in: query
-        description: This operation returns all the recipient records associated with the specified `senderId`.
+        description: Sender identifier.
         required: true
         style: form
         explode: true
@@ -361,6 +375,45 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/recipient'
+              examples:
+                Success:
+                  summary: Success
+                  value:
+                    recipients:
+                    - recipientId: 986d85c1-72b8-47ef-85d5-619b308fa6fa
+                      senderId: 85add64d-1e36-4acb-84e1-2de9b5644001
+                      recipientType: MYSELF
+                      firstName: Daniel
+                      lastName: Radcliffe
+                      fields:
+                      - id: NATIONALITY
+                        type: TEXT
+                        value: USA
+                    - recipientId: 6f5ba7ce-0d40-449e-81de-b12c618eb6dd
+                      senderId: 85add64d-1e36-4acb-84e1-2de9b5644001
+                      recipientType: MYSELF
+                      firstName: Moana
+                      lastName: Waialiki
+                      fields: []
+                    - recipientId: ee74b30a-a8a0-4f67-9e35-09c53d249b78
+                      senderId: 85add64d-1e36-4acb-84e1-2de9b5644001
+                      recipientType: MYSELF
+                      firstName: Emma
+                      lastName: Watson
+                      fields: []
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorArray'
+              examples:
+                Forbidden:
+                  summary: Forbidden
+                  value:
+                  - code: AccessDenied
+                    message: ¡Lo siento! Acceso denegado :(
+                    description: Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException' was thrown.
     post:
       tags:
       - Recipients
@@ -368,11 +421,23 @@ paths:
       description: This operation creates a recipient record.
       operationId: createRecipient
       requestBody:
-        description: This is the description.
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/createRecipientRequest'
+            example:
+              dstCountryIso3Code: IND
+              dstCurrencyIso3Code: INR
+              recipientType: MYSELF
+              transferMethod: BANK_ACCOUNT
+              senderId: 85add64d-1e36-4acb-84e1-2de9b5644001
+              fields:
+              - id: FIRST_NAME
+                type: TEXT
+                value: Moana
+              - id: LAST_NAME
+                type: TEXT
+                value: Waialiki
       responses:
         "201":
           description: Created
@@ -380,18 +445,35 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/recipient'
+              examples:
+                Success:
+                  summary: Success
+                  value:
+                    recipientId: 6f5ba7ce-0d40-449e-81de-b12c618eb6dd
+                    senderId: 85add64d-1e36-4acb-84e1-2de9b5644001
+                    recipientType: MYSELF
+                    firstName: Moana
+                    lastName: Waialiki
+                    fields: []
         "400":
-          description: Invalid or missing data
+          description: Bad Request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/errorArray'
+              examples:
+                UnsupportedCountry:
+                  summary: UnsupportedCountry
+                  value:
+                  - code: UnsupportedCountry
+                    message: '''DestinationCountryISO3Code'' debe ser un país ISO 3 válido.'
+                    fieldId: DestinationCountryISO3Code
   /readyremit/v1/recipients/{id}:
     get:
       tags:
       - Recipients
       summary: Get Recipient
-      description: This operation returns a recipient record.
+      description: This operation returns a recipient record for the specified `recipientId`.
       operationId: getRecipient
       parameters:
       - name: id
@@ -409,6 +491,29 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/recipient'
+              examples:
+                Success:
+                  summary: Success
+                  value:
+                    recipientId: 6f5ba7ce-0d40-449e-81de-b12c618eb6dd
+                    senderId: 85add64d-1e36-4acb-84e1-2de9b5644001
+                    recipientType: MYSELF
+                    firstName: Moana
+                    lastName: Waialiki
+                    fields: []
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorArray'
+              examples:
+                NotFound:
+                  summary: Not Found
+                  value:
+                  - code: RecipientNotFound
+                    message: Destinataria no encontrada.
+                    description: Recipient cannot be found.
     put:
       tags:
       - Recipients
@@ -441,7 +546,7 @@ paths:
       tags:
       - Recipients
       summary: Delete Recipient
-      description: This operation deletes a recipient record.
+      description: This operation deletes the recipient record corresponding to the specified `recipientId`.
       operationId: deleteRecipient
       parameters:
       - name: id
@@ -454,7 +559,20 @@ paths:
           type: string
       responses:
         "200":
-          description: 200 Success
+          description: Success
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorArray'
+              examples:
+                NotFound:
+                  summary: Not Found
+                  value:
+                  - code: RecipientNotFound
+                    message: Destinataria no encontrada.
+                    description: Recipient cannot be found.
   /readyremit/v1/recipient-account-fields:
     get:
       tags:
@@ -500,6 +618,97 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/fieldSetsObject'
+              examples:
+                Success:
+                  summary: Success
+                  description: This response body is nonsense test data.
+                  value:
+                    fieldSets:
+                    - fieldSetId: PERSONAL_INFORMATION
+                      fieldSetName: Personal information
+                      fields:
+                      - validationErrors: []
+                        fieldType: TEXT
+                        fieldId: LegacyApplicationsAdministrator
+                        name: District Optimization Analyst
+                        hintText: Human Paradigm Associate
+                        isRequired: false
+                    - fieldSetId: Global_Paradigm_Administrator
+                      fieldSetName: Global Paradigm Administrator
+                      fields:
+                      - validationErrors: []
+                        fieldType: UNKNOWN
+                        fieldId: CustomerOptimizationTechnician
+                        name: Central Infrastructure Officer
+                        hintText: Principal Group Executive
+                        isRequired: false
+                    - fieldSetId: Internal_Usability_Agent
+                      fieldSetName: Internal Usability Agent
+                      fields:
+                      - validationErrors: []
+                        fieldType: UNKNOWN
+                        fieldId: InternalResearchDirector
+                        name: Product Usability Orchestrator
+                        hintText: Investor Applications Agent
+                        isRequired: false
+                    - fieldSetId: Dynamic_Directives_Associate
+                      fieldSetName: Dynamic Directives Associate
+                      fields:
+                      - validationErrors: []
+                        fieldType: UNKNOWN
+                        fieldId: SeniorBrandConsultant
+                        name: Legacy Directives Technician
+                        hintText: Human Applications Consultant
+                        isRequired: false
+                    - fieldSetId: Dynamic_Quality_Specialist
+                      fieldSetName: Dynamic Quality Specialist
+                      fields:
+                      - validationErrors: []
+                        fieldType: UNKNOWN
+                        fieldId: ProductDataLiaison
+                        name: Future Applications Specialist
+                        hintText: Principal Accounts Manager
+                        isRequired: true
+                    - fieldSetId: Forward_Integration_Administrator
+                      fieldSetName: Forward Integration Administrator
+                      fields:
+                      - validationErrors: []
+                        fieldType: UNKNOWN
+                        fieldId: PrincipalIntegrationFacilitator
+                        name: National Mobility Strategist
+                        hintText: Future Division Officer
+                        isRequired: false
+                    - fieldSetId: Global_Research_Representative
+                      fieldSetName: Global Research Representative
+                      fields:
+                      - validationErrors: []
+                        fieldType: UNKNOWN
+                        fieldId: LeadIdentityAdministrator
+                        name: Central Response Liaison
+                        hintText: Corporate Accounts Representative
+                        isRequired: true
+                    - fieldSetId: Dynamic_Paradigm_Planner
+                      fieldSetName: Dynamic Paradigm Planner
+                      fields:
+                      - validationErrors: []
+                        fieldType: UNKNOWN
+                        fieldId: ForwardCreativeTechnician
+                        name: Human Brand Architect
+                        hintText: International Paradigm Agent
+                        isRequired: true
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorArray'
+              examples:
+                UnsupportedCountry:
+                  summary: UnsupportedCountry
+                  value:
+                  - code: UnsupportedCountry
+                    message: '''DestinationCountryISO3Code'' debe ser un país ISO 3 válido.'
+                    fieldId: DestinationCountryISO3Code
   /readyremit/v1/recipients/{id}/accounts:
     get:
       tags:
@@ -510,7 +719,7 @@ paths:
       parameters:
       - name: id
         in: path
-        description: Recipient ID
+        description: Recipient identifier.
         required: true
         style: simple
         explode: false
@@ -528,17 +737,60 @@ paths:
       parameters:
       - name: id
         in: path
-        description: Recipient ID
+        description: Recipient identifier.
         required: true
         style: simple
         explode: false
         schema:
           type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createRecipientAccountRequest'
+            example:
+              dstCountryIso3Code: IND
+              dstCurrencyIso3Code: INR
+              transferMethod: BANK_ACCOUNT
+              senderId: 85add64d-1e36-4acb-84e1-2de9b5644001
+              recipientId: 4e6e2df5-ee18-451a-b238-dba4b3b3c394
+              name: Destination Account
+              accountNumber: "98237498327489273"
+              fields:
+              - id: bankId
+                type: NUMBER
+                value: "78"
+              - id: branchId
+                type: NUMBER
+                value: "99"
+              - id: accountNumber
+                type: TEXT
+                value: "1234556677"
       responses:
         "201":
           description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/recipientAccount'
+              examples:
+                Success:
+                  summary: Success
+                  value:
+                    recipientAccountId: e27c7395-b46a-4b9b-89fd-cd6a3da7fd85
+                    accountNumber: "98237498327489273"
+                    fields:
+                    - id: bankId
+                      type: NUMBER
+                      value: "78"
+                    - id: branchId
+                      type: NUMBER
+                      value: "99"
+                    - id: accountNumber
+                      type: TEXT
+                      value: "1234556677"
         "400":
-          description: Invalid or missing data
+          description: Bad Request
           content:
             application/json:
               schema:
@@ -601,7 +853,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/recipientAccount'
         "400":
-          description: Invalid or missing data
+          description: Bad Request
           content:
             application/json:
               schema:
@@ -631,9 +883,9 @@ paths:
           type: string
       responses:
         "200":
-          description: 200 Success
+          description: Success
         "400":
-          description: 400 Invalid
+          description: Bad Request
           content:
             application/json:
               schema:
@@ -649,7 +901,7 @@ paths:
         "200":
           description: Success
         "400":
-          description: Invalid or missing data
+          description: Bad Request
           content:
             application/json:
               schema:
@@ -684,6 +936,27 @@ components:
         transferMethod:
           $ref: '#/components/schemas/transferMethods'
         senderId:
+          type: string
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/fieldValue'
+    createRecipientAccountRequest:
+      type: object
+      properties:
+        dstCountryIso3Code:
+          $ref: '#/components/schemas/string3uc'
+        dstCurrencyIso3Code:
+          $ref: '#/components/schemas/string3uc'
+        transferMethod:
+          $ref: '#/components/schemas/transferMethods'
+        senderId:
+          type: string
+        recipientId:
+          type: string
+        name:
+          type: string
+        accountNumber:
           type: string
         fields:
           type: array
@@ -926,7 +1199,9 @@ components:
     recipientAccount:
       type: object
       properties:
-        id:
+        recipientAccountId:
+          type: string
+        accountNumber:
           type: string
         fields:
           type: array
