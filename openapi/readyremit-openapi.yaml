@@ -1330,10 +1330,10 @@ components:
           default: '{{client_secret}}'
         audience:
           type: string
-          default: '{{audience}}'
+          default: readyremit-transferapi
         grant_type:
           type: string
-          default: '{{grant_type}}'
+          default: client_credentials
     getAccessTokenResponse200:
       type: object
       properties:
