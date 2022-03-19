@@ -3,7 +3,7 @@ openapi: 3.0.0
 info:
   title: API Reference
   description: |
-    **Filename**: readyremit-v1-20220317-openapi.yaml
+    **Filename**: readyremit-v1-20220318-openapi.yaml
 
     See [ReadyRemit Developer Portal](https://developer.readyremit.com/).
   version: "1.0"
