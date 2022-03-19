@@ -16,7 +16,7 @@ Click [Contact Us](/wiki/contact-us) to learn more.
 ReadyRemit v1 is a new service, currently suitable for early adopters. The `v1` is called the *version number*. It corresponds to the `v1` in REST API endpoints like this:
 
 ```
-/readyremit/v1/recipients
+/v1/recipients
 ```
 
 In general, a version number means that, although the API (while retaining the version number) may evolve to support new endpoints, query parameters, status codes, etc., the API will remain backward compatible. 
