@@ -3,7 +3,7 @@ openapi: 3.0.0
 info:
   title: API Reference
   description: |
-    **Filename**: readyremit-v1-20220318-openapi.yaml
+    **Filename**: readyremit-v1-20220322-openapi.yaml
 
     See [ReadyRemit Developer Portal](https://developer.readyremit.com/).
   version: "1.0"
@@ -798,10 +798,10 @@ paths:
               dstCountryIso3Code: IND
               dstCurrencyIso3Code: INR
               transferMethod: BANK_ACCOUNT
-              senderId: 85add64d-1e36-4acb-84e1-2de9b5644001
-              recipientId: 4e6e2df5-ee18-451a-b238-dba4b3b3c394
-              name: Destination Account
-              accountNumber: "98237498327489273"
+              recipientId: 60d7f7a2-a515-4530-b38a-af2b9131abb6
+              senderId: 55ef79b0-0f0f-459f-ad62-effcf516df7d
+              name: Moana Primary Account
+              accountNumber: "12312312312312312"
               fields:
               - id: bankId
                 type: NUMBER
@@ -811,7 +811,7 @@ paths:
                 value: "99"
               - id: accountNumber
                 type: TEXT
-                value: "1234556677"
+                value: "12312312312312312"
       responses:
         "201":
           description: Created
@@ -1022,9 +1022,9 @@ components:
           $ref: '#/components/schemas/string3uc'
         transferMethod:
           $ref: '#/components/schemas/transferMethods'
-        senderId:
-          type: string
         recipientId:
+          type: string
+        senderId:
           type: string
         name:
           type: string
