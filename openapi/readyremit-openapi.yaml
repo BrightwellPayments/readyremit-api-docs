@@ -3,7 +3,7 @@ openapi: 3.0.0
 info:
   title: API Reference
   description: |
-    **Filename**: readyremit-v1-20220322-openapi.yaml
+    **Filename**: readyremit-v1-20220323-openapi.yaml
 
     See [ReadyRemit Developer Portal](https://developer.readyremit.com/).
   version: "1.0"
@@ -132,9 +132,9 @@ paths:
     get:
       tags:
       - Helpers
-      summary: Get Countries
+      summary: Get Countries and Currencies
       description: This operation returns an array of countries available to the app. Each record includes a country object and an array of currency objects. The app can present these records to the end user who can choose a recipient country and currency.
-      operationId: getCountries
+      operationId: getCountriesAndCurrencies
       responses:
         "200":
           description: Success
@@ -143,7 +143,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/getCountriesResponse200'
+                  $ref: '#/components/schemas/getCountriesAndCurrenciesResponse200'
               examples:
                 Success:
                   summary: Success
@@ -1345,7 +1345,7 @@ components:
           type: integer
         token_type:
           type: string
-    getCountriesResponse200:
+    getCountriesAndCurrenciesResponse200:
       required:
       - country
       - currencies
