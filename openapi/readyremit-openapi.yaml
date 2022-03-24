@@ -3,7 +3,7 @@ openapi: 3.0.0
 info:
   title: API Reference
   description: |
-    **Filename**: readyremit-v1-20220323-openapi.yaml
+    **Filename**: readyremit-v1-20220324-openapi.yaml
 
     See [ReadyRemit Developer Portal](https://developer.readyremit.com/).
   version: "1.0"
@@ -171,7 +171,8 @@ paths:
       tags:
       - Helpers
       summary: Get Quote
-      description: Given a corridor and sender amount, this operation returns a quote including the exchanged amount, fees, and disclosures. The app can present the quote to the end user who can decide whether to proceed with the transfer.
+      description: |
+        Given a corridor and sender amount, this operation returns a quote including the exchanged amount, fees, and disclosures. The app can present the quote to the end user who can decide whether to proceed with the transfer. Quotes are accurate at the instance of the quote, but rates may change between the time of the quote and the time of the transfer. The Execute Transfer operation returns the final exchange rate.
       operationId: getQuote
       parameters:
       - name: dstCountryIso3Code
