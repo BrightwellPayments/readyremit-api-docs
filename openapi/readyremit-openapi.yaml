@@ -133,7 +133,7 @@ paths:
       tags:
       - Helpers
       summary: Get Countries and Currencies
-      description: This operation returns an array of countries available to the app. Each record includes a country object and an array of currency objects. The app can present these records to the end user who can choose a recipient country and currency.
+      description: This operation returns the array of countries for which the app owner has established corridors. Each record includes a country object and an array of currency objects. The app can present these records to the end user who can choose a recipient country and currency. The process of establishing a corridor involves the app owner, bank, remittance provider, and Brightwell.
       operationId: getCountriesAndCurrencies
       responses:
         "200":
@@ -1331,7 +1331,7 @@ components:
           default: '{{client_secret}}'
         audience:
           type: string
-          default: readyremit-transferapi
+          default: https://sandbox-api.readyremit.com
         grant_type:
           type: string
           default: client_credentials
