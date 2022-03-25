@@ -541,7 +541,7 @@ paths:
         schema:
           type: string
       requestBody:
-        description: List of fields to create the recipient
+        description: Array of fields to update the recipient.
         content:
           application/json:
             schema:
