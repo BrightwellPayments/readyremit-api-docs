@@ -1219,6 +1219,14 @@ components:
       properties:
         id:
           type: string
+          enum:
+          - COMPANY_NAME
+          - DATE_OF_BIRTH
+          - EMAIL
+          - FIRST_NAME
+          - LAST_NAME
+          - NATIONALITY
+          - PHONE_NUMBER
         type:
           type: string
           enum:
