@@ -1220,6 +1220,8 @@ components:
         id:
           type: string
           enum:
+          - bankId
+          - branchId
           - COMPANY_NAME
           - DATE_OF_BIRTH
           - EMAIL
