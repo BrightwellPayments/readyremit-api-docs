@@ -1235,6 +1235,7 @@ components:
           - DATE
           - PHONE_NUMBER
           - DROPDOWN
+          - NUMBER
           - TEXT
         value:
           type: object
