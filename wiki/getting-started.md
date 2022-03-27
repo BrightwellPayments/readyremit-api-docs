@@ -9,7 +9,7 @@ Welcome to ReadyRemit v1, a cloud service that performs [remittances](https://en
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-map.png" width=700 loading="lazy"></div>
 
-Click [Contact Us](/wiki/contact-us) to learn more. 
+Click [Contact Us](/docs/contact-us) to learn more. 
 
 # About this version
 
@@ -23,7 +23,7 @@ In general, a version number means that, although the API (while retaining the v
 
 However, during the ReadyRemit early-adoption phase (Spring 2022), in response to suggestions from early adopters, `v1` may experience improvements that are not backward compatible.
 
-See [Release Notes](https://developer.readyremit.com/changelog) for details.
+See [Release Notes](https://developer.readyremit.com/changelog) for details of changes.
 
 # Accessing the service
 
