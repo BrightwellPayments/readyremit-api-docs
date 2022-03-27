@@ -37,7 +37,7 @@ The ReadyRemit service supports sender and recipient records. Customers typicall
 
 A company that maintains balances for end users, and allows end users to remit these balances to their own personal accounts, might use the following data hierarchy:
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-sr-basic-hier.png" width=400 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/readyremit-sr-basic-hier.png" width=400 loading="lazy"></div>
 
 # Primary workflow
 
