@@ -39,6 +39,10 @@ A company that maintains balances for end users, and allows end users to remit t
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-sr-basic-hier.png" width=400 loading="lazy"></div>
 
+The service supports multiple senders, and it supports muliple sender and recipient accounts, too:
+
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-sr-multi-hier.png" width=400 loading="lazy"></div>
+
 # Primary workflow
 
 The primary workflow focuses on creating a new recipient in ReadyRemit, and sending funds from a previously defined sender account to the new recipient account. See the [API Reference](/reference/about-the-api-reference) for information about each API operation. Below are the workflow steps.
