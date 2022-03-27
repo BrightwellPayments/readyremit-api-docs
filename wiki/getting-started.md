@@ -23,7 +23,7 @@ In general, a version number means that, although the API (while retaining the v
 
 However, during the ReadyRemit early-adoption phase (Spring 2022), in response to suggestions from early adopters, `v1` may experience improvements that are not backward compatible.
 
-All same-version changes will be described in dated [Changelog](https://developer.readyremit.com/changelog) posts.
+See [Release Notes](https://developer.readyremit.com/changelog) for details.
 
 # Accessing the service
 
