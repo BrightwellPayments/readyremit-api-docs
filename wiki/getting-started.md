@@ -25,7 +25,7 @@ However, during the ReadyRemit early-adoption phase (Spring 2022), in response t
 
 See [Release Notes](https://developer.readyremit.com/changelog) for details of changes.
 
-# Accessing the service
+# Data structures
 
 The ReadyRemit service is accessible via a REST API which enables client applications to (1) build relevant forms for end-user input, (2) instantiate receiver and receiver-account objects in ReadyRemit, and (3) make cross-border payments from senders to recipients:
 
