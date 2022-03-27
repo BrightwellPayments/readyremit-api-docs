@@ -35,8 +35,6 @@ The ReadyRemit service supports sender and recipient records. Customers typicall
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-senders-recipients.png" width=600 loading="lazy"></div>
 
-So, early adopters manually submit information about sender entities to Brightwell in exchange for *senderIds* required by some REST API operations.
-
 # Primary workflow
 
 The primary workflow focuses on creating a new recipient in ReadyRemit, and sending funds from a previously defined sender account to the new recipient account. See the [API Reference](/reference/about-the-api-reference) for information about each API operation. Below are the workflow steps.
