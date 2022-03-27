@@ -31,7 +31,7 @@ The ReadyRemit service is accessible via a REST API which enables client applica
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-use-ops.png" width=600 loading="lazy"></div>
 
-The ReadyRemit service supports recipient and sender records. However, while the ReadyRemit REST API includes operations for dynamically creating, getting, updating, and deleting recipient records, it does not yet include the same operations for sender records:
+The ReadyRemit service supports sender and recipient records. Customers typically register one or more sender records (and acquire the same number of senderIds) when they sign up for the service. Registering a single sender representing an entire *payer* company is not uncommon. Regarding recipient records, the ReadyRemit REST API includes operations for dynamically creating, getting, updating, and deleting recipient records:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-senders-recipients.png" width=700 loading="lazy"></div>
 
