@@ -35,6 +35,10 @@ The ReadyRemit service supports sender and recipient records. Customers typicall
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-senders-recipients.png" width=600 loading="lazy"></div>
 
+A company that maintains balances for end users, and allows end users to remit these balances to their own personal accounts, might use the following data hierarchy:
+
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-sr-basic-hier.png" width=400 loading="lazy"></div>
+
 # Primary workflow
 
 The primary workflow focuses on creating a new recipient in ReadyRemit, and sending funds from a previously defined sender account to the new recipient account. See the [API Reference](/reference/about-the-api-reference) for information about each API operation. Below are the workflow steps.
