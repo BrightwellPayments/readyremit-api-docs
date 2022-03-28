@@ -35,13 +35,9 @@ The ReadyRemit service supports sender and recipient records. Customers typicall
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-senders-recipients.png" width=600 loading="lazy"></div>
 
-A company that maintains balances for end users, and allows end users to remit these balances to their own personal accounts, might use the following data hierarchy:
+A company that maintains balances for end users, and allows end users to remit these balances to their own personal accounts, might use a single sender record and one recipient record for each end user. Each sender and recipient can be associated with one or many accounts:
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-sr-basic-hier.png" width=400 loading="lazy"></div>
-
-The service supports muliple sender and recipient accounts, too:
-
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-sr-multi-hier.png" width=400 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-sr-hierarchy.png" width=400 loading="lazy"></div>
 
 # Primary workflow
 
