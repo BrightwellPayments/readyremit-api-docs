@@ -39,7 +39,7 @@ A company that maintains balances for end users, and allows end users to remit t
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-sr-basic-hier.png" width=400 loading="lazy"></div>
 
-The service supports multiple senders, and muliple sender and recipient accounts, too:
+The service supports muliple sender and recipient accounts, too:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-sr-multi-hier.png" width=400 loading="lazy"></div>
 
