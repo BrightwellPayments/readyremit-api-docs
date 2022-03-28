@@ -35,7 +35,7 @@ The ReadyRemit service supports sender and recipient records. Customers typicall
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-senders-recipients.png" width=600 loading="lazy"></div>
 
-A company that maintains balances for end users, and allows end users to remit these balances to their own personal accounts, might use a single sender record and one recipient record for each end user. Each sender and recipient can be associated with one or many accounts:
+A company that maintains balances for end users, and allows end users to remit these balances via corridors that transcend national boundaries and currencies to their own personal accounts, might use a single sender record and one recipient record for each end user. Each sender and recipient can be associated with one or many accounts:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-sr-hierarchy.png" width=400 loading="lazy"></div>
 
