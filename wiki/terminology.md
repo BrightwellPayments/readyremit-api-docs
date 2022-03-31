@@ -99,7 +99,7 @@ sss
 
 ##  Prefunding Account
 
-sss
+* 10-digit
 
 ##  Pricing
 
@@ -119,7 +119,8 @@ sss
 
 ##  Recipient Bank Account
 
-sss
+* Examples include Mastercard, Visa.
+* Cutoff time
 
 ##  Reconciliation
 
@@ -152,6 +153,17 @@ sss
 ##  Settlement
 
 sss
+
+##  Settlement Account
+
+Funds move from prefunding accounts to settlement accounts. A related report might look like this:
+
+```
+Transfer to Mastercard settlement account - Pockyt pre-funding - Wire 1.13.22	 $  900.00	xxxxx000020
+Transfer from Pockyt pre-funding account - 1.12.22	 $ (900.00)	xxxx001001
+Transfer to Mastercard settlement account - InCruises pre-funding - Wire 1.13.22	 $  450.00	xxxx000455
+Transfer from InCruises pre-funding account - 1.12.22	 $ (450.00)
+```
 
 ##  Source Country
 
