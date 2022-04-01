@@ -27,14 +27,7 @@ However, during the ReadyRemit early-adoption phase (Spring 2022), in response t
 
 Every Friday morning at 8 am ET (starting April 1, 2022), the ReadyRemit Team pushes a new ReadyRemit release to the [sandbox](https://sandbox-api.readyremit.com) environment and publishes a corresponding [release note](https://developer.readyremit.com/changelog).
 
-# Use cases
-
-Broadly speaking, ReadyRemit targets two use case:
-
-1. Your service as the sender
-1. Your users as the senders
-
-## Your service as the sender
+# Use Case: Your service as sender
 
 <span style="color:red;">Note: The ReadyRemit Team is targeting this use case first.</span>
 
@@ -69,7 +62,7 @@ To implement this use case, follow these steps:
 
 1. I will finish this workflow by Monday April 4, 2022 08:00:00.
 
-## Your users as the senders
+# Use Case: Your users as senders
 
 <span style="color:red;">Note: The ReadyRemit Team is not targeting this use case yet.</span>
 
