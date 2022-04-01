@@ -42,6 +42,27 @@ In this case, ReadyRemit represents your service with a *Sender* record and one 
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-service-as-the-sender.png" width=800 loading="lazy"></div>
 
+To implement this use case, follow these steps:
+
+1. Obtain values from Brightwell for the following properties:
+
+    ```
+    {
+      "client_id": "",
+      "client_secret": "",
+      "audience": "",
+      "grant_type": ""
+    }
+    ```
+
+1. Supply Brightwell with sender account information, and obtain a `BUSINESS` *senderId*:
+
+    ```
+    "senderId": "00000000-0000-0000-0000-000000000000"
+    ```
+
+1. sss
+
 ## Your users as the senders
 
 <span style="color:red;">Note: The ReadyRemit Team is not targeting this use case yet.</span>
