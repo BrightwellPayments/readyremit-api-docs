@@ -54,4 +54,4 @@ In this case, ReadyRemit represents each of your end users with a *Sender* recor
 
 A ReadyRemit corridor is a relationship between a sender account and a recipient account:
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-corridor.png" width=400 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-corridor-2.png" width=400 loading="lazy"></div>
