@@ -25,7 +25,7 @@ However, during the ReadyRemit early-adoption phase (Spring 2022), in response t
 
 # About releases
 
-[Release Notes](https://developer.readyremit.com/changelog))
+Every Friday morning at 8 am ET (starting April 1, 2022), the ReadyRemit Team pushes a new ReadyRemit release to the [sandbox](https://sandbox-api.readyremit.com) environment and publishes a corresponding [release note](https://developer.readyremit.com/changelog)).
 
 # Data structures
 
