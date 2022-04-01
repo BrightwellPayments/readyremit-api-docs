@@ -67,7 +67,7 @@ To implement this use case, follow these steps:
     }
     ```
 
-1. sss
+1. I will finish this workflow by Monday April 4, 2022 08:00:00.
 
 ## Your users as the senders
 
