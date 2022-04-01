@@ -55,11 +55,11 @@ To implement this use case, follow these steps:
     }
     ```
 
-1. Supply Brightwell with sender information. Brightwell uses the information to create a ReadyRemit *Sender* record and corresponding *Sender Account* record for your client service:
+1. Supply Brightwell with sender information. Brightwell uses the information to create a ReadyRemit *Sender* record and a *Sender Account* record for your client service:
 
     <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-sender-sender-account-2.png" width=400 loading="lazy"></div>
 
-    And, Brightwell supplies you with a senderId for use in certain API operations:
+    And, Brightwell supplies you with the corresponding *senderId* for use in certain API operations:
 
     ```
     {
