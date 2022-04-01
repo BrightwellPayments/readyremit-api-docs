@@ -49,3 +49,9 @@ In this case, ReadyRemit represents your service with a *Sender* record and one 
 In this case, ReadyRemit represents each of your end users with a *Sender* record and one or more *Sender Account* records, and ReadyRemit represents each of your end user's recipients with a *Recipient* record and one or more *Recipient Account* records.
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-users-as-the-senders.png" width=800 loading="lazy"></div>
+
+# Corridors
+
+A ReadyRemit corridor is a relationship between a sender account and a recipient account:
+
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-corridor.png" width=400 loading="lazy"></div>
