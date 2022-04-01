@@ -35,13 +35,7 @@ In this use case, ReadyRemit represents your service with a *Sender* record and 
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-service-as-the-sender.png" width=800 loading="lazy"></div>
 
-## Corridors
-
-A ReadyRemit corridor is a relationship between a sender account and a recipient account:
-
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-corridor-2.png" width=400 loading="lazy"></div>
-
-## Client service workflow
+## Steps for implementation
 
 To implement this use case, follow these steps:
 
