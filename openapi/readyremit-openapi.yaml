@@ -19,7 +19,7 @@ paths:
       - Authentication
       summary: Get Access Token
       description: |
-        When you sign up to use ReadyRemit, Brightwell provides (for each of your apps) a `client_id`, `client_secret`, `audience`, and `grant_type` which the app exchanges (via this operation) for an `access_token` reauired by the other ReadyRemit REST API operations.
+        When you sign up to use ReadyRemit, Brightwell provides (for each of your apps) a `client_id`, `client_secret`, `audience`, and `grant_type` which the app exchanges (via this operation) for an `access_token` required by the other ReadyRemit REST API operations.
       operationId: getAccessToken
       requestBody:
         description: Object containing the four required fields.
