@@ -27,7 +27,7 @@ However, during the ReadyRemit early-adoption phase (Spring 2022), in response t
 
 Every Friday morning at 8 am ET (starting April 1, 2022), the ReadyRemit Team pushes a new ReadyRemit release to the [sandbox](https://sandbox-api.readyremit.com) environment and publishes a corresponding [release note](https://developer.readyremit.com/changelog).
 
-# Your service as sender
+# Your service as the sender
 
 <span style="color:red;">Note: The ReadyRemit Team is targeting this use case first.</span>
 
@@ -35,9 +35,9 @@ In this use case, ReadyRemit represents your service with a *Sender* record and 
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-service-as-the-sender.png" width=800 loading="lazy"></div>
 
-## How to implement
+The following sections explain one way to implement this use case in a Node.js environment. Implementations in other environments are similar.
 
-To implement this use case, follow these steps:
+## Authenticate
 
 1. Obtain values from Brightwell for the following properties:
 
@@ -49,6 +49,8 @@ To implement this use case, follow these steps:
       "grant_type": ""
     }
     ```
+
+## Establish the sender
 
 1. Supply Brightwell with sender information. Brightwell uses the information to create a ReadyRemit *Sender* record and a *Sender Account* record for your client service:
 
@@ -64,7 +66,7 @@ To implement this use case, follow these steps:
 
 1. I will finish this workflow by Monday April 4, 2022 08:00:00.
 
-# Your users as senders
+# Your users as the senders
 
 <span style="color:red;">Note: The ReadyRemit Team is not targeting this use case yet.</span>
 
