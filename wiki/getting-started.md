@@ -31,7 +31,14 @@ Every Friday morning at 8 am ET (starting April 1, 2022), the ReadyRemit Team pu
 
 Broadly speaking, ReadyRemit targets two use case:
 
-1. Your service is the sender, and your end users are the recipients. In this case, ReadyRemit represents your service with a Sender record and one or more Sender Account records. ReadyRemit represents each of your end users with a Recipient record and one or more Recipient Account records.
+1. Your service as the sender
+1. Your users as the senders
 
-1. Your users are the senders. In this case, ReadyRemit represents each of your end users with a Sender record and one or more Sender Account records. ReadyRemit represents each of your end user's recipients with a Recipient record and one or more Recipient Account records.
+## Your service as the sender
+
+In this case, ReadyRemit represents your service with a Sender record and one or more Sender Account records. ReadyRemit represents each of your end users with a Recipient record and one or more Recipient Account records.
+
+## Your users as the senders
+
+In this case, ReadyRemit represents each of your end users with a Sender record and one or more Sender Account records. ReadyRemit represents each of your end user's recipients with a Recipient record and one or more Recipient Account records.
 
