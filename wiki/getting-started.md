@@ -58,7 +58,9 @@ To implement this use case, follow these steps:
 1. Supply Brightwell with sender account information, and obtain a `BUSINESS` *senderId*:
 
     ```
-    "senderId": "00000000-0000-0000-0000-000000000000"
+    {
+      "senderId": "00000000-0000-0000-0000-000000000000"
+    }
     ```
 
 1. sss
