@@ -27,11 +27,11 @@ However, during the ReadyRemit early-adoption phase (Spring 2022), in response t
 
 Every Friday morning at 8 am ET (starting April 1, 2022), the ReadyRemit Team pushes a new ReadyRemit release to the [sandbox](https://sandbox-api.readyremit.com) environment and publishes a corresponding [release note](https://developer.readyremit.com/changelog).
 
-# Use Case: Your service as sender
+# Your service as sender
 
 <span style="color:red;">Note: The ReadyRemit Team is targeting this use case first.</span>
 
-In this case, ReadyRemit represents your service with a *Sender* record and one or more *Sender Account* records, and ReadyRemit represents each of your end users with a *Recipient* record and one or more *Recipient Account* records.
+In this use case, ReadyRemit represents your service with a *Sender* record and one or more *Sender Account* records, and ReadyRemit represents each of your end users with a *Recipient* record and one or more *Recipient Account* records.
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-service-as-the-sender.png" width=800 loading="lazy"></div>
 
@@ -62,11 +62,11 @@ To implement this use case, follow these steps:
 
 1. I will finish this workflow by Monday April 4, 2022 08:00:00.
 
-# Use Case: Your users as senders
+# Your users as senders
 
 <span style="color:red;">Note: The ReadyRemit Team is not targeting this use case yet.</span>
 
-In this case, ReadyRemit represents each of your end users with a *Sender* record and one or more *Sender Account* records, and ReadyRemit represents each of your end user's recipients with a *Recipient* record and one or more *Recipient Account* records. Your database may not have any information about your users' recipients, so the ReadyRemit *Recipient* record provides your service with a convenient place to store general profile information about these out-of-database recipients.
+In this use case, ReadyRemit represents each of your end users with a *Sender* record and one or more *Sender Account* records, and ReadyRemit represents each of your end user's recipients with a *Recipient* record and one or more *Recipient Account* records. Your database may not have any information about your users' recipients, so the ReadyRemit *Recipient* record provides your service with a convenient place to store general profile information about these out-of-database recipients.
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-users-as-the-senders.png" width=800 loading="lazy"></div>
 
