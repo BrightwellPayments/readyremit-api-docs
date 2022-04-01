@@ -19,9 +19,13 @@ ReadyRemit v1 is a new service, currently suitable for early adopters. The `v1` 
 /v1/recipients
 ```
 
-In general, a version number like `v1` means that, although the ReadyRemit service may experience several subsequent releases (as documented in to support new endpoints, query parameters, status codes, etc., the API will remain backward compatible.
+In general, a version number like `v1` means that, although the ReadyRemit service may experience several subsequent releases to support new endpoints, query parameters, status codes, etc., the API will remain backward compatible.
 
 However, during the ReadyRemit early-adoption phase (Spring 2022), in response to suggestions from early adopters, `v1` may experience improvements that are not backward compatible.
+
+# About releases
+
+[Release Notes](https://developer.readyremit.com/changelog))
 
 # Data structures
 
