@@ -46,7 +46,7 @@ In this case, ReadyRemit represents your service with a *Sender* record and one 
 
 <span style="color:red;">Note: The ReadyRemit Team is not targeting this use case yet.</span>
 
-In this case, ReadyRemit represents each of your end users with a *Sender* record and one or more *Sender Account* records, and ReadyRemit represents each of your end user's recipients with a *Recipient* record and one or more *Recipient Account* records.
+In this case, ReadyRemit represents each of your end users with a *Sender* record and one or more *Sender Account* records, and ReadyRemit represents each of your end user's recipients with a *Recipient* record and one or more *Recipient Account* records. Your database may not have any information about your users' recipients, so the ReadyRemit *Recipient* record provides your service with a convenient place to store general profile information about these recipients.
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-users-as-the-senders.png" width=800 loading="lazy"></div>
 
