@@ -35,7 +35,7 @@ In this use case, ReadyRemit represents your service with a *Sender* record and 
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-service-as-the-sender.png" width=800 loading="lazy"></div>
 
-## Steps for implementation
+## How to implement
 
 To implement this use case, follow these steps:
 
