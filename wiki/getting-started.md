@@ -36,9 +36,9 @@ Broadly speaking, ReadyRemit targets two use case:
 
 ## Your service as the sender
 
-In this case, ReadyRemit represents your service with a Sender record and one or more Sender Account records. ReadyRemit represents each of your end users with a Recipient record and one or more Recipient Account records.
+In this case, ReadyRemit represents your service with a *Sender* record and one or more *Sender Account* records, and ReadyRemit represents each of your end users with a *Recipient* record and one or more *Recipient Account* records.
 
 ## Your users as the senders
 
-In this case, ReadyRemit represents each of your end users with a Sender record and one or more Sender Account records. ReadyRemit represents each of your end user's recipients with a Recipient record and one or more Recipient Account records.
+In this case, ReadyRemit represents each of your end users with a *Sender* record and one or more *Sender Account* records, and ReadyRemit represents each of your end user's recipients with a *Recipient* record and one or more *Recipient Account* records.
 
