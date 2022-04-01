@@ -37,6 +37,10 @@ Compliance Service Providers perform compliance operations like Know Your Custom
 
 A corridor is a combination of source currency, destination country, destination currency, and transfer method.
 
+## Customer
+
+A customer is a contracted entity consuming ReadyRemit products and services. Each customer has certain corridors enabled.
+
 ##  Customer Identification Program (CIP)
 
 See [Customer Identification Program](https://en.wikipedia.org/wiki/Customer_Identification_Program).
@@ -72,6 +76,10 @@ See [Electronic Fund Transfer Act](https://en.wikipedia.org/wiki/Electronic_Fund
 ##  Exchange Rate (XR or FX Rate)
 
 See [Exchange rate](https://en.wikipedia.org/wiki/Exchange_rate).
+
+## Funds Transfer Process
+
+See [Fundamentals of the Funds Transfer Process](https://www.fincen.gov/sites/default/files/shared/Appendix_D.pdf).
 
 ##  Indian Financial System Code (IFCS)
 
