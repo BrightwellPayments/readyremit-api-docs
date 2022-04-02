@@ -19,7 +19,7 @@ Click [Contact Us](/docs/contact-us) to become an early adopter.
 
 ## Interfaces
 
-Currently, ReadyRemit offers a [REST API](/reference). It does not yet offer language-specific SDKs.
+ReadyRemit offers a [REST API](/reference). Language-specific SDKs are on the roadmap.
 
 ## Sandbox
 
