@@ -41,8 +41,6 @@ Every Friday morning at 8 am ET (starting April 1, 2022), the ReadyRemit Team pu
 
 # Your service as the sender
 
-<span style="color:red;">Note: The ReadyRemit Team is targeting this use case first.</span>
-
 In this use case, ReadyRemit represents your service with a *Sender* record and one or more *Sender Account* records, and ReadyRemit represents each of your end users with a *Recipient* record and one or more *Recipient Account* records:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-service-as-the-sender.png" width=800 loading="lazy"></div>
