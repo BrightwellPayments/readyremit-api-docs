@@ -15,6 +15,8 @@ Click [Contact Us](/docs/contact-us) to sign up.
 
 ReadyRemit makes existing [Brightwell](https://brightwell.com/) expertise available as a generic remittance service to financial technology companies targeting various use cases including [Your service as the sender](#your-service-as-the-sender) and [Your users as the senders](#your-users-as-the-senders).
 
+Currently, ReadyRemit is suitable for early adopters targeting [Your service as the sender](#your-service-as-the-sender) where your service (1) pushes money to end users, or (2) allows end users to pull money from your service.
+
 ## Versioning
 
 ReadyRemit v1 is a new service, currently suitable for early adopters. The `v1` is called the *version number*. It corresponds to the `v1` in REST API endpoints like this:
