@@ -11,9 +11,9 @@ Welcome to ReadyRemit, a cloud service that performs cross-border [remittances](
 
 # Overview
 
-ReadyRemit leverages core [Brightwell](https://brightwell.com/) expertise, and makes it available as a generic remittance service to financial technology companies targeting various use cases including [Your service as the sender](#your-service-as-the-sender) and [Your users as the senders](#your-users-as-the-senders).
+ReadyRemit leverages core [Brightwell](https://brightwell.com/) expertise, and makes it available as a generic remittance service to financial technology companies targeting various use cases including [Your service is the sender](#your-service-as-the-sender) and [Your users is the senders](#your-users-as-the-senders).
 
-Currently, ReadyRemit is suitable for early adopters targeting [Your service as the sender](#your-service-as-the-sender) where your service (1) pushes money to end users, or (2) allows end users to pull money from your service.
+Currently, ReadyRemit is suitable for early adopters targeting [Your service is the sender](#your-service-as-the-sender) where your service (1) pushes money to end users, or (2) allows end users to pull money from your service.
 
 Click [Contact Us](/docs/contact-us) to become an early adopter.
 
@@ -53,7 +53,7 @@ Brightwell also provides you with credentials (i.e. `client_id`, `client_secret`
 
 Note that this authentication workflow is independent of any authentication workflow your app performs for your end users.
 
-# Your service as the sender
+# Your service is the sender
 
 For this use case, your service is the sender, and your end users are the recipients. The use case supports transfers initiated by your service (e.g. payroll) and transfers initiated by end users (e.g. reward redemption). ReadyRemit represents your service with a *Sender* record and one or more *Sender Account* records, and ReadyRemit represents each of your end users with a *Recipient* record and one or more *Recipient Account* records:
 
@@ -73,7 +73,7 @@ Consider the relationships between *Senders* and *SenderAccounts*:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-senderid-sender-account-2.png" width=600 loading="lazy"></div>
 
-# Your users as the senders
+# Your users is the senders
 
 <span style="color:red;">Note: The ReadyRemit Team is not targeting this use case yet.</span>
 
