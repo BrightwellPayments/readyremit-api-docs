@@ -69,7 +69,7 @@ This diagram shows the *sender*-*recipient* relationship with relevant pseudo-co
 
 This diagram shows the *recipient*-*recipientAccount* relationship with relevant pseudo-code operations:
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipient-recipientaccount.png" height=350 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipient-recipientaccount-2.png" height=350 loading="lazy"></div>
 
 ## sender-senderAccount
 
