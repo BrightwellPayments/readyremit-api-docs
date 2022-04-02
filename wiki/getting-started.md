@@ -9,7 +9,7 @@ Welcome to ReadyRemit v1, a cloud service that performs [remittances](https://en
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-map.png" width=600 loading="lazy"></div>
 
-Click [Contact Us](/docs/contact-us) to sign up as an early adopter.
+Click [Contact Us](/docs/contact-us) to sign up.
 
 # Roadmap
 
