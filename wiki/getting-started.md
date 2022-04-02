@@ -59,32 +59,15 @@ For this use case, your service is the sender, and your end users are the recipi
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-service-as-the-sender.png" width=800 loading="lazy"></div>
 
-## Sender information
+## Sender and Sender Accounts
 
 In the diagram, note the *senderId*, *Sender* record, and sender *Account* record:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-senderid-sender-account-2.png" width=500 loading="lazy"></div>
 
 
+## Sender and Recipients
 
-## Sender-Recipient relationship
-
-
-## Establish the sender
-
-1. Supply Brightwell with sender information. Brightwell uses the information to create a ReadyRemit *Sender* record and a *Sender Account* record for your client service:
-
-    <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-sender-sender-account-2.png" width=400 loading="lazy"></div>
-
-    And, Brightwell supplies you with the corresponding *senderId* for use in certain API operations:
-
-    ```
-    {
-      "senderId": "12300000-0000-0000-0000-000000000321"
-    }
-    ```
-
-1. I will finish this workflow by Monday April 4, 2022 08:00:00.
 
 # Your users as the senders
 
