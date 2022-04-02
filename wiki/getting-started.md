@@ -59,14 +59,15 @@ For this use case, your service is the sender, and your end users are the recipi
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-service-as-the-sender.png" width=800 loading="lazy"></div>
 
+## Sender and Recipients
+
+## Recipients and Recipient Accounts
+
 ## Sender and Sender Accounts
 
 In the diagram above, note the *senderId*, *Sender* record, and *SenderAccount* record or records:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-senderid-sender-account-2.png" width=600 loading="lazy"></div>
-
-
-## Sender and Recipients
 
 
 # Your users as the senders
