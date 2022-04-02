@@ -9,9 +9,13 @@ Welcome to ReadyRemit v1, a cloud service that performs [remittances](https://en
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-map.png" width=600 loading="lazy"></div>
 
-Click [Contact Us](/docs/contact-us) to learn more. 
+Click [Contact Us](/docs/contact-us) to sign up as an early adopter.
 
-# Versioning
+# Roadmap
+
+ReadyRemit makes existing [Brightwell](https://brightwell.com/) expertise available as a generic cross-border payment service for financial technology companies targeting a variety of use cases. 
+
+## Versioning
 
 ReadyRemit v1 is a new service, currently suitable for early adopters. The `v1` is called the *version number*. It corresponds to the `v1` in REST API endpoints like this:
 
@@ -23,7 +27,7 @@ In general, a version number like `v1` means that, although the ReadyRemit servi
 
 However, during the ReadyRemit early-adoption phase (Spring 2022), in response to suggestions from early adopters, `v1` may experience improvements that are not backward compatible.
 
-# Releases
+## Releases
 
 Every Friday morning at 8 am ET (starting April 1, 2022), the ReadyRemit Team pushes a new ReadyRemit release to the [sandbox](https://sandbox-api.readyremit.com) environment and publishes a corresponding [release note](https://developer.readyremit.com/changelog).
 
