@@ -23,7 +23,7 @@ ReadyRemit offers a [REST API](/reference). Language-specific SDKs are on the ro
 
 ## Sandbox
 
-ReadyRemit is available to early adopters in a sandbox environment.
+ReadyRemit is available in a [sandbox](https://sandbox-api.readyremit.com) environment to [early adopters](/docs/contact-us).
 
 ## Versioning
 
