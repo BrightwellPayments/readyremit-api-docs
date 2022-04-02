@@ -63,6 +63,8 @@ For this use case, your service is the sender, and your end users are the recipi
 
 The following diagram shows the *sender*-*recipient* relationship, and the relevant API operations (using pseudo-code):
 
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-sender-recipient.png" height=200 loading="lazy"></div>
+
 ## recipient-recipientAccount
 
 The following diagram shows the *recipient*-*recipientAccount* relationship, and the relevant API operations (using pseudo-code):
