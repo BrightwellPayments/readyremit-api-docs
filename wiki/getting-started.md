@@ -67,7 +67,9 @@ The following diagram shows the *sender*-*recipient* relationship with relevant 
 
 ## recipient-recipientAccount
 
-The following diagram shows the *recipient*-*recipientAccount* relationship, and the relevant API operations (using pseudo-code):
+The following diagram shows the *recipient*-*recipientAccount* relationship with relevant pseudo-code operations:
+
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipient-recipientaccount.png" height=350 loading="lazy"></div>
 
 ## sender-senderAccount
 
