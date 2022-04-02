@@ -11,9 +11,9 @@ Welcome to ReadyRemit, a cloud service that performs cross-border [remittances](
 
 # Overview
 
-ReadyRemit leverages core [Brightwell](https://brightwell.com/) expertise, and makes it available as a generic remittance service to financial technology companies targeting various use cases including [Your service is the sender](#your-service-as-the-sender) and [Your users is the senders](#your-users-as-the-senders).
+ReadyRemit leverages core [Brightwell](https://brightwell.com/) expertise, and makes it available as a generic remittance service to financial technology companies targeting various use cases including [Your service is the sender](#your-service-is-the-sender) and [Your users are the senders](#your-users-are-the-senders).
 
-Currently, ReadyRemit is suitable for early adopters targeting [Your service is the sender](#your-service-as-the-sender) where your service (1) pushes money to end users, or (2) allows end users to pull money from your service.
+Currently, ReadyRemit is suitable for early adopters targeting [Your service is the sender](#your-service-is-the-sender) where your service (1) pushes money to end users, or (2) allows end users to pull money from your service.
 
 Click [Contact Us](/docs/contact-us) to become an early adopter.
 
@@ -73,7 +73,7 @@ Consider the relationships between *Senders* and *SenderAccounts*:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-senderid-sender-account-2.png" width=600 loading="lazy"></div>
 
-# Your users is the senders
+# Your users are the senders
 
 <span style="color:red;">Note: The ReadyRemit Team is not targeting this use case yet.</span>
 
