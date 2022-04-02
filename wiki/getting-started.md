@@ -13,7 +13,7 @@ Click [Contact Us](/docs/contact-us) to sign up.
 
 # Roadmap
 
-ReadyRemit makes existing [Brightwell](https://brightwell.com/) expertise available as a generic remittance service to financial technology companies targeting a variety of use cases. 
+ReadyRemit makes existing [Brightwell](https://brightwell.com/) expertise available as a generic remittance service to financial technology companies targeting various use cases including [Your service as the sender](#your-service-as-the-sender) and [Your users as the senders](#your-users-as-the-senders).
 
 ## Versioning
 
