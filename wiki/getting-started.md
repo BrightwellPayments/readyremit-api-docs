@@ -11,7 +11,7 @@ Welcome to ReadyRemit v1, a cloud service that performs [remittances](https://en
 
 Click [Contact Us](/docs/contact-us) to learn more. 
 
-# About versioning
+# Versioning
 
 ReadyRemit v1 is a new service, currently suitable for early adopters. The `v1` is called the *version number*. It corresponds to the `v1` in REST API endpoints like this:
 
@@ -23,7 +23,7 @@ In general, a version number like `v1` means that, although the ReadyRemit servi
 
 However, during the ReadyRemit early-adoption phase (Spring 2022), in response to suggestions from early adopters, `v1` may experience improvements that are not backward compatible.
 
-# About releases
+# Releases
 
 Every Friday morning at 8 am ET (starting April 1, 2022), the ReadyRemit Team pushes a new ReadyRemit release to the [sandbox](https://sandbox-api.readyremit.com) environment and publishes a corresponding [release note](https://developer.readyremit.com/changelog).
 
@@ -34,6 +34,8 @@ Every Friday morning at 8 am ET (starting April 1, 2022), the ReadyRemit Team pu
 In this use case, ReadyRemit represents your service with a *Sender* record and one or more *Sender Account* records, and ReadyRemit represents each of your end users with a *Recipient* record and one or more *Recipient Account* records:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-service-as-the-sender.png" width=800 loading="lazy"></div>
+
+
 
 The following sections explain one way to implement this use case in a Node.js environment. Implementations in other environments are similar.
 
