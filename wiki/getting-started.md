@@ -11,7 +11,7 @@ Welcome to ReadyRemit, a cloud service that performs cross-border [remittances](
 
 # Overview
 
-ReadyRemit makes existing [Brightwell](https://brightwell.com/) expertise available as a generic remittance service to financial technology companies targeting various use cases including [Your service as the sender](#your-service-as-the-sender) and [Your users as the senders](#your-users-as-the-senders).
+ReadyRemit leverages core [Brightwell](https://brightwell.com/) expertise, and makes it available as a generic remittance service to financial technology companies targeting various use cases including [Your service as the sender](#your-service-as-the-sender) and [Your users as the senders](#your-users-as-the-senders).
 
 Currently, ReadyRemit is suitable for early adopters targeting [Your service as the sender](#your-service-as-the-sender) where your service (1) pushes money to end users, or (2) allows end users to pull money from your service.
 
