@@ -55,7 +55,7 @@ Note that this authentication workflow is independent of any authentication work
 
 # Your service as the sender
 
-In this use case, ReadyRemit represents your service with a *Sender* record and one or more *Sender Account* records, and ReadyRemit represents each of your end users with a *Recipient* record and one or more *Recipient Account* records:
+For this use case, your service is the sender, and your end users are the recipients. The use case supports transfers initiated by your service (e.g. payroll) and transfers initiated by end users (e.g. reward redemption). ReadyRemit represents your service with a *Sender* record and one or more *Sender Account* records, and ReadyRemit represents each of your end users with a *Recipient* record and one or more *Recipient Account* records:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-service-as-the-sender.png" width=800 loading="lazy"></div>
 
