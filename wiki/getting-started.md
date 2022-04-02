@@ -23,7 +23,9 @@ ReadyRemit offers a [REST API](/reference). Language-specific SDKs are on the ro
 
 ## Sandbox
 
-ReadyRemit is available in a [sandbox](https://sandbox-api.readyremit.com) environment where you can call API operations from the [API Reference](/reference), [SwaggerHub](https://app.swaggerhub.com/), [Postman](https://www.postman.com/), or your service as you experiment with integration.
+ReadyRemit is available in a [sandbox](https://sandbox-api.readyremit.com) environment where you can use the API Reference, SwaggerHub, or Postman to experiment with API operations. See the [API Reference](/reference) for details.
+
+You can also use the ReadyRemit service in the sandbox environment as you integrate your service.
 
 ## Versioning
 
