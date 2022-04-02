@@ -61,19 +61,19 @@ For this use case, your service is the sender, and your end users are the recipi
 
 ## sender-recipent
 
-The following diagram shows the *sender*-*recipient* relationship with relevant pseudo-code operations:
+This diagram shows the *sender*-*recipient* relationship with relevant pseudo-code operations:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-sender-recipient.png" height=350 loading="lazy"></div>
 
 ## recipient-recipientAccount
 
-The following diagram shows the *recipient*-*recipientAccount* relationship with relevant pseudo-code operations:
+This diagram shows the *recipient*-*recipientAccount* relationship with relevant pseudo-code operations:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipient-recipientaccount.png" height=350 loading="lazy"></div>
 
 ## sender-senderAccount
 
-The following diagram shows the *sender*-*senderAccount* relationship:
+This diagram shows the *sender*-*senderAccount* relationship:
 
 # Your users are the senders
 
