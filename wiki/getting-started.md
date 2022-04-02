@@ -9,13 +9,13 @@ Welcome to ReadyRemit, a cloud service that performs cross-border [remittances](
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-map.png" width=600 loading="lazy"></div>
 
-Click [Contact Us](/docs/contact-us) to sign up.
-
 # Overview
 
 ReadyRemit makes existing [Brightwell](https://brightwell.com/) expertise available as a generic remittance service to financial technology companies targeting various use cases including [Your service as the sender](#your-service-as-the-sender) and [Your users as the senders](#your-users-as-the-senders).
 
 Currently, ReadyRemit is suitable for early adopters targeting [Your service as the sender](#your-service-as-the-sender) where your service (1) pushes money to end users, or (2) allows end users to pull money from your service.
+
+Click [Contact Us](/docs/contact-us) to become an early adopter.
 
 ## Interfaces
 
@@ -23,7 +23,7 @@ Currently, ReadyRemit offers a [REST API](/reference). It does not yet offer lan
 
 ## Sandbox
 
-ReadyRemit is available in a sandbox environment where early adopters 
+ReadyRemit is available to early adopters in a sandbox environment.
 
 ## Versioning
 
