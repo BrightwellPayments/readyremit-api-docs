@@ -57,7 +57,7 @@ Note that this authentication workflow is independent of any authentication work
 
 For this use case, your service is the sender, and your end users are the recipients. The use case supports transfers initiated by your service (e.g. payroll) and transfers initiated by end users (e.g. reward redemption). ReadyRemit represents your service with a *Sender* record and one or more *Sender Account* records, and ReadyRemit represents each of your end users with a *Recipient* record and one or more *Recipient Account* records:
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-service-is-the-sender.png" width=800 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-service-is-the-sender-2.png" width=800 loading="lazy"></div>
 
 ## Sender-Recipient
 
@@ -81,5 +81,5 @@ This diagram shows the *Sender*-*SenderAccount* relationship:
 
 In this use case, ReadyRemit represents each of your end users with a *Sender* record and one or more *Sender Account* records, and ReadyRemit represents each of your end user's recipients with a *Recipient* record and one or more *Recipient Account* records. Your database may not have any information about your users' recipients, so the ReadyRemit *Recipient* record provides your service with a convenient place to store general profile information about these out-of-database recipients.
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-users-are-the-senders.png" width=800 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-users-are-the-senders-2.png" width=800 loading="lazy"></div>
 
