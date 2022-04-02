@@ -59,22 +59,11 @@ For this use case, your service is the sender, and your end users are the recipi
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-service-as-the-sender.png" width=800 loading="lazy"></div>
 
+In the diagram, note the *senderId*, *Sender* record, and sender *Account* record:
 
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-senderid-sender-account.png" width=500 loading="lazy"></div>
 
-The following sections explain one way to implement this use case in a Node.js environment. Implementations in other environments are similar.
-
-## Authenticate
-
-1. Obtain values from Brightwell for the following properties:
-
-    ```
-    {
-      "client_id": "",
-      "client_secret": "",
-      "audience": "",
-      "grant_type": ""
-    }
-    ```
+Follow these steps to implement this use case:
 
 ## Establish the sender
 
