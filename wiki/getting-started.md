@@ -61,7 +61,7 @@ For this use case, your service is the sender, and your end users are the recipi
 
 ## senderId
 
-When this use case is fully implemented, your service will use your *senderId* for two reasons. First, your *senderId* enables you to create ReadyRemit Recipient records and to get arrays of Recipient records:
+Your service uses your *senderId* to create ReadyRemit Recipient records and to get arrays of Recipient records:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-sender-recipient-5.png" height=280 loading="lazy"></div>
 
