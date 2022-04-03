@@ -55,7 +55,7 @@ Note that this authentication workflow is independent of any authentication work
 
 # Your service is the sender
 
-For this use case, your service is the sender, and your end users are the recipients. The use case supports transfers initiated by your service (e.g. payroll) and transfers initiated by your end users (e.g. reward redemption). ReadyRemit represents your service with a *Sender* record and one or more *Sender Account* records, and ReadyRemit represents each of your end users with a *Recipient* record and one or more *Recipient Account* records:
+For this use case, your service is the sender, and your end users are the recipients. The use case supports transfers initiated by your service (e.g. payroll) and transfers initiated by your end users (e.g. reward redemption). ReadyRemit represents your service with a *Sender* entity and one or more *Sender Account* entities, and ReadyRemit represents each of your end users with a *Recipient* entity and one or more *Recipient Account* entities:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-service-is-the-sender-2.png" width=800 loading="lazy"></div>
 
@@ -63,17 +63,15 @@ For this use case, your service is the sender, and your end users are the recipi
 
 ## Using identifiers
 
-This section explains how your service can get, store, and use the ReadyRemit *senderId* and *recipientIds* illustrated in the diagram.
+This section explains how your service can get, store, and use the ReadyRemit *senderId* and *recipientIds* illustrated in the diagram. Because the implementation of this use case is evolving, details may change.
 
 ### senderId
 
-
-
-Your service uses your *senderId* to create ReadyRemit *Recipient* records and get an array of *Recipient* records:
+When you sign up as a ReadyRemit client, you obtain for your service a *senderId* which enables you to create and get ReadyRemit *Recipient* entities: 
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-sender-recipient-6.png" height=160 loading="lazy"></div>
 
-When this use case is fully implemented, your service may also use your *senderId* to get or update your ReadyRemit Sender record, create  *SenderAccount* records, and get an array of *SenderAccount* records:
+When this use case is fully implemented, your service may also use your *senderId* to get or update your ReadyRemit Sender entity, create  *SenderAccount* entities, and get an array of *SenderAccount* entities:
 
 IMAGE HERE
 
@@ -87,7 +85,7 @@ IMAGE HERE
 
 <span style="color:red;">Note: The ReadyRemit Team is not targeting this use case yet.</span>
 
-In this use case, ReadyRemit represents each of your end users with a *Sender* record and one or more *Sender Account* records, and ReadyRemit represents each of your end user's recipients with a *Recipient* record and one or more *Recipient Account* records. Your database may not have any information about your users' recipients, so the ReadyRemit *Recipient* record provides your service with a convenient place to store general profile information about these out-of-database recipients.
+In this use case, ReadyRemit represents each of your end users with a *Sender* entity and one or more *Sender Account* entities, and ReadyRemit represents each of your end user's recipients with a *Recipient* entity and one or more *Recipient Account* entities. Your database may not have any information about your users' recipients, so the ReadyRemit *Recipient* entity provides your service with a convenient place to store general profile information about these out-of-database recipients.
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-users-are-the-senders-2.png" width=800 loading="lazy"></div>
 
