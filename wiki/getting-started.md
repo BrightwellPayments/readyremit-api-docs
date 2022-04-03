@@ -59,7 +59,7 @@ For this use case, your service is the sender, and your end users are the recipi
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-service-is-the-sender-2.png" width=800 loading="lazy"></div>
 
-> **Important**: The implementation of this use case is evolving. For example, your service cannot yet directly access the dark blue *Sender* box and the light blue *Account* box in the diagram. The sections below explain. 
+> **Important**: The implementation of this use case is evolving. For example, your service cannot yet directly access the dark blue *Sender* and the light blue *Account* boxes in the diagram. The sections below explain. 
 
 ## Using identifiers
 
