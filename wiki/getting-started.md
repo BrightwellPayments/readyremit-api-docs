@@ -63,17 +63,11 @@ You obtain a *senderId* for your service when you sign up as a ReadyRemit client
 
 ## Using the senderId
 
-Your service uses the *senderId* to call [Create Recipient](/reference/createrecipient) for each end user permitted to receive remittances, storing the returned *recipientIds* in the service's *Users* table (as shown in the diagram) or in a related table:
+Your service uses the *senderId* to call [Create Recipient](/reference/createrecipient) for end users permitted to receive remittances, storing each returned *recipientId* in the service's *Users* table (as shown in the diagram) or in a related table:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-alpha-2.png" height=118 loading="lazy"></div>
 
-
-
-Each of your end users permitted to receive remittances needs a *recipientId*. Your service obtains each *recipientId* by calling [Create Recipient](/reference/createrecipient), and can store them in your database either in your *Users* table (as shown in the diagram) or in a related table.
-
- and (optionally) [Get Recipients](/reference/getrecipients). Calling *Get Recipients* is optional because your service will more likely call [Get Recipient](/reference/getrecipient) for each *recipientId* returned by *Create Recipient* and stored in your database.
-
-The implementation of this use case does not yet include operations that target *Sender* or *SenderAccount* entities:
+The current implementation does not include operations that target *Sender* or *SenderAccount* entities:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-beta.png" height=345 loading="lazy"></div>
 
