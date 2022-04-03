@@ -63,15 +63,15 @@ Note the *senderId* in the diagram above. You obtain a *senderId* for your servi
 
 ## Using the senderId
 
-Your service uses the *senderId* to call [Create Recipient](/reference/createrecipient) for each end user permitted to receive remittances, storing the returned *recipientIds* in the service's *Users* table (as shown in the diagram above) or in a related table:
+Your service uses the *senderId* to call [Create Recipient](/reference/createrecipient) for each end user, storing the returned *recipientIds* in a *Users* table (as shown in the diagram above) or in a related table:
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-alpha-2.png" height=125 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-alpha-3.png" height=125 loading="lazy"></div>
 
 You cannot, yet, use the *senderId* to create, a *Sender Account* entity:
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-beta-2.png" height=125 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-beta-3.png" height=125 loading="lazy"></div>
 
-This is not a critical issue, but it means that, for now, you need to manage *Sender Account* information in your service, information that might include account name, account number, bank name, bank number, branch name, branch number, country code, and currency code. If you need more than one *Sender Account*, then you might store this information in your service's own **SenderAccount** database table like this:
+This is not a critical issue, but it means that, for now, you need to manage *Sender Account* information in your service, information that might include account name, account number, bank name, bank number, branch name, branch number, country code, and currency code. If you need more than one *Sender Account*, then you could implement a **SenderAccount** database table, and store this information in it:
 
 |id|accountNumber|accountName|bankId|bankName|branchId|branchName|countryIso3Code|currencyIso3Code|
 |-|-|-|-|-|-|-|-|-|
