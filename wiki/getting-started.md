@@ -69,7 +69,7 @@ This section explains how your service can use the identifers illustrated in the
 
 ### senderId
 
-Your service uses the *senderId* to call [Create Recipient](/reference/createrecipient) and (optionally) [Get Recipients](/reference/getrecipients). Calling the latter is optional because your service will more likely use each *recipientId* (returned by the former and stored in your database) to call [Get Recipient](/reference/getrecipient):
+Your service uses the *senderId* to call [Create Recipient](/reference/createrecipient) and (optionally) [Get Recipients](/reference/getrecipients). Calling *Get Recipients* is optional because your service will more likely call [Get Recipient](/reference/getrecipient) for each *recipientId* returned by *Create Recipient* and stored in your database.
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-alpha.png" height=200 loading="lazy"></div>
 
@@ -78,8 +78,6 @@ The implementation of this use case does not yet include operations that target 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-beta.png" height=345 loading="lazy"></div>
 
 ### recipientId
-
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipient-recipientaccount-6.png" height=280 loading="lazy"></div>
 
 ### recipientAccountId
 
