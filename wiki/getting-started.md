@@ -63,9 +63,9 @@ You obtain a *senderId* for your service when you sign up as a ReadyRemit client
 
 ## Using the senderId
 
-Your service uses the *senderId* to call [Create Recipient](/reference/createrecipient) for each end user permitted to receive remittances:
+Your service uses the *senderId* to call [Create Recipient](/reference/createrecipient) for each end user permitted to receive remittances, storing the returned *recipientIds* in the service's *Users* table:
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-alpha-2.png" height=110 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-alpha-2.png" height=118 loading="lazy"></div>
 
 
 
