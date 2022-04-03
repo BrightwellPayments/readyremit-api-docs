@@ -59,21 +59,17 @@ For this use case, your service is the sender, and your end users are the recipi
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-service-is-the-sender-2.png" width=800 loading="lazy"></div>
 
-## Sender-Recipient
+## senderId
 
 This diagram shows the *Sender*-*Recipient* relationship and relevant operations:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-sender-recipient-5.png" height=280 loading="lazy"></div>
 
-## Recipient-RecipientAccount
+## recipientId
 
 This diagram shows the *Recipient*-*RecipientAccount* relationship and relevant operations:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipient-recipientaccount-6.png" height=280 loading="lazy"></div>
-
-## Sender-SenderAccount
-
-This diagram shows the *Sender*-*SenderAccount* relationship:
 
 # Your users are the senders
 
