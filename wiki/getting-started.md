@@ -61,13 +61,17 @@ For this use case, your service is the sender, and your end users are the recipi
 
 You obtain a *senderId* for your service when you sign up as a ReadyRemit client. You can store the *senderId* in an environment file (read at startup) or in your database (especially if you need to restrict access to it). 
 
-Each of your end users permitted to receive remittances needs a *recipientId*. Your service obtains each *recipientId* by calling [Create Recipient](/reference/createrecipient), and can store them in your database either in your *Users* table (as shown in the diagram) or in a related table.
-
 ## Using the senderId
 
-Your service uses the *senderId* to call [Create Recipient](/reference/createrecipient) and (optionally) [Get Recipients](/reference/getrecipients). Calling *Get Recipients* is optional because your service will more likely call [Get Recipient](/reference/getrecipient) for each *recipientId* returned by *Create Recipient* and stored in your database.
+Your service uses the *senderId* when calling [Create Recipient](/reference/createrecipient) for each end user permitted to receive remittances:
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-alpha.png" height=200 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-alpha-2.png" height=140 loading="lazy"></div>
+
+
+
+Each of your end users permitted to receive remittances needs a *recipientId*. Your service obtains each *recipientId* by calling [Create Recipient](/reference/createrecipient), and can store them in your database either in your *Users* table (as shown in the diagram) or in a related table.
+
+ and (optionally) [Get Recipients](/reference/getrecipients). Calling *Get Recipients* is optional because your service will more likely call [Get Recipient](/reference/getrecipient) for each *recipientId* returned by *Create Recipient* and stored in your database.
 
 The implementation of this use case does not yet include operations that target *Sender* or *SenderAccount* entities:
 
@@ -80,7 +84,7 @@ This is not a critical issue, but it means that, for now, you need to manage *Se
 |1|829475946|Primary|B0000a|Apex|BR00000a1|Acadia|USA|USD|
 |2|510029384|Secondary|B0000a|Apex|BR00000a2|Arches|USA|USD|
 
-Your service needs *Sender Account* information to call [Get Quote](/reference/getquote) and [Execute Transfer](/reference/executetransfer).
+Your service needs *Sender Account* information to call [Get Quote](/reference/getquote), [Execute Transfer](/reference/executetransfer), and other operations.
 
 ## Using a recipientId
 
