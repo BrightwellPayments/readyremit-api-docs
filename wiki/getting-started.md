@@ -55,7 +55,7 @@ Note that this authentication workflow is independent of any authentication work
 
 # Your service is the sender
 
-For this use case, your service is the sender, and your end users are the recipients. The use case supports transfers initiated by your service (e.g. payroll) and transfers initiated by your end users (e.g. reward redemption). In the fully implemented use case, ReadyRemit represents your service with a *Sender* entity and one or more *Sender Account* entities, and ReadyRemit represents each of your end users with a *Recipient* entity and one or more *Recipient Account* entities:
+For this use case, your service is the sender, and your end users are the recipients. The use case supports transfers initiated by your service (e.g. payroll) and transfers initiated by your end users (e.g. reward redemption). Once fully implemented, ReadyRemit will represent your service with a *Sender* entity and one or more *Sender Account* entities, and each of your end users with a *Recipient* entity and one or more *Recipient Account* entities:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-service-is-the-sender-4.png" width=800 loading="lazy"></div>
 
