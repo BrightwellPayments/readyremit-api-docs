@@ -65,11 +65,11 @@ You obtain a *senderId* for your service when you sign up as a ReadyRemit client
 
 Your service uses the *senderId* to call [Create Recipient](/reference/createrecipient) for each end user permitted to receive remittances, storing the returned *recipientIds* in the service's *Users* table (as shown in the diagram above) or in a related table:
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-alpha-2.png" height=118 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-alpha-2.png" height=125 loading="lazy"></div>
 
 You cannot, yet, use the *senderId* to get a *Sender* entity or to create, get, update, or delete *Sender Account* entities:
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-beta.png" height=345 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-beta-2.png" height=125 loading="lazy"></div>
 
 This is not a critical issue, but it means that, for now, you need to manage *Sender* and *Sender Account* information in your service. *Sender* information includes the ReadyRemit *senderId* and perhaps your company name, address, etc. *Sender Account* information might include account name, account number, bank name, bank number, branch name, branch number, country code, and currency code. If you need more than one *Sender Account*, then you might store this information in your service's own **SenderAccount** database table like this:
 
@@ -81,6 +81,8 @@ This is not a critical issue, but it means that, for now, you need to manage *Se
 Your service needs *Sender Account* information to call [Get Quote](/reference/getquote), [Execute Transfer](/reference/executetransfer), and other operations.
 
 ## Using a recipientId
+
+Your service uses the *recipientIds* stored in your database (each representing an end user) to call [Create Recipient Account](/reference/createrecipientaccount) ...
 
 ## Using a recipientAccountId
 
