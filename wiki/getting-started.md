@@ -63,11 +63,15 @@ For this use case, your service is the sender, and your end users are the recipi
 
 Your service uses your *senderId* to create ReadyRemit Recipient records and to get arrays of Recipient records:
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-sender-recipient-5.png" height=280 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-sender-recipient-6.png" height=140 loading="lazy"></div>
 
 ## recipientId
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipient-recipientaccount-6.png" height=280 loading="lazy"></div>
+
+## recipientAccountId
+
+
 
 # Your users are the senders
 
