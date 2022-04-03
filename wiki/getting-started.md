@@ -57,7 +57,7 @@ Note that this authentication workflow is independent of any authentication work
 
 For this use case, your service is the sender, and your end users are the recipients. The use case supports transfers initiated by your service (e.g. payroll) and transfers initiated by your end users (e.g. reward redemption). ReadyRemit represents your service with a *Sender* entity and one or more *Sender Account* entities, and ReadyRemit represents each of your end users with a *Recipient* entity and one or more *Recipient Account* entities:
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-service-is-the-sender-3.png" width=800 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-service-is-the-sender-4.png" width=800 loading="lazy"></div>
 
 You obtain for your service a *senderId* when you sign up as a ReadyRemit client. You can store the *senderId* in an environment file (read at startup) or in your database (especially if you need to restrict access to it). Your service obtains each *recipientId* by calling [Create Recipient](/reference/createrecipient). Each of your end users permitted to receive remittances needs a *recipientId*. Your service can store *recipientIds* in your database either in your *Users* table (as shown in the diagram) or in a related table.
 
@@ -87,5 +87,5 @@ IMAGE HERE
 
 In this use case, ReadyRemit represents each of your end users with a *Sender* entity and one or more *Sender Account* entities, and ReadyRemit represents each of your end user's recipients with a *Recipient* entity and one or more *Recipient Account* entities. Your database may not have any information about your users' recipients, so the ReadyRemit *Recipient* entity provides your service with a convenient place to store general profile information about these out-of-database recipients.
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-users-are-the-senders-3.png" width=800 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-users-are-the-senders-4.png" width=800 loading="lazy"></div>
 
