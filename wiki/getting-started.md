@@ -65,7 +65,7 @@ Each of your end users permitted to receive remittances needs a *recipientId*. Y
 
 ## Using identifiers
 
-This section explains how your service should use the ReadyRemit *senderId* and *recipientIds* illustrated in the diagram. Because the implementation of this use case is evolving, details may change.
+This section explains how your service can use the identifers illustrated in the diagram to transfer money. Because the implementation of this use case is evolving, details may change.
 
 ### senderId
 
