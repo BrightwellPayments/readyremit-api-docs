@@ -63,7 +63,7 @@ For this use case, your service is the sender, and your end users are the recipi
 
 ## Using identifiers
 
-Note the blue *senderId* and the brown *recipientIds* in the diagram above. This section explains how your service can store and use these ReadyRemit identifiers.
+This section explains how your service can get, store, and use the ReadyRemit *senderId* and *recipientIds* illustrated in the diagram.
 
 ### senderId
 
