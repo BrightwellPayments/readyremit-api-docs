@@ -69,7 +69,7 @@ This section explains how your service can use the identifers illustrated in the
 
 ### senderId
 
-When you sign up as a ReadyRemit client, you obtain for your service a *senderId* which enables you to create and get ReadyRemit *Recipient* entities: 
+Your service uses the *senderId* to call [Create Recipient](/reference/createrecipient) and [Get Recipients](/reference/getrecipients): 
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-sender-recipient-6.png" height=160 loading="lazy"></div>
 
