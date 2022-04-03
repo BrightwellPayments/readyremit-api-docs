@@ -67,7 +67,7 @@ Your service uses the *senderId* to call [Create Recipient](/reference/createrec
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-alpha-2.png" height=118 loading="lazy"></div>
 
-The current implementation does not include operations that target *Sender* or *SenderAccount* entities:
+You cannot, yet, use the *senderId* to get a *Sender* entity or to create, get, update, or delete *Sender Account* entities:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-beta.png" height=345 loading="lazy"></div>
 
