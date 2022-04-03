@@ -77,12 +77,12 @@ The implementation of this use case does not yet include operations that target 
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-beta.png" height=345 loading="lazy"></div>
 
-This means that, for now, you need to manage *Sender* and *Sender Account* information in your service. *Sender* information includes the ReadyRemit *senderId* and perhaps your company name, address, etc. *Sender Account* information might include account name, account number, bank name, bank number, branch name, branch number, country code, and currency code. If you need more than one *Sender Account*, then you might store this information in a **SenderAccount** database table like this:
+This is not a critical issue, but it means that, for now, you need to manage *Sender* and *Sender Account* information in your service. *Sender* information includes the ReadyRemit *senderId* and perhaps your company name, address, etc. *Sender Account* information might include account name, account number, bank name, bank number, branch name, branch number, country code, and currency code. If you need more than one *Sender Account*, then you might store this information in a **SenderAccount** database table like this:
 
 |senderAccountId|accountNumber|accountName|bankId|bankName|branchId|branchName|countryIso3Code|currencyIso3Code|
 |-|-|-|-|-|-|-|-|-|
-|1|829475946|Primary Account|B0000a|Apex National Bank|BR00000a1|Acadia Branch|USA|USD|
-|2|510029384|Secondary Account|B0000a|Apex National Bank|BR00000a2|Arches Branch|USA|USD|
+|1|829475946|Primary|B0000a|Apex|BR00000a1|Acadia|USA|USD|
+|2|510029384|Secondary|B0000a|Apex|BR00000a2|Arches|USA|USD|
 
 ### recipientId
 
