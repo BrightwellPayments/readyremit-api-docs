@@ -55,25 +55,27 @@ Note that this authentication workflow is independent of any authentication work
 
 # Your service is the sender
 
-For this use case, your service is the sender, and your end users are the recipients. The use case supports transfers initiated by your service (e.g. payroll) and transfers initiated by end users (e.g. reward redemption). ReadyRemit represents your service with a *Sender* record and one or more *Sender Account* records, and ReadyRemit represents each of your end users with a *Recipient* record and one or more *Recipient Account* records:
+For this use case, your service is the sender, and your end users are the recipients. The use case supports transfers initiated by your service (e.g. payroll) and transfers initiated by your end users (e.g. reward redemption). ReadyRemit represents your service with a *Sender* record and one or more *Sender Account* records, and ReadyRemit represents each of your end users with a *Recipient* record and one or more *Recipient Account* records:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-service-is-the-sender-2.png" width=800 loading="lazy"></div>
 
-## senderId
+## Using identifiers
 
-Your service uses your *senderId* to create ReadyRemit *Recipient* records and to get an array of *Recipient* records:
+### senderId
+
+Your service uses your *senderId* to create ReadyRemit *Recipient* records and get an array of *Recipient* records:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-sender-recipient-6.png" height=160 loading="lazy"></div>
 
-When this use case is fully implemented, your service will also use your *senderId* to create ReadyRemit *SenderAccount* records and to get an array of *SenderAccount* records. 
+When this use case is fully implemented, your service may also use your *senderId* to get or update your ReadyRemit Sender record, create  *SenderAccount* records, and get an array of *SenderAccount* records:
 
-## recipientId
+IMAGE HERE
+
+### recipientId
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipient-recipientaccount-6.png" height=280 loading="lazy"></div>
 
-## recipientAccountId
-
-
+### recipientAccountId
 
 # Your users are the senders
 
