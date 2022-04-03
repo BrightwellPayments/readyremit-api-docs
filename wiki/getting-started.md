@@ -59,9 +59,11 @@ For this use case, your service is the sender, and your end users are the recipi
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-service-is-the-sender-2.png" width=800 loading="lazy"></div>
 
+You obtain for your service a *senderId* when you sign up as a ReadyRemit client. You can store the *senderId* in an environment file (read at startup) or in your database (especially if you need to restrict access to it). Your service obtains each *recipientId* by calling [Create Recipient](/reference/createrecipient). Each end user allowed to receive remittances needs a *recipientId*. Your service can store *recipientIds* in your database either in your users table (as shown in the diagram) or in a related table. 
+
 ## Using identifiers
 
-This section explains how your service can get, store, and use the ReadyRemit *senderId* and *recipientIds* illustrated in the diagram. Because the implementation of this use case is evolving, details may change.
+This section explains how your service should use the ReadyRemit *senderId* and *recipientIds* illustrated in the diagram. Because the implementation of this use case is evolving, details may change.
 
 ### senderId
 
