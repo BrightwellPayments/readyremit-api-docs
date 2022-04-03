@@ -61,13 +61,11 @@ For this use case, your service is the sender, and your end users are the recipi
 
 ## senderId
 
-This diagram shows the *Sender*-*Recipient* relationship and relevant operations:
+When this use case is fully implemented, your service will use your *senderId* (or *senderIds*) for two reasons. 
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-sender-recipient-5.png" height=280 loading="lazy"></div>
 
 ## recipientId
-
-This diagram shows the *Recipient*-*RecipientAccount* relationship and relevant operations:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipient-recipientaccount-6.png" height=280 loading="lazy"></div>
 
