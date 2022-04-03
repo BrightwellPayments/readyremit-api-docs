@@ -84,6 +84,8 @@ This is not a critical issue, but it means that, for now, you need to manage *Se
 |1|829475946|Primary|B0000a|Apex|BR00000a1|Acadia|USA|USD|
 |2|510029384|Secondary|B0000a|Apex|BR00000a2|Arches|USA|USD|
 
+Your service needs *Sender Account* information to call [Get Quote](/reference/getquote) and [Execute Transfer](/reference/executetransfer).
+
 ### recipientId
 
 ### recipientAccountId
