@@ -59,11 +59,11 @@ For this use case, your service is the sender, and your end users are the recipi
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-service-is-the-sender-2.png" width=800 loading="lazy"></div>
 
-> **Important**: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
 ## Using identifiers
 
-Note the blue *senderId* and the brown *recipientIds* in the diagram above. This section explains how your service might store and use these ReadyRemit identifiers.
+Note the blue *senderId* and the brown *recipientIds* in the diagram above. This section explains how your service can store and use these ReadyRemit identifiers.
+
+**Important**: The implementation of this use case is evolving. For example, your service cannot yet directly access the dark blue *Sender* box nor the light blue *Account* box in the diagram. Still, sender functionality is intact, and your service needs the *senderId*. 
 
 ### senderId
 
