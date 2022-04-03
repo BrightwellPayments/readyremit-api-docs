@@ -69,9 +69,11 @@ This section explains how your service can use the identifers illustrated in the
 
 ### senderId
 
-Your service uses the *senderId* to call [Create Recipient](/reference/createrecipient) and [Get Recipients](/reference/getrecipients): 
+Your service uses the *senderId* to call [Create Recipient](/reference/createrecipient) and (optionally) [Get Recipients](/reference/getrecipients): 
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-use-senderid.png" height=160 loading="lazy"></div>
+
+Calling Get Recipients is optional because your service will more likely use each *recipientId* stored in your database to call [Get Recipient](/reference/getrecipient).
 
 ### recipientId
 
