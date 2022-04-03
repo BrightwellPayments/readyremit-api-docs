@@ -73,7 +73,7 @@ You cannot, yet, use the *senderId* to create, a *Sender Account* entity:
 
 This is not a critical issue, but it means that, for now, you need to manage *Sender Account* information in your service, information that might include account name, account number, bank name, bank number, branch name, branch number, country code, and currency code. If you need more than one *Sender Account*, then you might store this information in your service's own **SenderAccount** database table like this:
 
-|senderAccountId|accountNumber|accountName|bankId|bankName|branchId|branchName|countryIso3Code|currencyIso3Code|
+|id|accountNumber|accountName|bankId|bankName|branchId|branchName|countryIso3Code|currencyIso3Code|
 |-|-|-|-|-|-|-|-|-|
 |1|829475946|Primary|B0000a|Apex|BR00000a1|Acadia|USA|USD|
 |2|510029384|Secondary|B0000a|Apex|BR00000a2|Arches|USA|USD|
