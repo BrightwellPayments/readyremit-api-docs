@@ -63,11 +63,7 @@ You obtain a *senderId* for your service when you sign up as a ReadyRemit client
 
 Each of your end users permitted to receive remittances needs a *recipientId*. Your service obtains each *recipientId* by calling [Create Recipient](/reference/createrecipient), and can store them in your database either in your *Users* table (as shown in the diagram) or in a related table.
 
-## Using identifiers
-
-This section explains how your service can use the identifers illustrated in the diagram to transfer money. Because the implementation of this use case is evolving, details may change.
-
-### senderId
+## Using the senderId
 
 Your service uses the *senderId* to call [Create Recipient](/reference/createrecipient) and (optionally) [Get Recipients](/reference/getrecipients). Calling *Get Recipients* is optional because your service will more likely call [Get Recipient](/reference/getrecipient) for each *recipientId* returned by *Create Recipient* and stored in your database.
 
@@ -86,9 +82,9 @@ This is not a critical issue, but it means that, for now, you need to manage *Se
 
 Your service needs *Sender Account* information to call [Get Quote](/reference/getquote) and [Execute Transfer](/reference/executetransfer).
 
-### recipientId
+## Using a recipientId
 
-### recipientAccountId
+## Using a recipientAccountId
 
 # Your users are the senders
 
