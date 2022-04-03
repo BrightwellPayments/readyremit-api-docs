@@ -73,6 +73,10 @@ Your service uses the *senderId* to call [Create Recipient](/reference/createrec
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-alpha.png" height=200 loading="lazy"></div>
 
+The implementation of this use case does not yet include operations that target *Sender* or *SenderAccount* entities:
+
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-beta.png" height=200 loading="lazy"></div>
+
 ### recipientId
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipient-recipientaccount-6.png" height=280 loading="lazy"></div>
