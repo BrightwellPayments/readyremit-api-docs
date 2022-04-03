@@ -71,7 +71,7 @@ You cannot, yet, use the *senderId* to create a *Sender Account* entity:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-beta-3.png" height=125 loading="lazy"></div>
 
-This is not a critical issue, but it means that, for now, you need to manage *Sender Account* information in your service, information that might include account name, account number, bank name, bank number, branch name, branch number, country code, and currency code. If you need more than one *Sender Account*, then you could implement a **SenderAccount** database table, and store this information in it:
+This is not a critical issue, but it means that, for now, you need to manage *Sender Account* information in your service, information that might include account name, account number, bank name, bank number, branch name, branch number, country code, and currency code. If you need more than one *Sender Account*, then you could implement a **SenderAccount** database table, and store this information there like this:
 
 |id|accountNumber|accountName|bankId|bankName|branchId|branchName|countryIso3Code|currencyIso3Code|
 |-|-|-|-|-|-|-|-|-|
