@@ -71,11 +71,7 @@ This section explains how your service can use the identifers illustrated in the
 
 Your service uses the *senderId* to call [Create Recipient](/reference/createrecipient) and [Get Recipients](/reference/getrecipients): 
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-sender-recipient-6.png" height=160 loading="lazy"></div>
-
-When this use case is fully implemented, your service may also use your *senderId* to get or update your ReadyRemit Sender entity, create  *SenderAccount* entities, and get an array of *SenderAccount* entities:
-
-IMAGE HERE
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-use-senderid.png" height=160 loading="lazy"></div>
 
 ### recipientId
 
