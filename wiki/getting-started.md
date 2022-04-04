@@ -135,7 +135,19 @@ Your service uses *recipientAccountIds* to call [Get Recipient Account](/referen
 
     How to trigger the creation of ReadyRemit *Recipient* entities is another consideration. One way is to run a script that creates *Recipient* entities for all existing end users, and then create a *Recipient* entity as part of your new-user workflow. Another way is to create a *Recipient* entity when a user creates an initial *Recipient Account* entity. 
 
-1. sss
+1. Call [Get Recipient Account Fields](/reference/getrecipientaccountfields) which, based on the supplied country code, currency code, etc., returns required and optional fields for creating a *Recipient Account* entity. If you need your end user to supply values for these fields, you can build and present a form to the user. 
+
+1. Call [Create Recipient Account](/reference/createrecipientaccount) to create a *Recipient Account* entity for the user who may want to create multiple accounts.
+
+1. Call [Get Recipient Accounts](/reference/getrecipientaccounts) to get an array of *Recipient Account* entities for display to a particular user preparing to initiate a transfer. You can store the *Recipient Account* object for each account like this:
+
+    ```
+    <select id="select-recipient-account" class="form-select">
+      <option value="0" selected="">Choose a recipient account</option>
+      <option value="fad2ea5a-4738-4057-aaa9-98dd294620cb" data-account="{...}">Alpha Flight Account 1</option>
+      <option value="24bb4cd6-dd59-42f4-95e9-c381bd6aa12a" data-account="{...}">Alpha Flight Account 2</option>
+    </select>
+    ```
 
 # Your users are the senders
 
