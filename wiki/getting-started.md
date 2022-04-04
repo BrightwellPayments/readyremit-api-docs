@@ -135,7 +135,7 @@ Your service uses *recipientAccountIds* to call [Get Recipient Account](/referen
 
     How to trigger the creation of ReadyRemit *Recipient* entities is another consideration. One way is to run a script that creates *Recipient* entities for all existing end users, and then create a *Recipient* entity as part of your new-user workflow. Another way is to create a *Recipient* entity when a user creates an initial *Recipient Account* entity. 
 
-1. Call [Get Recipient Account Fields](/reference/getrecipientaccountfields) which, based on the supplied country code, currency code, etc., returns required and optional fields for creating a *Recipient Account* entity. If you need your end user to supply values for these fields, you can build and present a form to the user. 
+1. Call [Get Recipient Account Fields](/reference/getrecipientaccountfields) which, based on the supplied country code, currency code, etc., returns required and optional fields for creating a *Recipient Account* entity. If you need your end user to supply values for these fields, you can build and present a form to the user. You may need to call [Get Banks](/reference/getbanks) and [Get Bank Branches](/reference/getbankbranches) to populate certain elements in this form.
 
 1. Call [Create Recipient Account](/reference/createrecipientaccount) to create a *Recipient Account* entity. Remember that the user may want to create multiple accounts.
 
@@ -154,6 +154,8 @@ Your service uses *recipientAccountIds* to call [Get Recipient Account](/referen
 1. Call [Get Countries and Currencies](/reference/getcountriesandcurrencies) and [Get Quote](/reference/getquote) to build, display, and execute a quote form so that the user can consider current exchange rates and fees. Here is an example:
 
     <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-quote-form.png" width=800 loading="lazy"></div>
+
+1. Call [Execute Transfer](/reference/executetransfer).
 
 # Your users are the senders
 
