@@ -96,6 +96,10 @@ ReadyRemit maintains *Recipient*-*Recipient Account* relationships. This means, 
 
 ## Using recipientAccountIds
 
+Your service uses *recipientAccountIds* to get, update, and delete *Recipient Accounts*:
+
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-delta.png" height=145 loading="lazy"></div>
+
 # Your users are the senders
 
 <span style="color:red;">Note: The ReadyRemit Team is not targeting this use case yet.</span>
