@@ -69,11 +69,11 @@ Your service uses the *senderId* to call [Create Recipient](/reference/createrec
 
 A *Recipient* entity serves two purposes. First, it is a place to store user profile information. For this use case, however, because you probably already have user profile information stored in a *Users* table, you may not need to pass meaningful information in the *data* argument above. Second, a *Recipient* entity acts as a folder for each user's *Recipient Account* entities as discussed under [Using a recipientId](#using-a-recipientid) below.
 
-You cannot, yet, use the *senderId* to create *Sender Account* entities:
+Eventually, your service will be able to use the *senderId* to create *Sender Account* entities, too:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-beta-3.png" height=125 loading="lazy"></div>
 
-This is not a critical issue, but it means that, for now, you need to manage *Sender Account* information in your service, information that might include account name, account number, bank name, bank number, branch name, branch number, country code, and currency code. If you need more than one *Sender Account*, then you could implement a **SenderAccount** database table, and store this information in it like this:
+The temporary absence of this feature is not a showstopper, but it means that, for now, you need to manage *Sender Account* information in your service, information that might include account name, account number, bank name, bank number, branch name, branch number, country code, and currency code. If you need more than one *Sender Account*, then you could implement a **SenderAccount** database table, and store this information in it like this:
 
 |id|accountNumber|accountName|bankId|bankName|branchId|branchName|countryIso3Code|currencyIso3Code|
 |-|-|-|-|-|-|-|-|-|
