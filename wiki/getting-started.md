@@ -88,9 +88,9 @@ Recall that your service obtains (via [Create Recipient](/reference/createrecipi
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipientid-to-recipient-map.png" width=800 loading="lazy"></div>
 
-Your service uses each *recipientId* to call [Create Recipient Account](/reference/createrecipientaccount), enabling users to create *Recipient Accounts*:
+Your service uses each *recipientId* to call [Create Recipient Account](/reference/createrecipientaccount), enabling users to create and retrieve *Recipient Accounts*:
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-gamma.png" height=125 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-gamma-2.png" height=145 loading="lazy"></div>
 
 ## Using a recipientAccountId
 
