@@ -108,10 +108,29 @@ Your service uses *recipientAccountIds* to call [Get Recipient Account](/referen
 
     ```
     {
-      "sss":"sss",
-      "sss":"sss",
-      "sss":"sss"
-    }
+      "dstCountryIso3Code": "IND",
+      "dstCurrencyIso3Code": "INR",
+      "recipientType": "PERSON",
+      "transferMethod": "BANK_ACCOUNT",
+      "senderId": senderId,
+      "fields": [
+        {
+          "id": "userId",
+          "type": "TEXT",
+          "value": userId
+        },
+        {
+          "id": "FIRST_NAME",
+          "type": "TEXT",
+          "value": "blank"
+        },
+        {
+          "id": "LAST_NAME",
+          "type": "TEXT",
+          "value": "blank"
+        }
+      ]
+    };
     ```
 
     How to trigger the creation of ReadyRemit *Recipient* entities is another consideration. One way is to run a script that creates *Recipient* entities for all existing end users, and then create a *Recipient* entity as part of your new-user workflow. Another way is to create a *Recipient* entity when a user creates an initial *Recipient Account* entity. 
