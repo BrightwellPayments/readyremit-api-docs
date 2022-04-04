@@ -92,7 +92,7 @@ Your service uses each *recipientId* to call (on behalf of the user) [Create Rec
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-gamma-2.png" height=145 loading="lazy"></div>
 
-ReadyRemit maintains *Recipient*-*Recipient Account* relationships. This means that, rather than storing these relationships, your service can call [Get Recipient Accounts](/reference/getrecipientaccounts) to get all the *Recipient Accounts* related to a particular *recipientId*. 
+ReadyRemit maintains *Recipient*-*Recipient Account* relationships. This means that, rather than remembering these relationships itself, your service can call [Get Recipient Accounts](/reference/getrecipientaccounts) to get all the *Recipient Accounts* related to a particular *recipientId*. 
 
 ## Using a recipientAccountId
 
