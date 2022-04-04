@@ -102,8 +102,14 @@ Your service uses *recipientAccountIds* to call [Get Recipient Account](/referen
 
 ## Workflow
 
-1. sss
-1. sss
+1. Call [Get Access Token](/reference/getaccesstoken) to retrieve an access token needed for calls to all other API operations.
+
+1. Call [Create Recipient](/reference/createrecipient) to obtain a *recipientId* for each of your end users. (See the preceding sections for details and caveats.) Here are additional considerations:
+
+    1. sss
+
+    1. sss
+
 1. sss
 
 # Your users are the senders
