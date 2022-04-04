@@ -106,7 +106,7 @@ Your service uses *recipientAccountIds* to call [Get Recipient Account](/referen
 
 1. Call [Create Recipient](/reference/createrecipient) to obtain a *recipientId* for each of your end users, keeping in mind the caveats mentioned in the preceding sections about using identifiers. Here are additional considerations:
 
-    1. Although [Create Recipient](/reference/createrecipient) requires certain request body property values, none of them are ultimately essential except *senderId*. You can add various field objects as needed. For example, you may want to store a *userId* (valid for your database) in a *Recipient* entity field.
+    1. Although [Create Recipient](/reference/createrecipient) requires certain request body property values, none of them are ultimately essential except *senderId*. So, you can pass dummy information for the other property values. You can also add various field objects as needed. For example, you may want to store a *userId* (valid for your database) in a ReadyRemit *Recipient* entity field.
 
     1. sss
 
