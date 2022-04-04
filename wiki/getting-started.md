@@ -67,7 +67,7 @@ Your service uses the *senderId* to call [Create Recipient](/reference/createrec
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-alpha-3.png" height=125 loading="lazy"></div>
 
-A *Recipient* entity serves two purposes. First, it is a place to store user profile information. For this use case, however, because you probably already have user profile information stored in a *Users* table, you don't need to pass meaningful information in the *data* argument above. Second, it acts as a folder for each user's *Recipient Account* entities as discussed under [Using a recipientId](#using-a-recipientid) below.
+A *Recipient* entity serves two purposes. First, it is a place to store user profile information. For this use case, however, because you probably already have user profile information stored in a *Users* table, you may not need to pass meaningful information in the *data* argument above. Second, a *Recipient* entity acts as a folder for each user's *Recipient Account* entities as discussed under [Using a recipientId](#using-a-recipientid) below.
 
 You cannot, yet, use the *senderId* to create *Sender Account* entities:
 
