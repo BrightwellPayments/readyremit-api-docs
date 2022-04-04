@@ -108,7 +108,7 @@ Your service uses *recipientAccountIds* to call [Get Recipient Account](/referen
 
     1. Although [Create Recipient](/reference/createrecipient) requires certain request body property values, none of them are ultimately essential except *senderId*. So, you can pass dummy information for the other property values. You can also add various field objects as needed. For example, you may want to store a *userId* (valid for your database) in a ReadyRemit *Recipient* entity field.
 
-    1. How to trigger the creation of ReadyRemit *Recipient* entities is another consideration. One way is to run a script that creates *Recipient* entities for all existing end users, and then create a *Recipient* entity as part of your new-user workfloe. Another way is to create a *Recipient* entity when a user creates an initial *Recipient Account* entity. 
+    1. How to trigger the creation of ReadyRemit *Recipient* entities is another consideration. One way is to run a script that creates *Recipient* entities for all existing end users, and then create a *Recipient* entity as part of your new-user workflow. Another way is to create a *Recipient* entity when a user creates an initial *Recipient Account* entity. 
 
 1. sss
 
