@@ -84,7 +84,7 @@ Your service needs *Sender Account* information to call [Get Quote](/reference/g
 
 ## Using a recipientId
 
-Recall that your service obtains a *recipientId* for each user in your database:
+Recall that your service obtains and stores a *recipientId* for each user in your database:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipientid-to-recipient-map.png" width=800 loading="lazy"></div>
 
