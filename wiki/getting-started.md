@@ -137,7 +137,7 @@ Your service uses *recipientAccountIds* to call [Get Recipient Account](/referen
 
 1. Call [Get Recipient Account Fields](/reference/getrecipientaccountfields) which, based on the supplied country code, currency code, etc., returns required and optional fields for creating a *Recipient Account* entity. If you need your end user to supply values for these fields, you can build and present a form to the user. 
 
-1. Call [Create Recipient Account](/reference/createrecipientaccount) to create a *Recipient Account* entity for the user who may want to create multiple accounts.
+1. Call [Create Recipient Account](/reference/createrecipientaccount) to create a *Recipient Account* entity. Remember that the user may want to create multiple accounts.
 
 1. Call [Get Recipient Accounts](/reference/getrecipientaccounts) to get an array of *Recipient Account* entities for display to a particular user preparing to initiate a transfer. You can store the *Recipient Account* object for each account in a *data-account* attribute like this:
 
@@ -150,6 +150,8 @@ Your service uses *recipientAccountIds* to call [Get Recipient Account](/referen
     ```
 
     Or, if you just store the *recipientAccountId*, then, when the user makes a selection, you can call [Get Recipient Account](/reference/getrecipientaccount) if needed. 
+
+1. Call [Get Countries and Currencies](/reference/getcountriesandcurrencies) and [Get Quote](/reference/getquote) to build, display, and execute a quote form so that the user can consider current exchange rates and fees. 
 
 # Your users are the senders
 
