@@ -90,7 +90,7 @@ Recall that your service obtains (via [Create Recipient](/reference/createrecipi
 
 Your service uses each *recipientId* to call (on behalf of the user) [Create Recipient Account](/reference/createrecipientaccount) to create accounts, and [Get Recipient Accounts](/reference/getrecipientaccounts) to retrieve an array of these accounts:
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-gamma-2.png" height=145 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-gamma-2.png" height=149 loading="lazy"></div>
 
 ReadyRemit maintains *Recipient*-*Recipient Account* relationships. This means, rather than remembering these relationships itself, your service can call [Get Recipient Accounts](/reference/getrecipientaccounts) to get all the *Recipient Accounts* related to a particular *recipientId*. 
 
