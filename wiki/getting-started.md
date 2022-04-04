@@ -212,7 +212,7 @@ Your service uses *recipientAccountIds* to call [Get Recipient Account](/referen
 
 ## Anticipated needs
 
-1. ReadyRemit needs *Create Sender Account*, *Get Sender Accounts*, *Get Sender Account*, *Update Sender Account*, and *Delete Sender Account* operations to shift the management of sender account information from the client service to ReadyRemit.
+1. ReadyRemit needs *Get Sender Account Fields*, *Create Sender Account*, *Get Sender Accounts*, *Get Sender Account*, *Update Sender Account*, and *Delete Sender Account* operations to shift the management of sender account information from the client service to ReadyRemit.
 
 # Your users are the senders
 
