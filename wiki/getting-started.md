@@ -98,7 +98,7 @@ ReadyRemit maintains *Recipient*-*Recipient Account* relationships. This means, 
 
 Your service uses *recipientAccountIds* to call [Get Recipient Account](/reference/getrecipientaccount), [Update Recipient Account](/reference/updaterecipientaccount), and [Delete Recipient Account](/reference/deleterecipientaccount):
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-delta.png" height=145 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-delta.png" height=175 loading="lazy"></div>
 
 # Your users are the senders
 
