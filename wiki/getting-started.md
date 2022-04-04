@@ -137,7 +137,60 @@ Your service uses *recipientAccountIds* to call [Get Recipient Account](/referen
 
 1. Call [Get Recipient Account Fields](/reference/getrecipientaccountfields) which, based on the supplied country code, currency code, etc., returns required and optional fields for creating a *Recipient Account* entity. If you need your end user to supply values for these fields, you can build and present a form to the user. You may need to call [Get Banks](/reference/getbanks) and [Get Bank Branches](/reference/getbankbranches) to populate certain elements in this form.
 
-1. Call [Create Recipient Account](/reference/createrecipientaccount) to create a *Recipient Account* entity. Remember that the user may want to create multiple accounts.
+1. Call [Create Recipient Account](/reference/createrecipientaccount) to create a *Recipient Account* entity. Remember that the user may want to create multiple accounts. Here is an example request body:
+
+    ```
+    {
+      "dstCountryIso3Code": countryIso3Code,
+      "dstCurrencyIso3Code": currencyIso3Code,
+      "transferMethod": "BANK_ACCOUNT",
+      "senderId": senderId,
+      "name": accountName,
+      "accountNumber": accountNumber,
+      "fields": [
+        {
+          "id": "accountName",
+          "type": "TEXT",
+          "value": accountName,
+        },
+        {
+          "id": "BANK_NAME",
+          "type": "TEXT",
+          "value": "nouse"
+        },
+        {
+          "id": "bankId",
+          "type": "NUMBER",
+          "value": bankId
+        },
+        {
+          "id": "bankName",
+          "type": "TEXT",
+          "value": bankName
+        },
+        {
+          "id": "branchId",
+          "type": "NUMBER",
+          "value": branchId
+        },
+        {
+          "id": "branchName",
+          "type": "TEXT",
+          "value": branchName
+        },
+        {
+          "id": "dstCountryIso3Code",
+          "type": "TEXT",
+          "value": countryIso3Code
+        },
+        {
+          "id": "dstCurrencyIso3Code",
+          "type": "TEXT",
+          "value": currencyIso3Code
+        }
+      ]
+    };
+    ```
 
 1. Call [Get Recipient Accounts](/reference/getrecipientaccounts) to get an array of *Recipient Account* entities for display to a particular user preparing to initiate a transfer. You can store the *Recipient Account* object for each account in a *data-account* attribute like this:
 
