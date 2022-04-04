@@ -139,7 +139,7 @@ Your service uses *recipientAccountIds* to call [Get Recipient Account](/referen
 
 1. Call [Create Recipient Account](/reference/createrecipientaccount) to create a *Recipient Account* entity for the user who may want to create multiple accounts.
 
-1. Call [Get Recipient Accounts](/reference/getrecipientaccounts) to get an array of *Recipient Account* entities for display to a particular user preparing to initiate a transfer. You can store the *Recipient Account* object for each account like this:
+1. Call [Get Recipient Accounts](/reference/getrecipientaccounts) to get an array of *Recipient Account* entities for display to a particular user preparing to initiate a transfer. You can store the *Recipient Account* object for each account in a *data-account* attribute like this:
 
     ```
     <select id="select-recipient-account" class="form-select">
@@ -148,6 +148,8 @@ Your service uses *recipientAccountIds* to call [Get Recipient Account](/referen
       <option value="24bb4cd6-dd59-42f4-95e9-c381bd6aa12a" data-account="{...}">Alpha Flight Account 2</option>
     </select>
     ```
+
+    Or, if you just store the *recipientAccountId*, then, when the user makes a selection, you can call [Get Recipient Account](/reference/getrecipientaccount) if needed. 
 
 # Your users are the senders
 
