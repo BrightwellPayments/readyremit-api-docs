@@ -151,7 +151,9 @@ Your service uses *recipientAccountIds* to call [Get Recipient Account](/referen
 
     Or, if you just store the *recipientAccountId*, then, when the user makes a selection, you can call [Get Recipient Account](/reference/getrecipientaccount) if needed. 
 
-1. Call [Get Countries and Currencies](/reference/getcountriesandcurrencies) and [Get Quote](/reference/getquote) to build, display, and execute a quote form so that the user can consider current exchange rates and fees. 
+1. Call [Get Countries and Currencies](/reference/getcountriesandcurrencies) and [Get Quote](/reference/getquote) to build, display, and execute a quote form so that the user can consider current exchange rates and fees. Here is an example:
+
+    <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-quote-form.png" width=800 loading="lazy"></div>
 
 # Your users are the senders
 
