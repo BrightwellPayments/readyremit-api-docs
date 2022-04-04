@@ -100,6 +100,12 @@ Your service uses *recipientAccountIds* to call [Get Recipient Account](/referen
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-delta.png" height=175 loading="lazy"></div>
 
+## Workflow
+
+1. sss
+1. sss
+1. sss
+
 # Your users are the senders
 
 <span style="color:red;">Note: The ReadyRemit Team is not targeting this use case yet.</span>
