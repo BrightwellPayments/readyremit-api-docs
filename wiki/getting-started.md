@@ -88,7 +88,7 @@ Recall that your service obtains (via [Create Recipient](/reference/createrecipi
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipientid-to-recipient-map.png" width=800 loading="lazy"></div>
 
-Your service uses each *recipientId* to call (on behalf of the user) [Create Recipient Account](/reference/createrecipientaccount) to create accounts, and [Get Recipient Accounts](/reference/getrecipientaccounts) to retrieve an array of these accounts for display (perhaps) in a dropdown menu:
+Your service uses each *recipientId* to call (on behalf of the user) [Create Recipient Account](/reference/createrecipientaccount) to create accounts, and [Get Recipient Accounts](/reference/getrecipientaccounts) to retrieve an array of these accounts for display and selection in (perhaps) a dropdown menu:
 
 <div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-gamma-2.png" height=145 loading="lazy"></div>
 
