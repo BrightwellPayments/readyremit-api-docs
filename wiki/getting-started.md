@@ -104,7 +104,7 @@ Your service uses *recipientAccountIds* to call [Get Recipient Account](/referen
 
 1. Call [Get Access Token](/reference/getaccesstoken) to retrieve an access token needed for calls to all other API operations.
 
-1. Call [Create Recipient](/reference/createrecipient) to obtain a *recipientId* for each of your end users, keeping in mind the caveats mentioned in the preceding sections about using identifiers. Although [Create Recipient](/reference/createrecipient) currently requires certain request body property values, none are really essential except *senderId*. So, you can pass dummy information for the other property values. You can also add various field objects as needed. For example, you may want to store a *userId* (valid for your database) in a ReadyRemit *Recipient* entity field. Here is an example of a valid request body:
+1. Call [Create Recipient](/reference/createrecipient) to obtain a *recipientId* for each of your end users, keeping in mind the caveats mentioned in the preceding sections about using identifiers. Although [Create Recipient](/reference/createrecipient) currently requires certain request body property values, none are really essential except *senderId*. So, you can pass dummy information for the other property values. You can also add various field objects as needed. Here is an example of a valid request body:
 
     ```
     {
@@ -114,11 +114,6 @@ Your service uses *recipientAccountIds* to call [Get Recipient Account](/referen
       "transferMethod": "BANK_ACCOUNT",
       "senderId": senderId,
       "fields": [
-        {
-          "id": "userId",
-          "type": "TEXT",
-          "value": userId
-        },
         {
           "id": "FIRST_NAME",
           "type": "TEXT",
