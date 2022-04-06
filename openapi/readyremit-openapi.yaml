@@ -73,7 +73,7 @@ paths:
       tags:
       - Banks and Branches
       summary: Get Banks
-      description: Given a `countryIso3Code`, this operation returns an array of banks located in that country.
+      description: Given a [countryIso3Code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3), this operation returns an array of banks located in that country. Bank identifiers and names are useful when creating recipient accounts.
       operationId: getBanks
       parameters:
       - name: countryIso3Code
