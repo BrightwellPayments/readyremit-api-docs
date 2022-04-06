@@ -162,7 +162,7 @@ paths:
       tags:
       - Helpers
       summary: Ping
-      description: This operation returns "OK" if the service is alive and well.
+      description: This operation returns "OK" if the service is accessible.
       operationId: ping
       responses:
         "200":
@@ -173,7 +173,7 @@ paths:
       - Helpers
       summary: Get Quote
       description: |
-        Given a corridor and sender amount, this operation returns a quote including the exchanged amount, fees, and disclosures. The app can present the quote to the end user who can decide whether to proceed with the transfer. Quotes are accurate at the instance of the quote, but rates may change between the time of the quote and the time of the transfer. The Execute Transfer operation returns the final exchange rate.
+        Given a corridor and a sender amount, this operation returns a quote which includes the exchange rate, fee adjustments, disclosures, and recipient amount. See [Currency](https://developer.readyremit.com/reference/about-the-reference#currency) for more about currency values and decimal places. The app can present the quote to the end user who can decide whether to proceed with the transfer. Quotes are accurate at the instance of the quote, but rates may change between the time of the quote and the time of the transfer. The Execute Transfer operation returns the final exchange rate.
       operationId: getQuote
       parameters:
       - name: dstCountryIso3Code
