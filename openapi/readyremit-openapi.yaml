@@ -111,7 +111,7 @@ paths:
       - Banks and Branches
       summary: Get Bank Branches
       description: |
-        Given a `bankId`, this operation returns an array of branches for that bank. A `bankId` is 1-5 characters. If a `bankId` is 1-5 characters, but the `bankId` does not exist in the database, this operation returns a zero-length array. If the `bankId` is more than 5 characters, this operation returns a status code of 400. Branch identifiers and names are useful when creating recipient accounts.
+        Given a `bankId`, this operation returns an array of branches for that bank. A `bankId` must be 5 characters in length. Otherwise, this operation returns a status code of 400. The operation returns a zero-length array for unrecogized bank identifiers. Branch identifiers and names are useful when creating recipient accounts.
       operationId: getBankBranches
       parameters:
       - name: bankId
