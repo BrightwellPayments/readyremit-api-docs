@@ -797,23 +797,16 @@ paths:
             schema:
               $ref: '#/components/schemas/createRecipientAccountRequest'
             example:
+              senderId: 55ef79b0-0f0f-459f-ad62-effcf516df7d
               dstCountryIso3Code: IND
               dstCurrencyIso3Code: INR
               transferMethod: BANK_ACCOUNT
-              recipientId: 60d7f7a2-a515-4530-b38a-af2b9131abb6
-              senderId: 55ef79b0-0f0f-459f-ad62-effcf516df7d
-              name: Moana Primary Account
-              accountNumber: "12312312312312312"
+              name: My Account
+              accountNumber: "1"
               fields:
-              - id: bankId
-                type: NUMBER
-                value: "78"
-              - id: branchId
-                type: NUMBER
-                value: "99"
-              - id: accountNumber
+              - id: BANK_NAME
                 type: TEXT
-                value: "12312312312312312"
+                value: "12345"
       responses:
         "201":
           description: Created
@@ -826,17 +819,11 @@ paths:
                   summary: Success
                   value:
                     recipientAccountId: e27c7395-b46a-4b9b-89fd-cd6a3da7fd85
-                    accountNumber: "98237498327489273"
+                    accountNumber: "1"
                     fields:
-                    - id: bankId
-                      type: NUMBER
-                      value: "78"
-                    - id: branchId
-                      type: NUMBER
-                      value: "99"
-                    - id: accountNumber
+                    - id: BANK_NAME
                       type: TEXT
-                      value: "1234556677"
+                      value: "12345"
         "400":
           description: Bad Request
           content:
@@ -1024,8 +1011,6 @@ components:
           $ref: '#/components/schemas/string3uc'
         transferMethod:
           $ref: '#/components/schemas/transferMethods'
-        recipientId:
-          type: string
         senderId:
           type: string
         name:
