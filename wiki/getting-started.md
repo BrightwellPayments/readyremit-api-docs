@@ -53,6 +53,10 @@ Brightwell also provides you with credentials (i.e. `client_id`, `client_secret`
 
 Note that this authentication workflow is independent of any authentication workflow your app performs for your end users.
 
+## Blocked accounts
+
+ReadyRemit maintains a list of known fraudulent bank accounts. If a client attempts to create a ReadyRemit *RecipientAccount* that references any of these fraudulent accounts, ReadyRemit prevents the attempt, and returns a status code of 400 with the message *Unable to create account*. If a client attempts to transfer funds to one of these fraudulent accounts, ReadyRemit prevents the attempt, and returns a status code of 400 with the message *Unable to transfer to this account*. 
+
 # Your service is the sender
 
 For this use case, your service is the sender, and your end users are the recipients. The use case supports transfers initiated by your service (e.g. payroll) and transfers initiated by your end users (e.g. reward redemption). Once fully implemented, ReadyRemit will represent your service with a *Sender* entity and one or more *Sender Account* entities, and each of your end users with a *Recipient* entity and one or more *Recipient Account* entities:
