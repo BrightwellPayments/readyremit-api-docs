@@ -55,7 +55,17 @@ Note that this authentication workflow is independent of any authentication work
 
 ## Blocked accounts
 
-ReadyRemit maintains a list of known fraudulent bank accounts. If a client attempts to create a ReadyRemit *RecipientAccount* that references any of these fraudulent accounts, ReadyRemit prevents the attempt, and returns a status code of 400 with the message *Unable to create account*. If a client attempts to transfer funds to one of these fraudulent accounts, ReadyRemit prevents the attempt, and returns a status code of 400 with the message *Unable to transfer to this account*. 
+ReadyRemit maintains a list of known fraudulent bank accounts. If a client attempts to create a ReadyRemit *RecipientAccount* that references any of these fraudulent accounts, ReadyRemit prevents the attempt, and returns a status code of 400 with the message *Unable to create account*. If a client attempts to transfer funds to one of these fraudulent accounts, ReadyRemit prevents the attempt, and returns a status code of 400 with the message *Unable to transfer to this account*.
+
+## Transfer limitations
+
+ReadyRemit enforces the following transfer limits on each sender account, limits that may vary per sender:
+
+1. Maximum total transfer amount in the last (rolling) 24 hours.
+
+1. Maximum total transfer amount in the last (rolling) 7 days.
+
+1. Maximum total transfer amount per day (12:00:00 AM EST - 11:59:59 PM EST).
 
 # Your service is the sender
 
