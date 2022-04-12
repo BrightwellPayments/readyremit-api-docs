@@ -67,6 +67,8 @@ ReadyRemit enforces the following transfer limits on each sender account, limits
 
 1. Maximum total transfer amount per day (12:00:00 AM EST - 11:59:59 PM EST).
 
+ReadyRemit also enforces these transfer limits on each client service (meaningful when a client service has more than one sender account).
+
 # Your service is the sender
 
 For this use case, your service is the sender, and your end users are the recipients. The use case supports transfers initiated by your service (e.g. payroll) and transfers initiated by your end users (e.g. reward redemption). Once fully implemented, ReadyRemit will represent your service with a *Sender* entity and one or more *Sender Account* entities, and each of your end users with a *Recipient* entity and one or more *Recipient Account* entities:
