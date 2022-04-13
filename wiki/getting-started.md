@@ -59,7 +59,7 @@ ReadyRemit maintains a list of known fraudulent bank accounts. If a client attem
 
 ## Transfer limitations
 
-ReadyRemit enforces limits on the total transfer amount and the total number of transfers allowed by any one sender account within certain time periods. Limits may vary per sender account, and certain limits may be set by clients. A limit consists of a property:value pair. Here are the properties:
+ReadyRemit enforces limits on the total transfer amount and the total number of transfers allowed by any one sender account within certain time periods. ReadyRemit and sponsor banks set limits. A limit consists of a property:value pair. Here are the properties:
 
 1. Maximum total transfer amount in the last (rolling) 24 hours.
 
