@@ -59,21 +59,21 @@ ReadyRemit maintains a list of known fraudulent bank accounts. If a client attem
 
 ## Transfer limitations
 
-ReadyRemit enforces the following total transfer limits on each sender account, limits that may vary per sender:
+ReadyRemit enforces limits on the total transfer amount and the total number of transfers allowed by any one sender account within certain time periods. Limits may vary per sender account, and certain limits may be set by clients. A limit consists of a property:value pair. Here are the properties:
 
 1. Maximum total transfer amount in the last (rolling) 24 hours.
 
+1. Maximum total number of transfers in the last (rolling) 24 hours.
+
 1. Maximum total transfer amount in the last (rolling) 7 days.
+
+1. Maximum total number of transfers in the last (rolling) 7 days.
 
 1. Maximum total transfer amount per day (12:00:00 AM EST - 11:59:59 PM EST).
 
-ReadyRemit also enforces these transfer limits on each client service (meaningful when a client service has more than one sender account).
+1. Minimum transfer amount per corridor per transfer/quote. 
 
-ReadyRemit enforces the following minimum/maximum send amounts (defined by the client) per transfer or quote:
-
-1. Minimum amount per corridor per transfer/quote. 
-
-1. Maximum amount per corridor per transfer/quote.
+1. Maximum transfer amount per corridor per transfer/quote.
 
 # Your service is the sender
 
