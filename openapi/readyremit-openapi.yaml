@@ -3,7 +3,7 @@ openapi: 3.0.0
 info:
   title: API Reference
   description: |
-    **Filename**: readyremit-v1-20220401-openapi.yaml
+    **Filename**: readyremit-v1-20220415-openapi.yaml
 
     See [ReadyRemit Developer Portal](https://developer.readyremit.com/).
   version: "1.0"
@@ -43,7 +43,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/unauthorized401'
+                $ref: '#/components/schemas/getAccessTokenResponse401'
               example:
                 error: access_denied
                 error_description: Unauthorized
@@ -52,7 +52,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/forbidden403'
+                $ref: '#/components/schemas/getAccessTokenResponse403'
               example:
                 error: unauthorized_client
                 error_description: Grant type 'abc' not allowed for the client.
@@ -69,12 +69,16 @@ paths:
         in: query
         description: See [country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).
         required: true
+        style: form
+        explode: true
         schema:
-          $ref: '#/components/schemas/string3uc'
+          $ref: '#/components/schemas/threeUppercaseChars'
       - name: bankname
         in: query
         description: The search looks for any part of `bankname` in the bank's full name.
         required: false
+        style: form
+        explode: true
         schema:
           type: string
       responses:
@@ -83,24 +87,30 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/idNameArray'
+                $ref: '#/components/schemas/idNameObjectArray'
               example:
-                - id: IND60
-                  name: PUNJAB NATIONAL BANK
-                - id: IN134
-                  name: NAGPUR NAGARIK SAHAKARI BANK
-                - id: IND30
-                  name: DEUTSCHE BANK
+              - id: IND60
+                name: PUNJAB NATIONAL BANK
+              - id: IN134
+                name: NAGPUR NAGARIK SAHAKARI BANK
+              - id: IND30
+                name: DEUTSCHE BANK
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
+                $ref: '#/components/schemas/codeMsgFieldIdObjectArray'
               example:
-                - code: UnsupportedCountry
-                  message: CountryIso3Code must be a valid ISO 3 country.
-                  fieldId: CountryIso3Code
+              - code: UnsupportedCountry
+                message: '''CountryIso3Code'' must be a valid ISO 3 country.'
+                fieldId: CountryIso3Code
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response401'
   /banks/{bankId}/branches:
     get:
       tags:
@@ -124,24 +134,30 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/idNameArray'
+                $ref: '#/components/schemas/idNameObjectArray'
               example:
-                - id: DEUT0406AMD
-                  name: AHMEDABAD
-                - id: DEUT0406PBC
-                  name: AHMEDABAD
-                - id: DEUT0405PBC
-                  name: SURAT
+              - id: DEUT0406AMD
+                name: AHMEDABAD
+              - id: DEUT0406PBC
+                name: AHMEDABAD
+              - id: DEUT0405PBC
+                name: SURAT
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
+                $ref: '#/components/schemas/codeMsgFieldIdObjectArray'
               example:
-                - code: ExactLengthValidator
-                  message: Bank Id must be 5 characters in length. You entered 4 characters.
-                  fieldId: BankId
+              - code: ExactLengthValidator
+                message: Bank Id must be 5 characters in length. You entered 4 characters.
+                fieldId: BankId
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response401'
   /countries-and-currencies:
     get:
       tags:
@@ -159,22 +175,28 @@ paths:
                 items:
                   $ref: '#/components/schemas/getCountriesAndCurrenciesResponse200'
               example:
-                - country:
-                    name: Germany
-                    iso3Code: DEU
-                  currencies:
-                  - name: Euro
-                    iso3Code: EUR
-                    symbol: €
-                    decimalPlaces: 2
-                - country:
-                    name: India
-                    iso3Code: IND
-                  currencies:
-                  - name: Indian rupee
-                    iso3Code: INR
-                    symbol: ₹
-                    decimalPlaces: 2
+              - country:
+                  name: Germany
+                  iso3Code: DEU
+                currencies:
+                - name: Euro
+                  iso3Code: EUR
+                  symbol: €
+                  decimalPlaces: 2
+              - country:
+                  name: India
+                  iso3Code: IND
+                currencies:
+                - name: Indian rupee
+                  iso3Code: INR
+                  symbol: ₹
+                  decimalPlaces: 2
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response401'
   /quote:
     get:
       tags:
@@ -191,7 +213,7 @@ paths:
         style: form
         explode: true
         schema:
-          $ref: '#/components/schemas/string3uc'
+          $ref: '#/components/schemas/threeUppercaseChars'
       - name: dstCurrencyIso3Code
         in: query
         description: See [currency codes](https://en.wikipedia.org/wiki/ISO_4217).
@@ -199,7 +221,7 @@ paths:
         style: form
         explode: true
         schema:
-          $ref: '#/components/schemas/string3uc'
+          $ref: '#/components/schemas/threeUppercaseChars'
       - name: srcCurrencyIso3Code
         in: query
         description: See [currency codes](https://en.wikipedia.org/wiki/ISO_4217).
@@ -207,7 +229,7 @@ paths:
         style: form
         explode: true
         schema:
-          $ref: '#/components/schemas/string3uc'
+          $ref: '#/components/schemas/threeUppercaseChars'
       - name: transferMethod
         in: query
         required: true
@@ -236,7 +258,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/quote'
+                $ref: '#/components/schemas/getQuoteResponse200'
               example:
                 sendAmount:
                   value: 100000
@@ -270,6 +292,28 @@ paths:
                     symbol: $
                     decimalPlaces: 2
                 disclosures: []
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/codeMsgFieldIdObjectArray'
+              example:
+              - code: UnsupportedCountry
+                message: '''DestinationCountryISO3Code'' must be a valid ISO 3 country.'
+                fieldId: DestinationCountryISO3Code
+              - code: UnsupportedCurrency
+                message: '''DestinationCurrencyISO3Code'' must be a valid ISO 3 currency.'
+                fieldId: DestinationCurrencyISO3Code
+              - code: UnsupportedCurrency
+                message: '''SrcCurrencyIso3Code'' must be a valid ISO 3 currency.'
+                fieldId: SrcCurrencyIso3Code
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response401'
   /recipient-fields:
     get:
       tags:
@@ -285,7 +329,7 @@ paths:
         style: form
         explode: true
         schema:
-          $ref: '#/components/schemas/string3uc'
+          $ref: '#/components/schemas/threeUppercaseChars'
       - name: dstCurrencyIso3Code
         in: query
         description: See [currency codes](https://en.wikipedia.org/wiki/ISO_4217).
@@ -293,7 +337,7 @@ paths:
         style: form
         explode: true
         schema:
-          $ref: '#/components/schemas/string3uc'
+          $ref: '#/components/schemas/threeUppercaseChars'
       - name: transferMethod
         in: query
         required: true
@@ -316,94 +360,103 @@ paths:
               schema:
                 $ref: '#/components/schemas/fieldSetsObject'
               example:
-                  fieldSets:
-                  - fieldSetId: PERSONAL_INFORMATION
-                    fieldSetName: Personal information
-                    fields:
-                    - placeholderText: First name
-                      minLength: 1
-                      maxLength: 50
-                      options: []
-                      fieldType: TEXT
-                      fieldId: FIRST_NAME
-                      name: First name
-                      hintText: Enter the recipient's name as it appears on their ID
-                      isRequired: true
-                    - placeholderText: Last name
-                      minLength: 1
-                      maxLength: 50
-                      options: []
-                      fieldType: TEXT
-                      fieldId: LAST_NAME
-                      name: Last name
-                      hintText: Enter the recipient's name as it appears on their ID
-                      isRequired: true
-                    - placeholderText: Mobile phone number
-                      minLength: 7
-                      maxLength: 15
-                      regex: "[0-9]{7,15}$"
-                      options: []
-                      fieldType: PHONE_NUMBER
-                      fieldId: PHONE_NUMBER
-                      name: Mobile phone number
-                      isRequired: false
-                  - fieldSetId: ADDRESS
-                    fieldSetName: Address
-                    fields:
-                    - placeholderText: Address line 1
-                      minLength: 5
-                      maxLength: 200
-                      options: []
-                      fieldType: TEXT
-                      fieldId: ADDRESS_LINE_1
-                      name: Address line 1
-                      isRequired: false
-                    - placeholderText: Address line 2
-                      options: []
-                      fieldType: TEXT
-                      fieldId: ADDRESS_LINE_2
-                      name: Address line 2
-                      isRequired: false
-                    - placeholderText: City
-                      options: []
-                      fieldType: TEXT
-                      fieldId: ADDRESS_CITY
-                      name: City
-                      isRequired: false
-                    - placeholderText: State
-                      options: []
-                      fieldType: DROPDOWN
-                      fieldId: ADDRESS_STATE
-                      name: State
-                      isRequired: false
-                    - placeholderText: Country
-                      minLength: 2
-                      maxLength: 2
-                      regex: "^[A-Za-z]{2}$"
-                      options: []
-                      fieldType: DROPDOWN
-                      fieldId: ADDRESS_COUNTRY
-                      name: Country
-                      isRequired: false
-                    - placeholderText: Zip code
-                      minLength: 4
-                      maxLength: 7
-                      regex: "^[0-9a-zA-Z\\s]{4,7}$"
-                      options: []
-                      fieldType: TEXT
-                      fieldId: ADDRESS_ZIP
-                      name: Zip code
-                      isRequired: false
+                fieldSets:
+                - fieldSetId: PERSONAL_INFORMATION
+                  fieldSetName: Personal information
+                  fields:
+                  - placeholderText: First name
+                    minLength: 1
+                    maxLength: 50
+                    options: []
+                    fieldType: TEXT
+                    fieldId: FIRST_NAME
+                    name: First name
+                    hintText: Enter the recipient's name as it appears on their ID
+                    isRequired: true
+                  - placeholderText: Last name
+                    minLength: 1
+                    maxLength: 50
+                    options: []
+                    fieldType: TEXT
+                    fieldId: LAST_NAME
+                    name: Last name
+                    hintText: Enter the recipient's name as it appears on their ID
+                    isRequired: true
+                  - placeholderText: Mobile phone number
+                    minLength: 7
+                    maxLength: 15
+                    regex: '[0-9]{7,15}$'
+                    options: []
+                    fieldType: PHONE_NUMBER
+                    fieldId: PHONE_NUMBER
+                    name: Mobile phone number
+                    isRequired: false
+                - fieldSetId: ADDRESS
+                  fieldSetName: Address
+                  fields:
+                  - placeholderText: Address line 1
+                    minLength: 5
+                    maxLength: 200
+                    options: []
+                    fieldType: TEXT
+                    fieldId: ADDRESS_LINE_1
+                    name: Address line 1
+                    isRequired: false
+                  - placeholderText: Address line 2
+                    options: []
+                    fieldType: TEXT
+                    fieldId: ADDRESS_LINE_2
+                    name: Address line 2
+                    isRequired: false
+                  - placeholderText: City
+                    options: []
+                    fieldType: TEXT
+                    fieldId: ADDRESS_CITY
+                    name: City
+                    isRequired: false
+                  - placeholderText: State
+                    options: []
+                    fieldType: DROPDOWN
+                    fieldId: ADDRESS_STATE
+                    name: State
+                    isRequired: false
+                  - placeholderText: Country
+                    minLength: 2
+                    maxLength: 2
+                    regex: ^[A-Za-z]{2}$
+                    options: []
+                    fieldType: DROPDOWN
+                    fieldId: ADDRESS_COUNTRY
+                    name: Country
+                    isRequired: false
+                  - placeholderText: Zip code
+                    minLength: 4
+                    maxLength: 7
+                    regex: ^[0-9a-zA-Z\s]{4,7}$
+                    options: []
+                    fieldType: TEXT
+                    fieldId: ADDRESS_ZIP
+                    name: Zip code
+                    isRequired: false
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorArray'
+                $ref: '#/components/schemas/codeMsgFieldIdObjectArray'
               example:
-                - code: UnsupportedCountry
-                  message: '''DestinationCountryISO3Code'' debe ser un país ISO 3 válido.'
-                  fieldId: DestinationCountryISO3Code
+              - code: UnsupportedCountry
+                message: '''DestinationCountryISO3Code'' must be a valid ISO 3 country.'
+                fieldId: DestinationCountryISO3Code
+              - code: UnsupportedCurrency
+                message: '''DestinationCurrencyISO3Code'' must be a valid ISO 3 country.'
+                fieldId: DestinationCurrencyISO3Code
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response401'
   /recipients:
     get:
       tags:
@@ -452,26 +505,32 @@ paths:
                   firstName: Emma
                   lastName: Watson
                   fields: []
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response401'
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorArray'
+                $ref: '#/components/schemas/codeMsgDescObjectArray'
               example:
-                - code: AccessDenied
-                  message: "Sorry! Access denied :("
-                  description: "Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException' was thrown."
+              - code: AccessDenied
+                message: Sorry! Access denied :(
+                description: Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException' was thrown.
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorArray'
+                $ref: '#/components/schemas/codeMsgFieldIdObjectArray'
               example:
-                - code: "000"
-                  message: "Something went wrong!"
-                  description: "One or more errors occurred. (Guid should contain 32 digits with 4 dashes (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx).)"
+              - code: "000"
+                message: Something went wrong!
+                description: One or more errors occurred. (Guid should contain 32 digits with 4 dashes (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx).)
     post:
       tags:
       - Recipients
@@ -483,19 +542,28 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/createRecipientRequest'
-            example:
-              dstCountryIso3Code: IND
-              dstCurrencyIso3Code: INR
-              recipientType: PERSON
-              transferMethod: BANK_ACCOUNT
-              senderId: 55ef79b0-0f0f-459f-ad62-effcf516df7d
-              fields:
-              - id: FIRST_NAME
-                type: TEXT
-                value: Moana
-              - id: LAST_NAME
-                type: TEXT
-                value: Waialiki
+            examples:
+              Person:
+                summary: PERSON
+                value:
+                  recipientType: PERSON
+                  senderId: 55ef79b0-0f0f-459f-ad62-effcf516df7d
+                  fields:
+                  - id: FIRST_NAME
+                    type: TEXT
+                    value: Jane
+                  - id: LAST_NAME
+                    type: TEXT
+                    value: Doe
+              Business:
+                summary: BUSINESS
+                value:
+                  recipientType: BUSINESS
+                  senderId: 55ef79b0-0f0f-459f-ad62-effcf516df7d
+                  fields:
+                  - id: COMPANY_NAME
+                    type: TEXT
+                    value: Overseas Inc
       responses:
         "201":
           description: Created
@@ -504,28 +572,70 @@ paths:
               schema:
                 $ref: '#/components/schemas/recipient'
               examples:
-                Success:
-                  summary: Success
+                Person:
+                  summary: PERSON
                   value:
                     recipientId: 6f5ba7ce-0d40-449e-81de-b12c618eb6dd
                     senderId: 55ef79b0-0f0f-459f-ad62-effcf516df7d
                     recipientType: PERSON
-                    firstName: Moana
-                    lastName: Waialiki
-                    fields: []
+                    firstName: Jane
+                    lastName: Doe
+                    fields:
+                    - id: FIRST_NAME
+                      type: TEXT
+                      value: Jane
+                    - id: LAST_NAME
+                      type: TEXT
+                      value: Doe
+                Business:
+                  summary: BUSINESS
+                  value:
+                    recipientId: 7aeefa7e-4e2c-4a3f-b702-61cc27f47087
+                    senderId: 55ef79b0-0f0f-459f-ad62-effcf516df7d
+                    recipientType: BUSINESS
+                    companyName: Overseas Inc
+                    fields:
+                    - id: COMPANY_NAME
+                      type: TEXT
+                      value: Overseas Inc
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorArray'
+                $ref: '#/components/schemas/codeMsgFieldIdObjectArray'
               examples:
-                UnsupportedCountry:
-                  summary: UnsupportedCountry
+                Person:
+                  summary: PERSON
                   value:
-                  - code: UnsupportedCountry
-                    message: '''DestinationCountryISO3Code'' debe ser un país ISO 3 válido.'
-                    fieldId: DestinationCountryISO3Code
+                  - code: InvalidRecipientName
+                    message: '''First Name'' is required when recipient type is ''PERSON''.'
+                    fieldId: FIRST_NAME
+                  - code: InvalidRecipientName
+                    message: '''Last Name'' is required when recipient type is ''PERSON''.'
+                    fieldId: LAST_NAME
+                Business:
+                  summary: BUSINESS
+                  value:
+                  - code: InvalidRecipientName
+                    message: '''Company Name'' is required when recipient type is ''BUSINESS''.'
+                    fieldId: COMPANY_NAME
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response401'
+        "403":
+          description: Bad Request - Wrong senderId
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/codeMsgDescObjectArray'
+              example:
+              - code: AccessDenied
+                message: Sorry! Access denied :(
+                description: Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException' was thrown.
   /recipients/{recipientId}:
     get:
       tags:
@@ -556,16 +666,22 @@ paths:
                 firstName: Moana
                 lastName: Waialiki
                 fields: []
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response401'
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorArray'
+                $ref: '#/components/schemas/codeMsgFieldIdObjectArray'
               example:
-                - code: RecipientNotFound
-                  message: Recipient not found.
-                  description: Recipient cannot be found.
+              - code: RecipientNotFound
+                message: Recipient not found.
+                description: Recipient cannot be found.
     put:
       tags:
       - Recipients
@@ -594,6 +710,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/recipient'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response401'
     delete:
       tags:
       - Recipients
@@ -612,12 +734,18 @@ paths:
       responses:
         "200":
           description: Success
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response401'
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorArray'
+                $ref: '#/components/schemas/codeMsgFieldIdObjectArray'
               examples:
                 NotFound:
                   summary: Not Found
@@ -640,7 +768,7 @@ paths:
         style: form
         explode: true
         schema:
-          $ref: '#/components/schemas/string3uc'
+          $ref: '#/components/schemas/threeUppercaseChars'
       - name: dstCurrencyIso3Code
         in: query
         description: See [currency codes](https://en.wikipedia.org/wiki/ISO_4217).
@@ -648,7 +776,7 @@ paths:
         style: form
         explode: true
         schema:
-          $ref: '#/components/schemas/string3uc'
+          $ref: '#/components/schemas/threeUppercaseChars'
       - name: transferMethod
         in: query
         required: true
@@ -713,11 +841,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorArray'
+                $ref: '#/components/schemas/codeMsgFieldIdObjectArray'
               example:
-                - code: UnsupportedCountry
-                  message: "'DestinationCountryISO3Code' must be a valid ISO 3 country."
-                  fieldId: DestinationCountryISO3Code
+              - code: UnsupportedCountry
+                message: '''DestinationCountryISO3Code'' must be a valid ISO 3 country.'
+                fieldId: DestinationCountryISO3Code
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response401'
   /recipients/{recipientId}/accounts:
     get:
       tags:
@@ -757,16 +891,22 @@ paths:
                   - id: accountNumber
                     type: TEXT
                     value: "1234556677"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response401'
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorArray'
+                $ref: '#/components/schemas/codeMsgFieldIdObjectArray'
               example:
-                - code: RecipientNotFound
-                  message: Destinataria no encontrada.
-                  description: Recipient cannot be found.
+              - code: RecipientNotFound
+                message: Destinataria no encontrada.
+                description: Recipient cannot be found.
     post:
       tags:
       - Recipient Accounts
@@ -820,7 +960,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorArray'
+                $ref: '#/components/schemas/codeMsgFieldIdObjectArray'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response401'
   /recipients/{recipientId}/accounts/{accId}:
     get:
       tags:
@@ -873,7 +1019,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorArray'
+                $ref: '#/components/schemas/codeMsgFieldIdObjectArray'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response401'
     put:
       tags:
       - Recipient Accounts
@@ -909,7 +1061,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorArray'
+                $ref: '#/components/schemas/codeMsgFieldIdObjectArray'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response401'
     delete:
       tags:
       - Recipient Accounts
@@ -941,7 +1099,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorArray'
+                $ref: '#/components/schemas/codeMsgFieldIdObjectArray'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response401'
   /transfer-fields:
     get:
       tags:
@@ -957,7 +1121,7 @@ paths:
         style: form
         explode: true
         schema:
-          $ref: '#/components/schemas/string3uc'
+          $ref: '#/components/schemas/threeUppercaseChars'
       - name: dstCurrencyIso3Code
         in: query
         description: See [currency codes](https://en.wikipedia.org/wiki/ISO_4217).
@@ -965,7 +1129,7 @@ paths:
         style: form
         explode: true
         schema:
-          $ref: '#/components/schemas/string3uc'
+          $ref: '#/components/schemas/threeUppercaseChars'
       - name: transferMethod
         in: query
         required: true
@@ -981,88 +1145,94 @@ paths:
               schema:
                 $ref: '#/components/schemas/getTransferFieldsResponse200'
               example:
-                - fieldSets:
-                  - fieldSetId: TRANSFER_FIELDS
-                    fieldSetName: Transfer Fields
-                    fields:
-                      - placeholderText: "-select-"
-                        minLength: 1
-                        maxLength: 40
-                        validationErrors: []
-                        options:
-                          - id: 1
-                            name: FAMILY MAINTENANCE
-                          - id: 2
-                            name: EDUCATION
-                          - id: 3
-                            name: MEDICAL
-                          - id: 4
-                            name: TOURIST
-                          - id: 6
-                            name: PERSONAL
-                          - id: 18
-                            name: TRANSFER TO NRE ACCOUNT
-                          - id: 21
-                            name: INVESTMENT IN MUTUAL FUND/INSURANCE
-                          - id: 22
-                            name: INVESTMENT THROUGH BANK
-                          - id: 23
-                            name: PURCHASE OF REAL ESTATE
-                          - id: 24
-                            name: EDUCATION/TUITION/BOARDING
-                          - id: 25
-                            name: HOTEL ACCOMODATIONS
-                          - id: 26
-                            name: TRAVEL AGENT
-                          - id: 28
-                            name: UTILITY PROV- idER
-                          - id: 29
-                            name: TAX PAYMENT
-                          - id: 30
-                            name: LOAN PAYMENT TO BANK
-                          - id: 31
-                            name: PRIME MINISTERS NATIONAL RELIEF FUND (INDIA)
-                          - id: 32
-                            name: HOSPITAL OR MEDICAL INSTITUTION
-                          - id: 43
-                            name: TRADE RELATED SERVICES
-                          - id: 44
-                            name: TRADE REALISATION OF EXPORT BILLS
-                          - id: 45
-                            name: TRADE ADVANCE RECEIPT AGAINST EXPORT
-                        fieldType: DROPDOWN,
-                        fieldId: REMITTANCE_PURPOSE,
-                        name: Purpose of remittance,
-                        hintText: Insert the purpose of this remittance,
-                        isRequired: false
+              - fieldSets:
+                - fieldSetId: TRANSFER_FIELDS
+                  fieldSetName: Transfer Fields
+                  fields:
+                  - placeholderText: -select-
+                    minLength: 1
+                    maxLength: 40
+                    validationErrors: []
+                    options:
+                    - id: 1
+                      name: FAMILY MAINTENANCE
+                    - id: 2
+                      name: EDUCATION
+                    - id: 3
+                      name: MEDICAL
+                    - id: 4
+                      name: TOURIST
+                    - id: 6
+                      name: PERSONAL
+                    - id: 18
+                      name: TRANSFER TO NRE ACCOUNT
+                    - id: 21
+                      name: INVESTMENT IN MUTUAL FUND/INSURANCE
+                    - id: 22
+                      name: INVESTMENT THROUGH BANK
+                    - id: 23
+                      name: PURCHASE OF REAL ESTATE
+                    - id: 24
+                      name: EDUCATION/TUITION/BOARDING
+                    - id: 25
+                      name: HOTEL ACCOMODATIONS
+                    - id: 26
+                      name: TRAVEL AGENT
+                    - id: 28
+                      name: UTILITY PROV- idER
+                    - id: 29
+                      name: TAX PAYMENT
+                    - id: 30
+                      name: LOAN PAYMENT TO BANK
+                    - id: 31
+                      name: PRIME MINISTERS NATIONAL RELIEF FUND (INDIA)
+                    - id: 32
+                      name: HOSPITAL OR MEDICAL INSTITUTION
+                    - id: 43
+                      name: TRADE RELATED SERVICES
+                    - id: 44
+                      name: TRADE REALISATION OF EXPORT BILLS
+                    - id: 45
+                      name: TRADE ADVANCE RECEIPT AGAINST EXPORT
+                    fieldType: DROPDOWN,
+                    fieldId: REMITTANCE_PURPOSE,
+                    name: Purpose of remittance,
+                    hintText: Insert the purpose of this remittance,
+                    isRequired: false
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorArray'
+                $ref: '#/components/schemas/codeMsgFieldIdObjectArray'
               examples:
                 UnsupportedCountry:
                   summary: Unsupported Country
                   value:
                   - code: UnsupportedCountry
-                    message: "'DestinationCountryISO3Code' must be a valid ISO 3 country."
+                    message: '''DestinationCountryISO3Code'' must be a valid ISO 3 country.'
                     fieldId: DestinationCountryISO3Code
                 UnsupportedCurrency:
                   summary: Unsupported Currency
                   value:
                   - code: UnsupportedCurrency
-                    message: "'DestinationCurrencyISO3Code' must be a valid ISO 3 country."
+                    message: '''DestinationCurrencyISO3Code'' must be a valid ISO 3 country.'
                     fieldId: DestinationCurrencyISO3Code
                 UnsupportedCountryAndCurrency:
                   summary: Unsupported Country and Currency
                   value:
                   - code: UnsupportedCountry
-                    message: "'DestinationCountryISO3Code' must be a valid ISO 3 country."
+                    message: '''DestinationCountryISO3Code'' must be a valid ISO 3 country.'
                     fieldId: DestinationCountryISO3Code
                   - code: UnsupportedCurrency
-                    message: "'DestinationCurrencyISO3Code' must be a valid ISO 3 country."
+                    message: '''DestinationCurrencyISO3Code'' must be a valid ISO 3 country.'
                     fieldId: DestinationCurrencyISO3Code
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response401'
   /transfers:
     post:
       tags:
@@ -1083,10 +1253,80 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorArray'
+                $ref: '#/components/schemas/codeMsgFieldIdObjectArray'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response401'
 components:
   schemas:
-    forbidden403:
+    codeMsgDescObject:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        description:
+          type: string
+    codeMsgDescObjectArray:
+      type: array
+      items:
+        $ref: '#/components/schemas/codeMsgDescObject'
+    codeMsgFieldIdObject:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        fieldId:
+          type: string
+    codeMsgFieldIdObjectArray:
+      type: array
+      items:
+        $ref: '#/components/schemas/codeMsgFieldIdObject'
+    getAccessTokenRequest:
+      required:
+      - audience
+      - client_id
+      - client_secret
+      - grant_type
+      type: object
+      properties:
+        client_id:
+          type: string
+          default: '{{client_id}}'
+        client_secret:
+          type: string
+          default: '{{client_secret}}'
+        audience:
+          type: string
+          default: https://sandbox-api.readyremit.com
+        grant_type:
+          type: string
+          default: client_credentials
+    getAccessTokenResponse200:
+      type: object
+      properties:
+        access_token:
+          type: string
+        scope:
+          type: string
+        expires_in:
+          type: integer
+        token_type:
+          type: string
+    getAccessTokenResponse401:
+      type: object
+      properties:
+        error:
+          type: string
+        error_description:
+          type: string
+    getAccessTokenResponse403:
       type: object
       properties:
         error:
@@ -1095,24 +1335,44 @@ components:
           type: string
         error_uri:
           type: string
-    unauthorized401:
+    idNameObject:
+      required:
+      - id
+      - name
       type: object
       properties:
-        error:
+        id:
           type: string
-        error_description:
+        name:
           type: string
+    idNameObjectArray:
+      type: array
+      items:
+        $ref: '#/components/schemas/idNameObject'
+    response401:
+      allOf:
+      - $ref: '#/components/schemas/codeMsgDescObject'
+      - type: object
+        properties:
+          code:
+            type: string
+            default: "000"
+          message:
+            type: string
+            default: Something went wrong!
+          description:
+            type: string
+            default: Unauthorized
+    threeUppercaseChars:
+      maxLength: 3
+      minLength: 3
+      pattern: ^[A-Z]{3}$
+      type: string
     createRecipientRequest:
       type: object
       properties:
-        dstCountryIso3Code:
-          $ref: '#/components/schemas/string3uc'
-        dstCurrencyIso3Code:
-          $ref: '#/components/schemas/string3uc'
         recipientType:
           $ref: '#/components/schemas/recipientTypes'
-        transferMethod:
-          $ref: '#/components/schemas/transferMethods'
         senderId:
           type: string
         fields:
@@ -1123,9 +1383,9 @@ components:
       type: object
       properties:
         dstCountryIso3Code:
-          $ref: '#/components/schemas/string3uc'
+          $ref: '#/components/schemas/threeUppercaseChars'
         dstCurrencyIso3Code:
-          $ref: '#/components/schemas/string3uc'
+          $ref: '#/components/schemas/threeUppercaseChars'
         transferMethod:
           $ref: '#/components/schemas/transferMethods'
         senderId:
@@ -1142,11 +1402,11 @@ components:
       type: object
       properties:
         dstCountryIso3Code:
-          $ref: '#/components/schemas/string3uc'
+          $ref: '#/components/schemas/threeUppercaseChars'
         dstCurrencyIso3Code:
-          $ref: '#/components/schemas/string3uc'
+          $ref: '#/components/schemas/threeUppercaseChars'
         srcCurrencyIso3Code:
-          $ref: '#/components/schemas/string3uc'
+          $ref: '#/components/schemas/threeUppercaseChars'
         transferMethod:
           $ref: '#/components/schemas/transferMethods'
         quoteBy:
@@ -1184,25 +1444,6 @@ components:
       enum:
       - SEND_AMOUNT
       - RECEIVE_AMOUNT
-    string3uc:
-      maxLength: 3
-      minLength: 3
-      pattern: ^[A-Z]{3}$
-      type: string
-    idName:
-      required:
-      - id
-      - name
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-    idNameArray:
-      type: array
-      items:
-        $ref: '#/components/schemas/idName'
     country:
       required:
       - iso3Code
@@ -1256,7 +1497,7 @@ components:
           type: string
         amount:
           $ref: '#/components/schemas/money'
-    quote:
+    getQuoteResponse200:
       required:
       - adjustments
       - disclosures
@@ -1321,7 +1562,7 @@ components:
         validationErrors:
           type: array
           items:
-            $ref: '#/components/schemas/error'
+            $ref: '#/components/schemas/codeMsgFieldIdObject'
     textField:
       allOf:
       - $ref: '#/components/schemas/baseField'
@@ -1406,64 +1647,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/fieldValue'
-    errorArray:
-      type: array
-      items:
-        $ref: '#/components/schemas/error'
-    error:
-      required:
-      - code
-      - message
-      type: object
-      properties:
-        code:
-          pattern: ^[A-Z]{2}[0-9]{3}$
-          type: string
-          description: User-facing error code. Provide this to Brightwell support.
-        message:
-          type: string
-          description: User facing error message.
-        fieldId:
-          type: string
-          description: Name of the offending field.
-    getAccessTokenRequest:
-      required:
-      - audience
-      - client_id
-      - client_secret
-      - grant_type
-      type: object
-      properties:
-        client_id:
-          type: string
-          default: '{{client_id}}'
-        client_secret:
-          type: string
-          default: '{{client_secret}}'
-        audience:
-          type: string
-          default: https://sandbox-api.readyremit.com
-        grant_type:
-          type: string
-          default: client_credentials
-    getAccessTokenResponse200:
-      type: object
-      properties:
-        access_token:
-          type: string
-        scope:
-          type: string
-        expires_in:
-          type: integer
-        token_type:
-          type: string
     getTransferFieldsResponse200:
       type: object
       properties:
         fieldSets:
           type: array
           items:
-            $ref: '#/components/schemas/fieldSet' 
+            $ref: '#/components/schemas/fieldSet'
     getCountriesAndCurrenciesResponse200:
       required:
       - country
