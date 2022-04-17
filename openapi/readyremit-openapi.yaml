@@ -487,24 +487,23 @@ paths:
                 - recipientId: 986d85c1-72b8-47ef-85d5-619b308fa6fa
                   senderId: 55ef79b0-0f0f-459f-ad62-effcf516df7d
                   recipientType: PERSON
-                  firstName: Daniel
-                  lastName: Radcliffe
+                  firstName: Alpha
+                  lastName: Flight
                   fields:
-                  - id: NATIONALITY
+                  - id: FIRST_NAME
                     type: TEXT
-                    value: USA
-                - recipientId: 6f5ba7ce-0d40-449e-81de-b12c618eb6dd
+                    value: Alpha
+                  - id: LAST_NAME
+                    type: TEXT
+                    value: Flight
+                - recipientId: 59555d87-5357-4e17-bcb1-83cbcf59a711
                   senderId: 55ef79b0-0f0f-459f-ad62-effcf516df7d
-                  recipientType: PERSON
-                  firstName: Moana
-                  lastName: Waialiki
-                  fields: []
-                - recipientId: ee74b30a-a8a0-4f67-9e35-09c53d249b78
-                  senderId: 55ef79b0-0f0f-459f-ad62-effcf516df7d
-                  recipientType: PERSON
-                  firstName: Emma
-                  lastName: Watson
-                  fields: []
+                  recipientType: BUSINESS
+                  companyName: Overseas Inc
+                  fields:
+                  - id: COMPANY_NAME
+                    type: TEXT
+                    value: Overseas Inc
         "401":
           description: Unauthorized
           content:
@@ -659,13 +658,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/recipient'
-              example:
-                recipientId: 6f5ba7ce-0d40-449e-81de-b12c618eb6dd
-                senderId: 55ef79b0-0f0f-459f-ad62-effcf516df7d
-                recipientType: PERSON
-                firstName: Moana
-                lastName: Waialiki
-                fields: []
+              examples:
+                Person:
+                  summary: PERSON
+                  value:
+                    recipientId: 6f5ba7ce-0d40-449e-81de-b12c618eb6dd
+                    senderId: 55ef79b0-0f0f-459f-ad62-effcf516df7d
+                    recipientType: PERSON
+                    firstName: Jane
+                    lastName: Doe
+                    fields:
+                    - id: FIRST_NAME
+                      type: TEXT
+                      value: Jane
+                    - id: LAST_NAME
+                      type: TEXT
+                      value: Doe
+                Business:
+                  summary: BUSINESS
+                  value:
+                    recipientId: 7aeefa7e-4e2c-4a3f-b702-61cc27f47087
+                    senderId: 55ef79b0-0f0f-459f-ad62-effcf516df7d
+                    recipientType: BUSINESS
+                    companyName: Overseas Inc
+                    fields:
+                    - id: COMPANY_NAME
+                      type: TEXT
+                      value: Overseas Inc
         "401":
           description: Unauthorized
           content:
@@ -703,6 +722,28 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/createRecipientRequest'
+            examples:
+              Person:
+                summary: PERSON
+                value:
+                  recipientType: PERSON
+                  senderId: 55ef79b0-0f0f-459f-ad62-effcf516df7d
+                  fields:
+                  - id: FIRST_NAME
+                    type: TEXT
+                    value: New First Name
+                  - id: LAST_NAME
+                    type: TEXT
+                    value: New Last Name
+              Business:
+                summary: BUSINESS
+                value:
+                  recipientType: BUSINESS
+                  senderId: 55ef79b0-0f0f-459f-ad62-effcf516df7d
+                  fields:
+                  - id: COMPANY_NAME
+                    type: TEXT
+                    value: New Company Name
       responses:
         "200":
           description: Success
@@ -710,6 +751,52 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/recipient'
+              examples:
+                Person:
+                  summary: PERSON
+                  value:
+                    recipientId: 6f5ba7ce-0d40-449e-81de-b12c618eb6dd
+                    senderId: 55ef79b0-0f0f-459f-ad62-effcf516df7d
+                    recipientType: PERSON
+                    firstName: New First Name
+                    lastName: New Last Name
+                    fields:
+                    - id: FIRST_NAME
+                      type: TEXT
+                      value: New First Name
+                    - id: LAST_NAME
+                      type: TEXT
+                      value: New Last Name
+                Business:
+                  summary: BUSINESS
+                  value:
+                    recipientId: 7aeefa7e-4e2c-4a3f-b702-61cc27f47087
+                    senderId: 55ef79b0-0f0f-459f-ad62-effcf516df7d
+                    recipientType: BUSINESS
+                    companyName: New Company Name
+                    fields:
+                    - id: COMPANY_NAME
+                      type: TEXT
+                      value: New Company Name
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/codeMsgFieldIdObjectArray'
+              example:
+              - code: NotEmptyValidator
+                message: '''Recipient Type'' is required.'
+                fieldId: RecipientType
+              - code: NotEmptyValidator
+                message: '''First Name'' is required.'
+                fieldId: FIRST_NAME
+              - code: NotEmptyValidator
+                message: '''Last Name'' is required.'
+                fieldId: LAST_NAME
+              - code: NotEmptyValidator
+                message: '''Sender Id'' is required.'
+                fieldId: SenderId
         "401":
           description: Unauthorized
           content:
@@ -751,7 +838,7 @@ paths:
                   summary: Not Found
                   value:
                   - code: RecipientNotFound
-                    message: Destinataria no encontrada.
+                    message: Recipient not found.
                     description: Recipient cannot be found.
   /recipient-account-fields:
     get:
@@ -928,16 +1015,14 @@ paths:
             schema:
               $ref: '#/components/schemas/createRecipientAccountRequest'
             example:
-              senderId: 55ef79b0-0f0f-459f-ad62-effcf516df7d
               dstCountryIso3Code: IND
               dstCurrencyIso3Code: INR
               transferMethod: BANK_ACCOUNT
-              name: My Account
-              accountNumber: "1"
+              accountNumber: "333000333"
               fields:
               - id: BANK_NAME
                 type: TEXT
-                value: "12345"
+                value: Baink
       responses:
         "201":
           description: Created
@@ -945,22 +1030,50 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/recipientAccount'
-              examples:
-                Success:
-                  summary: Success
-                  value:
-                    recipientAccountId: e27c7395-b46a-4b9b-89fd-cd6a3da7fd85
-                    accountNumber: "1"
-                    fields:
-                    - id: BANK_NAME
-                      type: TEXT
-                      value: "12345"
+              example:
+                recipientAccountId: e27c7395-b46a-4b9b-89fd-cd6a3da7fd85
+                accountNumber: "333000333"
+                fields:
+                - id: BANK_NAME
+                  type: TEXT
+                  value: Baink
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/codeMsgFieldIdObjectArray'
+              examples:
+                NotEmptyValidator:
+                  summary: NotEmptyValidator
+                  value:
+                  - code: NotEmptyValidator
+                    message: '''Destination Country ISO 3 Code'' is required.'
+                    fieldId: DestinationCountryISO3Code
+                  - code: NotEmptyValidator
+                    message: '''Destination Currency ISO 3 Code'' is required.'
+                    fieldId: DestinationCurrencyISO3Code
+                  - code: NotEmptyValidator
+                    message: '''Transfer Method'' is required.'
+                    fieldId: TransferMethod
+                  - code: NotEmptyValidator
+                    message: '''Account Number'' is required.'
+                    fieldId: AccountNumber
+                  - code: NotEmptyValidator
+                    message: '''Fields'' is required.'
+                    fieldId: Fields
+                ValueTooLong:
+                  summary: ValueTooLong
+                  value:
+                  - code: NotEmptyValidator
+                    message: Value must be not be more than 5 in length
+                    fieldId: BANK_NAME
+                ValueTooShort:
+                  summary: ValueTooShort
+                  value:
+                  - code: NotEmptyValidator
+                    message: Value must be at least 5 in length
+                    fieldId: BANK_NAME
         "401":
           description: Unauthorized
           content:
@@ -998,22 +1111,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/recipientAccount'
-              examples:
-                Success:
-                  summary: Success
-                  value:
-                    recipientAccountId: e27c7395-b46a-4b9b-89fd-cd6a3da7fd85
-                    accountNumber: "98237498327489273"
-                    fields:
-                    - id: bankId
-                      type: NUMBER
-                      value: "78"
-                    - id: branchId
-                      type: NUMBER
-                      value: "99"
-                    - id: accountNumber
-                      type: TEXT
-                      value: "1234556677"
+              example:
+                recipientAccountId: e27c7395-b46a-4b9b-89fd-cd6a3da7fd85
+                accountNumber: "333000333"
+                fields:
+                - id: BANK_NAME
+                  type: TEXT
+                  value: Baink
         "400":
           description: Bad Request
           content:
@@ -1026,6 +1130,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/response401'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/codeMsgFieldIdObjectArray'
     put:
       tags:
       - Recipient Accounts
@@ -1049,6 +1159,21 @@ paths:
         explode: false
         schema:
           type: string
+      requestBody:
+        description: Array of fields to update the recipient.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createRecipientAccountRequest'
+            example:
+              dstCountryIso3Code: IND
+              dstCurrencyIso3Code: INR
+              transferMethod: BANK_ACCOUNT
+              accountNumber: "333000333"
+              fields:
+              - id: BANK_NAME
+                type: TEXT
+                value: Baink
       responses:
         "200":
           description: Success
@@ -1062,6 +1187,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/codeMsgFieldIdObjectArray'
+              examples:
+                NotEmptyValidator:
+                  summary: NotEmptyValidator
+                  value:
+                  - code: NotEmptyValidator
+                    message: '''Destination Country ISO 3 Code'' is required.'
+                    fieldId: DestinationCountryISO3Code
+                  - code: NotEmptyValidator
+                    message: '''Destination Currency ISO 3 Code'' is required.'
+                    fieldId: DestinationCurrencyISO3Code
+                  - code: NotEmptyValidator
+                    message: '''Transfer Method'' is required.'
+                    fieldId: TransferMethod
+                  - code: NotEmptyValidator
+                    message: '''Account Number'' is required.'
+                    fieldId: AccountNumber
+                  - code: NotEmptyValidator
+                    message: '''Fields'' is required.'
+                    fieldId: Fields
+                ValueTooLong:
+                  summary: ValueTooLong
+                  value:
+                  - code: NotEmptyValidator
+                    message: Value must be not be more than 5 in length
+                    fieldId: BANK_NAME
+                ValueTooShort:
+                  summary: ValueTooShort
+                  value:
+                  - code: NotEmptyValidator
+                    message: Value must be at least 5 in length
+                    fieldId: BANK_NAME
         "401":
           description: Unauthorized
           content:
@@ -1111,7 +1267,7 @@ paths:
       tags:
       - Transfers
       summary: Get Transfer Fields
-      description: This operation returns required transfer fields based on .
+      description: Given country and currency codes and a transfer method, this operation returns required fields for calling Execute Transfer.
       operationId: getTransferFields
       parameters:
       - name: dstCountryIso3Code
@@ -1388,10 +1544,6 @@ components:
           $ref: '#/components/schemas/threeUppercaseChars'
         transferMethod:
           $ref: '#/components/schemas/transferMethods'
-        senderId:
-          type: string
-        name:
-          type: string
         accountNumber:
           type: string
         fields:
@@ -1587,9 +1739,9 @@ components:
       properties:
         id:
           type: string
+          default: BANK_NAME
           enum:
-          - bankId
-          - branchId
+          - BANK_NAME
           - COMPANY_NAME
           - DATE_OF_BIRTH
           - EMAIL
@@ -1599,6 +1751,7 @@ components:
           - PHONE_NUMBER
         type:
           type: string
+          default: TEXT
           enum:
           - DATE
           - PHONE_NUMBER
