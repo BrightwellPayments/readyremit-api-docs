@@ -1404,12 +1404,98 @@ paths:
       responses:
         "200":
           description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/executeTransferResponse'
+              example:
+                transferId: d53d90ad-4de8-415d-8286-90c41853a3dd
+                confirmationNumber: 33TF041162650
+                quote:
+                  sendAmount:
+                    value: 100000
+                    currency:
+                      name: US Dollar
+                      iso3Code: USD
+                      symbol: $
+                      decimalPlaces: 2
+                  receiveAmount:
+                    value: 7445765
+                    currency:
+                      name: Indian rupee
+                      iso3Code: INR
+                      symbol: ₹
+                      decimalPlaces: 2
+                  rate: 74.4576574896
+                  adjustments:
+                  - label: Transfer Fee
+                    amount:
+                      value: 879
+                      currency:
+                        name: US Dollar
+                        iso3Code: USD
+                        symbol: $
+                        decimalPlaces: 2
+                  totalCost:
+                    value: 100879
+                    currency:
+                      name: US Dollar
+                      iso3Code: USD
+                      symbol: $
+                      decimalPlaces: 2
+                  disclosures: []
+                senderDetails:
+                  senderId: 9711fb4c-df97-49bd-ba03-78706761c23c
+                  fields: []
+                recipientDetails:
+                  recipientId: 260d1f4f-4fe3-4620-a104-a25ae57b51c3
+                  senderId: 9711fb4c-df97-49bd-ba03-78706761c23c
+                  recipientType: PERSON
+                  firstName: Camilia
+                  lastName: Noceda
+                  fields:
+                  - id: LAST_NAME
+                    type: TEXT
+                    value: Noceda
+                  - id: FIRST_NAME
+                    type: TEXT
+                    value: Camilia
+                recipientAccountDetails:
+                  recipientAccountId": 236d76c2-8b0b-4eef-a28a-25353926ade9
+                  accountNumber": "333000333"
+                  fields:
+                  - id: BANK_NAME
+                    type: TEXT
+                    value: Baink
+                  disclaimers: []
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/codeMsgFieldIdObjectArray'
+              example:
+              - code: UnsupportedCountry
+                message: '''DestinationCountryISO3Code'' must be a valid ISO 3 country.'
+                fieldId: DestinationCountryISO3Code
+              - code: UnsupportedCurrency
+                message: '''DestinationCurrencyISO3Code'' must be a valid ISO 3 currency.'
+                fieldId: DestinationCurrencyISO3Code
+              - code: UnsupportedCurrency
+                message: '''SourceCurrencyIso3Code'' must be a valid ISO 3 currency.'
+                fieldId: SourceCurrencyIso3Code
+              - code: NotEmptyValidator
+                message: '''Amount'' is required.'
+                fieldId: Amount
+              - code: NotEmptyValidator
+                message: '''Sender Id'' is required.'
+                fieldId: SenderId
+              - code: NotEmptyValidator
+                message: '''Recipient Id'' is required.'
+                fieldId: RecipientId
+              - code: NotEmptyValidator
+                message: '''Recipient Account Id'' is required.'
+                fieldId: RecipientAccountId
         "401":
           description: Unauthorized
           content:
@@ -1575,6 +1661,25 @@ components:
         purposeOfRemittance:
           type: integer
           default: 1
+    executeTransferResponse:
+      type: object
+      properties:
+        transferId:
+          type: string
+        confirmationNumber:
+          type: string
+        quote:
+          $ref: '#/components/schemas/getQuoteResponse200'
+        senderDetails:
+          $ref: '#/components/schemas/executeTransferResponse_senderDetails'
+        recipientDetails:
+          $ref: '#/components/schemas/recipient'
+        recipientAccountDetails:
+          $ref: '#/components/schemas/recipientAccount'
+        disclaimers:
+          type: array
+          items:
+            type: string
     recipientTypes:
       type: string
       description: See [recipientType](https://developer.readyremit.com/reference/about-the-reference#recipienttype).
@@ -1828,6 +1933,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/fieldSet'
+    executeTransferResponse_senderDetails:
+      type: object
+      properties:
+        senderId:
+          type: string
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/textField'
+      example: null
   securitySchemes:
     bearerAuth:
       type: http
