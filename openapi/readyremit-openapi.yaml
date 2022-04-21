@@ -847,9 +847,10 @@ paths:
       description: |
         Given a corridor, this operation returns the required and optional fields for a recipient account record. See [Custom fields](https://developer.readyremit.com/reference/about-the-reference#custom-fields).
 
-        NOTE: There are two fields that can be returned that will require special handling: BANK and BIC. 
-        If the BANK field is present this is an indication to your application that the GET Banks API call needs to be made and the options presented to the user. The selected Id should be used as the value for BANK.
-        If the BIC field is present this is an indication to your application that the GET Bank Branches API call needs to be ade and the options presented to the user. (Note the GET Bank Branches API requires the Bank ID chosen in the previous step.) The selected value from the list of avaialble Bank Branches can be submitted as the BIC.
+        > ℹ️
+        > There are two fields that can be returned that will require special handling: BANK and BIC. 
+        > If the BANK field is present this is an indication to your application that the GET Banks API call needs to be made and the options presented to the user. The selected Id should be used as the value for BANK.
+        > If the BIC field is present this is an indication to your application that the GET Bank Branches API call needs to be ade and the options presented to the user. (Note the GET Bank Branches API requires the Bank ID chosen in the previous step.) The selected value from the list of avaialble Bank Branches can be submitted as the BIC.
 
       operationId: getRecipientAccountFields
       parameters:
