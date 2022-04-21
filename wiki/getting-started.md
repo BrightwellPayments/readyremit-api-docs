@@ -7,7 +7,7 @@ category: 6202c91258ac9600635fb56b
 
 Welcome to ReadyRemit, a cloud service that performs cross-border [remittances](https://en.wikipedia.org/wiki/Remittance) for [fintech](https://en.wikipedia.org/wiki/Financial_technology) applications:
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-map.png" width=600 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/BrightwellPayments/readyremit-images/master/readyremit-map.png" width=600 loading="lazy"></div>
 
 
 ## Interfaces
@@ -38,11 +38,11 @@ Periodically, the ReadyRemit Team pushes a new ReadyRemit release to the [sandbo
 
 When you sign up to use ReadyRemit, Brightwell creates a configuration for your app in the ReadyRemit account of an authentication service:
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-authentication.png" width=700 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/BrightwellPayments/readyremit-images/master/readyremit-authentication.png" width=700 loading="lazy"></div>
 
 Brightwell also provides you with credentials (i.e. `client_id`, `client_secret`) which your app trades (via [Get Access Token](/reference/getaccesstoken)) for an *access_token* that, subsequently, gives your app access to all the other ReadyRemit REST API operations:
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-auth-bearer.png" width=700 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/BrightwellPayments/readyremit-images/master/readyremit-auth-bearer.png" width=700 loading="lazy"></div>
 
 Note that this authentication workflow is independent of any authentication workflow your app performs for your end users.
 
@@ -50,7 +50,7 @@ Note that this authentication workflow is independent of any authentication work
 
 For this use case, your service is the sender, and your end users are the recipients. The use case supports transfers initiated by your service (e.g. payroll) and transfers initiated by your end users (e.g. reward redemption). Once fully implemented, ReadyRemit will represent your service with a *Sender* entity, and each of your end users with a *Recipient* entity and one or more *Recipient Account* entities:
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-your-service-is-the-sender-4.png" width=800 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/BrightwellPayments/readyremit-images/master/readyremit-your-service-is-the-sender-4.png" width=800 loading="lazy"></div>
 
 Note the *senderId* in the diagram above. You obtain a *senderId* for your service when you sign up as a ReadyRemit client. You can store the *senderId* in an environment file (read at startup) or in your database (especially if you need to restrict access to it). 
 
@@ -58,7 +58,7 @@ Note the *senderId* in the diagram above. You obtain a *senderId* for your servi
 
 Your service uses the *senderId* to call [Create Recipient](/reference/createrecipient) for each end user, storing the returned *recipientIds* in a *Users* table (as shown in the diagram above) or in a related table:
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-alpha-3.png" height=125 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/BrightwellPayments/readyremit-images/master/readyremit-pseudocode-alpha-3.png" height=125 loading="lazy"></div>
 
 A *Recipient* entity represents the person to whom the transfer will be sent. 
 
@@ -66,11 +66,11 @@ A *Recipient* entity represents the person to whom the transfer will be sent.
 
 Recall that your service obtains (via [Create Recipient](/reference/createrecipient)) and stores a *recipientId* for each user in your database:
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-recipientid-to-recipient-map.png" width=800 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/BrightwellPayments/readyremit-images/master/readyremit-recipientid-to-recipient-map.png" width=800 loading="lazy"></div>
 
 Your service uses each *recipientId* to call (on behalf of the user) [Create Recipient Account](/reference/createrecipientaccount) to create accounts, and [Get Recipient Accounts](/reference/getrecipientaccounts) to retrieve an array of these accounts:
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-gamma-2.png" height=149 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/BrightwellPayments/readyremit-images/master/readyremit-pseudocode-gamma-2.png" height=149 loading="lazy"></div>
 
 ReadyRemit maintains *Recipient <> Recipient Account* relationships. This means, rather than remembering these relationships itself, your service can call [Get Recipient Accounts](/reference/getrecipientaccounts) to get all the *Recipient Accounts* related to a particular *recipientId*. 
 
@@ -78,7 +78,7 @@ ReadyRemit maintains *Recipient <> Recipient Account* relationships. This means,
 
 Your service uses *recipientAccountIds* to call [Get Recipient Account](/reference/getrecipientaccount), [Update Recipient Account](/reference/updaterecipientaccount), and [Delete Recipient Account](/reference/deleterecipientaccount):
 
-<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/readyremit-pseudocode-delta.png" height=175 loading="lazy"></div>
+<div style="margin-top:24px;margin-bottom:24px!important;"><img src="https://raw.githubusercontent.com/BrightwellPayments/readyremit-images/master/readyremit-pseudocode-delta.png" height=175 loading="lazy"></div>
 
 ## Workflow
 
