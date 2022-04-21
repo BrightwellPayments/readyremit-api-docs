@@ -25,27 +25,27 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 This image is 700 x 420:
 
-<p><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/img-800.png" width=700 height=420 loading="lazy"></p>
+<p><img src="https://raw.githubusercontent.com/BrightwellPayments/readyremit-images/master/img-800.png" width=700 height=420 loading="lazy"></p>
 
 This image is 600 x 360:
 
-<p><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/img-800.png" width=600 height=360 loading="lazy"></p>
+<p><img src="https://raw.githubusercontent.com/BrightwellPayments/readyremit-images/master/img-800.png" width=600 height=360 loading="lazy"></p>
 
 This image is 500 x 300:
 
-<p><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/img-800.png" width=500 height=300 loading="lazy"></p>
+<p><img src="https://raw.githubusercontent.com/BrightwellPayments/readyremit-images/master/img-800.png" width=500 height=300 loading="lazy"></p>
 
 This image is 400 x 240:
 
-<p><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/img-800.png" width=400 height=240 loading="lazy"></p>
+<p><img src="https://raw.githubusercontent.com/BrightwellPayments/readyremit-images/master/img-800.png" width=400 height=240 loading="lazy"></p>
 
 This image is 300 x 180:
 
-<p><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/img-800.png" width=300 height=180 loading="lazy"></p>
+<p><img src="https://raw.githubusercontent.com/BrightwellPayments/readyremit-images/master/img-800.png" width=300 height=180 loading="lazy"></p>
 
 This image is 200 x 120:
 
-<p><img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/img-800.png" width=200 height=120 loading="lazy"></p>
+<p><img src="https://raw.githubusercontent.com/BrightwellPayments/readyremit-images/master/img-800.png" width=200 height=120 loading="lazy"></p>
 
 # Videos
 
@@ -248,7 +248,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 1. Lorem ipsum dolor sit amete, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
-    <img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/img-800.png" width="200" height="120" loading="lazy">
+    <img src="https://raw.githubusercontent.com/BrightwellPayments/readyremit-images/master/img-800.png" width="200" height="120" loading="lazy">
 
 1. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
 
@@ -326,7 +326,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
     Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
 
-    <img src="https://raw.githubusercontent.com/hagenhaus/readyremit-images/master/img-800.png" width="200" height="120" loading="lazy">
+    <img src="https://raw.githubusercontent.com/BrightwellPayments/readyremit-images/master/img-800.png" width="200" height="120" loading="lazy">
 
     Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
 
