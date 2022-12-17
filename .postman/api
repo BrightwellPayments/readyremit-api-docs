@@ -11,10 +11,9 @@ files[] = {"id":"4424987-39d0351f-3dc9-48bb-be7a-40d2edf03d79","path":"TEST.json
 
 [relations.apiDefinition]
 rootDirectory = postman/schemas
-files[] = {"path":"index.yaml","metaData":{}}
-files[] = {"path":"schema-obsolete.yaml","metaData":{}}
-files[] = {"path":"schema.yaml","metaData":{}}
+files[] = {"path":"auth.yml","metaData":{}}
+files[] = {"path":"index.yml","metaData":{}}
 
 [relations.apiDefinition.metaData]
 type = openapi:3
-rootFiles[] = schema-obsolete.yaml
+rootFiles[] = index.yml
