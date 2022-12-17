@@ -6,8 +6,8 @@ info:
     See [ReadyRemit Developer Portal](https://developer.readyremit.com/).
   version: '1.0'
 servers:
-- url: https://api.readyremit.com/v1
 - url: https://sandbox-api.readyremit.com/v1
+- url: https://api.readyremit.com/v1
 security:
 - bearerAuth: []
 paths:
