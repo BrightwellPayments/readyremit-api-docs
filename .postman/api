@@ -5,15 +5,14 @@ id = d6d2000d-7e1f-4db5-8515-b2e2127e6534
 
 [relations.collections]
 rootDirectory = postman/collections
-files[] = {"id":"4424987-39d0351f-3dc9-48bb-be7a-40d2edf03d79","path":"TEST.json","metaData":{}}
 
 [relations.collections.metaData]
 
 [relations.apiDefinition]
 rootDirectory = postman/schemas
-files[] = {"path":"auth.yml","metaData":{}}
-files[] = {"path":"index.yml","metaData":{}}
+files[] = {"path":"1_transfer.yml","metaData":{}}
+files[] = {"path":"2_auth.yml","metaData":{}}
 
 [relations.apiDefinition.metaData]
 type = openapi:3
-rootFiles[] = index.yml
+rootFiles[] = 2_auth.yml
