@@ -2518,6 +2518,10 @@ components:
         purposeOfRemittance:
           type: integer
           default: 1
+        fields:
+          type: array
+          items:
+            "$ref": "#/components/schemas/fieldValue"
     transferResponse:
       type: object
       properties:
