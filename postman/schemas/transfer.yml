@@ -2391,8 +2391,219 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/response401"
+  "/cards":
+    post:
+      tags:
+      - Cards
+      summary: Create card
+      description: This operation onboards a card.
+      operationId: createCard
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/createCardRequest"
+            examples:
+              Success:
+                summary: SUCCESS
+                value:
+                  firstName: "Daniel"
+                  middleName: "P"
+                  lastName: "Fix"
+                  cardNumber: "4242424242424242"
+                  addressLine1: "100 main st"
+                  addressLine2: "apt 500"
+                  city: "Atlanta"
+                  state: "GA"
+                  zip: "30363"
+                  country: "USA"
+                  cvv2: 123
+                  expiryDate: "0827"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/createCardResponse"
+              example:
+                id: "d53d90ad-4de8-415d-8286-90c41853a3dd"
+                firstName: "Daniel"
+                middleName: "P"
+                lastName: "Fix"
+                cardNumber: "4242424242424242"
+                addressLine1: "100 main st"
+                addressLine2: "apt 500"
+                city: "Atlanta"
+                state: "GA"
+                zip: "30363"
+                country: "USA"
+                cvv2: 123
+                expiryDate: "0827"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"
+  "/card-onboarding-sessions":
+    post:
+      tags:
+      - Card Onboarding Sessions
+      summary: Create card onboarding session
+      description: This operation creates a session for onboarding a card.
+      operationId: createCardOnboardingSession
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/createCardOnboardingSessionRequest"
+            examples:
+              Success:
+                summary: SUCCESS
+                value:
+                  customization:
+                    primaryColor: "#000000"
+                    submitButtonLabel: "Submit"
+                    locale: "en-US"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/cardOnboardingSessionResponse"
+              example:
+                id: "d53d90ad-4de8-415d-8286-90c41853a3dd"
+                expirationDate: "2023-09-25T00:00:00.000Z"
+                status:
+                  id: "INCOMPLETE"
+                  name: "Incomplete"
+                customization:
+                    primaryColor: "#000000"
+                    submitButtonLabel: "Submit"
+                    locale: "en-US"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"
+  "/card-onboarding-sessions/{cardOnboardingSessionId}":
+    get:
+      tags:
+      - Card Onboarding Sessions
+      summary: Get Card Onboarding Session
+      description: This operation retrieves card onboarding session given the ID.
+      operationId: getCardOnboardingSession
+      parameters:
+      - name: cardOnboardingSessionId
+        in: path
+        description: The card onboarding session identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/cardOnboardingSessionResponse"
+              example:
+                id: d53d90ad-4de8-415d-8286-90c41853a3dd
+                expirationDate: "2023-09-25T00:00:00.000Z"
+                status:
+                  id: "INCOMPLETE"
+                  name: "Incomplete"
+                customization:
+                    primaryColor: "#000000"
+                    submitButtonLabel: "Submit"
+                    locale: "en-US"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"
 components:
   schemas:
+    cardOnboardingSession:
+      type: object
+      properties:
+        id:
+          type: string
+        expirationDate:
+          type: string
+        status:
+          type: object
+          "$ref": "#/components/schemas/idNameObject"
+        cardId:
+          type: string
+        customization:
+          type: object
+          properties:
+            primaryColor:
+              type: string
+            submitButtonLabel:
+              type: string
+            locale:
+              type: string
+    createCardOnboardingSessionRequest:
+      allOf:
+      - "$ref": "#/components/schemas/cardOnboardingSession"
+    cardOnboardingSessionResponse:
+      allOf:
+      - "$ref": "#/components/schemas/cardOnboardingSession"
+    card:
+      type: object
+      required:
+      - firstName
+      - lastName
+      - cardNumber
+      - addressLine1
+      - city
+      - state
+      - zip
+      - country
+      - cvv2
+      properties:
+        id:
+          type: string
+        firstName:
+          type: string
+        middleName:
+          type: string
+        lastName:
+          type: string
+        suffix:
+          type: string
+        cardNumber:
+          type: string
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        city:
+          type: string
+        zip:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        cvv2:
+          type: string
+        expiryDate:
+          type: string
+    createCardRequest:
+      allOf:
+      - "$ref": "#/components/schemas/card"
+    createCardResponse:
+      allOf:
+      - "$ref": "#/components/schemas/card"
     codeMsgDescObject:
       type: object
       properties:
