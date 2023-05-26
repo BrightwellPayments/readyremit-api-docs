@@ -2396,7 +2396,7 @@ paths:
       tags:
       - Cards
       summary: Create card
-      description: This operation onboards a card.
+      description: This operation onboards a card. 
       operationId: createCard
       requestBody:
         content:
@@ -2412,16 +2412,12 @@ paths:
                   lastName: "Fix"
                   cardNumber: "4242424242424242"
                   addressLine1: "100 main st"
-                  addressLine2: "apt 500"
-                  city: "Atlanta"
-                  state: "GA"
                   zip: "30363"
-                  country: "USA"
-                  cvv2: 123
+                  cvv2: "123"
                   expiryDate: "0827"
       responses:
-        '200':
-          description: Success
+        '201':
+          description: Created
           content:
             application/json:
               schema:
@@ -2433,12 +2429,8 @@ paths:
                 lastName: "Fix"
                 cardNumber: "4242424242424242"
                 addressLine1: "100 main st"
-                addressLine2: "apt 500"
-                city: "Atlanta"
-                state: "GA"
                 zip: "30363"
-                country: "USA"
-                cvv2: 123
+                cvv2: "123"
                 expiryDate: "0827"
         '401':
           description: Unauthorized
@@ -2446,6 +2438,12 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/response401"
+  "/cards/{cardId}":
+    delete:
+      tags:
+        - Card Onboarding Sessions
+      summary: Delete Card Onboarding Session
+      desecription: This operation deletes a session used to onboard a card.
   "/card-onboarding-sessions":
     post:
       tags:
@@ -2476,9 +2474,7 @@ paths:
               example:
                 id: "d53d90ad-4de8-415d-8286-90c41853a3dd"
                 expirationDate: "2023-09-25T00:00:00.000Z"
-                status:
-                  id: "INCOMPLETE"
-                  name: "Incomplete"
+                status: INCOMPLETE
                 customization:
                     primaryColor: "#000000"
                     submitButtonLabel: "Submit"
@@ -2507,7 +2503,7 @@ paths:
           type: string
       responses:
         '200':
-          description: Success
+          description: Success, card incomplete
           content:
             application/json:
               schema:
@@ -2515,9 +2511,8 @@ paths:
               example:
                 id: d53d90ad-4de8-415d-8286-90c41853a3dd
                 expirationDate: "2023-09-25T00:00:00.000Z"
-                status:
-                  id: "INCOMPLETE"
-                  name: "Incomplete"
+                cardId: d53d90ad-4de8-415d-8286-90c41853a3dd,
+                status: COMPLETE,
                 customization:
                     primaryColor: "#000000"
                     submitButtonLabel: "Submit"
@@ -2532,14 +2527,15 @@ components:
   schemas:
     cardOnboardingSession:
       type: object
+      required:
+        - customization
       properties:
         id:
           type: string
         expirationDate:
           type: string
         status:
-          type: object
-          "$ref": "#/components/schemas/idNameObject"
+          "$ref": "#/components/schemas/cardOnboardingSessionStatuses"
         cardId:
           type: string
         customization:
@@ -2552,8 +2548,17 @@ components:
             locale:
               type: string
     createCardOnboardingSessionRequest:
-      allOf:
-      - "$ref": "#/components/schemas/cardOnboardingSession"
+      type: object
+      properties:
+        customization:
+          type: object
+          properties:
+            primaryColor:
+              type: string
+            submitButtonLabel:
+              type: string
+            locale:
+              type: string
     cardOnboardingSessionResponse:
       allOf:
       - "$ref": "#/components/schemas/cardOnboardingSession"
@@ -2563,11 +2568,7 @@ components:
       - firstName
       - lastName
       - cardNumber
-      - addressLine1
-      - city
-      - state
-      - zip
-      - country
+      - expiryDate
       - cvv2
       properties:
         id:
@@ -2580,19 +2581,11 @@ components:
           type: string
         suffix:
           type: string
-        cardNumber:
-          type: string
         addressLine1:
-          type: string
-        addressLine2:
-          type: string
-        city:
           type: string
         zip:
           type: string
-        state:
-          type: string
-        country:
+        cardNumber:
           type: string
         cvv2:
           type: string
@@ -2761,28 +2754,47 @@ components:
             "$ref": "#/components/schemas/statusEntry"
     recipientTypes:
       type: string
-      description: See [recipientType](https://developer.readyremit.com/reference/about-the-reference#recipienttype).
+      description: See [Recipient Type](https://developer.readyremit.com/reference/enum-types#recipient-type).
       default: PERSON
       enum:
       - BUSINESS
       - PERSON
     senderTypes:
       type: string
-      description: See [senderType](https://developer.readyremit.com/reference/about-the-reference#recipienttype).
+      description: See [Sender Type](https://developer.readyremit.com/reference/enum-types#sender-type).
       default: PERSON
       enum:
       - BUSINESS
       - PERSON
+    kycStatuses:
+      type: string
+      description: See [KYC Status](https://developer.readyremit.com/reference/enum-types#kyc-status).
+      default: UNKNOWN
+      enum:
+      - UNKNOWN
+      - PASSED
+      - ID_REQUIRED
+      - FAILED
+      - PENDING
+      - REQUEST_FAILED
     transferMethods:
       type: string
-      description: See [transferMethod](https://developer.readyremit.com/reference/about-the-reference#transfermethod).
+      description: See [Transfer Method](https://developer.readyremit.com/reference/enum-types#transfer-method).
       default: BANK_ACCOUNT
       enum:
       - BANK_ACCOUNT
       - CASH_PICKUP
+    cardOnboardingSessionStatuses:
+      type: string
+      description: See [Card Onboarding Session Status](https://developer.readyremit.com/reference/enum-types#card-onboarding-session-status).
+      default: INCOMPLETE
+      enum:
+      - INCOMPLETE
+      - SUCCEEDED
+      - EXPIRED
     quoteBy:
       type: string
-      description: See [quoteBy](https://developer.readyremit.com/reference/about-the-reference#quoteby).
+      description: See [quoteBy](https://developer.readyremit.com/reference/enum-types#quote-by).
       default: SEND_AMOUNT
       enum:
       - SEND_AMOUNT
@@ -2985,13 +2997,15 @@ components:
         senderId:
           type: string
         senderType:
-          type: string
+          "$ref": "#/components/schemas/senderTypes"
         firstName:
           type: string
         lastName:
           type: string
         companyName:
           type: string
+        kycStatus:
+          "$ref": "#/components/schemas/kycStatuses"
         fields:
           type: array
           items:
