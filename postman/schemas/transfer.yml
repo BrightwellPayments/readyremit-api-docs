@@ -2438,6 +2438,12 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/response401"
+  "/cards/{cardId}":
+    delete:
+      tags:
+        - Card Onboarding Sessions
+      summary: Delete Card Onboarding Session
+      desecription: This operation deletes a session used to onboard a card.
   "/card-onboarding-sessions":
     post:
       tags:
@@ -2748,28 +2754,39 @@ components:
             "$ref": "#/components/schemas/statusEntry"
     recipientTypes:
       type: string
-      description: See [recipientType](https://developer.readyremit.com/reference/enum-types#recipient-type).
+      description: See [Recipient Type](https://developer.readyremit.com/reference/enum-types#recipient-type).
       default: PERSON
       enum:
       - BUSINESS
       - PERSON
     senderTypes:
       type: string
-      description: See [senderType](https://developer.readyremit.com/reference/enum-types#sender-type).
+      description: See [Sender Type](https://developer.readyremit.com/reference/enum-types#sender-type).
       default: PERSON
       enum:
       - BUSINESS
       - PERSON
+    kycStatuses:
+      type: string
+      description: See [KYC Status](https://developer.readyremit.com/reference/enum-types#kyc-status).
+      default: UNKNOWN
+      enum:
+      - UNKNOWN
+      - PASSED
+      - ID_REQUIRED
+      - FAILED
+      - PENDING
+      - REQUEST_FAILED
     transferMethods:
       type: string
-      description: See [transferMethod](https://developer.readyremit.com/reference/enum-types#transfer-method).
+      description: See [Transfer Method](https://developer.readyremit.com/reference/enum-types#transfer-method).
       default: BANK_ACCOUNT
       enum:
       - BANK_ACCOUNT
       - CASH_PICKUP
     cardOnboardingSessionStatuses:
       type: string
-      description: See [cardOnboardingSessionStatus](https://developer.readyremit.com/reference/enum-types#card-onboarding-session-status).
+      description: See [Card Onboarding Session Status](https://developer.readyremit.com/reference/enum-types#card-onboarding-session-status).
       default: INCOMPLETE
       enum:
       - INCOMPLETE
@@ -2980,13 +2997,15 @@ components:
         senderId:
           type: string
         senderType:
-          type: string
+          "$ref": "#/components/schemas/senderTypes"
         firstName:
           type: string
         lastName:
           type: string
         companyName:
           type: string
+        kycStatus:
+          "$ref": "#/components/schemas/kycStatuses"
         fields:
           type: array
           items:
