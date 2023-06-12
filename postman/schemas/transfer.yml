@@ -1808,7 +1808,7 @@ paths:
     get:
       tags:
       - Senders
-      summary: Get Senders
+      summary: Get Sender
       description: This operation returns the sender record associated with the
         specified `senderId`.
       operationId: getSender
