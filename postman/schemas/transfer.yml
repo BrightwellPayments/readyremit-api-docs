@@ -1698,57 +1698,6 @@ paths:
               schema:
                 "$ref": "#/components/schemas/response401"
   "/senders":
-    get:
-      tags:
-      - Senders
-      summary: Get Senders
-      description: This operation returns all the sender records associated with the
-        specified `senderId`.
-      operationId: getSender
-      parameters:
-      - name: senderId
-        in: query
-        description: Sender identifier.
-        required: true
-        style: form
-        explode: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/sender"
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/response401"
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/codeMsgDescObjectArray"
-              example:
-              - code: AccessDenied
-                message: Sorry! Access denied :(
-                description: Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException'
-                  was thrown.
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
-              example:
-              - code: '000'
-                message: Something went wrong!
-                description: One or more errors occurred. (Guid should contain 32
-                  digits with 4 dashes (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx).)
     post:
       tags:
       - Senders
@@ -1856,6 +1805,57 @@ paths:
                 description: Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException'
                   was thrown.
   "/senders/{senderId}":
+    get:
+      tags:
+      - Senders
+      summary: Get Sender
+      description: This operation returns the sender record associated with the
+        specified `senderId`.
+      operationId: getSender
+      parameters:
+      - name: senderId
+        in: path
+        description: Sender identifier.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/sender"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgDescObjectArray"
+              example:
+              - code: AccessDenied
+                message: Sorry! Access denied :(
+                description: Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException'
+                  was thrown.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
+              example:
+              - code: '000'
+                message: Something went wrong!
+                description: One or more errors occurred. (Guid should contain 32
+                  digits with 4 dashes (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx).)
     put:
       tags:
       - Senders
@@ -2438,12 +2438,6 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/response401"
-  "/cards/{cardId}":
-    delete:
-      tags:
-        - Card Onboarding Sessions
-      summary: Delete Card Onboarding Session
-      desecription: This operation deletes a session used to onboard a card.
   "/card-onboarding-sessions":
     post:
       tags:
