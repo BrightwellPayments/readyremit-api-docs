@@ -1562,36 +1562,13 @@ paths:
         fields for a sender record. See [Custom fields](https://developer.readyremit.com/reference/about-the-reference#custom-fields).
       operationId: getSenderFields
       parameters:
-      - name: dstCountryIso3Code
-        in: query
-        description: See [country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).
-        required: true
-        style: form
-        explode: true
-        schema:
-          "$ref": "#/components/schemas/threeUppercaseChars"
-      - name: dstCurrencyIso3Code
-        in: query
-        description: See [currency codes](https://en.wikipedia.org/wiki/ISO_4217).
-        required: true
-        style: form
-        explode: true
-        schema:
-          "$ref": "#/components/schemas/threeUppercaseChars"
-      - name: transferMethod
-        in: query
-        required: true
-        style: form
-        explode: true
-        schema:
-          "$ref": "#/components/schemas/transferMethods"
       - name: senderType
         in: query
         required: true
         style: form
         explode: true
         schema:
-          "$ref": "#/components/schemas/recipientTypes"
+          "$ref": "#/components/schemas/senderTypes"
       responses:
         '200':
           description: Success
@@ -2653,12 +2630,6 @@ components:
     createSenderRequest:
       type: object
       properties:
-        dstCountryIso3Code:
-          "$ref": "#/components/schemas/threeUppercaseChars"
-        dstCurrencyIso3Code:
-          "$ref": "#/components/schemas/threeUppercaseChars"
-        transferMethod:
-          "$ref": "#/components/schemas/transferMethods"
         senderType:
           "$ref": "#/components/schemas/senderTypes"
         fields:
