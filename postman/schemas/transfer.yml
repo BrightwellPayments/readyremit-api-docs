@@ -599,7 +599,7 @@ paths:
       - Recipients
       summary: Get Recipient Fields
       description: Given a corridor, this operation returns the required and optional
-        fields for a recipient record. See [Custom fields](https://developer.readyremit.com/reference/about-the-reference#custom-fields).
+        fields for a recipient record. See [Dynamic fields](https://developer.readyremit.com/reference/dynamic-fields).
       operationId: getRecipientFields
       parameters:
       - name: dstCountryIso3Code
@@ -1131,7 +1131,7 @@ paths:
       - Recipient Accounts
       summary: Get Recipient Account Fields
       description: Given a corridor, this operation returns the required and optional
-        fields for a recipient account record. See [Custom fields](https://developer.readyremit.com/reference/about-the-reference#custom-fields).
+        fields for a recipient account record. See [Dynamic fields](https://developer.readyremit.com/reference/dynamic-fields).
       operationId: getRecipientAccountFields
       parameters:
       - name: dstCountryIso3Code
@@ -1559,7 +1559,7 @@ paths:
       - Senders
       summary: Get Sender Fields
       description: Given a corridor, this operation returns the required and optional
-        fields for a sender record. See [Custom fields](https://developer.readyremit.com/reference/about-the-reference#custom-fields).
+        fields for a sender record. See [Dynamic fields](https://developer.readyremit.com/reference/dynamic-fields).
       operationId: getSenderFields
       parameters:
       - name: senderType
