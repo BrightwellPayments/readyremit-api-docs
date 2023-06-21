@@ -2860,13 +2860,13 @@ components:
     fieldSet:
       required:
       - fields
-      - id
-      - name
+      - fieldSetId
+      - fieldSetName
       type: object
       properties:
-        id:
+        fieldSetId:
           type: string
-        name:
+        fieldSetName:
           type: string
         fields:
           type: array
