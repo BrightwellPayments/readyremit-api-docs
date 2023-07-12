@@ -2846,7 +2846,7 @@ components:
         receiveAmount:
           "$ref": "#/components/schemas/money"
         rate:
-          type: integer
+          type: number
         adjustments:
           type: array
           items:
