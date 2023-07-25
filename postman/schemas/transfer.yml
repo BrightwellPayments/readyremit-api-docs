@@ -385,7 +385,7 @@ paths:
       - name: dstCountryIso3Code
         in: query
         description: See [country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).
-        required: true
+        required: false
         style: form
         explode: true
         schema:
@@ -393,14 +393,14 @@ paths:
       - name: dstCurrencyIso3Code
         in: query
         description: See [currency codes](https://en.wikipedia.org/wiki/ISO_4217).
-        required: true
+        required: false
         style: form
         explode: true
         schema:
           "$ref": "#/components/schemas/threeUppercaseChars"
       - name: transferMethod
         in: query
-        required: true
+        required: false
         style: form
         explode: true
         schema:
