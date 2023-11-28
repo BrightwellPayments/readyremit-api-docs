@@ -1,0 +1,102 @@
+openapi: 3.0.1
+info:
+  title: ReadyRemit
+  description: Import from "func-rr-transferapi-dev-eastus-001" Function App
+  version: v2
+servers:
+  - url: https://dev-api.readyremit.com/v2
+paths:
+  /customer/settings:
+    get:
+      tags:
+        - TransferRequest
+      summary: GetCustomerSettingsAsync
+      operationId: getcustomersettingsasync
+      responses:
+        '200':
+          description: ''
+        '403':
+          description: ''
+        '404':
+          description: ''
+  '/transfer-requests/{id}/cancel':
+    post:
+      summary: CancelTransferRequestAsync
+      operationId: canceltransferrequestasync
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: ''
+        '403':
+          description: ''
+  '/transfer-requests/{id}':
+    get:
+      tags:
+        - TransferRequest
+      summary: GetTransferRequestAsync
+      operationId: gettransferrequestasync
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: ''
+        '403':
+          description: ''
+        '404':
+          description: ''
+  '/transfer-requests/{id}/verifications':
+    post:
+      summary: PostTransferRequestVerificationAsync
+      operationId: posttransferrequestverificationasync
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+        '403':
+          description: ''
+        '404':
+          description: ''
+  '/transfer-requests/{id}/submit':
+    put:
+      summary: SubmitTransferRequestAsync
+      operationId: submittransferrequestasync
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+        '403':
+          description: ''
+        '404':
+          description: ''
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]
