@@ -2749,6 +2749,7 @@ components:
       enum:
       - BANK_ACCOUNT
       - CASH_PICKUP
+      - PUSH_TO_CARD
     cardOnboardingSessionStatuses:
       type: string
       description: See [Card Onboarding Session Status](https://developer.readyremit.com/reference/enum-types#card-onboarding-session-status).

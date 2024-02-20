@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "ecee9888-9f06-465d-afe9-b39cf58d6396",
+		"_postman_id": "30c67d40-b2e7-465a-91bd-01c22ab4c88c",
 		"name": "ReadyRemit Transfer API",
 		"description": "See [ReadyRemit Developer Portal](https://developer.readyremit.com/).\n",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_uid": "4424987-ecee9888-9f06-465d-afe9-b39cf58d6396"
+		"_uid": "4424987-30c67d40-b2e7-465a-91bd-01c22ab4c88c"
 	},
 	"item": [
 		{
@@ -12,7 +12,7 @@
 			"item": [
 				{
 					"name": "Get Banks",
-					"id": "92db06a1-e97f-4efc-bfed-c8daea850397",
+					"id": "330ef4d4-fdba-44e0-91b1-28486876be79",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -49,7 +49,7 @@
 					},
 					"response": [
 						{
-							"id": "257af0b4-957f-4400-8848-d2c10aeaf530",
+							"id": "380e45d3-39a1-4a52-a0e0-a1541203137e",
 							"name": "Success",
 							"originalRequest": {
 								"method": "GET",
@@ -83,6 +83,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -93,7 +94,7 @@
 							"body": "[\n  {\n    \"id\": \"IND60\",\n    \"name\": \"PUNJAB NATIONAL BANK\"\n  },\n  {\n    \"id\": \"IN134\",\n    \"name\": \"NAGPUR NAGARIK SAHAKARI BANK\"\n  },\n  {\n    \"id\": \"IND30\",\n    \"name\": \"DEUTSCHE BANK\"\n  }\n]"
 						},
 						{
-							"id": "b60e1825-bdb6-4946-9205-0e5bf8f51e8a",
+							"id": "d3eebbde-0e6b-4b61-8c7c-fe9a86881127",
 							"name": "Bad Request",
 							"originalRequest": {
 								"method": "GET",
@@ -127,6 +128,7 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -137,7 +139,7 @@
 							"body": "[\n  {\n    \"code\": \"UnsupportedCountry\",\n    \"message\": \"'CountryIso3Code' must be a valid ISO 3 country.\",\n    \"fieldId\": \"CountryIso3Code\"\n  }\n]"
 						},
 						{
-							"id": "2812182e-741c-4f47-b305-5f6f20bb4fe3",
+							"id": "0cf55190-8495-459d-a6c8-36a8f743545c",
 							"name": "Unauthorized",
 							"originalRequest": {
 								"method": "GET",
@@ -171,6 +173,7 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -184,7 +187,7 @@
 				},
 				{
 					"name": "Get Bank Branches",
-					"id": "93ce6a0f-4aac-445f-b00e-4a9dd46c1a57",
+					"id": "f5ea1a3e-e88e-4afb-bed9-fa83c984e9b9",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -218,7 +221,7 @@
 					},
 					"response": [
 						{
-							"id": "dcb544b3-b81b-483c-a509-e40c5154023f",
+							"id": "d9e30814-131c-4207-996c-9958bd33ed76",
 							"name": "Success",
 							"originalRequest": {
 								"method": "GET",
@@ -251,6 +254,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -261,7 +265,7 @@
 							"body": "[\n  {\n    \"id\": \"DEUT0406AMD\",\n    \"name\": \"AHMEDABAD\"\n  },\n  {\n    \"id\": \"DEUT0406PBC\",\n    \"name\": \"AHMEDABAD\"\n  },\n  {\n    \"id\": \"DEUT0405PBC\",\n    \"name\": \"SURAT\"\n  }\n]"
 						},
 						{
-							"id": "fb294995-a71a-4492-be17-e024bd7058b2",
+							"id": "cde1f7db-2466-46ce-b718-0fb59b6a1d4e",
 							"name": "Bad Request",
 							"originalRequest": {
 								"method": "GET",
@@ -294,6 +298,7 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -304,7 +309,7 @@
 							"body": "[\n  {\n    \"code\": \"ExactLengthValidator\",\n    \"message\": \"Bank Id must be 5 characters in length. You entered 4 characters.\",\n    \"fieldId\": \"BankId\"\n  }\n]"
 						},
 						{
-							"id": "c2bfa3c1-4d2d-4d52-a0fa-7809dd2b6a12",
+							"id": "b69d75b6-dbd1-4b00-ae1e-82c6b6eff2af",
 							"name": "Unauthorized",
 							"originalRequest": {
 								"method": "GET",
@@ -337,6 +342,7 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -349,7 +355,7 @@
 					]
 				}
 			],
-			"id": "e27504d7-004a-4ddf-b2f2-c6d744092543"
+			"id": "ed00a055-9e3b-4a4d-aaa1-497d73ae2925"
 		},
 		{
 			"name": "partner/countries/{country Iso3Code}/states-and-provinces",
@@ -362,7 +368,7 @@
 							"item": [
 								{
 									"name": "Get Partner Payers",
-									"id": "cc459d5d-6d67-4a1f-9521-7f4f158c8ee0",
+									"id": "7fe4bf43-497a-4fa5-9906-a645cf3fe56f",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
@@ -411,7 +417,7 @@
 									},
 									"response": [
 										{
-											"id": "8242e321-0eb6-49cd-a8d1-713f628ea9d8",
+											"id": "1e0ceca8-0301-4ada-a20f-f72906541c06",
 											"name": "Success",
 											"originalRequest": {
 												"method": "GET",
@@ -459,6 +465,7 @@
 											"status": "OK",
 											"code": 200,
 											"_postman_previewlanguage": "json",
+											"_postman_previewtype": "html",
 											"header": [
 												{
 													"key": "Content-Type",
@@ -469,7 +476,7 @@
 											"body": "[\n  {\n    \"id\": \"ME35\",\n    \"name\": \"TU LANA EXPRESS\"\n  },\n  {\n    \"id\": \"ME57\",\n    \"name\": \"AIRPAK\"\n  }\n]"
 										},
 										{
-											"id": "e6fe58e8-d647-4878-9f71-a4054471aec2",
+											"id": "b676ba91-d478-4524-9063-4ec887847c17",
 											"name": "Bad Request",
 											"originalRequest": {
 												"method": "GET",
@@ -517,6 +524,7 @@
 											"status": "Bad Request",
 											"code": 400,
 											"_postman_previewlanguage": "json",
+											"_postman_previewtype": "html",
 											"header": [
 												{
 													"key": "Content-Type",
@@ -527,7 +535,7 @@
 											"body": "[\n  {\n    \"code\": \"UnsupportedCountry\",\n    \"message\": \"'CountryIso3Code' must be a valid ISO 3 country.\",\n    \"fieldId\": \"CountryIso3Code\"\n  }\n]"
 										},
 										{
-											"id": "a2eec73b-6123-4585-aa5c-e0e98a27239e",
+											"id": "f22fe7e9-1662-4c55-8972-d1ae908513a8",
 											"name": "Unauthorized",
 											"originalRequest": {
 												"method": "GET",
@@ -575,6 +583,7 @@
 											"status": "Unauthorized",
 											"code": 401,
 											"_postman_previewlanguage": "json",
+											"_postman_previewtype": "html",
 											"header": [
 												{
 													"key": "Content-Type",
@@ -588,7 +597,7 @@
 								},
 								{
 									"name": "Get Partner Payer Locations",
-									"id": "045f4d8c-4880-4a0f-b677-c67033f20399",
+									"id": "6b50b89e-4783-4b18-8e93-1be4ea0b60ba",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
@@ -644,7 +653,7 @@
 									},
 									"response": [
 										{
-											"id": "55d807d4-32b5-4f72-93ef-754f1ffc5986",
+											"id": "170f1d20-f6ff-4743-a6a3-9316a913f59f",
 											"name": "Success",
 											"originalRequest": {
 												"method": "GET",
@@ -699,6 +708,7 @@
 											"status": "OK",
 											"code": 200,
 											"_postman_previewlanguage": "json",
+											"_postman_previewtype": "html",
 											"header": [
 												{
 													"key": "Content-Type",
@@ -709,7 +719,7 @@
 											"body": "[\n  {\n    \"id\": \"ME350770\",\n    \"name\": \"EL DUENDE DE LA SUERTE SUC 5 DE MAYO - TU LANA EXPRESS\",\n    \"description\": \"LIMIT 500 USD\"\n  },\n  {\n    \"id\": \"ME350772\",\n    \"name\": \"EL DUENDE DE LA SUERTE SUC C. CAMIONERA - TU LANA EXP\",\n    \"description\": \"LIMIT 500 USD\"\n  }\n]"
 										},
 										{
-											"id": "9a938f01-e1e6-432b-91a9-059d77c69f4f",
+											"id": "4c8df433-0e12-4fee-a48b-3b1450d33c89",
 											"name": "Bad Request",
 											"originalRequest": {
 												"method": "GET",
@@ -764,6 +774,7 @@
 											"status": "Bad Request",
 											"code": 400,
 											"_postman_previewlanguage": "json",
+											"_postman_previewtype": "html",
 											"header": [
 												{
 													"key": "Content-Type",
@@ -774,7 +785,7 @@
 											"body": "[\n  {\n    \"code\": \"UnsupportedCountry\",\n    \"message\": \"'CountryIso3Code' must be a valid ISO 3 country.\",\n    \"fieldId\": \"CountryIso3Code\"\n  }\n]"
 										},
 										{
-											"id": "fa0f72a8-fe43-4006-9070-6d488752f483",
+											"id": "4a9f4955-8309-4ecf-a1aa-1ca7272e8501",
 											"name": "Unauthorized",
 											"originalRequest": {
 												"method": "GET",
@@ -829,6 +840,7 @@
 											"status": "Unauthorized",
 											"code": 401,
 											"_postman_previewlanguage": "json",
+											"_postman_previewtype": "html",
 											"header": [
 												{
 													"key": "Content-Type",
@@ -841,11 +853,11 @@
 									]
 								}
 							],
-							"id": "2d31b30b-f81a-4483-98eb-7a7aa3edcc9e"
+							"id": "89ddc733-9f7f-4bd8-93c7-4d2e2133f6c4"
 						},
 						{
 							"name": "Get Partner Cities",
-							"id": "30608740-88e7-4b06-8597-f249a5b2f698",
+							"id": "fc2c57d5-ce51-457f-8db2-be60c6b23a27",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -887,7 +899,7 @@
 							},
 							"response": [
 								{
-									"id": "ce63d22c-8b61-4579-92a9-0c572465f3a9",
+									"id": "7397fe44-6421-4d11-8291-a2c9f377c34b",
 									"name": "Success",
 									"originalRequest": {
 										"method": "GET",
@@ -928,6 +940,7 @@
 									"status": "OK",
 									"code": 200,
 									"_postman_previewlanguage": "json",
+									"_postman_previewtype": "html",
 									"header": [
 										{
 											"key": "Content-Type",
@@ -938,7 +951,7 @@
 									"body": "[\n  {\n    \"id\": 59993,\n    \"name\": \"AGUASCALIENTES\"\n  },\n  {\n    \"id\": 94622,\n    \"name\": \"ARTEAGA\"\n  }\n]"
 								},
 								{
-									"id": "f1d525d6-3418-462d-9f55-b877a544fc5a",
+									"id": "1fe43c74-06d9-4484-a225-58135a1ae808",
 									"name": "Bad Request",
 									"originalRequest": {
 										"method": "GET",
@@ -979,6 +992,7 @@
 									"status": "Bad Request",
 									"code": 400,
 									"_postman_previewlanguage": "json",
+									"_postman_previewtype": "html",
 									"header": [
 										{
 											"key": "Content-Type",
@@ -989,7 +1003,7 @@
 									"body": "[\n  {\n    \"code\": \"UnsupportedCountry\",\n    \"message\": \"'CountryIso3Code' must be a valid ISO 3 country.\",\n    \"fieldId\": \"CountryIso3Code\"\n  }\n]"
 								},
 								{
-									"id": "8b451f39-6889-4291-aac3-686dc1c43665",
+									"id": "d5c78758-06c3-4023-bc56-5d7b0a373433",
 									"name": "Unauthorized",
 									"originalRequest": {
 										"method": "GET",
@@ -1030,6 +1044,7 @@
 									"status": "Unauthorized",
 									"code": 401,
 									"_postman_previewlanguage": "json",
+									"_postman_previewtype": "html",
 									"header": [
 										{
 											"key": "Content-Type",
@@ -1042,11 +1057,11 @@
 							]
 						}
 					],
-					"id": "508a6219-00d0-4bbf-a4ee-c2bf5b977472"
+					"id": "8f790f14-6a15-4999-9aef-9cc7ec0c7da0"
 				},
 				{
 					"name": "Get Partner States and Provinces",
-					"id": "f44332ed-18f2-42a2-97fe-9d467e0b9ba7",
+					"id": "bf83b80d-65ee-4ca5-86e2-1da30f145516",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -1081,7 +1096,7 @@
 					},
 					"response": [
 						{
-							"id": "17523746-3de5-426f-8d50-308a65569b24",
+							"id": "971e09b8-d624-43db-9683-82d470ebb270",
 							"name": "Success",
 							"originalRequest": {
 								"method": "GET",
@@ -1115,6 +1130,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -1125,7 +1141,7 @@
 							"body": "[\n  {\n    \"id\": \"M0001\",\n    \"name\": \"AGUASCALIENTES\"\n  },\n  {\n    \"id\": \"M0002\",\n    \"name\": \"BAJA CALIFORNIA NORTE\"\n  }\n]"
 						},
 						{
-							"id": "0e6757df-a5ee-48d3-a4b3-d00064f059b3",
+							"id": "aff5c8c5-65c2-489a-93d8-1285a2505467",
 							"name": "Bad Request",
 							"originalRequest": {
 								"method": "GET",
@@ -1159,6 +1175,7 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -1169,7 +1186,7 @@
 							"body": "[\n  {\n    \"code\": \"UnsupportedCountry\",\n    \"message\": \"'CountryIso3Code' must be a valid ISO 3 country.\",\n    \"fieldId\": \"CountryIso3Code\"\n  }\n]"
 						},
 						{
-							"id": "0da20158-f195-48f5-82af-9fed001b4a98",
+							"id": "b5fc60ee-aa93-4d77-9e1b-8ebfd1c5df0a",
 							"name": "Unauthorized",
 							"originalRequest": {
 								"method": "GET",
@@ -1203,6 +1220,7 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -1215,7 +1233,7 @@
 					]
 				}
 			],
-			"id": "4d9fd3a3-c0d3-4876-a552-73e5a2e8c48a"
+			"id": "7d346d92-ed55-4b5d-af8e-8a5ff2d1d562"
 		},
 		{
 			"name": "recipients",
@@ -1231,7 +1249,7 @@
 									"item": [
 										{
 											"name": "Get Recipient Account",
-											"id": "7714efc7-d2b5-4d35-b877-c9e2e2cc4ae9",
+											"id": "b1f9fb83-9341-4e74-851f-ff6f1f22407d",
 											"protocolProfileBehavior": {
 												"disableBodyPruning": true
 											},
@@ -1271,7 +1289,7 @@
 											},
 											"response": [
 												{
-													"id": "537ff94f-179d-4817-8c5e-8fc21b75b7f5",
+													"id": "40ea51d4-0c3b-4937-a04f-1ba1e2a823da",
 													"name": "Success",
 													"originalRequest": {
 														"method": "GET",
@@ -1310,6 +1328,7 @@
 													"status": "OK",
 													"code": 200,
 													"_postman_previewlanguage": "json",
+													"_postman_previewtype": "html",
 													"header": [
 														{
 															"key": "Content-Type",
@@ -1320,7 +1339,7 @@
 													"body": "{\n  \"recipientAccountId\": \"e27c7395-b46a-4b9b-89fd-cd6a3da7fd85\",\n  \"accountNumber\": \"333000333\",\n  \"fields\": [\n    {\n      \"id\": \"BANK_NAME\",\n      \"type\": \"TEXT\",\n      \"value\": \"Baink\"\n    }\n  ]\n}"
 												},
 												{
-													"id": "fdb9024e-d3e2-4dff-8e9e-1879eb821501",
+													"id": "5d551339-047e-4604-ab61-6f019836861d",
 													"name": "Bad Request",
 													"originalRequest": {
 														"method": "GET",
@@ -1359,6 +1378,7 @@
 													"status": "Bad Request",
 													"code": 400,
 													"_postman_previewlanguage": "json",
+													"_postman_previewtype": "html",
 													"header": [
 														{
 															"key": "Content-Type",
@@ -1369,7 +1389,7 @@
 													"body": "[\n  {\n    \"code\": \"Lorem velit sunt do\",\n    \"message\": \"in eu anim proident\",\n    \"fieldId\": \"amet\"\n  },\n  {\n    \"code\": \"in p\",\n    \"message\": \"cillum et irure\",\n    \"fieldId\": \"ex proident nisi dolor\"\n  }\n]"
 												},
 												{
-													"id": "ecb8e0b3-e0ed-4f39-8eb2-2954e39420ba",
+													"id": "dbc0ed0b-ec9e-4ee2-bcba-042a22dbcbf6",
 													"name": "Unauthorized",
 													"originalRequest": {
 														"method": "GET",
@@ -1408,6 +1428,7 @@
 													"status": "Unauthorized",
 													"code": 401,
 													"_postman_previewlanguage": "json",
+													"_postman_previewtype": "html",
 													"header": [
 														{
 															"key": "Content-Type",
@@ -1418,7 +1439,7 @@
 													"body": "{\n  \"code\": \"000\",\n  \"message\": \"Something went wrong!\",\n  \"description\": \"Unauthorized\"\n}"
 												},
 												{
-													"id": "0392c954-7488-4104-8722-8f3e4d040f68",
+													"id": "c034220e-31d8-46b6-b231-aaaf1f48f220",
 													"name": "Not Found",
 													"originalRequest": {
 														"method": "GET",
@@ -1457,6 +1478,7 @@
 													"status": "Not Found",
 													"code": 404,
 													"_postman_previewlanguage": "json",
+													"_postman_previewtype": "html",
 													"header": [
 														{
 															"key": "Content-Type",
@@ -1470,7 +1492,7 @@
 										},
 										{
 											"name": "Update Recipient Account",
-											"id": "d560be90-9fd2-4bee-b621-6591dae73cf6",
+											"id": "6599f797-eade-42bf-a4f7-4f807cc53c59",
 											"protocolProfileBehavior": {
 												"disableBodyPruning": true
 											},
@@ -1523,7 +1545,7 @@
 											},
 											"response": [
 												{
-													"id": "e3a0a290-b8e8-447a-89d1-1c5c92f20f53",
+													"id": "68043484-79cb-4586-af8e-73dd81ef4921",
 													"name": "Success",
 													"originalRequest": {
 														"method": "PUT",
@@ -1571,6 +1593,7 @@
 													"status": "OK",
 													"code": 200,
 													"_postman_previewlanguage": "json",
+													"_postman_previewtype": "html",
 													"header": [
 														{
 															"key": "Content-Type",
@@ -1581,7 +1604,7 @@
 													"body": "{\n  \"recipientAccountId\": \"et ir\",\n  \"accountNumber\": \"culpa velit elit\",\n  \"fields\": [\n    {\n      \"id\": \"BANK_NAME\",\n      \"type\": \"TEXT\",\n      \"value\": \"irure anim ve\"\n    },\n    {\n      \"id\": \"BANK_NAME\",\n      \"type\": \"TEXT\",\n      \"value\": \"dolor\"\n    }\n  ]\n}"
 												},
 												{
-													"id": "1f0621ee-d375-4398-8eb2-a64de0877b84",
+													"id": "37849bf1-9b33-4837-8f76-a85e421dcacc",
 													"name": "Bad Request",
 													"originalRequest": {
 														"method": "PUT",
@@ -1629,6 +1652,7 @@
 													"status": "Bad Request",
 													"code": 400,
 													"_postman_previewlanguage": "json",
+													"_postman_previewtype": "html",
 													"header": [
 														{
 															"key": "Content-Type",
@@ -1639,7 +1663,7 @@
 													"body": "[\n  {\n    \"code\": \"NotEmptyValidator\",\n    \"message\": \"'Destination Country ISO 3 Code' is required.\",\n    \"fieldId\": \"DestinationCountryISO3Code\"\n  },\n  {\n    \"code\": \"NotEmptyValidator\",\n    \"message\": \"'Destination Currency ISO 3 Code' is required.\",\n    \"fieldId\": \"DestinationCurrencyISO3Code\"\n  },\n  {\n    \"code\": \"NotEmptyValidator\",\n    \"message\": \"'Transfer Method' is required.\",\n    \"fieldId\": \"TransferMethod\"\n  },\n  {\n    \"code\": \"NotEmptyValidator\",\n    \"message\": \"'Account Number' is required.\",\n    \"fieldId\": \"AccountNumber\"\n  },\n  {\n    \"code\": \"NotEmptyValidator\",\n    \"message\": \"'Fields' is required.\",\n    \"fieldId\": \"Fields\"\n  }\n]"
 												},
 												{
-													"id": "83004672-931b-4d71-9f72-470b67970edf",
+													"id": "0dee8835-5c45-421e-96b1-c4ca6e10dec3",
 													"name": "Unauthorized",
 													"originalRequest": {
 														"method": "PUT",
@@ -1687,6 +1711,7 @@
 													"status": "Unauthorized",
 													"code": 401,
 													"_postman_previewlanguage": "json",
+													"_postman_previewtype": "html",
 													"header": [
 														{
 															"key": "Content-Type",
@@ -1700,7 +1725,7 @@
 										},
 										{
 											"name": "Delete Recipient Account",
-											"id": "96558012-be78-4bba-836d-84c2469573cd",
+											"id": "5f434f8a-72a2-484c-95ad-8766bc669d96",
 											"protocolProfileBehavior": {
 												"disableBodyPruning": true
 											},
@@ -1740,7 +1765,7 @@
 											},
 											"response": [
 												{
-													"id": "d52731e5-0478-4653-87c1-d6e380433379",
+													"id": "02b6601c-3a97-4731-8f7c-d405ee191386",
 													"name": "Success",
 													"originalRequest": {
 														"method": "DELETE",
@@ -1779,6 +1804,7 @@
 													"status": "OK",
 													"code": 200,
 													"_postman_previewlanguage": "text",
+													"_postman_previewtype": "html",
 													"header": [
 														{
 															"key": "Content-Type",
@@ -1789,7 +1815,7 @@
 													"body": ""
 												},
 												{
-													"id": "f1f685cb-c0b3-41fe-b3d0-ae790581b8d9",
+													"id": "4ff3961c-ada6-4303-8f06-f1e7c991a050",
 													"name": "Bad Request",
 													"originalRequest": {
 														"method": "DELETE",
@@ -1828,6 +1854,7 @@
 													"status": "Bad Request",
 													"code": 400,
 													"_postman_previewlanguage": "json",
+													"_postman_previewtype": "html",
 													"header": [
 														{
 															"key": "Content-Type",
@@ -1838,7 +1865,7 @@
 													"body": "[\n  {\n    \"code\": \"consectetur Lorem\",\n    \"message\": \"est Lorem ex amet\",\n    \"fieldId\": \"ea laboris\"\n  },\n  {\n    \"code\": \"officia eu\",\n    \"message\": \"Ut ut\",\n    \"fieldId\": \"in dolore adipisicing ipsum\"\n  }\n]"
 												},
 												{
-													"id": "ab0a3d31-c023-44f6-86b8-cdc33a0d7e88",
+													"id": "57b1239f-da7c-4b3a-9dca-4b42945cdc30",
 													"name": "Unauthorized",
 													"originalRequest": {
 														"method": "DELETE",
@@ -1877,6 +1904,7 @@
 													"status": "Unauthorized",
 													"code": 401,
 													"_postman_previewlanguage": "json",
+													"_postman_previewtype": "html",
 													"header": [
 														{
 															"key": "Content-Type",
@@ -1889,11 +1917,11 @@
 											]
 										}
 									],
-									"id": "05b93f2f-9e27-4148-8c23-4783a4f0e25a"
+									"id": "01a74878-8637-467f-8c1e-852804fb4d22"
 								},
 								{
 									"name": "Get Recipient Accounts",
-									"id": "1ece6bbf-da7d-48c5-b04c-c03b95369b5d",
+									"id": "6bb4ba62-b036-4262-bf05-2fb1ffb5d965",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
@@ -1927,7 +1955,7 @@
 									},
 									"response": [
 										{
-											"id": "b0641fd4-c48e-4d2d-9b39-48da32b64830",
+											"id": "377e0410-0e42-4adb-b612-a62c8a83efb8",
 											"name": "Success",
 											"originalRequest": {
 												"method": "GET",
@@ -1960,6 +1988,7 @@
 											"status": "OK",
 											"code": 200,
 											"_postman_previewlanguage": "json",
+											"_postman_previewtype": "html",
 											"header": [
 												{
 													"key": "Content-Type",
@@ -1970,7 +1999,7 @@
 											"body": "{\n  \"accounts\": [\n    {\n      \"recipientAccountId\": \"e27c7395-b46a-4b9b-89fd-cd6a3da7fd85\",\n      \"accountNumber\": \"98237498327489273\",\n      \"fields\": [\n        {\n          \"id\": \"bankId\",\n          \"type\": \"NUMBER\",\n          \"value\": \"78\"\n        },\n        {\n          \"id\": \"branchId\",\n          \"type\": \"NUMBER\",\n          \"value\": \"99\"\n        },\n        {\n          \"id\": \"accountNumber\",\n          \"type\": \"TEXT\",\n          \"value\": \"1234556677\"\n        }\n      ]\n    }\n  ]\n}"
 										},
 										{
-											"id": "35e38677-6af9-48a9-ba19-f21348e001fe",
+											"id": "846456d4-1a5a-4fc6-86ae-352ae7025aaf",
 											"name": "Unauthorized",
 											"originalRequest": {
 												"method": "GET",
@@ -2003,6 +2032,7 @@
 											"status": "Unauthorized",
 											"code": 401,
 											"_postman_previewlanguage": "json",
+											"_postman_previewtype": "html",
 											"header": [
 												{
 													"key": "Content-Type",
@@ -2013,7 +2043,7 @@
 											"body": "{\n  \"code\": \"000\",\n  \"message\": \"Something went wrong!\",\n  \"description\": \"Unauthorized\"\n}"
 										},
 										{
-											"id": "65eb69ba-358c-4006-9931-3a600a02a886",
+											"id": "470b0cd2-5c35-42bc-95b6-fdcf6ddb5301",
 											"name": "Not Found",
 											"originalRequest": {
 												"method": "GET",
@@ -2046,6 +2076,7 @@
 											"status": "Not Found",
 											"code": 404,
 											"_postman_previewlanguage": "json",
+											"_postman_previewtype": "html",
 											"header": [
 												{
 													"key": "Content-Type",
@@ -2059,7 +2090,7 @@
 								},
 								{
 									"name": "Create Recipient Account",
-									"id": "abe4258e-e793-44dd-9be5-5673588ad443",
+									"id": "5e3745fc-11aa-423a-9fe4-a44caf728917",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
@@ -2106,7 +2137,7 @@
 									},
 									"response": [
 										{
-											"id": "36858856-bd25-4f0b-b464-2c9995c84473",
+											"id": "6d75b067-d502-417f-b592-69215ab055aa",
 											"name": "Created",
 											"originalRequest": {
 												"method": "POST",
@@ -2148,6 +2179,7 @@
 											"status": "Created",
 											"code": 201,
 											"_postman_previewlanguage": "json",
+											"_postman_previewtype": "html",
 											"header": [
 												{
 													"key": "Content-Type",
@@ -2158,7 +2190,7 @@
 											"body": "{\n  \"recipientAccountId\": \"e27c7395-b46a-4b9b-89fd-cd6a3da7fd85\",\n  \"accountNumber\": \"333000333\",\n  \"fields\": [\n    {\n      \"id\": \"BANK_NAME\",\n      \"type\": \"TEXT\",\n      \"value\": \"Baink\"\n    }\n  ]\n}"
 										},
 										{
-											"id": "691fbca7-6438-4083-92d0-7bb211d54c0f",
+											"id": "da07babc-af82-4a1e-85cc-06e950c3a745",
 											"name": "Bad Request",
 											"originalRequest": {
 												"method": "POST",
@@ -2200,6 +2232,7 @@
 											"status": "Bad Request",
 											"code": 400,
 											"_postman_previewlanguage": "json",
+											"_postman_previewtype": "html",
 											"header": [
 												{
 													"key": "Content-Type",
@@ -2210,7 +2243,7 @@
 											"body": "[\n  {\n    \"code\": \"NotEmptyValidator\",\n    \"message\": \"'Destination Country ISO 3 Code' is required.\",\n    \"fieldId\": \"DestinationCountryISO3Code\"\n  },\n  {\n    \"code\": \"NotEmptyValidator\",\n    \"message\": \"'Destination Currency ISO 3 Code' is required.\",\n    \"fieldId\": \"DestinationCurrencyISO3Code\"\n  },\n  {\n    \"code\": \"NotEmptyValidator\",\n    \"message\": \"'Transfer Method' is required.\",\n    \"fieldId\": \"TransferMethod\"\n  },\n  {\n    \"code\": \"NotEmptyValidator\",\n    \"message\": \"'Account Number' is required.\",\n    \"fieldId\": \"AccountNumber\"\n  },\n  {\n    \"code\": \"NotEmptyValidator\",\n    \"message\": \"'Fields' is required.\",\n    \"fieldId\": \"Fields\"\n  }\n]"
 										},
 										{
-											"id": "2aa60509-16f9-4c32-8bc8-a54cc4d6df3d",
+											"id": "4ee77dc4-4615-4ab9-bff1-5ecc7fdd5992",
 											"name": "Unauthorized",
 											"originalRequest": {
 												"method": "POST",
@@ -2252,6 +2285,7 @@
 											"status": "Unauthorized",
 											"code": 401,
 											"_postman_previewlanguage": "json",
+											"_postman_previewtype": "html",
 											"header": [
 												{
 													"key": "Content-Type",
@@ -2264,11 +2298,11 @@
 									]
 								}
 							],
-							"id": "e56519d3-9403-4ced-ab17-6ddae9df2b9d"
+							"id": "c6a79ddc-64d7-4944-ab05-b1caec985fb0"
 						},
 						{
 							"name": "Get Recipient",
-							"id": "4bac5293-0c72-417a-9fda-2b83c61f81ba",
+							"id": "9883450a-1b49-421c-8294-e20d29b38abb",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -2301,7 +2335,7 @@
 							},
 							"response": [
 								{
-									"id": "9b24184a-b44c-4727-ade5-fac0f44cb74d",
+									"id": "f78b85c0-b0c4-45c7-a41c-a550866de093",
 									"name": "Success",
 									"originalRequest": {
 										"method": "GET",
@@ -2333,6 +2367,7 @@
 									"status": "OK",
 									"code": 200,
 									"_postman_previewlanguage": "json",
+									"_postman_previewtype": "html",
 									"header": [
 										{
 											"key": "Content-Type",
@@ -2343,7 +2378,7 @@
 									"body": "{\n  \"recipientId\": \"6f5ba7ce-0d40-449e-81de-b12c618eb6dd\",\n  \"senderId\": \"55ef79b0-0f0f-459f-ad62-effcf516df7d\",\n  \"recipientType\": \"PERSON\",\n  \"firstName\": \"Jane\",\n  \"lastName\": \"Doe\",\n  \"fields\": [\n    {\n      \"id\": \"FIRST_NAME\",\n      \"type\": \"TEXT\",\n      \"value\": \"Jane\"\n    },\n    {\n      \"id\": \"LAST_NAME\",\n      \"type\": \"TEXT\",\n      \"value\": \"Doe\"\n    }\n  ]\n}"
 								},
 								{
-									"id": "e66aece2-3d7e-4d4c-aeb5-346039e4f91e",
+									"id": "db6eb58d-a526-42af-8f61-8d6ad53f3812",
 									"name": "Unauthorized",
 									"originalRequest": {
 										"method": "GET",
@@ -2375,6 +2410,7 @@
 									"status": "Unauthorized",
 									"code": 401,
 									"_postman_previewlanguage": "json",
+									"_postman_previewtype": "html",
 									"header": [
 										{
 											"key": "Content-Type",
@@ -2385,7 +2421,7 @@
 									"body": "{\n  \"code\": \"000\",\n  \"message\": \"Something went wrong!\",\n  \"description\": \"Unauthorized\"\n}"
 								},
 								{
-									"id": "c260f2a5-efe9-4d84-b171-e1359ace9386",
+									"id": "c06c0fae-d9b4-4c38-8941-a2a81b1d1c39",
 									"name": "Not Found",
 									"originalRequest": {
 										"method": "GET",
@@ -2417,6 +2453,7 @@
 									"status": "Not Found",
 									"code": 404,
 									"_postman_previewlanguage": "json",
+									"_postman_previewtype": "html",
 									"header": [
 										{
 											"key": "Content-Type",
@@ -2430,7 +2467,7 @@
 						},
 						{
 							"name": "Update Recipient",
-							"id": "2ce85e68-b960-41b7-b33d-3a3daafb76dd",
+							"id": "3589aea8-a6ed-4e50-845c-eebdfc090c3d",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -2476,7 +2513,7 @@
 							},
 							"response": [
 								{
-									"id": "b6ec3e89-8afb-4df6-ae44-e911195a3ddf",
+									"id": "44125789-6fdc-4c7b-94ee-8696a1d2daed",
 									"name": "Success",
 									"originalRequest": {
 										"method": "PUT",
@@ -2517,6 +2554,7 @@
 									"status": "OK",
 									"code": 200,
 									"_postman_previewlanguage": "json",
+									"_postman_previewtype": "html",
 									"header": [
 										{
 											"key": "Content-Type",
@@ -2527,7 +2565,7 @@
 									"body": "{\n  \"recipientId\": \"6f5ba7ce-0d40-449e-81de-b12c618eb6dd\",\n  \"senderId\": \"55ef79b0-0f0f-459f-ad62-effcf516df7d\",\n  \"recipientType\": \"PERSON\",\n  \"firstName\": \"New First Name\",\n  \"lastName\": \"New Last Name\",\n  \"fields\": [\n    {\n      \"id\": \"FIRST_NAME\",\n      \"type\": \"TEXT\",\n      \"value\": \"New First Name\"\n    },\n    {\n      \"id\": \"LAST_NAME\",\n      \"type\": \"TEXT\",\n      \"value\": \"New Last Name\"\n    }\n  ]\n}"
 								},
 								{
-									"id": "a64c7532-a91d-4811-b0e8-bfa589944bef",
+									"id": "eb521f00-50f4-4748-a768-cf37c1bdafbc",
 									"name": "Bad Request",
 									"originalRequest": {
 										"method": "PUT",
@@ -2568,6 +2606,7 @@
 									"status": "Bad Request",
 									"code": 400,
 									"_postman_previewlanguage": "json",
+									"_postman_previewtype": "html",
 									"header": [
 										{
 											"key": "Content-Type",
@@ -2578,7 +2617,7 @@
 									"body": "[\n  {\n    \"code\": \"NotEmptyValidator\",\n    \"message\": \"'Recipient Type' is required.\",\n    \"fieldId\": \"RecipientType\"\n  },\n  {\n    \"code\": \"NotEmptyValidator\",\n    \"message\": \"'First Name' is required.\",\n    \"fieldId\": \"FIRST_NAME\"\n  },\n  {\n    \"code\": \"NotEmptyValidator\",\n    \"message\": \"'Last Name' is required.\",\n    \"fieldId\": \"LAST_NAME\"\n  },\n  {\n    \"code\": \"NotEmptyValidator\",\n    \"message\": \"'Sender Id' is required.\",\n    \"fieldId\": \"SenderId\"\n  }\n]"
 								},
 								{
-									"id": "17abf29d-ee1e-4a31-a737-87607a24bc4b",
+									"id": "88adb266-9637-48c7-ad79-82afa156b712",
 									"name": "Unauthorized",
 									"originalRequest": {
 										"method": "PUT",
@@ -2619,6 +2658,7 @@
 									"status": "Unauthorized",
 									"code": 401,
 									"_postman_previewlanguage": "json",
+									"_postman_previewtype": "html",
 									"header": [
 										{
 											"key": "Content-Type",
@@ -2632,7 +2672,7 @@
 						},
 						{
 							"name": "Delete Recipient",
-							"id": "c1baeea1-7463-4c09-911e-adcfb40ee53a",
+							"id": "d3935082-5ae2-4c03-a5e2-5e4019c556b1",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -2665,7 +2705,7 @@
 							},
 							"response": [
 								{
-									"id": "c3e5e834-69e1-4d00-9683-ef0dfdcc518a",
+									"id": "3a06a85a-6722-4fd7-99c5-ea32ed93314d",
 									"name": "Success",
 									"originalRequest": {
 										"method": "DELETE",
@@ -2697,6 +2737,7 @@
 									"status": "OK",
 									"code": 200,
 									"_postman_previewlanguage": "text",
+									"_postman_previewtype": "html",
 									"header": [
 										{
 											"key": "Content-Type",
@@ -2707,7 +2748,7 @@
 									"body": ""
 								},
 								{
-									"id": "a3cd83f2-808b-426d-96e6-80be436ad219",
+									"id": "5588a7af-ab16-49b5-8629-62846734f081",
 									"name": "Unauthorized",
 									"originalRequest": {
 										"method": "DELETE",
@@ -2739,6 +2780,7 @@
 									"status": "Unauthorized",
 									"code": 401,
 									"_postman_previewlanguage": "json",
+									"_postman_previewtype": "html",
 									"header": [
 										{
 											"key": "Content-Type",
@@ -2749,7 +2791,7 @@
 									"body": "{\n  \"code\": \"000\",\n  \"message\": \"Something went wrong!\",\n  \"description\": \"Unauthorized\"\n}"
 								},
 								{
-									"id": "68650e11-018a-47e1-a6eb-71d5de54d894",
+									"id": "d12dbd55-2154-4183-b584-984c852c4860",
 									"name": "Not Found",
 									"originalRequest": {
 										"method": "DELETE",
@@ -2781,6 +2823,7 @@
 									"status": "Not Found",
 									"code": 404,
 									"_postman_previewlanguage": "json",
+									"_postman_previewtype": "html",
 									"header": [
 										{
 											"key": "Content-Type",
@@ -2793,11 +2836,11 @@
 							]
 						}
 					],
-					"id": "9abb4e2f-870d-4ed7-897f-d3262b8a6a54"
+					"id": "1129b02c-0304-4bd9-9306-5b72ac9c03cc"
 				},
 				{
 					"name": "Get Recipients",
-					"id": "9226d950-9367-49af-8ce4-5a08637c2cdf",
+					"id": "11db0e6c-ee75-45ad-ad20-eb170946687d",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -2829,7 +2872,7 @@
 					},
 					"response": [
 						{
-							"id": "5782e051-07f1-4d18-9f1e-0fe86b974dad",
+							"id": "9df2dc90-df1d-4f71-82f1-2f53fd5fc3d6",
 							"name": "Success",
 							"originalRequest": {
 								"method": "GET",
@@ -2859,6 +2902,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -2869,7 +2913,7 @@
 							"body": "{\n  \"recipients\": [\n    {\n      \"recipientId\": \"986d85c1-72b8-47ef-85d5-619b308fa6fa\",\n      \"senderId\": \"55ef79b0-0f0f-459f-ad62-effcf516df7d\",\n      \"recipientType\": \"PERSON\",\n      \"firstName\": \"Alpha\",\n      \"lastName\": \"Flight\",\n      \"fields\": [\n        {\n          \"id\": \"FIRST_NAME\",\n          \"type\": \"TEXT\",\n          \"value\": \"Alpha\"\n        },\n        {\n          \"id\": \"LAST_NAME\",\n          \"type\": \"TEXT\",\n          \"value\": \"Flight\"\n        }\n      ]\n    },\n    {\n      \"recipientId\": \"59555d87-5357-4e17-bcb1-83cbcf59a711\",\n      \"senderId\": \"55ef79b0-0f0f-459f-ad62-effcf516df7d\",\n      \"recipientType\": \"BUSINESS\",\n      \"companyName\": \"Overseas Inc\",\n      \"fields\": [\n        {\n          \"id\": \"COMPANY_NAME\",\n          \"type\": \"TEXT\",\n          \"value\": \"Overseas Inc\"\n        }\n      ]\n    }\n  ]\n}"
 						},
 						{
-							"id": "64eaab45-9612-475b-83d6-00fb07fa96e3",
+							"id": "1221a6af-4e60-43e0-b369-4f2ee996589f",
 							"name": "Unauthorized",
 							"originalRequest": {
 								"method": "GET",
@@ -2899,6 +2943,7 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -2909,7 +2954,7 @@
 							"body": "{\n  \"code\": \"000\",\n  \"message\": \"Something went wrong!\",\n  \"description\": \"Unauthorized\"\n}"
 						},
 						{
-							"id": "6adce028-c15b-47e0-80c6-3cfd60e0c312",
+							"id": "2afcd419-713d-47d7-be2e-16b7be31c088",
 							"name": "Forbidden",
 							"originalRequest": {
 								"method": "GET",
@@ -2939,6 +2984,7 @@
 							"status": "Forbidden",
 							"code": 403,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -2949,7 +2995,7 @@
 							"body": "[\n  {\n    \"code\": \"AccessDenied\",\n    \"message\": \"Sorry! Access denied :(\",\n    \"description\": \"Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException' was thrown.\"\n  }\n]"
 						},
 						{
-							"id": "eceb2b0d-6d1e-461f-b234-8f677ce447dc",
+							"id": "a5211fa0-19a3-4b14-acef-faf7bd5ccad9",
 							"name": "Internal Server Error",
 							"originalRequest": {
 								"method": "GET",
@@ -2979,6 +3025,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -2992,7 +3039,7 @@
 				},
 				{
 					"name": "Create Recipient",
-					"id": "91e8a49a-7dfb-44b3-858f-78af113e1759",
+					"id": "8bd343ec-d044-41bd-9bed-e75eeb957b03",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -3030,7 +3077,7 @@
 					},
 					"response": [
 						{
-							"id": "049877d9-c39d-4d9f-82a2-3e93673baec6",
+							"id": "315ee603-31c8-47aa-b6fb-4a4f8b4f10c1",
 							"name": "Created",
 							"originalRequest": {
 								"method": "POST",
@@ -3063,6 +3110,7 @@
 							"status": "Created",
 							"code": 201,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -3073,7 +3121,7 @@
 							"body": "{\n  \"recipientId\": \"6f5ba7ce-0d40-449e-81de-b12c618eb6dd\",\n  \"senderId\": \"55ef79b0-0f0f-459f-ad62-effcf516df7d\",\n  \"recipientType\": \"PERSON\",\n  \"firstName\": \"Jane\",\n  \"lastName\": \"Doe\",\n  \"fields\": [\n    {\n      \"id\": \"FIRST_NAME\",\n      \"type\": \"TEXT\",\n      \"value\": \"Jane\"\n    },\n    {\n      \"id\": \"LAST_NAME\",\n      \"type\": \"TEXT\",\n      \"value\": \"Doe\"\n    }\n  ]\n}"
 						},
 						{
-							"id": "a53d4863-d02e-4653-8bca-4c1283b95a13",
+							"id": "4a8a9169-a84a-4f6d-8abd-d815b2bc0583",
 							"name": "Bad Request",
 							"originalRequest": {
 								"method": "POST",
@@ -3106,6 +3154,7 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -3116,7 +3165,7 @@
 							"body": "[\n  {\n    \"code\": \"InvalidRecipientName\",\n    \"message\": \"'First Name' is required when recipient type is 'PERSON'.\",\n    \"fieldId\": \"FIRST_NAME\"\n  },\n  {\n    \"code\": \"InvalidRecipientName\",\n    \"message\": \"'Last Name' is required when recipient type is 'PERSON'.\",\n    \"fieldId\": \"LAST_NAME\"\n  }\n]"
 						},
 						{
-							"id": "a80f12b7-5ec0-4d5a-a2f5-38e35b394008",
+							"id": "24abed0c-2487-4e60-9c5a-12168cb696bc",
 							"name": "Unauthorized",
 							"originalRequest": {
 								"method": "POST",
@@ -3149,6 +3198,7 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -3159,7 +3209,7 @@
 							"body": "{\n  \"code\": \"000\",\n  \"message\": \"Something went wrong!\",\n  \"description\": \"Unauthorized\"\n}"
 						},
 						{
-							"id": "c1216fac-41f0-4063-9a0c-1102888d562d",
+							"id": "039a57ea-490d-4a6c-889f-1168a4f04930",
 							"name": "Forbidden - Wrong senderId",
 							"originalRequest": {
 								"method": "POST",
@@ -3192,6 +3242,7 @@
 							"status": "Forbidden",
 							"code": 403,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -3204,7 +3255,7 @@
 					]
 				}
 			],
-			"id": "c467f06c-a767-4496-b117-66ff5f972525"
+			"id": "be018527-cd32-4d76-85ed-6ef7dd51a8c2"
 		},
 		{
 			"name": "senders",
@@ -3214,7 +3265,7 @@
 					"item": [
 						{
 							"name": "Update Sender",
-							"id": "944050c2-b813-4d27-82bb-b7f27221f859",
+							"id": "17978459-c043-412a-b787-4fc0973a3a1e",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -3260,7 +3311,7 @@
 							},
 							"response": [
 								{
-									"id": "d5674005-31c4-40e6-be4a-4abb47fd74d3",
+									"id": "465f6169-f896-4dec-9b1b-c6d1cdc43a70",
 									"name": "Success",
 									"originalRequest": {
 										"method": "PUT",
@@ -3301,6 +3352,7 @@
 									"status": "OK",
 									"code": 200,
 									"_postman_previewlanguage": "json",
+									"_postman_previewtype": "html",
 									"header": [
 										{
 											"key": "Content-Type",
@@ -3311,7 +3363,7 @@
 									"body": "{\n  \"recipientId\": \"6f5ba7ce-0d40-449e-81de-b12c618eb6dd\",\n  \"senderId\": \"55ef79b0-0f0f-459f-ad62-effcf516df7d\",\n  \"recipientType\": \"PERSON\",\n  \"firstName\": \"New First Name\",\n  \"lastName\": \"New Last Name\",\n  \"fields\": [\n    {\n      \"id\": \"FIRST_NAME\",\n      \"type\": \"TEXT\",\n      \"value\": \"New First Name\"\n    },\n    {\n      \"id\": \"LAST_NAME\",\n      \"type\": \"TEXT\",\n      \"value\": \"New Last Name\"\n    }\n  ]\n}"
 								},
 								{
-									"id": "562cdd9d-b547-45be-a0c3-aa5c75bb1cae",
+									"id": "e7bfbc33-19ae-4a2b-ad89-e2969da7fbbc",
 									"name": "Bad Request",
 									"originalRequest": {
 										"method": "PUT",
@@ -3352,6 +3404,7 @@
 									"status": "Bad Request",
 									"code": 400,
 									"_postman_previewlanguage": "json",
+									"_postman_previewtype": "html",
 									"header": [
 										{
 											"key": "Content-Type",
@@ -3362,7 +3415,7 @@
 									"body": "[\n  {\n    \"code\": \"NotEmptyValidator\",\n    \"message\": \"'Recipient Type' is required.\",\n    \"fieldId\": \"RecipientType\"\n  },\n  {\n    \"code\": \"NotEmptyValidator\",\n    \"message\": \"'First Name' is required.\",\n    \"fieldId\": \"FIRST_NAME\"\n  },\n  {\n    \"code\": \"NotEmptyValidator\",\n    \"message\": \"'Last Name' is required.\",\n    \"fieldId\": \"LAST_NAME\"\n  },\n  {\n    \"code\": \"NotEmptyValidator\",\n    \"message\": \"'Sender Id' is required.\",\n    \"fieldId\": \"SenderId\"\n  }\n]"
 								},
 								{
-									"id": "55605de1-9f9a-4c75-9f39-7868a222408f",
+									"id": "a0b0225f-d88a-49f0-9a3d-81b9fff5eb78",
 									"name": "Unauthorized",
 									"originalRequest": {
 										"method": "PUT",
@@ -3403,6 +3456,7 @@
 									"status": "Unauthorized",
 									"code": 401,
 									"_postman_previewlanguage": "json",
+									"_postman_previewtype": "html",
 									"header": [
 										{
 											"key": "Content-Type",
@@ -3416,7 +3470,7 @@
 						},
 						{
 							"name": "Delete sender",
-							"id": "28987c2e-50d9-4885-b56c-288d12328dc0",
+							"id": "554b2b4b-bdf8-4cb7-990b-8065228b9edf",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -3449,7 +3503,7 @@
 							},
 							"response": [
 								{
-									"id": "1aef2747-1b9a-40f6-9518-6d3c70dca487",
+									"id": "ee8c0541-81a8-4d0d-9351-e004262c2e64",
 									"name": "Success",
 									"originalRequest": {
 										"method": "DELETE",
@@ -3481,6 +3535,7 @@
 									"status": "OK",
 									"code": 200,
 									"_postman_previewlanguage": "text",
+									"_postman_previewtype": "html",
 									"header": [
 										{
 											"key": "Content-Type",
@@ -3491,7 +3546,7 @@
 									"body": ""
 								},
 								{
-									"id": "390924a9-2414-4726-ac8c-f7faeba37ace",
+									"id": "9793b342-10df-4fc9-a6e2-2082a89aad01",
 									"name": "Unauthorized",
 									"originalRequest": {
 										"method": "DELETE",
@@ -3523,6 +3578,7 @@
 									"status": "Unauthorized",
 									"code": 401,
 									"_postman_previewlanguage": "json",
+									"_postman_previewtype": "html",
 									"header": [
 										{
 											"key": "Content-Type",
@@ -3533,7 +3589,7 @@
 									"body": "{\n  \"code\": \"000\",\n  \"message\": \"Something went wrong!\",\n  \"description\": \"Unauthorized\"\n}"
 								},
 								{
-									"id": "4889e9da-081d-4a03-bbfd-7ced06fb0242",
+									"id": "4395644c-487d-431e-a2cc-91abb9039a05",
 									"name": "Not Found",
 									"originalRequest": {
 										"method": "DELETE",
@@ -3565,6 +3621,7 @@
 									"status": "Not Found",
 									"code": 404,
 									"_postman_previewlanguage": "json",
+									"_postman_previewtype": "html",
 									"header": [
 										{
 											"key": "Content-Type",
@@ -3577,11 +3634,11 @@
 							]
 						}
 					],
-					"id": "5f6a28ba-285a-4ef0-a8e3-abb46e928f48"
+					"id": "fe96c09e-71a9-4dd4-833a-0a92d7c656ae"
 				},
 				{
 					"name": "Get Senders",
-					"id": "76650214-a226-4b04-81c7-16bc91868808",
+					"id": "ea1dda64-5ba3-47e1-808a-a043a2c24543",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -3613,7 +3670,7 @@
 					},
 					"response": [
 						{
-							"id": "736a6931-bef8-40e9-b2ad-b5f7cc047a05",
+							"id": "a4364fbf-13ba-4e33-8a8d-36bd183776a1",
 							"name": "Success",
 							"originalRequest": {
 								"method": "GET",
@@ -3643,6 +3700,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -3653,7 +3711,7 @@
 							"body": "{\n  \"senderId\": \"ex\",\n  \"senderType\": \"in deserunt\",\n  \"firstName\": \"do dolore\",\n  \"lastName\": \"ea adipisicing\",\n  \"companyName\": \"voluptate laboris\",\n  \"fields\": [\n    {\n      \"id\": \"BANK_NAME\",\n      \"type\": \"TEXT\",\n      \"value\": \"id sed consequat mollit\"\n    },\n    {\n      \"id\": \"BANK_NAME\",\n      \"type\": \"TEXT\",\n      \"value\": \"et amet\"\n    }\n  ]\n}"
 						},
 						{
-							"id": "f457413e-1bec-4289-a90f-30fd71aceb65",
+							"id": "01990952-e594-4a7b-8ea2-e0b30bcba7a2",
 							"name": "Unauthorized",
 							"originalRequest": {
 								"method": "GET",
@@ -3683,6 +3741,7 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -3693,7 +3752,7 @@
 							"body": "{\n  \"code\": \"000\",\n  \"message\": \"Something went wrong!\",\n  \"description\": \"Unauthorized\"\n}"
 						},
 						{
-							"id": "b3f96d85-a72c-4447-af6f-4449325bf7cd",
+							"id": "7aedf21e-a354-4fe9-b079-ff369c836358",
 							"name": "Forbidden",
 							"originalRequest": {
 								"method": "GET",
@@ -3723,6 +3782,7 @@
 							"status": "Forbidden",
 							"code": 403,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -3733,7 +3793,7 @@
 							"body": "[\n  {\n    \"code\": \"AccessDenied\",\n    \"message\": \"Sorry! Access denied :(\",\n    \"description\": \"Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException' was thrown.\"\n  }\n]"
 						},
 						{
-							"id": "7b45d43f-e8d2-4495-bd00-01f2d3f27cb3",
+							"id": "db13bc78-045b-40b5-a51c-79f6c008924c",
 							"name": "Internal Server Error",
 							"originalRequest": {
 								"method": "GET",
@@ -3763,6 +3823,7 @@
 							"status": "Internal Server Error",
 							"code": 500,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -3776,7 +3837,7 @@
 				},
 				{
 					"name": "Create Sender",
-					"id": "92d33add-7010-4d37-90c4-2df88b18f6fb",
+					"id": "ce7774e4-fafd-4a39-b8f6-6b1cfdab6697",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -3814,7 +3875,7 @@
 					},
 					"response": [
 						{
-							"id": "8156ceb4-5b32-4fd6-96fa-46697e5bed77",
+							"id": "42e20162-b913-42d2-a22d-370a74ed3a10",
 							"name": "Created",
 							"originalRequest": {
 								"method": "POST",
@@ -3847,6 +3908,7 @@
 							"status": "Created",
 							"code": 201,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -3857,7 +3919,7 @@
 							"body": "{\n  \"recipientId\": \"6f5ba7ce-0d40-449e-81de-b12c618eb6dd\",\n  \"senderId\": \"55ef79b0-0f0f-459f-ad62-effcf516df7d\",\n  \"recipientType\": \"PERSON\",\n  \"firstName\": \"Jane\",\n  \"lastName\": \"Doe\",\n  \"fields\": [\n    {\n      \"id\": \"FIRST_NAME\",\n      \"type\": \"TEXT\",\n      \"value\": \"Jane\"\n    },\n    {\n      \"id\": \"LAST_NAME\",\n      \"type\": \"TEXT\",\n      \"value\": \"Doe\"\n    }\n  ]\n}"
 						},
 						{
-							"id": "0ded8831-d83a-47d4-8d52-52387ff8e661",
+							"id": "18747276-4816-4366-897a-7f53770d4ec4",
 							"name": "Bad Request",
 							"originalRequest": {
 								"method": "POST",
@@ -3890,6 +3952,7 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -3900,7 +3963,7 @@
 							"body": "[\n  {\n    \"code\": \"InvalidSenderName\",\n    \"message\": \"'First Name' is required when recipient type is 'PERSON'.\",\n    \"fieldId\": \"FIRST_NAME\"\n  },\n  {\n    \"code\": \"InvalidSenderName\",\n    \"message\": \"'Last Name' is required when recipient type is 'PERSON'.\",\n    \"fieldId\": \"LAST_NAME\"\n  }\n]"
 						},
 						{
-							"id": "2da37913-9834-4d24-84d4-9031d24699b9",
+							"id": "a161e660-0f2e-4ce4-833e-9ebd4a41ced3",
 							"name": "Unauthorized",
 							"originalRequest": {
 								"method": "POST",
@@ -3933,6 +3996,7 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -3943,7 +4007,7 @@
 							"body": "{\n  \"code\": \"000\",\n  \"message\": \"Something went wrong!\",\n  \"description\": \"Unauthorized\"\n}"
 						},
 						{
-							"id": "2f24e54d-1434-481c-94af-83429d58c3f4",
+							"id": "b7958c04-a33b-49cc-bd24-9186f2067b8e",
 							"name": "Forbidden - Wrong senderId",
 							"originalRequest": {
 								"method": "POST",
@@ -3976,6 +4040,7 @@
 							"status": "Forbidden",
 							"code": 403,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -3988,7 +4053,7 @@
 					]
 				}
 			],
-			"id": "256613b6-6ffb-469c-8447-80f91a0cac40"
+			"id": "190dff8d-2198-418e-9a44-2a9e33350366"
 		},
 		{
 			"name": "transfers",
@@ -3998,7 +4063,7 @@
 					"item": [
 						{
 							"name": "Get Transfer",
-							"id": "207cc099-8690-4dda-b609-b7cd275aea39",
+							"id": "f4324370-a1a4-4a9d-b363-5fe9373ce5d4",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -4031,7 +4096,7 @@
 							},
 							"response": [
 								{
-									"id": "a8d7959e-92d7-4e2c-b80c-0f21c9326a14",
+									"id": "c83ed0e6-b28c-441e-ab05-4d4084b01f92",
 									"name": "Success",
 									"originalRequest": {
 										"method": "GET",
@@ -4063,6 +4128,7 @@
 									"status": "OK",
 									"code": 200,
 									"_postman_previewlanguage": "json",
+									"_postman_previewtype": "html",
 									"header": [
 										{
 											"key": "Content-Type",
@@ -4073,7 +4139,7 @@
 									"body": "{\n  \"transferId\": \"d53d90ad-4de8-415d-8286-90c41853a3dd\",\n  \"confirmationNumber\": \"33TF041162650\",\n  \"quote\": {\n    \"sendAmount\": {\n      \"value\": 100000,\n      \"currency\": {\n        \"name\": \"US Dollar\",\n        \"iso3Code\": \"USD\",\n        \"symbol\": \"$\",\n        \"decimalPlaces\": 2\n      }\n    },\n    \"receiveAmount\": {\n      \"value\": 7445765,\n      \"currency\": {\n        \"name\": \"Indian rupee\",\n        \"iso3Code\": \"INR\",\n        \"symbol\": \"₹\",\n        \"decimalPlaces\": 2\n      }\n    },\n    \"rate\": 74.4576574896,\n    \"adjustments\": [\n      {\n        \"label\": \"Transfer Fee\",\n        \"amount\": {\n          \"value\": 879,\n          \"currency\": {\n            \"name\": \"US Dollar\",\n            \"iso3Code\": \"USD\",\n            \"symbol\": \"$\",\n            \"decimalPlaces\": 2\n          }\n        }\n      }\n    ],\n    \"totalCost\": {\n      \"value\": 100879,\n      \"currency\": {\n        \"name\": \"US Dollar\",\n        \"iso3Code\": \"USD\",\n        \"symbol\": \"$\",\n        \"decimalPlaces\": 2\n      }\n    },\n    \"disclosures\": []\n  },\n  \"senderDetails\": {\n    \"senderId\": \"9711fb4c-df97-49bd-ba03-78706761c23c\",\n    \"fields\": []\n  },\n  \"recipientDetails\": {\n    \"recipientId\": \"260d1f4f-4fe3-4620-a104-a25ae57b51c3\",\n    \"senderId\": \"9711fb4c-df97-49bd-ba03-78706761c23c\",\n    \"recipientType\": \"PERSON\",\n    \"firstName\": \"Camilia\",\n    \"lastName\": \"Noceda\",\n    \"fields\": [\n      {\n        \"id\": \"LAST_NAME\",\n        \"type\": \"TEXT\",\n        \"value\": \"Noceda\"\n      },\n      {\n        \"id\": \"FIRST_NAME\",\n        \"type\": \"TEXT\",\n        \"value\": \"Camilia\"\n      }\n    ]\n  },\n  \"recipientAccountDetails\": {\n    \"recipientAccountId\\\"\": \"236d76c2-8b0b-4eef-a28a-25353926ade9\",\n    \"accountNumber\\\"\": \"333000333\",\n    \"fields\": [\n      {\n        \"id\": \"BANK_NAME\",\n        \"type\": \"TEXT\",\n        \"value\": \"Baink\"\n      }\n    ],\n    \"disclaimers\": []\n  }\n}"
 								},
 								{
-									"id": "887fff50-d774-41f5-82c8-513a3dedcf8a",
+									"id": "d9a4ab9e-5d1b-4cfc-85da-0d11f5f1fe1a",
 									"name": "Bad Request",
 									"originalRequest": {
 										"method": "GET",
@@ -4105,6 +4171,7 @@
 									"status": "Bad Request",
 									"code": 400,
 									"_postman_previewlanguage": "json",
+									"_postman_previewtype": "html",
 									"header": [
 										{
 											"key": "Content-Type",
@@ -4115,7 +4182,7 @@
 									"body": "[\n  {\n    \"code\": \"UnsupportedCountry\",\n    \"message\": \"'DestinationCountryISO3Code' must be a valid ISO 3 country.\",\n    \"fieldId\": \"DestinationCountryISO3Code\"\n  },\n  {\n    \"code\": \"UnsupportedCurrency\",\n    \"message\": \"'DestinationCurrencyISO3Code' must be a valid ISO 3 currency.\",\n    \"fieldId\": \"DestinationCurrencyISO3Code\"\n  },\n  {\n    \"code\": \"UnsupportedCurrency\",\n    \"message\": \"'SourceCurrencyIso3Code' must be a valid ISO 3 currency.\",\n    \"fieldId\": \"SourceCurrencyIso3Code\"\n  },\n  {\n    \"code\": \"NotEmptyValidator\",\n    \"message\": \"'Amount' is required.\",\n    \"fieldId\": \"Amount\"\n  },\n  {\n    \"code\": \"NotEmptyValidator\",\n    \"message\": \"'Sender Id' is required.\",\n    \"fieldId\": \"SenderId\"\n  },\n  {\n    \"code\": \"NotEmptyValidator\",\n    \"message\": \"'Recipient Id' is required.\",\n    \"fieldId\": \"RecipientId\"\n  },\n  {\n    \"code\": \"NotEmptyValidator\",\n    \"message\": \"'Recipient Account Id' is required.\",\n    \"fieldId\": \"RecipientAccountId\"\n  }\n]"
 								},
 								{
-									"id": "21f6cc6c-fa71-46a5-93eb-42954fe1d414",
+									"id": "49321cac-5ba4-4816-9f97-913134dd81b9",
 									"name": "Unauthorized",
 									"originalRequest": {
 										"method": "GET",
@@ -4147,6 +4214,7 @@
 									"status": "Unauthorized",
 									"code": 401,
 									"_postman_previewlanguage": "json",
+									"_postman_previewtype": "html",
 									"header": [
 										{
 											"key": "Content-Type",
@@ -4160,7 +4228,7 @@
 						},
 						{
 							"name": "Get Transfer Status",
-							"id": "a7fa5716-8396-4396-a86f-a77a9e83a647",
+							"id": "3f1f0c73-c984-4a4a-af67-4a274852e691",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -4194,7 +4262,7 @@
 							},
 							"response": [
 								{
-									"id": "0d9e9200-90f2-400b-9b9b-857687c1512e",
+									"id": "e42f0491-72cb-4452-96d6-cd9950d17ab9",
 									"name": "Success",
 									"originalRequest": {
 										"method": "GET",
@@ -4227,6 +4295,7 @@
 									"status": "OK",
 									"code": 200,
 									"_postman_previewlanguage": "json",
+									"_postman_previewtype": "html",
 									"header": [
 										{
 											"key": "Content-Type",
@@ -4237,7 +4306,7 @@
 									"body": "{\n  \"statuses\": [\n    {\n      \"status\": \"Pending release\",\n      \"changedDate\": \"2022-09-16T01:41:02.520258Z\"\n    },\n    {\n      \"status\": \"Paid\",\n      \"changedDate\": \"2022-09-17T05:37:02.112312Z\"\n    }\n  ]\n}"
 								},
 								{
-									"id": "713a8707-3e4e-46ef-835c-f4d14210b0e3",
+									"id": "2e0e2b18-63e6-4c59-8ea9-c4a4dd81474c",
 									"name": "Unauthorized",
 									"originalRequest": {
 										"method": "GET",
@@ -4270,6 +4339,7 @@
 									"status": "Unauthorized",
 									"code": 401,
 									"_postman_previewlanguage": "json",
+									"_postman_previewtype": "html",
 									"header": [
 										{
 											"key": "Content-Type",
@@ -4282,11 +4352,11 @@
 							]
 						}
 					],
-					"id": "dc05f9d1-dab2-4cb7-bf74-c9037e6c28d8"
+					"id": "b1e4c89b-9272-4c8a-aee7-1c3db7fd545c"
 				},
 				{
 					"name": "Execute Transfer",
-					"id": "4f548f52-78a5-4b15-adf3-63cbdfc1489b",
+					"id": "32bd8e79-6fc0-4f3c-8847-c8f3fbc3237b",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -4324,7 +4394,7 @@
 					},
 					"response": [
 						{
-							"id": "adc8385c-8b0d-44c1-b1f7-53627228db5d",
+							"id": "a377e706-0b75-48f5-8db6-720aec448d16",
 							"name": "Success",
 							"originalRequest": {
 								"method": "POST",
@@ -4357,6 +4427,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -4367,7 +4438,7 @@
 							"body": "{\n  \"transferId\": \"d53d90ad-4de8-415d-8286-90c41853a3dd\",\n  \"confirmationNumber\": \"33TF041162650\",\n  \"quote\": {\n    \"sendAmount\": {\n      \"value\": 100000,\n      \"currency\": {\n        \"name\": \"US Dollar\",\n        \"iso3Code\": \"USD\",\n        \"symbol\": \"$\",\n        \"decimalPlaces\": 2\n      }\n    },\n    \"receiveAmount\": {\n      \"value\": 7445765,\n      \"currency\": {\n        \"name\": \"Indian rupee\",\n        \"iso3Code\": \"INR\",\n        \"symbol\": \"₹\",\n        \"decimalPlaces\": 2\n      }\n    },\n    \"rate\": 74.4576574896,\n    \"adjustments\": [\n      {\n        \"label\": \"Transfer Fee\",\n        \"amount\": {\n          \"value\": 879,\n          \"currency\": {\n            \"name\": \"US Dollar\",\n            \"iso3Code\": \"USD\",\n            \"symbol\": \"$\",\n            \"decimalPlaces\": 2\n          }\n        }\n      }\n    ],\n    \"totalCost\": {\n      \"value\": 100879,\n      \"currency\": {\n        \"name\": \"US Dollar\",\n        \"iso3Code\": \"USD\",\n        \"symbol\": \"$\",\n        \"decimalPlaces\": 2\n      }\n    },\n    \"disclosures\": []\n  },\n  \"senderDetails\": {\n    \"senderId\": \"9711fb4c-df97-49bd-ba03-78706761c23c\",\n    \"fields\": []\n  },\n  \"recipientDetails\": {\n    \"recipientId\": \"260d1f4f-4fe3-4620-a104-a25ae57b51c3\",\n    \"senderId\": \"9711fb4c-df97-49bd-ba03-78706761c23c\",\n    \"recipientType\": \"PERSON\",\n    \"firstName\": \"Camilia\",\n    \"lastName\": \"Noceda\",\n    \"fields\": [\n      {\n        \"id\": \"LAST_NAME\",\n        \"type\": \"TEXT\",\n        \"value\": \"Noceda\"\n      },\n      {\n        \"id\": \"FIRST_NAME\",\n        \"type\": \"TEXT\",\n        \"value\": \"Camilia\"\n      }\n    ]\n  },\n  \"recipientAccountDetails\": {\n    \"recipientAccountId\\\"\": \"236d76c2-8b0b-4eef-a28a-25353926ade9\",\n    \"accountNumber\\\"\": \"333000333\",\n    \"fields\": [\n      {\n        \"id\": \"BANK_NAME\",\n        \"type\": \"TEXT\",\n        \"value\": \"Baink\"\n      }\n    ],\n    \"disclaimers\": []\n  }\n}"
 						},
 						{
-							"id": "6f279163-efbc-4738-8479-9de4c574b9b5",
+							"id": "7896f6e7-d2f8-41f0-8c1a-216e0dd84015",
 							"name": "Bad Request",
 							"originalRequest": {
 								"method": "POST",
@@ -4400,6 +4471,7 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -4410,7 +4482,7 @@
 							"body": "[\n  {\n    \"code\": \"UnsupportedCountry\",\n    \"message\": \"'DestinationCountryISO3Code' must be a valid ISO 3 country.\",\n    \"fieldId\": \"DestinationCountryISO3Code\"\n  },\n  {\n    \"code\": \"UnsupportedCurrency\",\n    \"message\": \"'DestinationCurrencyISO3Code' must be a valid ISO 3 currency.\",\n    \"fieldId\": \"DestinationCurrencyISO3Code\"\n  },\n  {\n    \"code\": \"UnsupportedCurrency\",\n    \"message\": \"'SourceCurrencyIso3Code' must be a valid ISO 3 currency.\",\n    \"fieldId\": \"SourceCurrencyIso3Code\"\n  },\n  {\n    \"code\": \"NotEmptyValidator\",\n    \"message\": \"'Amount' is required.\",\n    \"fieldId\": \"Amount\"\n  },\n  {\n    \"code\": \"NotEmptyValidator\",\n    \"message\": \"'Sender Id' is required.\",\n    \"fieldId\": \"SenderId\"\n  },\n  {\n    \"code\": \"NotEmptyValidator\",\n    \"message\": \"'Recipient Id' is required.\",\n    \"fieldId\": \"RecipientId\"\n  },\n  {\n    \"code\": \"NotEmptyValidator\",\n    \"message\": \"'Recipient Account Id' is required.\",\n    \"fieldId\": \"RecipientAccountId\"\n  }\n]"
 						},
 						{
-							"id": "e318b8e4-7783-48f3-831d-5ce53964a7de",
+							"id": "79522cc0-b41b-4775-bd9e-bb5665878747",
 							"name": "Unauthorized",
 							"originalRequest": {
 								"method": "POST",
@@ -4443,6 +4515,7 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -4455,11 +4528,11 @@
 					]
 				}
 			],
-			"id": "033d4fcd-6500-4419-ad75-2e6254e0b3b0"
+			"id": "b7289767-b7ab-4198-96ea-a81bc124bdab"
 		},
 		{
 			"name": "Get Countries",
-			"id": "1c7d2e86-a351-4db9-8eca-429bcec54276",
+			"id": "5749dded-2b47-4603-ae79-dd2cf685803c",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -4484,7 +4557,7 @@
 			},
 			"response": [
 				{
-					"id": "c15663dc-09bf-4475-b441-cffab82964f3",
+					"id": "d21a9c36-bc2f-443f-b9bc-5679b997a2aa",
 					"name": "Success",
 					"originalRequest": {
 						"method": "GET",
@@ -4508,6 +4581,7 @@
 					"status": "OK",
 					"code": 200,
 					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "html",
 					"header": [
 						{
 							"key": "Content-Type",
@@ -4518,7 +4592,7 @@
 					"body": "[\n  {\n    \"name\": \"United States\",\n    \"iso3Code\": \"USA\"\n  },\n  {\n    \"name\": \"Ireland\",\n    \"iso3Code\": \"IRL\"\n  }\n]"
 				},
 				{
-					"id": "8d778985-8440-4050-9907-e2530021054f",
+					"id": "c46e4a88-62d1-4e23-bd8c-3c69d7747da1",
 					"name": "Unauthorized",
 					"originalRequest": {
 						"method": "GET",
@@ -4542,6 +4616,7 @@
 					"status": "Unauthorized",
 					"code": 401,
 					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "html",
 					"header": [
 						{
 							"key": "Content-Type",
@@ -4555,7 +4630,7 @@
 		},
 		{
 			"name": "Get Corridors",
-			"id": "a22d72f5-7489-45d8-8b8f-587ebdb78d3d",
+			"id": "02fe0615-815b-4fe6-8515-bb65823df1b7",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -4597,7 +4672,7 @@
 			},
 			"response": [
 				{
-					"id": "b69a00dc-ea9a-4d7b-ad37-3e10839cb070",
+					"id": "e072a894-eff2-4c6d-8214-9f8e3ffd51e7",
 					"name": "Success",
 					"originalRequest": {
 						"method": "GET",
@@ -4635,6 +4710,7 @@
 					"status": "OK",
 					"code": 200,
 					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "html",
 					"header": [
 						{
 							"key": "Content-Type",
@@ -4645,7 +4721,7 @@
 					"body": "[\n  {\n    \"name\": \"United States\",\n    \"iso3Code\": \"USA\"\n  },\n  {\n    \"name\": \"Ireland\",\n    \"iso3Code\": \"IRL\"\n  }\n]"
 				},
 				{
-					"id": "8808b56d-9f68-4e53-b039-e9bc637ece21",
+					"id": "b8fe9124-205a-4d39-b3a1-9f34bc04a1cb",
 					"name": "Unauthorized",
 					"originalRequest": {
 						"method": "GET",
@@ -4683,6 +4759,7 @@
 					"status": "Unauthorized",
 					"code": 401,
 					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "html",
 					"header": [
 						{
 							"key": "Content-Type",
@@ -4696,7 +4773,7 @@
 		},
 		{
 			"name": "Get Countries and Currencies",
-			"id": "9ca7055a-55de-42c5-bc16-194d6a088fb2",
+			"id": "5160a946-c642-4bf5-91c8-a4cba9b368fa",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -4721,7 +4798,7 @@
 			},
 			"response": [
 				{
-					"id": "cfda8159-3492-471d-bdce-10a0a89a0482",
+					"id": "57b91814-e955-434c-9aa4-5382a20863c5",
 					"name": "Success",
 					"originalRequest": {
 						"method": "GET",
@@ -4745,6 +4822,7 @@
 					"status": "OK",
 					"code": 200,
 					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "html",
 					"header": [
 						{
 							"key": "Content-Type",
@@ -4755,7 +4833,7 @@
 					"body": "[\n  {\n    \"country\": {\n      \"name\": \"Germany\",\n      \"iso3Code\": \"DEU\"\n    },\n    \"currencies\": [\n      {\n        \"name\": \"Euro\",\n        \"iso3Code\": \"EUR\",\n        \"symbol\": \"€\",\n        \"decimalPlaces\": 2\n      }\n    ]\n  },\n  {\n    \"country\": {\n      \"name\": \"India\",\n      \"iso3Code\": \"IND\"\n    },\n    \"currencies\": [\n      {\n        \"name\": \"Indian rupee\",\n        \"iso3Code\": \"INR\",\n        \"symbol\": \"₹\",\n        \"decimalPlaces\": 2\n      }\n    ]\n  }\n]"
 				},
 				{
-					"id": "425c7428-50e4-4bc3-b056-744fa831d9f5",
+					"id": "05fa817a-9c91-4875-8341-3b7921cbfdd4",
 					"name": "Unauthorized",
 					"originalRequest": {
 						"method": "GET",
@@ -4779,6 +4857,7 @@
 					"status": "Unauthorized",
 					"code": 401,
 					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "html",
 					"header": [
 						{
 							"key": "Content-Type",
@@ -4792,7 +4871,7 @@
 		},
 		{
 			"name": "Get Quote",
-			"id": "49641a10-b3b2-44d7-8c2f-2122ff70bb35",
+			"id": "6a6a4608-05ac-4a02-a3be-43c92996d377",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -4849,7 +4928,7 @@
 			},
 			"response": [
 				{
-					"id": "9bbe33e9-667d-40ef-8771-44e583fa0a0a",
+					"id": "f8f1abed-89e7-4a62-86fa-9e9eee5d953f",
 					"name": "Success",
 					"originalRequest": {
 						"method": "GET",
@@ -4899,6 +4978,7 @@
 					"status": "OK",
 					"code": 200,
 					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "html",
 					"header": [
 						{
 							"key": "Content-Type",
@@ -4909,7 +4989,7 @@
 					"body": "{\n  \"sendAmount\": {\n    \"value\": 100000,\n    \"currency\": {\n      \"name\": \"US Dollar\",\n      \"iso3Code\": \"USD\",\n      \"symbol\": \"$\",\n      \"decimalPlaces\": 2\n    }\n  },\n  \"receiveAmount\": {\n    \"value\": 7445765,\n    \"currency\": {\n      \"name\": \"Indian rupee\",\n      \"iso3Code\": \"INR\",\n      \"symbol\": \"₹\",\n      \"decimalPlaces\": 2\n    }\n  },\n  \"rate\": 74.4576574896,\n  \"adjustments\": [\n    {\n      \"label\": \"Transfer Fee\",\n      \"amount\": {\n        \"value\": 879,\n        \"currency\": {\n          \"name\": \"US Dollar\",\n          \"iso3Code\": \"USD\",\n          \"symbol\": \"$\",\n          \"decimalPlaces\": 2\n        }\n      }\n    }\n  ],\n  \"totalCost\": {\n    \"value\": 100879,\n    \"currency\": {\n      \"name\": \"US Dollar\",\n      \"iso3Code\": \"USD\",\n      \"symbol\": \"$\",\n      \"decimalPlaces\": 2\n    }\n  },\n  \"disclosures\": []\n}"
 				},
 				{
-					"id": "bdb3ac07-b909-4219-900a-150635da0815",
+					"id": "644ba148-0d49-4c90-a185-b49f09bea44c",
 					"name": "Bad Request",
 					"originalRequest": {
 						"method": "GET",
@@ -4959,6 +5039,7 @@
 					"status": "Bad Request",
 					"code": 400,
 					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "html",
 					"header": [
 						{
 							"key": "Content-Type",
@@ -4969,7 +5050,7 @@
 					"body": "[\n  {\n    \"code\": \"UnsupportedCountry\",\n    \"message\": \"'DestinationCountryISO3Code' must be a valid ISO 3 country.\",\n    \"fieldId\": \"DestinationCountryISO3Code\"\n  },\n  {\n    \"code\": \"UnsupportedCurrency\",\n    \"message\": \"'DestinationCurrencyISO3Code' must be a valid ISO 3 currency.\",\n    \"fieldId\": \"DestinationCurrencyISO3Code\"\n  },\n  {\n    \"code\": \"UnsupportedCurrency\",\n    \"message\": \"'SrcCurrencyIso3Code' must be a valid ISO 3 currency.\",\n    \"fieldId\": \"SrcCurrencyIso3Code\"\n  }\n]"
 				},
 				{
-					"id": "16b941c7-7db2-47d4-82e1-537834d73039",
+					"id": "a0237b58-100f-4462-b321-2ef57022adfa",
 					"name": "Unauthorized",
 					"originalRequest": {
 						"method": "GET",
@@ -5019,6 +5100,7 @@
 					"status": "Unauthorized",
 					"code": 401,
 					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "html",
 					"header": [
 						{
 							"key": "Content-Type",
@@ -5032,7 +5114,7 @@
 		},
 		{
 			"name": "Get Recipient Fields",
-			"id": "6278b4d5-4482-4617-87de-476acfd34bed",
+			"id": "7bafc057-af3f-4d8a-8749-b12366e5991e",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -5079,7 +5161,7 @@
 			},
 			"response": [
 				{
-					"id": "daf256b2-f05a-4c0a-ba51-46b5fffed797",
+					"id": "ab61da08-a368-4fd8-b88a-33ddd7a4994c",
 					"name": "Success",
 					"originalRequest": {
 						"method": "GET",
@@ -5121,6 +5203,7 @@
 					"status": "OK",
 					"code": 200,
 					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "html",
 					"header": [
 						{
 							"key": "Content-Type",
@@ -5131,7 +5214,7 @@
 					"body": "{\n  \"fieldSets\": [\n    {\n      \"fieldSetId\": \"PERSONAL_INFORMATION\",\n      \"fieldSetName\": \"Personal information\",\n      \"fields\": [\n        {\n          \"placeholderText\": \"First name\",\n          \"minLength\": 1,\n          \"maxLength\": 50,\n          \"options\": [],\n          \"fieldType\": \"TEXT\",\n          \"fieldId\": \"FIRST_NAME\",\n          \"name\": \"First name\",\n          \"hintText\": \"Enter the recipient's name as it appears on their ID\",\n          \"isRequired\": true\n        },\n        {\n          \"placeholderText\": \"Last name\",\n          \"minLength\": 1,\n          \"maxLength\": 50,\n          \"options\": [],\n          \"fieldType\": \"TEXT\",\n          \"fieldId\": \"LAST_NAME\",\n          \"name\": \"Last name\",\n          \"hintText\": \"Enter the recipient's name as it appears on their ID\",\n          \"isRequired\": true\n        },\n        {\n          \"placeholderText\": \"Mobile phone number\",\n          \"minLength\": 7,\n          \"maxLength\": 15,\n          \"regex\": \"[0-9]{7,15}$\",\n          \"options\": [],\n          \"fieldType\": \"PHONE_NUMBER\",\n          \"fieldId\": \"PHONE_NUMBER\",\n          \"name\": \"Mobile phone number\",\n          \"isRequired\": false\n        }\n      ]\n    },\n    {\n      \"fieldSetId\": \"ADDRESS\",\n      \"fieldSetName\": \"Address\",\n      \"fields\": [\n        {\n          \"placeholderText\": \"Address line 1\",\n          \"minLength\": 5,\n          \"maxLength\": 200,\n          \"options\": [],\n          \"fieldType\": \"TEXT\",\n          \"fieldId\": \"ADDRESS_LINE_1\",\n          \"name\": \"Address line 1\",\n          \"isRequired\": false\n        },\n        {\n          \"placeholderText\": \"Address line 2\",\n          \"options\": [],\n          \"fieldType\": \"TEXT\",\n          \"fieldId\": \"ADDRESS_LINE_2\",\n          \"name\": \"Address line 2\",\n          \"isRequired\": false\n        },\n        {\n          \"placeholderText\": \"City\",\n          \"options\": [],\n          \"fieldType\": \"TEXT\",\n          \"fieldId\": \"ADDRESS_CITY\",\n          \"name\": \"City\",\n          \"isRequired\": false\n        },\n        {\n          \"placeholderText\": \"State\",\n          \"options\": [],\n          \"fieldType\": \"DROPDOWN\",\n          \"fieldId\": \"ADDRESS_STATE\",\n          \"name\": \"State\",\n          \"isRequired\": false\n        },\n        {\n          \"placeholderText\": \"Country\",\n          \"minLength\": 2,\n          \"maxLength\": 2,\n          \"regex\": \"^[A-Za-z]{2}$\",\n          \"options\": [],\n          \"fieldType\": \"DROPDOWN\",\n          \"fieldId\": \"ADDRESS_COUNTRY\",\n          \"name\": \"Country\",\n          \"isRequired\": false\n        },\n        {\n          \"placeholderText\": \"Zip code\",\n          \"minLength\": 4,\n          \"maxLength\": 7,\n          \"regex\": \"^[0-9a-zA-Z\\\\s]{4,7}$\",\n          \"options\": [],\n          \"fieldType\": \"TEXT\",\n          \"fieldId\": \"ADDRESS_ZIP\",\n          \"name\": \"Zip code\",\n          \"isRequired\": false\n        }\n      ]\n    }\n  ]\n}"
 				},
 				{
-					"id": "3ba38ade-9d93-4e04-a61d-4c35f5457a7e",
+					"id": "c9ce67f3-9f99-46c9-af53-202eaf4037f7",
 					"name": "Bad Request",
 					"originalRequest": {
 						"method": "GET",
@@ -5173,6 +5256,7 @@
 					"status": "Bad Request",
 					"code": 400,
 					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "html",
 					"header": [
 						{
 							"key": "Content-Type",
@@ -5183,7 +5267,7 @@
 					"body": "[\n  {\n    \"code\": \"UnsupportedCountry\",\n    \"message\": \"'DestinationCountryISO3Code' must be a valid ISO 3 country.\",\n    \"fieldId\": \"DestinationCountryISO3Code\"\n  },\n  {\n    \"code\": \"UnsupportedCurrency\",\n    \"message\": \"'DestinationCurrencyISO3Code' must be a valid ISO 3 country.\",\n    \"fieldId\": \"DestinationCurrencyISO3Code\"\n  }\n]"
 				},
 				{
-					"id": "91b4661c-1199-47d7-8eb0-f79f5c37b75d",
+					"id": "71dcc5f7-a724-470e-81b1-ceadf96ac9f8",
 					"name": "Unauthorized",
 					"originalRequest": {
 						"method": "GET",
@@ -5225,6 +5309,7 @@
 					"status": "Unauthorized",
 					"code": 401,
 					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "html",
 					"header": [
 						{
 							"key": "Content-Type",
@@ -5238,7 +5323,7 @@
 		},
 		{
 			"name": "Get Recipient Account Fields",
-			"id": "59ef0a7a-02b0-486f-80f2-f01f48687bf3",
+			"id": "8ae2b9e0-875d-492f-ba81-7bcafcd3a62e",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -5285,7 +5370,7 @@
 			},
 			"response": [
 				{
-					"id": "b306c05a-8527-4860-aab8-43bdf0a82460",
+					"id": "1b11cc25-b21e-4c75-b03b-7837155aeddf",
 					"name": "Success",
 					"originalRequest": {
 						"method": "GET",
@@ -5327,6 +5412,7 @@
 					"status": "OK",
 					"code": 200,
 					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "html",
 					"header": [
 						{
 							"key": "Content-Type",
@@ -5337,7 +5423,7 @@
 					"body": "{\n  \"fieldSets\": [\n    {\n      \"fieldSetId\": \"BANK_DETAILS\",\n      \"fieldSetName\": \"Bank Details\",\n      \"fields\": [\n        {\n          \"placeholderText\": \"Type of account\",\n          \"minLength\": 1,\n          \"maxLength\": 3,\n          \"regex\": \"\",\n          \"validationErrors\": [],\n          \"options\": [],\n          \"fieldType\": \"DROPDOWN\",\n          \"fieldId\": \"BANK_ACCOUNT_TYPE\",\n          \"name\": \"Type of account\",\n          \"hintText\": \"\",\n          \"isRequired\": false\n        },\n        {\n          \"placeholderText\": \"Bank name\",\n          \"minLength\": 5,\n          \"maxLength\": 5,\n          \"regex\": \"\",\n          \"validationErrors\": [],\n          \"options\": [],\n          \"fieldType\": \"DROPDOWN\",\n          \"fieldId\": \"BANK_NAME\",\n          \"name\": \"Bank name\",\n          \"hintText\": \"\",\n          \"isRequired\": true\n        },\n        {\n          \"placeholderText\": \"Purpose of payment\",\n          \"minLength\": 1,\n          \"maxLength\": 2,\n          \"regex\": \"\",\n          \"validationErrors\": [],\n          \"options\": [],\n          \"fieldType\": \"DROPDOWN\",\n          \"fieldId\": \"PURPOSE_OF_PAYMENT\",\n          \"name\": \"Purpose of payment\",\n          \"hintText\": \"\",\n          \"isRequired\": false\n        }\n      ]\n    }\n  ]\n}"
 				},
 				{
-					"id": "635ebe88-dd65-483f-839d-61fab54c766a",
+					"id": "20dfc6ea-de8d-47e5-bb19-3d2c1e818095",
 					"name": "Bad Request",
 					"originalRequest": {
 						"method": "GET",
@@ -5379,6 +5465,7 @@
 					"status": "Bad Request",
 					"code": 400,
 					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "html",
 					"header": [
 						{
 							"key": "Content-Type",
@@ -5389,7 +5476,7 @@
 					"body": "[\n  {\n    \"code\": \"UnsupportedCountry\",\n    \"message\": \"'DestinationCountryISO3Code' must be a valid ISO 3 country.\",\n    \"fieldId\": \"DestinationCountryISO3Code\"\n  }\n]"
 				},
 				{
-					"id": "0bc7b228-2797-4f65-95e7-07da46a38a1a",
+					"id": "569b2538-abf4-4bbc-b2f9-218525f89d87",
 					"name": "Unauthorized",
 					"originalRequest": {
 						"method": "GET",
@@ -5431,6 +5518,7 @@
 					"status": "Unauthorized",
 					"code": 401,
 					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "html",
 					"header": [
 						{
 							"key": "Content-Type",
@@ -5444,7 +5532,7 @@
 		},
 		{
 			"name": "Get Sender Fields",
-			"id": "b4f3cf79-a2a9-4619-91d0-9c3e3d615a10",
+			"id": "052db408-30cd-4afd-aade-9f707b62d833",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -5491,7 +5579,7 @@
 			},
 			"response": [
 				{
-					"id": "c249145a-2325-468d-a108-cc34082e9c89",
+					"id": "798e960a-0ef7-4e03-93ef-4735328e05de",
 					"name": "Success",
 					"originalRequest": {
 						"method": "GET",
@@ -5533,6 +5621,7 @@
 					"status": "OK",
 					"code": 200,
 					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "html",
 					"header": [
 						{
 							"key": "Content-Type",
@@ -5543,7 +5632,7 @@
 					"body": "{\n  \"fieldSets\": [\n    {\n      \"fieldSetId\": \"PERSONAL_INFORMATION\",\n      \"fieldSetName\": \"Personal information\",\n      \"fields\": [\n        {\n          \"placeholderText\": \"First name\",\n          \"minLength\": 1,\n          \"maxLength\": 50,\n          \"options\": [],\n          \"fieldType\": \"TEXT\",\n          \"fieldId\": \"FIRST_NAME\",\n          \"name\": \"First name\",\n          \"hintText\": \"Enter the sender's name as it appears on their ID\",\n          \"isRequired\": true\n        },\n        {\n          \"placeholderText\": \"Last name\",\n          \"minLength\": 1,\n          \"maxLength\": 50,\n          \"options\": [],\n          \"fieldType\": \"TEXT\",\n          \"fieldId\": \"LAST_NAME\",\n          \"name\": \"Last name\",\n          \"hintText\": \"Enter the sender's name as it appears on their ID\",\n          \"isRequired\": true\n        },\n        {\n          \"placeholderText\": \"Mobile phone number\",\n          \"minLength\": 7,\n          \"maxLength\": 15,\n          \"regex\": \"[0-9]{7,15}$\",\n          \"options\": [],\n          \"fieldType\": \"PHONE_NUMBER\",\n          \"fieldId\": \"PHONE_NUMBER\",\n          \"name\": \"Mobile phone number\",\n          \"isRequired\": false\n        }\n      ]\n    },\n    {\n      \"fieldSetId\": \"ADDRESS\",\n      \"fieldSetName\": \"Address\",\n      \"fields\": [\n        {\n          \"placeholderText\": \"Address line 1\",\n          \"minLength\": 5,\n          \"maxLength\": 200,\n          \"options\": [],\n          \"fieldType\": \"TEXT\",\n          \"fieldId\": \"ADDRESS_LINE_1\",\n          \"name\": \"Address line 1\",\n          \"isRequired\": false\n        },\n        {\n          \"placeholderText\": \"Address line 2\",\n          \"options\": [],\n          \"fieldType\": \"TEXT\",\n          \"fieldId\": \"ADDRESS_LINE_2\",\n          \"name\": \"Address line 2\",\n          \"isRequired\": false\n        },\n        {\n          \"placeholderText\": \"City\",\n          \"options\": [],\n          \"fieldType\": \"TEXT\",\n          \"fieldId\": \"ADDRESS_CITY\",\n          \"name\": \"City\",\n          \"isRequired\": false\n        },\n        {\n          \"placeholderText\": \"State\",\n          \"options\": [],\n          \"fieldType\": \"DROPDOWN\",\n          \"fieldId\": \"ADDRESS_STATE\",\n          \"name\": \"State\",\n          \"isRequired\": false\n        },\n        {\n          \"placeholderText\": \"Country\",\n          \"minLength\": 2,\n          \"maxLength\": 2,\n          \"regex\": \"^[A-Za-z]{2}$\",\n          \"options\": [],\n          \"fieldType\": \"DROPDOWN\",\n          \"fieldId\": \"ADDRESS_COUNTRY\",\n          \"name\": \"Country\",\n          \"isRequired\": false\n        },\n        {\n          \"placeholderText\": \"Zip code\",\n          \"minLength\": 4,\n          \"maxLength\": 7,\n          \"regex\": \"^[0-9a-zA-Z\\\\s]{4,7}$\",\n          \"options\": [],\n          \"fieldType\": \"TEXT\",\n          \"fieldId\": \"ADDRESS_ZIP\",\n          \"name\": \"Zip code\",\n          \"isRequired\": false\n        }\n      ]\n    }\n  ]\n}"
 				},
 				{
-					"id": "eaad2e79-5565-4991-a60e-9056286aac11",
+					"id": "e8dd4afa-1147-4ee1-8414-5e638b1a093a",
 					"name": "Bad Request",
 					"originalRequest": {
 						"method": "GET",
@@ -5585,6 +5674,7 @@
 					"status": "Bad Request",
 					"code": 400,
 					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "html",
 					"header": [
 						{
 							"key": "Content-Type",
@@ -5595,7 +5685,7 @@
 					"body": "[\n  {\n    \"code\": \"UnsupportedCountry\",\n    \"message\": \"'DestinationCountryISO3Code' must be a valid ISO 3 country.\",\n    \"fieldId\": \"DestinationCountryISO3Code\"\n  },\n  {\n    \"code\": \"UnsupportedCurrency\",\n    \"message\": \"'DestinationCurrencyISO3Code' must be a valid ISO 3 country.\",\n    \"fieldId\": \"DestinationCurrencyISO3Code\"\n  }\n]"
 				},
 				{
-					"id": "a6b650e3-57c3-4a16-bf4c-49b81586b63d",
+					"id": "5f72baf2-f85f-421c-939b-4562b6275a0f",
 					"name": "Unauthorized",
 					"originalRequest": {
 						"method": "GET",
@@ -5637,6 +5727,7 @@
 					"status": "Unauthorized",
 					"code": 401,
 					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "html",
 					"header": [
 						{
 							"key": "Content-Type",
@@ -5650,7 +5741,7 @@
 		},
 		{
 			"name": "Get Transfer Fields",
-			"id": "d8e37380-ab50-4097-8231-2bde3a1d7740",
+			"id": "eca686c6-d927-464e-bbc2-9a788b7275af",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -5692,7 +5783,7 @@
 			},
 			"response": [
 				{
-					"id": "cdf97443-09b4-453c-b7f8-ea9a09a06f75",
+					"id": "003bff77-c608-4006-b03e-09f59a859126",
 					"name": "Success",
 					"originalRequest": {
 						"method": "GET",
@@ -5730,6 +5821,7 @@
 					"status": "OK",
 					"code": 200,
 					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "html",
 					"header": [
 						{
 							"key": "Content-Type",
@@ -5740,7 +5832,7 @@
 					"body": "[\n  {\n    \"fieldSets\": [\n      {\n        \"fieldSetId\": \"TRANSFER_FIELDS\",\n        \"fieldSetName\": \"Transfer Fields\",\n        \"fields\": [\n          {\n            \"placeholderText\": \"-select-\",\n            \"minLength\": 1,\n            \"maxLength\": 40,\n            \"validationErrors\": [],\n            \"options\": [\n              {\n                \"id\": 1,\n                \"name\": \"FAMILY MAINTENANCE\"\n              },\n              {\n                \"id\": 2,\n                \"name\": \"EDUCATION\"\n              },\n              {\n                \"id\": 3,\n                \"name\": \"MEDICAL\"\n              },\n              {\n                \"id\": 4,\n                \"name\": \"TOURIST\"\n              },\n              {\n                \"id\": 6,\n                \"name\": \"PERSONAL\"\n              },\n              {\n                \"id\": 18,\n                \"name\": \"TRANSFER TO NRE ACCOUNT\"\n              },\n              {\n                \"id\": 21,\n                \"name\": \"INVESTMENT IN MUTUAL FUND/INSURANCE\"\n              },\n              {\n                \"id\": 22,\n                \"name\": \"INVESTMENT THROUGH BANK\"\n              },\n              {\n                \"id\": 23,\n                \"name\": \"PURCHASE OF REAL ESTATE\"\n              },\n              {\n                \"id\": 24,\n                \"name\": \"EDUCATION/TUITION/BOARDING\"\n              },\n              {\n                \"id\": 25,\n                \"name\": \"HOTEL ACCOMODATIONS\"\n              },\n              {\n                \"id\": 26,\n                \"name\": \"TRAVEL AGENT\"\n              },\n              {\n                \"id\": 28,\n                \"name\": \"UTILITY PROV- idER\"\n              },\n              {\n                \"id\": 29,\n                \"name\": \"TAX PAYMENT\"\n              },\n              {\n                \"id\": 30,\n                \"name\": \"LOAN PAYMENT TO BANK\"\n              },\n              {\n                \"id\": 31,\n                \"name\": \"PRIME MINISTERS NATIONAL RELIEF FUND (INDIA)\"\n              },\n              {\n                \"id\": 32,\n                \"name\": \"HOSPITAL OR MEDICAL INSTITUTION\"\n              },\n              {\n                \"id\": 43,\n                \"name\": \"TRADE RELATED SERVICES\"\n              },\n              {\n                \"id\": 44,\n                \"name\": \"TRADE REALISATION OF EXPORT BILLS\"\n              },\n              {\n                \"id\": 45,\n                \"name\": \"TRADE ADVANCE RECEIPT AGAINST EXPORT\"\n              }\n            ],\n            \"fieldType\": \"DROPDOWN,\",\n            \"fieldId\": \"REMITTANCE_PURPOSE,\",\n            \"name\": \"Purpose of remittance,\",\n            \"hintText\": \"Insert the purpose of this remittance,\",\n            \"isRequired\": false\n          }\n        ]\n      }\n    ]\n  }\n]"
 				},
 				{
-					"id": "67cc3b52-7d7d-4e09-9795-48992e9f714b",
+					"id": "f4f27064-ca33-467d-8c42-db6d96b71ccc",
 					"name": "Bad Request",
 					"originalRequest": {
 						"method": "GET",
@@ -5778,6 +5870,7 @@
 					"status": "Bad Request",
 					"code": 400,
 					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "html",
 					"header": [
 						{
 							"key": "Content-Type",
@@ -5788,7 +5881,7 @@
 					"body": "[\n  {\n    \"code\": \"UnsupportedCountry\",\n    \"message\": \"'DestinationCountryISO3Code' must be a valid ISO 3 country.\",\n    \"fieldId\": \"DestinationCountryISO3Code\"\n  }\n]"
 				},
 				{
-					"id": "1723161b-503b-4506-bf9b-f3f96cc380df",
+					"id": "57a5f53b-d410-4c0e-b9d5-6953511bf7b0",
 					"name": "Unauthorized",
 					"originalRequest": {
 						"method": "GET",
@@ -5826,6 +5919,7 @@
 					"status": "Unauthorized",
 					"code": 401,
 					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "html",
 					"header": [
 						{
 							"key": "Content-Type",
