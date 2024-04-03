@@ -2384,12 +2384,9 @@ paths:
               Success:
                 summary: SUCCESS
                 value:
-                  firstName: "Daniel"
-                  middleName: "P"
-                  lastName: "Fix"
+                  cardOnboardingSessionId: "d53d90ad-4de8-415d-8286-90c41853a3dd"
+                  cardHolderName: "Daniel P Fix"
                   cardNumber: "4242424242424242"
-                  addressLine1: "100 main st"
-                  zip: "30363"
                   cvv2: "123"
                   expiryDate: "0827"
       responses:
@@ -2401,12 +2398,10 @@ paths:
                 "$ref": "#/components/schemas/createCardResponse"
               example:
                 id: "d53d90ad-4de8-415d-8286-90c41853a3dd"
-                firstName: "Daniel"
-                middleName: "P"
-                lastName: "Fix"
+                personalName: "Daniel P Fix"
                 cardNumber: "4242424242424242"
-                addressLine1: "100 main st"
-                zip: "30363"
+                addressStreet: "100 main st"
+                addressZip: "30363"
                 cvv2: "123"
                 expiryDate: "0827"
         '401':
@@ -2532,29 +2527,18 @@ components:
               type: string
     cardOnboardingSessionResponse:
       allOf:
-      - "$ref": "#/components/schemas/cardOnboardingSession"
-    card:
+      - "$ref": "#/components/schemas/cardOnboardingSession"    
+    createCardRequest:
       type: object
       required:
-      - firstName
-      - lastName
+      - cardOnboardingSessionId
       - cardNumber
       - expiryDate
       - cvv2
       properties:
-        id:
+        cardOnboardingSessionId:
           type: string
-        firstName:
-          type: string
-        middleName:
-          type: string
-        lastName:
-          type: string
-        suffix:
-          type: string
-        addressLine1:
-          type: string
-        zip:
+        cardHolderName:
           type: string
         cardNumber:
           type: string
@@ -2562,12 +2546,23 @@ components:
           type: string
         expiryDate:
           type: string
-    createCardRequest:
-      allOf:
-      - "$ref": "#/components/schemas/card"
     createCardResponse:
-      allOf:
-      - "$ref": "#/components/schemas/card"
+      type: object
+      properties:
+        id:
+          type: string
+        personalName:
+          type: string
+        cardNumber:
+          type: string
+        cvv2:
+          type: string
+        expiryDate:
+          type: string
+        addressStreet:
+          type: string
+        addressZip:
+          type: string
     codeMsgDescObject:
       type: object
       properties:
