@@ -9,7 +9,7 @@ id = d6d2000d-7e1f-4db5-8515-b2e2127e6534
 
 [config.relations.collections]
 rootDirectory = postman/collections
-files[] = {"id":"4424987-ecee9888-9f06-465d-afe9-b39cf58d6396","path":"ReadyRemit Transfer API.json","metaData":{}}
+files[] = {"id":"4424987-8402c9ac-0e84-47d9-8ad5-095b013cd843","path":"ReadyRemit Transfer API.json","metaData":{}}
 
 [config.relations.collections.metaData]
 
