@@ -2216,6 +2216,48 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/response401"
+  "/transfers/progress/{quoteHistoryId}":
+    get:
+      tags:
+      - Transfers
+      summary: Get Transfer Progress by Quote History ID
+      description: This operation retrieves transfer status for the transfer associated with a provided quote history ID.
+      operationId: getTransferStatusOfQuote
+      parameters:
+      - name: quoteHistoryId
+        in: path
+        description: The quote history identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/transferProgressResponse"
+              example:
+                transferRecordStatus: "Created"
+                transferId: "d53d90ad-4de8-415d-8286-90c41853a3dd"
+        '400':
+          description: Quote History ID not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgDescObjectArray"
+              example:
+              - code: QuoteHistoryNotFound
+                message: The quote history was not found.
+                description: The quote history was not found.
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"
   "/transfers/{transferId}":
     get:
       tags:
@@ -2705,6 +2747,13 @@ components:
           type: array
           items:
             type: string
+    transferProgressResponse:
+      type: object
+      properties:
+        transferId:
+          type: string
+        status:
+          type: string
     transferStatusesResponse:
       type: object
       properties:
