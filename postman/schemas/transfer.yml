@@ -2752,8 +2752,14 @@ components:
       properties:
         transferId:
           type: string
+          description: The transfer identifier, only available if it has finished initializing.
         status:
           type: string
+          enum:
+          - NotInProgress
+          - Initializing
+          - Failed
+          - Created
     transferStatusesResponse:
       type: object
       properties:
