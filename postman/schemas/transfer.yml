@@ -2753,7 +2753,7 @@ components:
         transferId:
           type: string
           description: The transfer identifier, only available if it has finished initializing.
-        status:
+        transferRecordStatus:
           type: string
           enum:
           - NotInProgress
