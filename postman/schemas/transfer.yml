@@ -2760,15 +2760,12 @@ components:
           - Initializing
           - Failed
           - Created
-          description: The status of the transfer record associated with the quote ID provided.
-
-              NotInProgress - The quote has not been used and is available to create a transfer. 
-
-              Initializing - The transfer is in the process of being created. 
-
-              Failed - The transfer or its initialization failed. If transferId is available, use GET Transfers/{transferId} for more information. 
-
-              Created - The transfer has been created successfully, use GET Transfers/{transferId} for more information.
+          description: |
+            The status of the transfer record associated with the quote ID provided.
+              - **NotInProgress** - The quote has not been used and is available to create a transfer. 
+              - **Initializing** - The transfer is in the process of being created. 
+              - **Failed** - The transfer or its initialization failed. If transferId is available, use GET Transfers/{transferId} for more information. 
+              - **Created** - The transfer has been created successfully, use GET Transfers/{transferId} for more information.
     transferStatusesResponse:
       type: object
       properties:
