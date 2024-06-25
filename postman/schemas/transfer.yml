@@ -687,13 +687,20 @@ paths:
                 "$ref": "#/components/schemas/getQuotesResponse200"
               example:
                 errors:
-                - code: "PricingNotFound"
-                  message: "PricingNotFound"
+                - code: "MinLimitOutOfRangeFormat"
+                  message: "Minimum allowable amount ($15.00) was not met for this transaction."
+                  fieldId: "Amount"
                   details:
-                    DestinationCountry: "MEX"
-                    DestinationCurrency: "MXN"
+                    RemittanceProvider: "Visa"
                     TransferMethod: "PUSH_TO_CARD"
-                    Customer: "USS Defiant"
+                    QuoteBy: "SEND_AMOUNT"
+                - code: "MinLimitOutOfRangeFormat"
+                  message: "Minimum allowable amount ($15.00) was not met for this transaction."
+                  fieldId: "Amount"
+                  details:
+                      RemittanceProvider: "Visa"
+                      TransferMethod: "BANK_ACCOUNT"
+                      QuoteBy: "SEND_AMOUNT"
                 quotes:
                 - adjustments:
                   - label: "Send Fee"
@@ -2825,12 +2832,16 @@ components:
       type: array
       items:
         "$ref": "#/components/schemas/codeMsgDescObject"
-    codeMsgDescDetailsObject:
+    codeMsgFieldIdDescDetailsObject:
+      required:
+      - code
       type: object
       properties:
         code:
           type: string
         message:
+          type: string
+        fieldId:
           type: string
         description:
           type: string
@@ -2838,10 +2849,10 @@ components:
           type: object
           additionalProperties:
             type: string
-    codeMsgDescDetailsObjectArray:
+    codeMsgFieldIdDescDetailsObjectArray:
       type: array
       items:
-        "$ref": "#/components/schemas/codeMsgDescDetailsObject"
+        "$ref": "#/components/schemas/codeMsgFieldIdDescDetailsObject"
     codeMsgFieldIdObject:
       type: object
       properties:
@@ -3219,7 +3230,7 @@ components:
       type: object
       properties:
         errors:
-          "$ref": "#/components/schemas/codeMsgDescDetailsObjectArray"
+          "$ref": "#/components/schemas/codeMsgFieldIdDescDetailsObjectArray"
         quotes:
           "$ref": "#/components/schemas/getQuotesResponse200QuoteObjectArray"
     fieldSet:
