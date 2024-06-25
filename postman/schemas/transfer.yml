@@ -708,7 +708,7 @@ paths:
                     type: "CURRENCY"
                     value:
                       - fieldType: "CURRENCY"
-                        value: 103
+                        value: 100
                         currency:
                           name: "US Dollar"
                           iso3Code: "USD"
@@ -727,7 +727,7 @@ paths:
                     name: "Mexican peso"
                     iso3Code: "MXN"
                     symbol: "$"
-                    decimalPlaces: 2
+                    decimalPlaces: 0
                     roundDirection: "STANDARD"
                     iso4217Code: "484"
                   disclosures: []
@@ -736,21 +736,21 @@ paths:
                   quoteBy:
                     id: "SEND_AMOUNT"
                     name: "Send Amount"
-                  rate: 20.4573
+                  rate: 20.4
                   receiveAmount:
-                    value: 204573
+                    value: 204
                     currency:
                       name: "Mexican peso"
                       iso3Code: "MXN"
                       symbol: "$"
-                      decimalPlaces: 2
+                      decimalPlaces: 0
                       roundDirection: "STANDARD"
                       iso4217Code: "484"
                   remittanceProvider:
                     id: "Mastercard"
                     name: "Mastercard"
                   sendAmount:
-                    value: 10000
+                    value: 1000
                     currency:
                       name: "US Dollar"
                       iso3Code: "USD"
@@ -766,7 +766,7 @@ paths:
                     roundDirection: "STANDARD"
                     iso4217Code: "840"
                   totalCost:
-                    value: 10103
+                    value: 2000
                     currency:
                       name: "US Dollar"
                       iso3Code: "USD"
@@ -775,8 +775,8 @@ paths:
                       roundDirection: "STANDARD"
                       iso4217Code: "840"
                   transferMethod:
-                    id: "BANK_ACCOUNT"
-                    name: "BANK_ACCOUNT"
+                    id: "CASH_PICKUP"
+                    name: "CASH_PICKUP"
         '400':
           description: Bad Request
           content:
