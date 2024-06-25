@@ -593,6 +593,205 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/response401"
+  "/quotes":
+    get:
+      tags:
+      - Helpers
+      summary: Get Quotes
+      description: |
+        Given a corridor and a sender amount, this operation returns
+        quotes which include the exchange rate, fee adjustments, disclosures, and
+        recipient amount.<br>
+        The app can present the
+        quotes to the end-user who can decide whether to proceed with the transfer.<br>
+        Quotes are accurate at the instance of the quote, but rates may change between
+        the time of the quote and the time of the transfer. The Execute Transfer operation
+        returns the final exchange rate.<br><br>
+        __Notes__:
+        - See [Currency](https://developer.readyremit.com/reference/about-the-reference#currency)
+        for more about currency values and decimal places.
+        - If __transferMethod__ is not supplied, quotes will be generated for the corridor's available transfer methods.
+        - The __id__ returned for a specific quote will need to be supplied to the Execute Transfer operation. 
+        - The __200 response__ could contain both quotes and errors if no __transferMethod__ is supplied since it may have attempted to generate more than one quote.
+
+        
+      operationId: getQuotes
+      parameters:
+      - name: dstCountryIso3Code
+        in: query
+        description: See [country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).
+        required: true
+        style: form
+        explode: true
+        schema:
+          "$ref": "#/components/schemas/threeUppercaseChars"
+      - name: dstCurrencyIso3Code
+        in: query
+        description: See [currency codes](https://en.wikipedia.org/wiki/ISO_4217).
+        required: true
+        style: form
+        explode: true
+        schema:
+          "$ref": "#/components/schemas/threeUppercaseChars"
+      - name: srcCurrencyIso3Code
+        in: query
+        description: See [currency codes](https://en.wikipedia.org/wiki/ISO_4217).
+        required: true
+        style: form
+        explode: true
+        schema:
+          "$ref": "#/components/schemas/threeUppercaseChars"
+      - name: transferMethod
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          "$ref": "#/components/schemas/transferMethodsEnum"
+      - name: quoteBy
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          "$ref": "#/components/schemas/quoteBy"
+      - name: amount
+        in: query
+        description: Sender amount.
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: number
+      - name: promoCode
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          "$ref": "#/components/schemas/twentyFiveMaxChars"
+      - name: recipientAccountId
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/getQuotesResponse200"
+              example:
+                errors:
+                - code: "PricingNotFound"
+                  message: "PricingNotFound"
+                  details:
+                    DestinationCountry: "MEX"
+                    DestinationCurrency: "MXN"
+                    TransferMethod: "PUSH_TO_CARD"
+                    Customer: "USS Defiant"
+                quotes:
+                - adjustments:
+                  - label: "Send Fee"
+                    id: "SEND_FEE"
+                    type: "CURRENCY"
+                    value:
+                      - fieldType: "CURRENCY"
+                        value: 103
+                        currency:
+                          name: "US Dollar"
+                          iso3Code: "USD"
+                          symbol: "$"
+                          decimalPlaces: 2
+                          roundDirection: "STANDARD"
+                          iso4217Code: "840"
+                  deliverySla:
+                    id: "FIVE_BUSINESS_DAYS"
+                    name: "five business days"
+                  destinationCountry:
+                    name: "Mexico"
+                    iso3Code: "MEX"
+                    iso2Code: "MX"
+                  destinationCurrency:
+                    name: "Mexican peso"
+                    iso3Code: "MXN"
+                    symbol: "$"
+                    decimalPlaces: 2
+                    roundDirection: "STANDARD"
+                    iso4217Code: "484"
+                  disclosures: []
+                  id: "3e08ad21-91d5-420a-b77a-6bfc2df7acc3"
+                  fields: []
+                  quoteBy:
+                    id: "SEND_AMOUNT"
+                    name: "Send Amount"
+                  rate: 20.4573
+                  receiveAmount:
+                    value: 204573
+                    currency:
+                      name: "Mexican peso"
+                      iso3Code: "MXN"
+                      symbol: "$"
+                      decimalPlaces: 2
+                      roundDirection: "STANDARD"
+                      iso4217Code: "484"
+                  remittanceProvider:
+                    id: "Mastercard"
+                    name: "Mastercard"
+                  sendAmount:
+                    value: 10000
+                    currency:
+                      name: "US Dollar"
+                      iso3Code: "USD"
+                      symbol: "$"
+                      decimalPlaces: 2
+                      roundDirection: "STANDARD"
+                      iso4217Code: "840"
+                  sourceCurrency:
+                    name: "US Dollar"
+                    iso3Code: "USD"
+                    symbol: "$"
+                    decimalPlaces: 2
+                    roundDirection: "STANDARD"
+                    iso4217Code: "840"
+                  totalCost:
+                    value: 10103
+                    currency:
+                      name: "US Dollar"
+                      iso3Code: "USD"
+                      symbol: "$"
+                      decimalPlaces: 2
+                      roundDirection: "STANDARD"
+                      iso4217Code: "840"
+                  transferMethod:
+                    id: "BANK_ACCOUNT"
+                    name: "BANK_ACCOUNT"
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
+              example:
+              - code: UnsupportedCountry
+                message: "'DestinationCountryISO3Code' must be a valid ISO 3 country."
+                fieldId: DestinationCountryISO3Code
+              - code: UnsupportedCurrency
+                message: "'DestinationCurrencyISO3Code' must be a valid ISO 3 currency."
+                fieldId: DestinationCurrencyISO3Code
+              - code: UnsupportedCurrency
+                message: "'SrcCurrencyIso3Code' must be a valid ISO 3 currency."
+                fieldId: SrcCurrencyIso3Code
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"
   "/recipient-fields":
     get:
       tags:
@@ -2533,6 +2732,14 @@ paths:
                 "$ref": "#/components/schemas/response401"
 components:
   schemas:
+    transferMethodsEnum:
+      type: string
+      description: See [Transfer Method](https://developer.readyremit.com/reference/enum-types#transfer-method).
+      enum:
+      - BANK_ACCOUNT
+      - CASH_PICKUP
+      - PUSH_TO_CARD
+      - MOBILE_WALLET
     cardOnboardingSession:
       type: object
       required:
@@ -2618,6 +2825,23 @@ components:
       type: array
       items:
         "$ref": "#/components/schemas/codeMsgDescObject"
+    codeMsgDescDetailsObject:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        description:
+          type: string
+        details:
+          type: object
+          additionalProperties:
+            type: string
+    codeMsgDescDetailsObjectArray:
+      type: array
+      items:
+        "$ref": "#/components/schemas/codeMsgDescDetailsObject"
     codeMsgFieldIdObject:
       type: object
       properties:
@@ -2663,6 +2887,9 @@ components:
       maxLength: 3
       minLength: 3
       pattern: "^[A-Z]{3}$"
+      type: string
+    twentyFiveMaxChars:
+      maxLength: 25
       type: string
     createSenderRequest:
       type: object
@@ -2799,14 +3026,9 @@ components:
       - PENDING
       - REQUEST_FAILED
     transferMethods:
-      type: string
-      description: See [Transfer Method](https://developer.readyremit.com/reference/enum-types#transfer-method).
-      default: BANK_ACCOUNT
-      enum:
-      - BANK_ACCOUNT
-      - CASH_PICKUP
-      - PUSH_TO_CARD
-      - MOBILE_WALLET
+      allOf:     # Combines the transferMethodsEnum and the default
+      - "$ref": "#/components/schemas/transferMethodsEnum"
+      - default: BANK_ACCOUNT
     cardOnboardingSessionStatuses:
       type: string
       description: See [Card Onboarding Session Status](https://developer.readyremit.com/reference/enum-types#card-onboarding-session-status).
@@ -2889,6 +3111,36 @@ components:
           type: string
         amount:
           "$ref": "#/components/schemas/money"
+    adjustmentQuotes:
+      required:
+      - id
+      - label
+      - type
+      - value
+      type: object
+      properties:
+        id:
+          type: string
+          enum:
+          - SEND_FEE
+          - SEND_FEE_DISCOUNT
+        label:
+          type: string
+        type:
+          type: string
+          enum:
+          - CURRENCY
+        value:
+          properties:
+            fieldType:
+              type: string
+              enum:
+              - CURRENCY
+            value:
+              type: integer
+              format: int64
+            currency:
+              "$ref": "#/components/schemas/currency"
     getQuoteResponse200:
       required:
       - adjustments
@@ -2915,6 +3167,61 @@ components:
           type: array
           items:
             type: string
+    getQuotesResponse200QuoteObject:
+      type: object
+      properties:
+        adjustments:
+          type: array
+          items:
+            "$ref": "#/components/schemas/adjustmentQuotes"
+        deliverySla:
+          "$ref": "#/components/schemas/idNameObject"
+        destinationCountry:
+          "$ref": "#/components/schemas/country"
+        destinationCurrency:
+          "$ref": "#/components/schemas/currency"
+        disclosures:
+          type: array
+          items:
+            type: string
+        fields:
+          type: array
+          items:
+            "$ref": "#/components/schemas/adjustment"
+            # TODO: VERIFY IF THIS IS THE SAME
+        id:
+          type: string
+          format: uuid
+        quoteBy:
+          "$ref": "#/components/schemas/idNameObject"
+        rate:
+          type: number
+        receiveAmount:
+          "$ref": "#/components/schemas/money"
+        remittanceProvider:
+          "$ref": "#/components/schemas/idNameObject"
+        sendAmount:
+          "$ref": "#/components/schemas/money"
+        sourceCurrency:
+          "$ref": "#/components/schemas/currency"
+        totalCost:
+          "$ref": "#/components/schemas/money"
+        transferMethod:
+          "$ref": "#/components/schemas/idNameObject"
+    getQuotesResponse200QuoteObjectArray:
+      type: array
+      items:
+        "$ref": "#/components/schemas/getQuotesResponse200QuoteObject"
+    getQuotesResponse200:
+      required:
+      - errors
+      - quotes
+      type: object
+      properties:
+        errors:
+          "$ref": "#/components/schemas/codeMsgDescDetailsObjectArray"
+        quotes:
+          "$ref": "#/components/schemas/getQuotesResponse200QuoteObjectArray"
     fieldSet:
       required:
       - fields
