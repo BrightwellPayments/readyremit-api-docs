@@ -611,7 +611,7 @@ paths:
         - See [Currency](https://developer.readyremit.com/reference/about-the-reference#currency)
         for more about currency values and decimal places.
         - If __transferMethod__ is not supplied, quotes will be generated for the corridor's available transfer methods.
-        - The __id__ returned for a specific quote will need to be supplied to the Execute Transfer operation. 
+        - The __id__ returned for a specific quote will need to be supplied to the Execute Transfer operation.  It will be assigned to __quoteHistoryId__ in the Body Params. 
         - The __200 response__ could contain both quotes and errors if no __transferMethod__ is supplied since it may have attempted to generate more than one quote.
 
         
