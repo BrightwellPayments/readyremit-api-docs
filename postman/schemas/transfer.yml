@@ -3137,6 +3137,8 @@ components:
           - SEND_FEE_DISCOUNT
         label:
           type: string
+        name:
+          type: string
         type:
           type: string
           enum:
@@ -3198,8 +3200,7 @@ components:
         fields:
           type: array
           items:
-            "$ref": "#/components/schemas/adjustment"
-            # TODO: VERIFY IF THIS IS THE SAME
+            "$ref": "#/components/schemas/adjustmentQuotes"
         id:
           type: string
           format: uuid
