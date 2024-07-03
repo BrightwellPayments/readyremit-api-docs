@@ -635,8 +635,8 @@ paths:
           "$ref": "#/components/schemas/threeUppercaseChars"
       - name: srcCurrencyIso3Code
         in: query
-        description: See [currency codes](https://en.wikipedia.org/wiki/ISO_4217).
-        required: true
+        description: See [currency codes](https://en.wikipedia.org/wiki/ISO_4217).  If not supplied, it defaults to USD.
+        required: false
         style: form
         explode: true
         schema:
