@@ -672,6 +672,7 @@ paths:
           "$ref": "#/components/schemas/twentyFiveMaxChars"
       - name: recipientAccountId
         in: query
+        description: This is used if transferMethod is set to PUSH_TO_CARD or no transferMethod is supplied and a corridor is set up for PUSH_TO_CARD.  It is used to determine a more specific delivery SLA based on the recipient's card.
         required: false
         style: form
         explode: true
