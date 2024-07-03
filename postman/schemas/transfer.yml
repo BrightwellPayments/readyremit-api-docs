@@ -668,7 +668,7 @@ paths:
               - amount: 1500
             - Endpoint will treat the amount as 15.00 ($15.00)
           - Example 2:
-            - Request a quote for receiving 1500 in Philippine peso (PHP)
+            - Request a quote for the recipient to receive 1500 in Philippine peso (PHP)
             - Relevant Parameters
               - dstCurrencyIso3Code: PHP
               - quoteBy: RECEIVE_AMOUNT
