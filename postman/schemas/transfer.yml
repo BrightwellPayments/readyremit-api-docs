@@ -657,12 +657,28 @@ paths:
           "$ref": "#/components/schemas/quoteBy"
       - name: amount
         in: query
-        description: Sender amount.
+        description: |
+          Sender amount.<br>
+          - This should be a normalized integer - the amount without a decimal.
+          - The endpoint will use the srcCurrencyIso3Code (if quoteBy is SEND_AMOUNT) or dstCurrencyIso3Code (if quoteBy is RECEIVE_AMOUNT) to determine where the decimal should be placed.
+          - Example 1:
+            - Request a quote for sending $15.00 in United States dollar (USD)
+            - Relevant Parameters
+              - quoteBy: SEND_AMOUNT
+              - amount: 1500
+            - Endpoint will treat the amount as 15.00 ($15.00)
+          - Example 2:
+            - Request a quote for receiving 1500 in Philippine peso (PHP)
+            - Relevant Parameters
+              - dstCurrencyIso3Code: PHP
+              - quoteBy: RECEIVE_AMOUNT
+              - amount: 1500
+            - Endpoint will treat the amount as 1500 (₱1500)
         required: true
         style: form
         explode: true
         schema:
-          type: number
+          type: integer
       - name: promoCode
         in: query
         required: false
