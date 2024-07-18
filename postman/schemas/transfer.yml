@@ -720,19 +720,20 @@ paths:
                       QuoteBy: "SEND_AMOUNT"
                 quotes:
                 - adjustments:
-                  - label: "Send Fee"
-                    id: "SEND_FEE"
-                    type: "CURRENCY"
+                  - label: "Transfer Fee"
+                    id: "TransferFee"
+                    name: "Transfer Fee"
+                    type: "MONEY"
                     value:
-                      - fieldType: "CURRENCY"
-                        value: 100
-                        currency:
+                      - currency:
                           name: "US Dollar"
                           iso3Code: "USD"
                           symbol: "$"
                           decimalPlaces: 2
                           roundDirection: "STANDARD"
                           iso4217Code: "840"
+                        fieldType: "MONEY"
+                        value: 100
                   deliverySla:
                     id: "FIVE_BUSINESS_DAYS"
                     name: "five business days"
@@ -3150,8 +3151,8 @@ components:
         id:
           type: string
           enum:
-          - SEND_FEE
-          - SEND_FEE_DISCOUNT
+          - TransferFee
+          - TransferFeeDiscount
         label:
           type: string
         name:
@@ -3159,18 +3160,18 @@ components:
         type:
           type: string
           enum:
-          - CURRENCY
+          - MONEY
         value:
           properties:
             fieldType:
               type: string
               enum:
-              - CURRENCY
+              - MONEY
             value:
               type: integer
               format: int64
             currency:
-              "$ref": "#/components/schemas/currency"
+              "$ref": "#/components/schemas/money"
     getQuoteResponse200:
       required:
       - adjustments
