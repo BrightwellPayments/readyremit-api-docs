@@ -750,7 +750,6 @@ paths:
                     iso4217Code: "484"
                   disclosures: []
                   id: "3e08ad21-91d5-420a-b77a-6bfc2df7acc3"
-                  fields: []
                   quoteBy:
                     id: "SEND_AMOUNT"
                     name: "Send Amount"
@@ -3215,10 +3214,6 @@ components:
           type: array
           items:
             type: string
-        fields:
-          type: array
-          items:
-            "$ref": "#/components/schemas/adjustmentQuotes"
         id:
           type: string
           format: uuid
