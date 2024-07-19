@@ -617,7 +617,7 @@ paths:
         
       operationId: getQuotes
       parameters:
-      - name: dstCountryIso3Code
+      - name: destinationCountryIso3Code
         in: query
         description: See [country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).
         required: true
@@ -625,7 +625,7 @@ paths:
         explode: true
         schema:
           "$ref": "#/components/schemas/threeUppercaseChars"
-      - name: dstCurrencyIso3Code
+      - name: destinationCurrencyIso3Code
         in: query
         description: See [currency codes](https://en.wikipedia.org/wiki/ISO_4217).
         required: true
@@ -633,7 +633,7 @@ paths:
         explode: true
         schema:
           "$ref": "#/components/schemas/threeUppercaseChars"
-      - name: srcCurrencyIso3Code
+      - name: sourceCurrencyIso3Code
         in: query
         description: See [currency codes](https://en.wikipedia.org/wiki/ISO_4217).  If not supplied, it defaults to USD.
         required: false
@@ -660,7 +660,7 @@ paths:
         description: |
           Sender amount.<br>
           - This should be a normalized integer - the amount without a decimal.
-          - The endpoint will use the srcCurrencyIso3Code (if quoteBy is SEND_AMOUNT) or dstCurrencyIso3Code (if quoteBy is RECEIVE_AMOUNT) to determine where the decimal should be placed.
+          - The endpoint will use the sourceCurrencyIso3Code (if quoteBy is SEND_AMOUNT) or destinationCurrencyIso3Code (if quoteBy is RECEIVE_AMOUNT) to determine where the decimal should be placed.
           - Example 1:
             - Request a quote for sending $15.00 in United States dollar (USD)
             - Relevant Parameters
@@ -670,7 +670,7 @@ paths:
           - Example 2:
             - Request a quote for the recipient to receive 1500 in Philippine peso (PHP)
             - Relevant Parameters
-              - dstCurrencyIso3Code: PHP
+              - destinationCurrencyIso3Code: PHP
               - quoteBy: RECEIVE_AMOUNT
               - amount: 1500
             - Endpoint will treat the amount as 1500 (₱1500)
