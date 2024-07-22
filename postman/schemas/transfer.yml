@@ -603,7 +603,8 @@ paths:
         quotes which include the exchange rate, fee adjustments, disclosures, and
         recipient amount.<br>
         The app can present the
-        quotes to the end-user who can decide whether to proceed with the transfer.<br>
+        quotes to the end-user who can decide whether to proceed with the transfer. 
+        By offering multiple quotes, end-users can compare different options for delivery speed, cost, and exchange rates, helping them make an informed decision.<br>
         Quotes are accurate at the instance of the quote, but rates may change between
         the time of the quote and the time of the transfer. The Execute Transfer operation
         returns the final exchange rate.<br><br>
