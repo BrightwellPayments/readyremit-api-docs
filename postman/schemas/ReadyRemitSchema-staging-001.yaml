@@ -1,0 +1,748 @@
+openapi: 3.0.1
+info:
+  title: ReadyRemit
+  description: Test replication from Prod
+  version: v1
+servers:
+  - url: https://apim-readyremit-staging-001.azure-api.net/v1
+paths:
+  /banks:
+    get:
+      summary: GetBanksAsync_get
+      operationId: get-getbanksasync-get
+      responses:
+        '200':
+          description: 
+  /countries-and-currencies:
+    get:
+      summary: GetCurrenciesAsync_get
+      operationId: get-getcurrenciesasync-get
+      responses:
+        '200':
+          description: 
+  /senders:
+    post:
+      summary: PostSenderAsync_post
+      operationId: post-postsenderasync-post
+      responses:
+        '200':
+          description: 
+  '/recipients/{id}/accounts/{accountId}':
+    put:
+      summary: PutRecipientAccountAsync_put
+      operationId: put-putrecipientaccountasync-put
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 
+    delete:
+      summary: DeleteRecipientAccountAsync_delete
+      operationId: delete-deleterecipientaccountasync-delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 
+    get:
+      summary: GetRecipientAccountAsync_get
+      operationId: get-getrecipientaccountasync-get
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 
+  /sender-fields:
+    post:
+      summary: PostSenderFieldsAsync_post
+      operationId: post-postsenderfieldsasync-post
+      responses:
+        '200':
+          description: 
+    get:
+      summary: GetSenderFieldsAsync_get
+      operationId: getsenderfieldsasync-get
+      responses:
+        '200':
+          description: 
+  '/banks/{bankId}/branches':
+    get:
+      summary: GetBankBranchesAsync_get
+      operationId: get-getbankbranchesasync-get
+      parameters:
+        - name: bankId
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  '/senders/{id}':
+    delete:
+      summary: DeleteSenderAsync_delete
+      operationId: delete-deletesenderasync-delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 
+    put:
+      summary: PutSenderAsync_put
+      operationId: put-putsenderasync-put
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 
+    get:
+      summary: GetSenderAsync_get
+      operationId: getsenderasync-get
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  /transfers:
+    post:
+      summary: PostTransferAsync_post
+      operationId: post-posttransferasync-post
+      responses:
+        '200':
+          description: 
+  /user:
+    get:
+      summary: GetUserAsync_get
+      operationId: get-getuserasync-get
+      responses:
+        '200':
+          description: 
+  /recipient-account-fields:
+    post:
+      summary: PostRecipientAccountFieldsAsync_post
+      operationId: post-postrecipientaccountfieldsasync-post
+      responses:
+        '200':
+          description: 
+    get:
+      summary: GetRecipientAccountFields_get
+      operationId: get-getrecipientaccountfields-get
+      responses:
+        '200':
+          description: 
+  /recipients:
+    post:
+      summary: PostRecipientAsync_post
+      operationId: post-postrecipientasync-post
+      responses:
+        '200':
+          description: 
+    get:
+      summary: GetRecipientsBySenderAsync_get
+      operationId: get-getrecipientsbysenderasync-get
+      responses:
+        '200':
+          description: 
+  '/recipients/{id}':
+    put:
+      summary: PutRecipientAsync_put
+      operationId: put-putrecipientasync-put
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 
+    delete:
+      summary: DeleteRecipientAsync_delete
+      operationId: delete-deleterecipientasync-delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 
+    get:
+      summary: GetRecipientAsync_get
+      operationId: get-getrecipientasync-get
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 
+  '/recipients/{id}/accounts':
+    post:
+      summary: PostRecipientAccountAsync_post
+      operationId: post-postrecipientaccountasync-post
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 
+    get:
+      summary: GetRecipientsAccountsByRecipientAsync_get
+      operationId: get-getrecipientsaccountsbyrecipientasync-get
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 
+  /recipient-fields:
+    get:
+      summary: GetRecipientFieldsAsync_get
+      operationId: get-getrecipientfieldsasync-get
+      responses:
+        '200':
+          description: 
+  /transfer-fields:
+    get:
+      summary: GetTransferFields_get
+      operationId: get-gettransferfields-get
+      responses:
+        '200':
+          description: 
+  /quote:
+    get:
+      summary: GetQuotesAsync_get
+      operationId: get-getquotesasync-get
+      responses:
+        '200':
+          description: 
+  /health:
+    get:
+      summary: GetHealthAsync_get
+      operationId: get-gethealthasync-get
+      responses:
+        '200':
+          description: 
+  /ping:
+    get:
+      summary: GetPing_get
+      operationId: get-getping-get
+      responses:
+        '200':
+          description: 
+  /oauth/token:
+    post:
+      summary: Token
+      operationId: token
+      responses:
+        '200':
+          description: 
+  /countries:
+    get:
+      summary: GetCountriesAsync_get
+      operationId: getcountriesasync-get
+      responses:
+        '200':
+          description: 
+  /corridors:
+    get:
+      summary: GetCorridorsAsync_get
+      operationId: getcorridorsasync-get
+      responses:
+        '200':
+          description: 
+  /recipients-with-accounts:
+    get:
+      summary: GetRecipientsWithAccountsAsync_get
+      operationId: getrecipientswithaccountsasync-get
+      responses:
+        '200':
+          description: 
+  '/transfers/{id}':
+    get:
+      summary: GetTransferAsync_get
+      operationId: 62d84cb282d14025bc5efb56
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  /balance-starting:
+    get:
+      summary: GetStartingBalanceAsync_get
+      operationId: 62e17bcf73899436eb1f9a01
+      responses:
+        '200':
+          description: 
+  /balance-intermittance:
+    get:
+      summary: GetIntermittanceBalance_get
+      operationId: get-getintermittancebalance-get
+      responses:
+        '200':
+          description: 
+  '/partner/countries/{countryIso3Code}/states-and-provinces/{stateId}/cities':
+    get:
+      summary: GetPartnerCitiesAsync_get
+      operationId: get-getpartnercitiesasync-get
+      parameters:
+        - name: countryIso3Code
+          in: path
+          required: true
+          schema:
+            type: ''
+        - name: stateId
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  '/partner/countries/{countryIso3Code}/states-and-provinces/{stateId}/cities/{cityId}/payers/{payerId}/locations':
+    get:
+      summary: GetPartnerPayerLocationsAsync_get
+      operationId: get-getpartnerpayerlocationsasync-get
+      parameters:
+        - name: countryIso3Code
+          in: path
+          required: true
+          schema:
+            type: ''
+        - name: stateId
+          in: path
+          required: true
+          schema:
+            type: ''
+        - name: cityId
+          in: path
+          required: true
+          schema:
+            type: ''
+        - name: payerId
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  '/partner/countries/{countryIso3Code}/states-and-provinces/{stateId}/cities/{cityId}/payers':
+    get:
+      summary: GetPartnerPayersAsync_get
+      operationId: get-getpartnerpayersasync-get
+      parameters:
+        - name: countryIso3Code
+          in: path
+          required: true
+          schema:
+            type: ''
+        - name: stateId
+          in: path
+          required: true
+          schema:
+            type: ''
+        - name: cityId
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  '/partner/countries/{countryIso3Code}/states-and-provinces':
+    get:
+      summary: GetPartnerStatesAsync_get
+      operationId: get-getpartnerstatesasync-get
+      parameters:
+        - name: countryIso3Code
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  /states-and-provinces:
+    get:
+      summary: GetStatesAndProvincesAsync_get
+      operationId: get-getstatesandprovincesasync-get
+      responses:
+        '200':
+          description: 
+  /UpdateTransferStatus:
+    post:
+      summary: PostTransferUpdateStatusAsync_post
+      operationId: post-posttransferupdatestatusasync-post
+      responses:
+        '200':
+          description: 
+  '/transfers/{id}/statuses':
+    get:
+      summary: GetTransferStatusAsync_get
+      operationId: 6331d1dc521f567037019351
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  /idology/idstatusupdate:
+    post:
+      summary: PostIDologyCallBack
+      operationId: 636a9830cd5a2b32846e3ab3
+      responses:
+        '200':
+          description: 
+  '/senders/{id}/idverification':
+    post:
+      tags:
+        - KYC
+        - Sender
+      summary: PostSenderIdVerificationAsync_post
+      description: PostSenderIdVerificationAsync_post
+      operationId: post-postSenderIdVerificationAsync_post
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+        '202':
+          description: ''
+  '/card/{cardId}':
+    delete:
+      summary: DeleteCard_delete
+      operationId: 64106b743ef14bad1cc3e3b2
+      parameters:
+        - name: cardId
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  '/card-onboarding-sessions/{sessionId}':
+    get:
+      summary: GetCardOnboardingSession
+      operationId: 64106ba02fa7364f957f117d
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  '/card/status/{operationId}':
+    get:
+      summary: GetCardStatus_get
+      operationId: 64106bc1c2e2c592982584f3
+      parameters:
+        - name: operationId
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  /cards:
+    post:
+      summary: PostCardAsync_post
+      operationId: 64106bf76256bf69c857aee3
+      responses:
+        '200':
+          description: 
+  /card-onboarding-sessions:
+    post:
+      summary: PostCardOnboardingSessionsAsync_post
+      operationId: 64106c1bdeb844af4a57ace8
+      responses:
+        '200':
+          description: 
+  /cardvalidation:
+    post:
+      summary: PostCardValidationAsync_post
+      operationId: 64106c44c778fed4d0fe062d
+      responses:
+        '200':
+          description: 
+  '/transfer-requests/{id}':
+    get:
+      summary: GetTransferRequestAsync
+      operationId: gettransferrequestasync
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  '/transfer-requests/{id}/verifications':
+    post:
+      summary: PostTransferRequestVerificationAsync
+      description: ' PostTransferRequestVerificationAsync'
+      operationId: posttransferrequestverificationasync
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  '/transfer-requests/{id}/submit':
+    put:
+      summary: SubmitTransferRequestAsync
+      operationId: submittransferrequestasync
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  /customer/settings:
+    get:
+      summary: GetCustomerSettingsAsync
+      description: GetCustomerSettingsAsync
+      operationId: getcustomersettingsasync
+      responses:
+        '200':
+          description: ''
+  '/rradmin/transfers/{id}/cancel':
+    patch:
+      summary: PatchOfacCancelTransfer_patch
+      operationId: patchofaccanceltransfer-patch
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 
+  '/rradmin/transfers/{id}/release':
+    patch:
+      summary: PatchOfacReleaseTransfer_patch
+      description: Allows the release of transfers in an OFAC hold
+      operationId: patchofacreleasetransfer-patch
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 
+  '/rradmin/senders/{id}/kyc/reset':
+    patch:
+      summary: PatchKYCIdResetAsync
+      operationId: patchkycidresetasync
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: ''
+  '/transfer-requests/{id}/cancel':
+    post:
+      summary: CancelTransferRequestAsync
+      operationId: canceltransferrequestasync
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  /visa/ledger-notification:
+    post:
+      summary: PostLedgerNotificationAsync_post
+      operationId: postledgernotificationasync-post
+      responses:
+        '200':
+          description: 
+  /visa/return-notification:
+    post:
+      summary: PostReturnNotificationAsync_post
+      operationId: postreturnnotificationasync-post
+      responses:
+        '200':
+          description: 
+  /visa/status-notification:
+    post:
+      summary: PostStatusNotificationAsync_post
+      operationId: poststatusnotificationasync-post
+      responses:
+        '200':
+          description: 
+  /account-fields:
+    get:
+      summary: Get Account Fields
+      description: GetAccountFieldsAsync
+      operationId: get-account-fields
+      responses:
+        '200':
+          description: 
+  '/accountHolders/{id}/accounts':
+    get:
+      summary: Get Account Holder Accounts
+      operationId: get-account-holder-accounts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  '/accounts/{id}':
+    get:
+      summary: 'Get Account '
+      description: GetAccountAsync
+      operationId: get-account
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+    delete:
+      summary: Delete Accounts
+      description: DeleteAccountAsync_post
+      operationId: delete-accounts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  /accounts:
+    post:
+      summary: Post Account
+      description: PostAccountAsync
+      operationId: post-account
+      responses:
+        '200':
+          description: 
+  /accept-policies:
+    get:
+      summary: GetAcceptPolicies_get
+      operationId: getacceptpolicies-get
+      responses:
+        '200':
+          description: 
+    post:
+      summary: PostAcceptPolicies_post
+      operationId: postacceptpolicies-post
+      responses:
+        '200':
+          description: 
+  '/transfers/progress/{quoteId}':
+    get:
+      summary: GetTransferStatusOfQuote_get
+      operationId: gettransferstatusofquote-get
+      parameters:
+        - name: quoteId
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]
