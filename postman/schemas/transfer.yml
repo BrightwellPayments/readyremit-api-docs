@@ -2216,6 +2216,636 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/response401"
+    get:
+      tags:
+        - transfers
+      summary: Get Transfers
+      description: Gets a paginated collection of transfers for a given sender.
+      parameters:
+        - name: senderId
+          in: query
+          schema:
+            type: string
+          description: (Required) Sender whose transfers to fetch
+          example: <GUID>
+        - name: limit
+          in: query
+          schema:
+            type: string
+          description: Max transfers to return on a single page
+          example: <Int>
+        - name: offset
+          in: query
+          schema:
+            type: string
+          description: Transfers to skip before returning values on the page
+          example: <Int>
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                transfers:
+                  - transferId: cb3f30c4-7007-4191-99f3-77be878538b0
+                    confirmationNumber: 33TF126487887
+                    createdAt: '2023-10-13T18:37:56.083043Z'
+                    recipientDetails:
+                      recipientId: 26c34197-465b-448e-8741-a68b7eadcc5f
+                      senderId: a155bdfe-6a3c-4e44-bbbe-44d662cf459e
+                      recipientType: PERSON
+                      firstName: Nelson
+                      lastName: Gonzales
+                      fields:
+                        - id: LAST_NAME
+                          name: Last name
+                          type: TEXT
+                          value: Gonzales
+                        - id: FIRST_NAME
+                          name: First name
+                          type: TEXT
+                          value: Nelson
+                        - id: ADDRESS_CITY
+                          name: City
+                          type: TEXT
+                          value: Bikina
+                        - id: PHONE_NUMBER
+                          name: Mobile phone number
+                          type: PHONE_NUMBER
+                          value:
+                            number: '9211551321'
+                            countryIso3Code: USA
+                            countryPhoneCode: 1
+                        - id: ADDRESS_STATE
+                          name: State
+                          type: TEXT
+                          value: HA
+                        - id: ADDRESS_LINE_2
+                          name: Address line 2
+                          type: TEXT
+                          value: Halibuba street 2132
+                        - id: ADDRESS_COUNTRY
+                          name: Country
+                          type: DROPDOWN
+                          value: PHL
+                    status: Pending
+                    sendAmount: 29.99
+                    receiveAmount: 1369.8
+                    fees: 11.98
+                    totalCost: 41.97
+                    fxRate: 45.6752
+                    corridor:
+                      corridorId: bbe83656-8a49-44e6-a103-a560ed996c40
+                      destinationCountryISO3Code: PHL
+                      destinationCurrencyISO3Code: PHP
+                      transferMethod: CASH_PICKUP
+                    destinationCurrency:
+                      name: Philippine peso
+                      iso3Code: PHP
+                      symbol: ₱
+                      decimalPlaces: 0
+                      roundDirection: UP
+                      iso4217Code: '608'
+                  - transferId: 7f65bc32-0a3f-4ebf-9c8d-5b8992104b19
+                    confirmationNumber: 33TF126486255
+                    createdAt: '2023-10-13T17:45:20.487745Z'
+                    doddFrankReleaseDate: '2023-10-13T17:47:00.109738Z'
+                    recipientDetails:
+                      recipientId: 1c3c9af9-f612-4368-8a64-058b30013c41
+                      senderId: a155bdfe-6a3c-4e44-bbbe-44d662cf459e
+                      recipientType: PERSON
+                      firstName: Kiryu
+                      lastName: Kazuma
+                      fields:
+                        - id: LAST_NAME
+                          name: Last name
+                          type: TEXT
+                          value: Kazuma
+                        - id: FIRST_NAME
+                          name: First name
+                          type: TEXT
+                          value: Kiryu
+                        - id: ADDRESS_ZIP
+                          name: Zip code
+                          type: TEXT
+                          value: '1000001'
+                        - id: ADDRESS_CITY
+                          name: City
+                          type: TEXT
+                          value: OSAKA
+                        - id: PHONE_NUMBER
+                          name: Mobile phone number
+                          type: PHONE_NUMBER
+                          value:
+                            number: '023123456'
+                            countryIso3Code: KOR
+                            countryPhoneCode: 82
+                        - id: ADDRESS_LINE_1
+                          name: Address line 1
+                          type: TEXT
+                          value: 1-1324 Osaka Castle, Chuo-ku
+                        - id: ADDRESS_COUNTRY
+                          name: Country
+                          type: DROPDOWN
+                          value: JPN
+                        - id: ADDRESS_STATE_PROVINCE
+                          name: State
+                          type: TEXT
+                          value: OK
+                    recipientAccountNumber: '************9123'
+                    status: Pending
+                    sendAmount: 29.99
+                    receiveAmount: 3566
+                    fees: 2.98
+                    totalCost: 32.97
+                    fxRate: 118.9063
+                    corridor:
+                      corridorId: 0f78e3cb-9fe1-44ab-867d-c821128f784b
+                      destinationCountryISO3Code: JPN
+                      destinationCurrencyISO3Code: JPY
+                      transferMethod: BANK_ACCOUNT
+                    destinationCurrency:
+                      name: Japanese yen
+                      iso3Code: JPY
+                      symbol: ¥
+                      decimalPlaces: 0
+                      roundDirection: STANDARD
+                      iso4217Code: '392'
+                  - transferId: 393c0500-0b31-4a05-8589-24bfe6e941c6
+                    confirmationNumber: 33TF126280008
+                    createdAt: '2023-10-11T12:40:11.335553Z'
+                    recipientDetails:
+                      recipientId: c32600ac-fa14-4eb5-a32f-a2dc12cdede1
+                      senderId: a155bdfe-6a3c-4e44-bbbe-44d662cf459e
+                      recipientType: PERSON
+                      firstName: Rudy
+                      lastName: Lamarr
+                      fields:
+                        - id: LAST_NAME
+                          name: Last name
+                          type: TEXT
+                          value: Lamarr
+                        - id: FIRST_NAME
+                          name: First name
+                          type: TEXT
+                          value: Rudy
+                    status: Pending
+                    sendAmount: 29.65
+                    receiveAmount: 3503
+                    fees: 2.98
+                    totalCost: 32.63
+                    fxRate: 118.145
+                    corridor:
+                      corridorId: 5b62de1c-6ea4-4d52-ac29-ea1e000cef2a
+                      destinationCountryISO3Code: NPL
+                      destinationCurrencyISO3Code: NPR
+                      transferMethod: CASH_PICKUP
+                    destinationCurrency:
+                      name: Nepalese rupee
+                      iso3Code: NPR
+                      symbol: ₨
+                      decimalPlaces: 2
+                      roundDirection: STANDARD
+                      iso4217Code: '524'
+                  - transferId: ac7c94bc-b328-4f6c-8b3e-430cd07af855
+                    confirmationNumber: 33TF125835645
+                    createdAt: '2023-10-04T13:32:31.746403Z'
+                    recipientDetails:
+                      recipientId: 5b8c1bab-4025-4df9-8d91-6f21de4df00a
+                      senderId: a155bdfe-6a3c-4e44-bbbe-44d662cf459e
+                      recipientType: PERSON
+                      firstName: nepalese
+                      lastName: recipient
+                      fields:
+                        - id: LAST_NAME
+                          name: Last name
+                          type: TEXT
+                          value: recipient
+                        - id: FIRST_NAME
+                          name: First name
+                          type: TEXT
+                          value: nepalese
+                    status: Pending
+                    sendAmount: 29.99
+                    receiveAmount: 3543
+                    fees: 2.98
+                    totalCost: 32.97
+                    fxRate: 118.1394
+                    corridor:
+                      corridorId: 5b62de1c-6ea4-4d52-ac29-ea1e000cef2a
+                      destinationCountryISO3Code: NPL
+                      destinationCurrencyISO3Code: NPR
+                      transferMethod: CASH_PICKUP
+                    destinationCurrency:
+                      name: Nepalese rupee
+                      iso3Code: NPR
+                      symbol: ₨
+                      decimalPlaces: 2
+                      roundDirection: STANDARD
+                      iso4217Code: '524'
+                  - transferId: 5f654c67-e335-4d22-a218-fe7d8bd2125c
+                    confirmationNumber: 33TF125832344
+                    createdAt: '2023-10-04T13:26:50.419427Z'
+                    recipientDetails:
+                      recipientId: 40f0ea8c-8ef7-4f82-964f-957aed32c400
+                      senderId: a155bdfe-6a3c-4e44-bbbe-44d662cf459e
+                      recipientType: PERSON
+                      firstName: nepalese
+                      lastName: recipient
+                      fields:
+                        - id: LAST_NAME
+                          name: Last name
+                          type: TEXT
+                          value: recipient
+                        - id: FIRST_NAME
+                          name: First name
+                          type: TEXT
+                          value: nepalese
+                    status: Pending
+                    sendAmount: 29.99
+                    receiveAmount: 3543
+                    fees: 2.98
+                    totalCost: 32.97
+                    fxRate: 118.1394
+                    corridor:
+                      corridorId: 5b62de1c-6ea4-4d52-ac29-ea1e000cef2a
+                      destinationCountryISO3Code: NPL
+                      destinationCurrencyISO3Code: NPR
+                      transferMethod: CASH_PICKUP
+                    destinationCurrency:
+                      name: Nepalese rupee
+                      iso3Code: NPR
+                      symbol: ₨
+                      decimalPlaces: 2
+                      roundDirection: STANDARD
+                      iso4217Code: '524'
+                  - transferId: c718c8fb-bad3-4a07-b6bb-5ef2e27651e6
+                    confirmationNumber: 33TF125786460
+                    createdAt: '2023-10-03T20:30:06.426806Z'
+                    doddFrankReleaseDate: '2023-10-03T20:32:00.311055Z'
+                    recipientDetails:
+                      recipientId: 1c3c9af9-f612-4368-8a64-058b30013c41
+                      senderId: a155bdfe-6a3c-4e44-bbbe-44d662cf459e
+                      recipientType: PERSON
+                      firstName: Kiryu
+                      lastName: Kazuma
+                      fields:
+                        - id: LAST_NAME
+                          name: Last name
+                          type: TEXT
+                          value: Kazuma
+                        - id: FIRST_NAME
+                          name: First name
+                          type: TEXT
+                          value: Kiryu
+                        - id: ADDRESS_ZIP
+                          name: Zip code
+                          type: TEXT
+                          value: '1000001'
+                        - id: ADDRESS_CITY
+                          name: City
+                          type: TEXT
+                          value: OSAKA
+                        - id: PHONE_NUMBER
+                          name: Mobile phone number
+                          type: PHONE_NUMBER
+                          value:
+                            number: '023123456'
+                            countryIso3Code: KOR
+                            countryPhoneCode: 82
+                        - id: ADDRESS_LINE_1
+                          name: Address line 1
+                          type: TEXT
+                          value: 1-1324 Osaka Castle, Chuo-ku
+                        - id: ADDRESS_COUNTRY
+                          name: Country
+                          type: DROPDOWN
+                          value: JPN
+                        - id: ADDRESS_STATE_PROVINCE
+                          name: State
+                          type: TEXT
+                          value: OK
+                    recipientAccountNumber: '************9123'
+                    status: Pending
+                    sendAmount: 29.99
+                    receiveAmount: 3566
+                    fees: 2.98
+                    totalCost: 32.97
+                    fxRate: 118.9063
+                    corridor:
+                      corridorId: 0f78e3cb-9fe1-44ab-867d-c821128f784b
+                      destinationCountryISO3Code: JPN
+                      destinationCurrencyISO3Code: JPY
+                      transferMethod: BANK_ACCOUNT
+                    destinationCurrency:
+                      name: Japanese yen
+                      iso3Code: JPY
+                      symbol: ¥
+                      decimalPlaces: 0
+                      roundDirection: STANDARD
+                      iso4217Code: '392'
+                  - transferId: d32acf15-e804-443d-9d07-cd82cb980250
+                    confirmationNumber: 33TF125786213
+                    createdAt: '2023-10-03T20:20:16.00461Z'
+                    doddFrankReleaseDate: '2023-10-03T20:22:00.093233Z'
+                    recipientDetails:
+                      recipientId: 1c3c9af9-f612-4368-8a64-058b30013c41
+                      senderId: a155bdfe-6a3c-4e44-bbbe-44d662cf459e
+                      recipientType: PERSON
+                      firstName: Kiryu
+                      lastName: Kazuma
+                      fields:
+                        - id: LAST_NAME
+                          name: Last name
+                          type: TEXT
+                          value: Kazuma
+                        - id: FIRST_NAME
+                          name: First name
+                          type: TEXT
+                          value: Kiryu
+                        - id: ADDRESS_ZIP
+                          name: Zip code
+                          type: TEXT
+                          value: '1000001'
+                        - id: ADDRESS_CITY
+                          name: City
+                          type: TEXT
+                          value: OSAKA
+                        - id: PHONE_NUMBER
+                          name: Mobile phone number
+                          type: PHONE_NUMBER
+                          value:
+                            number: '023123456'
+                            countryIso3Code: KOR
+                            countryPhoneCode: 82
+                        - id: ADDRESS_LINE_1
+                          name: Address line 1
+                          type: TEXT
+                          value: 1-1324 Osaka Castle, Chuo-ku
+                        - id: ADDRESS_COUNTRY
+                          name: Country
+                          type: DROPDOWN
+                          value: JPN
+                        - id: ADDRESS_STATE_PROVINCE
+                          name: State
+                          type: TEXT
+                          value: OK
+                    recipientAccountNumber: '************9123'
+                    status: Pending
+                    sendAmount: 29.99
+                    receiveAmount: 3566
+                    fees: 2.98
+                    totalCost: 32.97
+                    fxRate: 118.9063
+                    corridor:
+                      corridorId: 0f78e3cb-9fe1-44ab-867d-c821128f784b
+                      destinationCountryISO3Code: JPN
+                      destinationCurrencyISO3Code: JPY
+                      transferMethod: BANK_ACCOUNT
+                    destinationCurrency:
+                      name: Japanese yen
+                      iso3Code: JPY
+                      symbol: ¥
+                      decimalPlaces: 0
+                      roundDirection: STANDARD
+                      iso4217Code: '392'
+                  - transferId: ea0b7e5c-bf1b-4dca-ab52-6891293a6564
+                    confirmationNumber: 33TF125784416
+                    createdAt: '2023-10-03T19:53:31.181329Z'
+                    doddFrankReleaseDate: '2023-10-03T19:55:01.516076Z'
+                    recipientDetails:
+                      recipientId: 1c3c9af9-f612-4368-8a64-058b30013c41
+                      senderId: a155bdfe-6a3c-4e44-bbbe-44d662cf459e
+                      recipientType: PERSON
+                      firstName: Kiryu
+                      lastName: Kazuma
+                      fields:
+                        - id: LAST_NAME
+                          name: Last name
+                          type: TEXT
+                          value: Kazuma
+                        - id: FIRST_NAME
+                          name: First name
+                          type: TEXT
+                          value: Kiryu
+                        - id: ADDRESS_ZIP
+                          name: Zip code
+                          type: TEXT
+                          value: '1000001'
+                        - id: ADDRESS_CITY
+                          name: City
+                          type: TEXT
+                          value: OSAKA
+                        - id: PHONE_NUMBER
+                          name: Mobile phone number
+                          type: PHONE_NUMBER
+                          value:
+                            number: '023123456'
+                            countryIso3Code: KOR
+                            countryPhoneCode: 82
+                        - id: ADDRESS_LINE_1
+                          name: Address line 1
+                          type: TEXT
+                          value: 1-1324 Osaka Castle, Chuo-ku
+                        - id: ADDRESS_COUNTRY
+                          name: Country
+                          type: DROPDOWN
+                          value: JPN
+                        - id: ADDRESS_STATE_PROVINCE
+                          name: State
+                          type: TEXT
+                          value: OK
+                    recipientAccountNumber: '************9123'
+                    status: Pending
+                    sendAmount: 29.99
+                    receiveAmount: 3566
+                    fees: 2.98
+                    totalCost: 32.97
+                    fxRate: 118.9063
+                    corridor:
+                      corridorId: 0f78e3cb-9fe1-44ab-867d-c821128f784b
+                      destinationCountryISO3Code: JPN
+                      destinationCurrencyISO3Code: JPY
+                      transferMethod: BANK_ACCOUNT
+                    destinationCurrency:
+                      name: Japanese yen
+                      iso3Code: JPY
+                      symbol: ¥
+                      decimalPlaces: 0
+                      roundDirection: STANDARD
+                      iso4217Code: '392'
+                  - transferId: 3aeed0ae-930a-4296-b464-8dee95c3ac8d
+                    confirmationNumber: 33TF125783215
+                    createdAt: '2023-10-03T19:51:32.459314Z'
+                    doddFrankReleaseDate: '2023-10-03T19:53:00.491398Z'
+                    recipientDetails:
+                      recipientId: 1c3c9af9-f612-4368-8a64-058b30013c41
+                      senderId: a155bdfe-6a3c-4e44-bbbe-44d662cf459e
+                      recipientType: PERSON
+                      firstName: Kiryu
+                      lastName: Kazuma
+                      fields:
+                        - id: LAST_NAME
+                          name: Last name
+                          type: TEXT
+                          value: Kazuma
+                        - id: FIRST_NAME
+                          name: First name
+                          type: TEXT
+                          value: Kiryu
+                        - id: ADDRESS_ZIP
+                          name: Zip code
+                          type: TEXT
+                          value: '1000001'
+                        - id: ADDRESS_CITY
+                          name: City
+                          type: TEXT
+                          value: OSAKA
+                        - id: PHONE_NUMBER
+                          name: Mobile phone number
+                          type: PHONE_NUMBER
+                          value:
+                            number: '023123456'
+                            countryIso3Code: KOR
+                            countryPhoneCode: 82
+                        - id: ADDRESS_LINE_1
+                          name: Address line 1
+                          type: TEXT
+                          value: 1-1324 Osaka Castle, Chuo-ku
+                        - id: ADDRESS_COUNTRY
+                          name: Country
+                          type: DROPDOWN
+                          value: JPN
+                        - id: ADDRESS_STATE_PROVINCE
+                          name: State
+                          type: TEXT
+                          value: OK
+                    recipientAccountNumber: '************9123'
+                    status: Pending
+                    sendAmount: 29.99
+                    receiveAmount: 3566
+                    fees: 2.98
+                    totalCost: 32.97
+                    fxRate: 118.9063
+                    corridor:
+                      corridorId: 0f78e3cb-9fe1-44ab-867d-c821128f784b
+                      destinationCountryISO3Code: JPN
+                      destinationCurrencyISO3Code: JPY
+                      transferMethod: BANK_ACCOUNT
+                    destinationCurrency:
+                      name: Japanese yen
+                      iso3Code: JPY
+                      symbol: ¥
+                      decimalPlaces: 0
+                      roundDirection: STANDARD
+                      iso4217Code: '392'
+                  - transferId: aa314259-ee80-420f-b093-5f202361f4ea
+                    confirmationNumber: 33TF125782709
+                    createdAt: '2023-10-03T19:30:30.024905Z'
+                    doddFrankReleaseDate: '2023-10-03T19:32:00.129362Z'
+                    recipientDetails:
+                      recipientId: 1c3c9af9-f612-4368-8a64-058b30013c41
+                      senderId: a155bdfe-6a3c-4e44-bbbe-44d662cf459e
+                      recipientType: PERSON
+                      firstName: Kiryu
+                      lastName: Kazuma
+                      fields:
+                        - id: LAST_NAME
+                          name: Last name
+                          type: TEXT
+                          value: Kazuma
+                        - id: FIRST_NAME
+                          name: First name
+                          type: TEXT
+                          value: Kiryu
+                        - id: ADDRESS_ZIP
+                          name: Zip code
+                          type: TEXT
+                          value: '1000001'
+                        - id: ADDRESS_CITY
+                          name: City
+                          type: TEXT
+                          value: OSAKA
+                        - id: PHONE_NUMBER
+                          name: Mobile phone number
+                          type: PHONE_NUMBER
+                          value:
+                            number: '023123456'
+                            countryIso3Code: KOR
+                            countryPhoneCode: 82
+                        - id: ADDRESS_LINE_1
+                          name: Address line 1
+                          type: TEXT
+                          value: 1-1324 Osaka Castle, Chuo-ku
+                        - id: ADDRESS_COUNTRY
+                          name: Country
+                          type: DROPDOWN
+                          value: JPN
+                        - id: ADDRESS_STATE_PROVINCE
+                          name: State
+                          type: TEXT
+                          value: OK
+                    recipientAccountNumber: '************9123'
+                    status: Pending
+                    sendAmount: 29.99
+                    receiveAmount: 3566
+                    fees: 2.98
+                    totalCost: 32.97
+                    fxRate: 118.9063
+                    corridor:
+                      corridorId: 0f78e3cb-9fe1-44ab-867d-c821128f784b
+                      destinationCountryISO3Code: JPN
+                      destinationCurrencyISO3Code: JPY
+                      transferMethod: BANK_ACCOUNT
+                    destinationCurrency:
+                      name: Japanese yen
+                      iso3Code: JPY
+                      symbol: ¥
+                      decimalPlaces: 0
+                      roundDirection: STANDARD
+                      iso4217Code: '392'
+                pagination:
+                  offset: 10
+                  limit: 10
+                  count: 10
+                  total: 142
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - code: NotEmptyValidator
+                  message: '''Sender Id'' is required.'
+                  fieldId: SenderId
+        '401':
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                code: '000'
+                message: Something went wrong!
+                description: Unauthorized  
   "/transfers/progress/{quoteHistoryId}":
     get:
       tags:
