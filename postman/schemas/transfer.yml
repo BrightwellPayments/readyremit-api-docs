@@ -2218,7 +2218,7 @@ paths:
                 "$ref": "#/components/schemas/response401"
     get:
       tags:
-        - transfers
+        - Transfers
       summary: Get Transfers
       description: Gets a paginated collection of transfers for a given sender.
       parameters:
