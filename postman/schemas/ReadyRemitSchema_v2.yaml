@@ -1,0 +1,164 @@
+openapi: 3.0.1
+info:
+  title: ReadyRemit
+  description: Copy from Production - 08/22/24
+  version: v2
+paths:
+  '/transfer-requests/{id}':
+    get:
+      tags:
+        - TransferRequest
+      summary: GetTransferRequestAsync
+      description: GetTransferRequestAsync
+      operationId: gettransferrequestasync
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: ''
+        '403':
+          description: ''
+        '404':
+          description: ''
+  '/transfer-requests/{id}/verifications':
+    post:
+      summary: PostTransferRequestVerificationAsync
+      description: PostTransferRequestVerificationAsync
+      operationId: posttransferrequestverificationasync
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+        '403':
+          description: ''
+        '404':
+          description: ''
+  '/transfer-requests/{id}/submit':
+    put:
+      summary: SubmitTransferRequestAsync
+      description: SubmitTransferRequestAsync
+      operationId: submittransferrequestasync
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+        '403':
+          description: ''
+        '404':
+          description: ''
+  /customer/settings:
+    get:
+      tags:
+        - TransferRequest
+      summary: GetCustomerSettingsAsync
+      description: GetCustomerSettingsAsync
+      operationId: getcustomersettingsasync
+      responses:
+        '200':
+          description: ''
+        '403':
+          description: ''
+        '404':
+          description: ''
+  '/transfer-requests/{id}/cancel':
+    post:
+      summary: CancelTransferRequestAsync
+      description: CancelTransferRequestAsync
+      operationId: canceltransferrequestasync
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: ''
+        '403':
+          description: ''
+  /transfer-requests/create:
+    post:
+      summary: CreateTransferRequestAsync
+      operationId: createtransferrequestasync
+      responses:
+        '200':
+          description: 
+  /transfer-requests:
+    post:
+      summary: GetTransferRequests
+      operationId: gettransferrequests
+      responses:
+        '200':
+          description: 
+  /users:
+    post:
+      summary: CreateUser
+      operationId: createuser
+      responses:
+        '200':
+          description: 
+  '/users/{id}':
+    delete:
+      summary: DeactivateUser
+      operationId: deactivateuser
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+    patch:
+      summary: UpdateUser
+      operationId: updateuser
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  '/users/{id}/change-password':
+    get:
+      summary: ChangePassword
+      operationId: changepassword
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]
