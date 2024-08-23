@@ -3913,20 +3913,73 @@ paths:
           format: uuid
       responses:
         '200':
-          description: Successful response
+          description: |
+            This actual response data depends on two things:
+            - what was sent in for the oboarding session creation
+            - the current status
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/cardOnboardingSessionResponse"
-              example:
-                id: d53d90ad-4de8-415d-8286-90c41853a3dd
-                expirationDate: "2023-09-25T00:00:00.000Z"
-                cardId: d53d90ad-4de8-415d-8286-90c41853a3dd,
-                status: COMPLETE,
-                customization:
-                    primaryColor: "#000000"
-                    submitButtonLabel: "Submit"
-                    locale: "en-US"
+              examples:
+                completed:
+                  summary: Completed with minimal customization
+                  value:
+                    id: d53d90ad-4de8-415d-8286-90c41853a3dd
+                    expirationDate: "2023-09-25T00:00:00.000Z"
+                    cardId: d53d90ad-4de8-415d-8286-90c41853a3dd,
+                    status: COMPLETE,
+                    customization:
+                      primaryColor: "#000000"
+                      submitButtonLabel: "Submit"
+                      locale: "en-US"
+                    entityMode: "SENDER"
+                    cvv2Required: true
+                    cardNumberRequired: true
+                    cardHolderNameRequired: true
+                    expiryDateRequired: true
+                    customerId: "39af57e9-9fe6-4359-af51-bf89b1af582e"
+                    senderId: "9214a118-e11b-44d2-acf7-6426f65048c4"
+                    cardCountryIso3Codes:
+                      - "USA"
+                    cardCurrencyIso3Codes:
+                      - "USD"
+                incomplete:
+                  summary: Incomplete with minimal customization
+                  value:
+                    id: d53d90ad-4de8-415d-8286-90c41853a3dd
+                    expirationDate: "2023-09-25T00:00:00.000Z"
+                    cardId: d53d90ad-4de8-415d-8286-90c41853a3dd,
+                    status: COMPLETE,
+                    customization:
+                      primaryColor: "#000000"
+                      submitButtonLabel: "Submit"
+                      locale: "en-US"
+                    entityMode: "SENDER"
+                    cvv2Required: true
+                    cardNumberRequired: true
+                    cardHolderNameRequired: true
+                    expiryDateRequired: true
+                    customerId: "39af57e9-9fe6-4359-af51-bf89b1af582e"
+                    senderId: "9214a118-e11b-44d2-acf7-6426f65048c4"
+                    cardCountryIso3Codes: []
+                    cardCurrencyIso3Codes: []
+                expired:
+                  summary: "Expired and no customization"
+                  value:
+                    id: "ef253605-96e2-4271-8931-ad7d32292520"
+                    expirationDate: "2024-08-23T17:10:35.85347Z"
+                    cardId: null
+                    status: "EXPIRED"
+                    entityMode: "SENDER"
+                    cvv2Required: true
+                    cardNumberRequired: true
+                    cardHolderNameRequired: true
+                    expiryDateRequired: true
+                    customerId: "39af57e9-9fe6-4359-af51-bf89b1af582e"
+                    senderId: "9214a118-e11b-44d2-acf7-6426f65048c4"
+                    cardCountryIso3Codes: []
+                    cardCurrencyIso3Codes: []
         '401':
           description: Unauthorized
           content:
