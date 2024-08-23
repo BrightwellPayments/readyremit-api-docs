@@ -3892,14 +3892,22 @@ components:
           type: string
         cardNumber:
           type: string
-        cvv2:
-          type: string
+          description: The first 12 digits will be replaced with * for each one
         expiryDate:
           type: string
-        addressStreet:
+        cvv2:
           type: string
-        addressZip:
-          type: string
+          description:  This will return *** if the CVV is required.  Otherwise it will not be supplied.
+        cardCountryIso3Codes:
+          type: array
+          items:
+            "$ref": "#/components/schemas/threeUppercaseChars"
+          description:  This may be supplied is the provider setup for PUSH_TO_CARD is Visa
+        cardCurrencyIso3Codes:
+          type: array
+          items:
+            "$ref": "#/components/schemas/threeUppercaseChars"
+          description:  This may be supplied is the provider setup for PUSH_TO_CARD is Visa
     codeMsgDescObject:
       type: object
       properties:
