@@ -3706,14 +3706,41 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/createCardResponse"
-              example:
-                id: "d53d90ad-4de8-415d-8286-90c41853a3dd"
-                personalName: "Daniel P Fix"
-                cardNumber: "4242424242424242"
-                addressStreet: "100 main st"
-                addressZip: "30363"
-                cvv2: "123"
-                expiryDate: "0827"
+              examples:
+                "CVV is required":
+                  value:
+                    id: "d53d90ad-4de8-415d-8286-90c41853a3dd"
+                    personalName: "Daniel P Fix"
+                    cardNumber: "************4242"
+                    cvv2: "***"
+                    expiryDate: "08/27"
+                "CVV not required":
+                  value:
+                    id: "d53d90ad-4de8-415d-8286-90c41853a3dd"
+                    personalName: "Daniel P Fix"
+                    cardNumber: "************4242"
+                    expiryDate: "08/27"
+                "PUSH_TO_CARD Provider is Visa - CVV Required":
+                  value:
+                    id: "d53d90ad-4de8-415d-8286-90c41853a3dd"
+                    personalName: "Daniel P Fix"
+                    cardNumber: "************4242"
+                    cvv2: "***"
+                    expiryDate: "08/27"
+                    cardCountryIso3Codes:
+                      - USA
+                    cardCurrencyIso3Codes:
+                      - USD
+                "PUSH_TO_CARD Provider is Visa - CVV Not Required":
+                  value:
+                    id: "d53d90ad-4de8-415d-8286-90c41853a3dd"
+                    personalName: "Daniel P Fix"
+                    cardNumber: "************4242"
+                    expiryDate: "08/27"
+                    cardCountryIso3Codes:
+                      - USA
+                    cardCurrencyIso3Codes:
+                      - USD
         '401':
           description: Unauthorized
           content:
