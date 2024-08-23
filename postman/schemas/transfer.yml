@@ -11,6 +11,654 @@ servers:
 security:
 - bearerAuth: []
 paths:
+  /account-fields:
+    get:
+      tags:
+        - Accounts
+      summary: Get Account Fields
+      description: Get Account Fields
+      operationId: getAccountFields
+      parameters:
+        - name: countryIso3Code
+          in: query
+          required: true
+          description: See [country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).
+          schema:
+            "$ref": "#/components/schemas/threeUppercaseChars"
+        - name: currencyISO3Code
+          in: query
+          required: true
+          description: See [currency codes](https://en.wikipedia.org/wiki/ISO_4217).
+          schema:
+            "$ref": "#/components/schemas/threeUppercaseChars"
+        - name: transferMethod
+          in: query
+          required: true
+          schema:
+            "$ref": "#/components/schemas/transferMethods"
+        - name: userType
+          in: query
+          required: true
+          schema:
+            "$ref": "#/components/schemas/userTypes"
+        - name: category
+          in: query
+          required: true
+          schema:
+            "$ref": "#/components/schemas/accountFieldCategories"
+      responses:
+        '200':
+          description: Get Account Fields
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  fieldSets:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        fieldSetId:
+                          type: string
+                          example: BANK_DETAILS
+                        fieldSetName:
+                          type: string
+                          example: Bank Details
+                        fields:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              dependencies:
+                                type: object
+                                properties: {}
+                              fieldId:
+                                type: string
+                                example: CARD_ID
+                              fieldType:
+                                type: string
+                                example: TEXT
+                              hintText:
+                                type: string
+                                example: Card Id
+                              isRequired:
+                                type: boolean
+                                example: true
+                              name:
+                                type: string
+                                example: Card Id
+                              placeholderText:
+                                type: string
+                                example: Card Id
+                              visibility:
+                                type: string
+                                example: SHOW_AND_REQUIRED
+              examples:
+                Get Account Fields:
+                  value:
+                    fieldSets:
+                      - fieldSetId: BANK_DETAILS
+                        fieldSetName: Bank Details
+                        fields:
+                          - dependencies: {}
+                            fieldId: CARD_ID
+                            fieldType: TEXT
+                            hintText: Card Id
+                            isRequired: true
+                            name: Card Id
+                            placeholderText: Card Id
+                            visibility: SHOW_AND_REQUIRED
+  /accounts:
+    post:
+      tags:
+        - Accounts
+      summary: Create Account
+      description: Create Account
+      operationId: createAccount
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                accountHolderId:
+                  type: string
+                  example: aa4365c8-1ab8-4589-a33c-72928795b971
+                accountType:
+                  type: string
+                  example: CARD
+                countryIso3Code:
+                  type: string
+                  example: USA
+                currencyIso3Code:
+                  type: string
+                  example: USD
+                fields:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: CARD_ID
+                      type:
+                        type: string
+                        example: TEXT
+                      value:
+                        type: string
+                        example: 31543f78-879e-48bd-90d3-7473ead3d188
+                  example:
+                    - id: CARD_ID
+                      type: TEXT
+                      value: 31543f78-879e-48bd-90d3-7473ead3d188
+                name:
+                  type: string
+                  example: Account test
+            examples:
+              Create Account:
+                value:
+                  accountHolderId: aa4365c8-1ab8-4589-a33c-72928795b971
+                  accountType: CARD
+                  countryIso3Code: USA
+                  currencyIso3Code: USD
+                  fields:
+                    - id: CARD_ID
+                      type: TEXT
+                      value: 31543f78-879e-48bd-90d3-7473ead3d188
+                  name: Account test
+      responses:
+        '201':
+          description: 201 - Create Account
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accountHolderId:
+                    type: string
+                    example: aa4365c8-1ab8-4589-a33c-72928795b971
+                  accountId:
+                    type: string
+                    example: 4b22f022-c096-4ea5-924f-680685cb963b
+                  accountType:
+                    type: string
+                    example: CARD
+                  countryIso3Code:
+                    type: string
+                    example: USA
+                  currencyIso3Code:
+                    type: string
+                    example: USD
+                  fields:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: CARD_ID
+                        name:
+                          type: string
+                          example: Card Id
+                        type:
+                          type: string
+                          example: TEXT
+                        value:
+                          type: string
+                          example: 8ae8282a-2054-4ab6-922e-ce335234e58a
+                    example:
+                      - id: CARD_ID
+                        name: Card Id
+                        type: TEXT
+                        value: 8ae8282a-2054-4ab6-922e-ce335234e58a
+                      - id: PAYMENT_ACCOUNT_NUMBER
+                        name: Payment account number
+                        type: TEXT
+                        value: '1113'
+                      - id: EXPIRATION_DATE
+                        name: Expiration Date
+                        type: TEXT
+                        value: '1231'
+                      - id: CARD_HOLDER_NAME
+                        name: Cardholder name
+                        type: TEXT
+                        value: Francisca Cazzuela
+                      - id: ISSUER_NAME
+                        name: Issuer name
+                        type: TEXT
+                        value: INTL HDQTRS-CENTER OWNED
+                      - id: CARD_BRAND
+                        name: Card Brand
+                        type: TEXT
+                        value: Visa
+                      - id: FAST_FUNDS
+                        name: Fast Funds
+                        type: BOOLEAN
+                        value: 'True'
+                  name:
+                    type: string
+                    example: Account test
+              examples:
+                201 - Create Account:
+                  value:
+                    accountHolderId: aa4365c8-1ab8-4589-a33c-72928795b971
+                    accountId: 4b22f022-c096-4ea5-924f-680685cb963b
+                    accountType: CARD
+                    countryIso3Code: USA
+                    currencyIso3Code: USD
+                    fields:
+                      - id: CARD_ID
+                        name: Card Id
+                        type: TEXT
+                        value: 8ae8282a-2054-4ab6-922e-ce335234e58a
+                      - id: PAYMENT_ACCOUNT_NUMBER
+                        name: Payment account number
+                        type: TEXT
+                        value: '1113'
+                      - id: EXPIRATION_DATE
+                        name: Expiration Date
+                        type: TEXT
+                        value: '1231'
+                      - id: CARD_HOLDER_NAME
+                        name: Cardholder name
+                        type: TEXT
+                        value: Francisca Cazzuela
+                      - id: ISSUER_NAME
+                        name: Issuer name
+                        type: TEXT
+                        value: INTL HDQTRS-CENTER OWNED
+                      - id: CARD_BRAND
+                        name: Card Brand
+                        type: TEXT
+                        value: Visa
+                      - id: FAST_FUNDS
+                        name: Fast Funds
+                        type: BOOLEAN
+                        value: 'True'
+                    name: Account test
+  /accounts/{account_id}:
+    get:
+      tags:
+        - Accounts
+      summary: Get Account
+      description: Get Account
+      operationId: getAccount
+      responses:
+        '200':
+          description: 200 - Get Account
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  account:
+                    type: object
+                    properties:
+                      accountHolderId:
+                        type: string
+                        example: aa4365c8-1ab8-4589-a33c-72928795b971
+                      accountId:
+                        type: string
+                        example: 4b22f022-c096-4ea5-924f-680685cb963b
+                      accountType:
+                        type: string
+                        example: CARD
+                      countryIso3Code:
+                        type: string
+                        example: USA
+                      currencyIso3Code:
+                        type: string
+                        example: USD
+                      fields:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: CARD_ID
+                            name:
+                              type: string
+                              example: Card Id
+                            type:
+                              type: string
+                              example: TEXT
+                            value:
+                              type: string
+                              example: 8ae8282a-2054-4ab6-922e-ce335234e58a
+                        example:
+                          - id: CARD_ID
+                            name: Card Id
+                            type: TEXT
+                            value: 8ae8282a-2054-4ab6-922e-ce335234e58a
+                          - id: CARD_BRAND
+                            name: Card Brand
+                            type: TEXT
+                            value: Visa
+                          - id: FAST_FUNDS
+                            name: Fast Funds
+                            type: BOOLEAN
+                            value: 'True'
+                          - id: ISSUER_NAME
+                            name: Issuer name
+                            type: TEXT
+                            value: INTL HDQTRS-CENTER OWNED
+                          - id: EXPIRATION_DATE
+                            name: Expiration Date
+                            type: TEXT
+                            value: '1231'
+                          - id: CARD_HOLDER_NAME
+                            name: Cardholder name
+                            type: TEXT
+                            value: Francisca Cazzuela
+                          - id: PAYMENT_ACCOUNT_NUMBER
+                            name: Payment account number
+                            type: TEXT
+                            value: '1113'
+                      name:
+                        type: string
+                        example: Account test
+              examples:
+                200 - Get Account:
+                  value:
+                    account:
+                      accountHolderId: aa4365c8-1ab8-4589-a33c-72928795b971
+                      accountId: 4b22f022-c096-4ea5-924f-680685cb963b
+                      accountType: CARD
+                      countryIso3Code: USA
+                      currencyIso3Code: USD
+                      fields:
+                        - id: CARD_ID
+                          name: Card Id
+                          type: TEXT
+                          value: 8ae8282a-2054-4ab6-922e-ce335234e58a
+                        - id: CARD_BRAND
+                          name: Card Brand
+                          type: TEXT
+                          value: Visa
+                        - id: FAST_FUNDS
+                          name: Fast Funds
+                          type: BOOLEAN
+                          value: 'True'
+                        - id: ISSUER_NAME
+                          name: Issuer name
+                          type: TEXT
+                          value: INTL HDQTRS-CENTER OWNED
+                        - id: EXPIRATION_DATE
+                          name: Expiration Date
+                          type: TEXT
+                          value: '1231'
+                        - id: CARD_HOLDER_NAME
+                          name: Cardholder name
+                          type: TEXT
+                          value: Francisca Cazzuela
+                        - id: PAYMENT_ACCOUNT_NUMBER
+                          name: Payment account number
+                          type: TEXT
+                          value: '1113'
+                      name: Account test
+    delete:
+      tags:
+        - Accounts
+      summary: Delete Account
+      description: Delete Account
+      operationId: deleteAccount
+      responses:
+        '200':
+          description: 200 - Account Deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                200 - Account Deleted:
+                  value: {}
+    parameters:
+      - name: account_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+  /accountHolders/{account_holder_id}/accounts:
+    get:
+      tags:
+        - Accounts
+      summary: Get Accounts By Account Holder
+      description: Get Accounts By Account Holder
+      operationId: getAccountsByAccountHolder
+      responses:
+        '200':
+          description: 200 - Get Accounts By Account Holder
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accounts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        accountHolderId:
+                          type: string
+                          example: aa4365c8-1ab8-4589-a33c-72928795b971
+                        accountId:
+                          type: string
+                          example: 5a5114a1-de4e-4de5-8a4a-48b80ec752f1
+                        accountType:
+                          type: string
+                          example: CARD
+                        countryIso3Code:
+                          type: string
+                          example: USA
+                        currencyIso3Code:
+                          type: string
+                          example: USD
+                        fields:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                example: CARD_ID
+                              name:
+                                type: string
+                                example: Card Id
+                              type:
+                                type: string
+                                example: TEXT
+                              value:
+                                type: string
+                                example: 89458b93-ebe7-4c87-9cad-e7bffd6657c5
+                          example:
+                            - id: CARD_ID
+                              name: Card Id
+                              type: TEXT
+                              value: 89458b93-ebe7-4c87-9cad-e7bffd6657c5
+                            - id: CARD_BRAND
+                              name: Card Brand
+                              type: TEXT
+                              value: Visa
+                            - id: FAST_FUNDS
+                              name: Fast Funds
+                              type: BOOLEAN
+                              value: 'True'
+                            - id: ISSUER_NAME
+                              name: Issuer name
+                              type: TEXT
+                              value: U.S. REGION
+                            - id: EXPIRATION_DATE
+                              name: Expiration Date
+                              type: TEXT
+                              value: '1231'
+                            - id: CARD_HOLDER_NAME
+                              name: Cardholder name
+                              type: TEXT
+                              value: TheLa Planta
+                            - id: PAYMENT_ACCOUNT_NUMBER
+                              name: Payment account number
+                              type: TEXT
+                              value: '2256'
+                        name:
+                          type: string
+                          example: Account test 2
+                    example:
+                      - accountHolderId: aa4365c8-1ab8-4589-a33c-72928795b971
+                        accountId: 5a5114a1-de4e-4de5-8a4a-48b80ec752f1
+                        accountType: CARD
+                        countryIso3Code: USA
+                        currencyIso3Code: USD
+                        fields:
+                          - id: CARD_ID
+                            name: Card Id
+                            type: TEXT
+                            value: 89458b93-ebe7-4c87-9cad-e7bffd6657c5
+                          - id: CARD_BRAND
+                            name: Card Brand
+                            type: TEXT
+                            value: Visa
+                          - id: FAST_FUNDS
+                            name: Fast Funds
+                            type: BOOLEAN
+                            value: 'True'
+                          - id: ISSUER_NAME
+                            name: Issuer name
+                            type: TEXT
+                            value: U.S. REGION
+                          - id: EXPIRATION_DATE
+                            name: Expiration Date
+                            type: TEXT
+                            value: '1231'
+                          - id: CARD_HOLDER_NAME
+                            name: Cardholder name
+                            type: TEXT
+                            value: TheLa Planta
+                          - id: PAYMENT_ACCOUNT_NUMBER
+                            name: Payment account number
+                            type: TEXT
+                            value: '2256'
+                        name: Account test 2
+                      - accountHolderId: aa4365c8-1ab8-4589-a33c-72928795b971
+                        accountId: 4b22f022-c096-4ea5-924f-680685cb963b
+                        accountType: CARD
+                        countryIso3Code: USA
+                        currencyIso3Code: USD
+                        fields:
+                          - id: CARD_ID
+                            name: Card Id
+                            type: TEXT
+                            value: 8ae8282a-2054-4ab6-922e-ce335234e58a
+                          - id: CARD_BRAND
+                            name: Card Brand
+                            type: TEXT
+                            value: Visa
+                          - id: FAST_FUNDS
+                            name: Fast Funds
+                            type: BOOLEAN
+                            value: 'True'
+                          - id: ISSUER_NAME
+                            name: Issuer name
+                            type: TEXT
+                            value: INTL HDQTRS-CENTER OWNED
+                          - id: EXPIRATION_DATE
+                            name: Expiration Date
+                            type: TEXT
+                            value: '1231'
+                          - id: CARD_HOLDER_NAME
+                            name: Cardholder name
+                            type: TEXT
+                            value: Francisca Cazzuela
+                          - id: PAYMENT_ACCOUNT_NUMBER
+                            name: Payment account number
+                            type: TEXT
+                            value: '1113'
+                        name: Account test
+              examples:
+                200 - Get Accounts By Account Holder:
+                  value:
+                    accounts:
+                      - accountHolderId: aa4365c8-1ab8-4589-a33c-72928795b971
+                        accountId: 5a5114a1-de4e-4de5-8a4a-48b80ec752f1
+                        accountType: CARD
+                        countryIso3Code: USA
+                        currencyIso3Code: USD
+                        fields:
+                          - id: CARD_ID
+                            name: Card Id
+                            type: TEXT
+                            value: 89458b93-ebe7-4c87-9cad-e7bffd6657c5
+                          - id: CARD_BRAND
+                            name: Card Brand
+                            type: TEXT
+                            value: Visa
+                          - id: FAST_FUNDS
+                            name: Fast Funds
+                            type: BOOLEAN
+                            value: 'True'
+                          - id: ISSUER_NAME
+                            name: Issuer name
+                            type: TEXT
+                            value: U.S. REGION
+                          - id: EXPIRATION_DATE
+                            name: Expiration Date
+                            type: TEXT
+                            value: '1231'
+                          - id: CARD_HOLDER_NAME
+                            name: Cardholder name
+                            type: TEXT
+                            value: TheLa Planta
+                          - id: PAYMENT_ACCOUNT_NUMBER
+                            name: Payment account number
+                            type: TEXT
+                            value: '2256'
+                        name: Account test 2
+                      - accountHolderId: aa4365c8-1ab8-4589-a33c-72928795b971
+                        accountId: 4b22f022-c096-4ea5-924f-680685cb963b
+                        accountType: CARD
+                        countryIso3Code: USA
+                        currencyIso3Code: USD
+                        fields:
+                          - id: CARD_ID
+                            name: Card Id
+                            type: TEXT
+                            value: 8ae8282a-2054-4ab6-922e-ce335234e58a
+                          - id: CARD_BRAND
+                            name: Card Brand
+                            type: TEXT
+                            value: Visa
+                          - id: FAST_FUNDS
+                            name: Fast Funds
+                            type: BOOLEAN
+                            value: 'True'
+                          - id: ISSUER_NAME
+                            name: Issuer name
+                            type: TEXT
+                            value: INTL HDQTRS-CENTER OWNED
+                          - id: EXPIRATION_DATE
+                            name: Expiration Date
+                            type: TEXT
+                            value: '1231'
+                          - id: CARD_HOLDER_NAME
+                            name: Cardholder name
+                            type: TEXT
+                            value: Francisca Cazzuela
+                          - id: PAYMENT_ACCOUNT_NUMBER
+                            name: Payment account number
+                            type: TEXT
+                            value: '1113'
+                        name: Account test
+    parameters:
+      - name: account_holder_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The Sender Id
   "/banks":
     get:
       tags:
@@ -3417,6 +4065,22 @@ components:
       enum:
       - BUSINESS
       - PERSON
+    userTypes:
+      type: string
+      description: See [User Type](https://developer.readyremit.com/reference/enum-types#user-type).
+      default: PERSON
+      enum:
+      - BUSINESS
+      - PERSON
+    accountFieldCategories:
+      type: string
+      description: See [Account Field Category](https://developer.readyremit.com/reference/enum-types#account-field-category).
+      default: SENDER
+      enum:
+      - SENDER
+      - RECIPIENT
+      - RECIPIENT_ACCOUNT
+      - TRANSFER
     kycStatuses:
       type: string
       description: See [KYC Status](https://developer.readyremit.com/reference/enum-types#kyc-status).
