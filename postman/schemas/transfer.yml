@@ -3770,7 +3770,10 @@ paths:
       tags:
       - Card Onboarding Sessions
       summary: Create card onboarding session
-      description: This operation creates a session for onboarding a card.
+      description: |
+        This operation creates a session for onboarding a card.
+
+        __Note__: Some of the data for the response is dependant on what is sent in the request meaning it is just added in the response.
       operationId: createCardOnboardingSession
       requestBody:
         content:
@@ -3778,13 +3781,39 @@ paths:
             schema:
               "$ref": "#/components/schemas/createCardOnboardingSessionRequest"
             examples:
-              Success:
-                summary: SUCCESS
+              minimumRequired:
+                summary: "Minimum Required"
                 value:
+                  entityMode: "SENDER"
+              customizationSupplied:
+                summary: "Some Customization Supplied"
+                value:
+                  entityMode: "SENDER"
                   customization:
                     primaryColor: "#000000"
                     submitButtonLabel: "Submit"
                     locale: "en-US"
+              moreCustomizationSupplied:
+                summary: "More Customization Supplied"
+                value:
+                  entityMode: "SENDER"
+                  customization:
+                    primaryColor: "#000000"
+                    submitButtonLabel: "Submit"
+                    locale: "en-US"
+                    submitBorderRadius: 40
+                    wrapperMargin: "10%"
+                    title: "Deposit via debit card"
+                    description: "Your refund will be credited directly to your bank account via your Visa or Mastercard debit card."
+                    texts:
+                      size: 14
+                    inputs:
+                        family: "Roboto"
+                        size: 18
+                        weight: "500"
+                    hints:
+                      - expiryDate: "This helps increase the chace of a card being accepted."
+                        expiryDateLabel: "Expiration Date"
       responses:
         '200':
           description: Success
@@ -3792,14 +3821,73 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/cardOnboardingSessionResponse"
-              example:
-                id: "d53d90ad-4de8-415d-8286-90c41853a3dd"
-                expirationDate: "2023-09-25T00:00:00.000Z"
-                status: INCOMPLETE
-                customization:
-                    primaryColor: "#000000"
-                    submitButtonLabel: "Submit"
-                    locale: "en-US"
+              examples:
+                minimumRequired:
+                  summary: "Response for Minimum Required"
+                  value:
+                    id: "d53d90ad-4de8-415d-8286-90c41853a3dd"
+                    expirationDate: "2023-09-25T00:00:00.000Z"
+                    status: INCOMPLETE
+                    cardId: null,
+                    entityMode: "SENDER"
+                    cvv2Required: true,
+                    cardNumberRequired: true,
+                    cardHolderNameRequired: true,
+                    expiryDateRequired: true,
+                    customerId: "39af57e9-9fe6-4359-af51-bf89b1af582e"
+                    senderId: "9214a118-e11b-44d2-acf7-6426f65048c4"
+                customizationSupplied:
+                  summary: "Response for Some Customization Supplied"
+                  value:
+                    id: "d53d90ad-4de8-415d-8286-90c41853a3dd"
+                    expirationDate: "2023-09-25T00:00:00.000Z"
+                    status: INCOMPLETE
+                    cardId: null,
+                    entityMode: "SENDER"
+                    customization:
+                      primaryColor: "#000000"
+                      submitButtonLabel: "Submit"
+                      locale: "en-US"
+                    cvv2Required: true,
+                    cardNumberRequired: true,
+                    cardHolderNameRequired: true,
+                    expiryDateRequired: true,
+                    customerId: "39af57e9-9fe6-4359-af51-bf89b1af582e"
+                    senderId: "9214a118-e11b-44d2-acf7-6426f65048c4"
+                moreCustomizationSupplied:
+                  summary: "Response for More Customization Supplied"
+                  description: "Notice how the customization's texts object has a default value set for family and weight even though they were not in the request."
+                  value:
+                    id: "d53d90ad-4de8-415d-8286-90c41853a3dd"
+                    expirationDate: "2023-09-25T00:00:00.000Z"
+                    status: INCOMPLETE
+                    cardId: null,
+                    entityMode: "SENDER"
+                    customization:
+                      primaryColor: "#000000"
+                      submitButtonLabel: "Submit"
+                      locale: "en-US"
+                      submitBorderRadius: 40
+                      wrapperMargin: "10%"
+                      title: "Deposit via debit card"
+                      description: "Your refund will be credited directly to your bank account via your Visa or Mastercard debit card."
+                      texts:
+                        family: "Arial"
+                        size: 14
+                        weight: "500"
+                      inputs:
+                        family: "Roboto"
+                        size: 18
+                        weight: "500"
+                      hints:
+                        - expiryDate: "This helps increase the chace of a card being accepted."
+                          expiryDateLabel: "Expiration Date"
+                    cvv2Required: true,
+                    cardNumberRequired: true,
+                    cardHolderNameRequired: true,
+                    expiryDateRequired: true,
+                    customerId: "39af57e9-9fe6-4359-af51-bf89b1af582e"
+                    senderId: "9214a118-e11b-44d2-acf7-6426f65048c4"
         '401':
           description: Unauthorized
           content:
@@ -3822,9 +3910,10 @@ paths:
         explode: false
         schema:
           type: string
+          format: uuid
       responses:
         '200':
-          description: Success, card incomplete
+          description: Successful response
           content:
             application/json:
               schema:
@@ -3848,8 +3937,6 @@ components:
   schemas:
     cardOnboardingSession:
       type: object
-      required:
-        - customization
       properties:
         id:
           type: string
@@ -3859,30 +3946,93 @@ components:
           "$ref": "#/components/schemas/cardOnboardingSessionStatuses"
         cardId:
           type: string
+    cardOnboardingSessionAdditional:
+      type: object
+      properties:
+        entityMode:
+          "$ref": "#/components/schemas/entityMode"
+        cvv2Required:
+          type: boolean
+        cardNumberRequired:
+          type: boolean
+        cardHolderNameRequired:
+          type: boolean
+        expiryDateRequired:
+          type: boolean
+        customerId:
+          type: string
+          format: uuid
+        senderId:
+          type: string
+          format: uuid
+        cardCountryIso3Codes:
+          type: array
+          items:
+            "$ref": "#/components/schemas/threeUppercaseChars"
+          description:  This may be supplied is the provider setup for PUSH_TO_CARD is Visa
+        cardCurrencyIso3Codes:
+          type: array
+          items:
+            "$ref": "#/components/schemas/threeUppercaseChars"
+          description:  This may be supplied is the provider setup for PUSH_TO_CARD is Visa
+    createCardOnboardingSessionCustomizationObject:
+      type: object
+      properties:
         customization:
-          type: object
-          properties:
-            primaryColor:
-              type: string
-            submitButtonLabel:
-              type: string
-            locale:
+          "$ref": "#/components/schemas/createCardOnboardingSessionCustomization"
+    createCardOnboardingSessionCustomization:
+      type: object
+      properties:
+        primaryColor:
+          type: string
+        submitButtonLabel:
+          type: string
+        submitBorderRadius:
+          type: integer
+        wrapperMargin:
+          type: string
+        locale:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        texts:
+          "$ref": "#/components/schemas/cardOnboardingFontObject"
+        inputs:
+          "$ref": "#/components/schemas/cardOnboardingFontObject"
+        hints:
+          type: array
+          description: This is a list of objects.  The objects can have any number of string properties on them.
+          items:
+            type: object
+            additionalProperties:
               type: string
     createCardOnboardingSessionRequest:
       type: object
       properties:
-        customization:
-          type: object
-          properties:
-            primaryColor:
-              type: string
-            submitButtonLabel:
-              type: string
-            locale:
-              type: string
+        entityMode:
+          "$ref": "#/components/schemas/entityMode"
+        customizations:
+          "$ref": "#/components/schemas/createCardOnboardingSessionCustomization"
     cardOnboardingSessionResponse:
       allOf:
-      - "$ref": "#/components/schemas/cardOnboardingSession"    
+      - "$ref": "#/components/schemas/cardOnboardingSession"
+      - "$ref": "#/components/schemas/createCardOnboardingSessionCustomizationObject"
+      - "$ref": "#/components/schemas/cardOnboardingSessionAdditional" 
+    cardOnboardingFontObject:
+      type: object
+      description: "If this object is supplied on the request, it will be sent back on the response.  Any properties not supplied in the reuqest will be defaulted."
+      properties:
+        family:
+          type: string
+          description: "Defaults to Arial if not supplied"
+        size:
+          type: integer
+          description: "Defaults to 12 if not supplied"
+        weight:
+          type: string
+          description: "Defaults to 500 if not supplied"
     createCardRequest:
       type: object
       required:
@@ -4125,6 +4275,11 @@ components:
       - RECIPIENT
       - RECIPIENT_ACCOUNT
       - TRANSFER
+    entityMode:
+      type: string
+      enum:
+      - SENDER
+      - RCIPIENT
     kycStatuses:
       type: string
       description: See [KYC Status](https://developer.readyremit.com/reference/enum-types#kyc-status).
