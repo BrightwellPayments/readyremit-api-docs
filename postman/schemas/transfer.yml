@@ -3692,15 +3692,13 @@ paths:
           application/json:
             schema:
               "$ref": "#/components/schemas/createCardRequest"
-            examples:
-              Success:
-                summary: SUCCESS
-                value:
-                  cardOnboardingSessionId: "d53d90ad-4de8-415d-8286-90c41853a3dd"
-                  cardHolderName: "Daniel P Fix"
-                  cardNumber: "4242424242424242"
-                  cvv2: "123"
-                  expiryDate: "0827"
+            example:
+              value:
+                cardOnboardingSessionId: "d53d90ad-4de8-415d-8286-90c41853a3dd"
+                cardHolderName: "Daniel P Fix"
+                cardNumber: "4242424242424242"
+                cvv2: "123"
+                expiryDate: "0827"
       responses:
         '201':
           description: Created
