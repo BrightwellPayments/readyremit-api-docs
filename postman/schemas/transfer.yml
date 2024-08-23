@@ -3893,6 +3893,7 @@ components:
       properties:
         cardOnboardingSessionId:
           type: string
+          description: The id from a successful POST request to /card-onboarding-sessions
         cardHolderName:
           type: string
         cardNumber:
