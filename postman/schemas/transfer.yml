@@ -3747,6 +3747,24 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/response401"
+  "/card/{cardId}":
+    delete:
+      tags:
+        - Cards
+      summary: Delete Card
+      description: Delete Card
+      operationId: deleteCard
+      responses:
+        '200':
+          description: SUCCESS
+    parameters:
+      - name: cardId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The Card Identifier
   "/card-onboarding-sessions":
     post:
       tags:
