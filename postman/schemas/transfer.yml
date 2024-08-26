@@ -11,7 +11,7 @@ servers:
 security:
 - bearerAuth: []
 paths:
-  /account-fields:
+  "/account-fields":
     get:
       tags:
         - Accounts
@@ -109,7 +109,7 @@ paths:
                             name: Card Id
                             placeholderText: Card Id
                             visibility: SHOW_AND_REQUIRED
-  /accounts:
+  "/accounts":
     post:
       tags:
         - Accounts
@@ -264,7 +264,7 @@ paths:
                         type: BOOLEAN
                         value: 'True'
                     name: Account test
-  /accounts/{account_id}:
+  "/accounts/{account_id}":
     get:
       tags:
         - Accounts
@@ -401,7 +401,7 @@ paths:
         schema:
           type: string
           format: uuid
-  /accountHolders/{account_holder_id}/accounts:
+  "/accountHolders/{account_holder_id}/accounts":
     get:
       tags:
         - Accounts
