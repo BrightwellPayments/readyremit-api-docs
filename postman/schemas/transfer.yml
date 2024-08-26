@@ -124,34 +124,21 @@ paths:
               properties:
                 accountHolderId:
                   type: string
+                  format: uuid
                   example: aa4365c8-1ab8-4589-a33c-72928795b971
                 accountType:
-                  type: string
-                  example: CARD
+                  "$ref": "#/components/schemas/createAccountAccountTypes"
                 countryIso3Code:
-                  type: string
-                  example: USA
+                  description: "See [country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)."
+                  "$ref": "#/components/schemas/threeUppercaseChars"
                 currencyIso3Code:
-                  type: string
-                  example: USD
+                  description: "See [currency codes](https://en.wikipedia.org/wiki/ISO_4217)."
+                  "$ref": "#/components/schemas/threeUppercaseChars"
                 fields:
                   type: array
                   items:
                     type: object
-                    properties:
-                      id:
-                        type: string
-                        example: CARD_ID
-                      type:
-                        type: string
-                        example: TEXT
-                      value:
-                        type: string
-                        example: 31543f78-879e-48bd-90d3-7473ead3d188
-                  example:
-                    - id: CARD_ID
-                      type: TEXT
-                      value: 31543f78-879e-48bd-90d3-7473ead3d188
+                    description: "These fields to be used are defined in the response from /account-fields"
                 name:
                   type: string
                   example: Account test
@@ -4074,7 +4061,7 @@ components:
       - "$ref": "#/components/schemas/cardOnboardingSessionAdditional" 
     cardOnboardingFontObject:
       type: object
-      description: "If this object is supplied on the request, it will be sent back on the response.  Any properties not supplied in the reuqest will be defaulted."
+      description: "If this object is supplied on the request, it will be sent back on the response.  Any properties not supplied in the request will be defaulted."
       properties:
         family:
           type: string
@@ -4327,11 +4314,19 @@ components:
       - RECIPIENT
       - RECIPIENT_ACCOUNT
       - TRANSFER
+    createAccountAccountTypes:
+      type: string
+      description: See [User Type](https://developer.readyremit.com/reference/enum-types#create-account-account-type).
+      enum:
+      - BANK_ACCOUNT
+      - CARD
+      - CASH_PICKUP
+      - WALLET
     entityMode:
       type: string
       enum:
       - SENDER
-      - RCIPIENT
+      - RECIPIENT
     kycStatuses:
       type: string
       description: See [KYC Status](https://developer.readyremit.com/reference/enum-types#kyc-status).
