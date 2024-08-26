@@ -3802,7 +3802,10 @@ paths:
                         expiryDateLabel: "Expiration Date"
       responses:
         '200':
-          description: Success
+          description: |
+            This actual response data depends on two things:
+            - what was sent in for the oboarding session creation
+            - the current status of the session
           content:
             application/json:
               schema:
