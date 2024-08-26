@@ -138,7 +138,7 @@ paths:
                   type: array
                   items:
                     type: object
-                    description: "These fields to be used are defined in the response from /account-fields"
+                    description: "The fields to be used are defined in the response from /account-fields"
                 name:
                   type: string
                   example: Account test
@@ -3759,7 +3759,7 @@ paths:
       description: |
         This operation creates a session for onboarding a card.
 
-        __Note__: Some of the data for the response is dependant on what is sent in the request meaning it is just added in the response.
+        __Note__: Some of the data for the response is dependant on what is sent in the request.  Example:  Any customization data passed in is added to the response.
       operationId: createCardOnboardingSession
       requestBody:
         content:
@@ -3798,7 +3798,7 @@ paths:
                         size: 18
                         weight: "500"
                     hints:
-                      - expiryDate: "This helps increase the chace of a card being accepted."
+                      - expiryDate: "This helps increase the chance of a card being accepted."
                         expiryDateLabel: "Expiration Date"
       responses:
         '200':
@@ -3866,7 +3866,7 @@ paths:
                         size: 18
                         weight: "500"
                       hints:
-                        - expiryDate: "This helps increase the chace of a card being accepted."
+                        - expiryDate: "This helps increase the chance of a card being accepted."
                           expiryDateLabel: "Expiration Date"
                     cvv2Required: true,
                     cardNumberRequired: true,
@@ -3902,7 +3902,7 @@ paths:
           description: |
             This actual response data depends on two things:
             - what was sent in for the oboarding session creation
-            - the current status
+            - the current status of the session
           content:
             application/json:
               schema:
@@ -4110,12 +4110,12 @@ components:
           type: array
           items:
             "$ref": "#/components/schemas/threeUppercaseChars"
-          description:  This may be supplied is the provider setup for PUSH_TO_CARD is Visa
+          description:  This may be supplied if the provider setup for PUSH_TO_CARD is Visa
         cardCurrencyIso3Codes:
           type: array
           items:
             "$ref": "#/components/schemas/threeUppercaseChars"
-          description:  This may be supplied is the provider setup for PUSH_TO_CARD is Visa
+          description:  This may be supplied if the provider setup for PUSH_TO_CARD is Visa
     codeMsgDescObject:
       type: object
       properties:
