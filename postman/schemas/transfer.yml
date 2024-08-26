@@ -3803,9 +3803,7 @@ paths:
       responses:
         '200':
           description: |
-            This actual response data depends on two things:
-            - what was sent in for the oboarding session creation
-            - the current status of the session
+            This actual response data depends on what was sent in for the request.
           content:
             application/json:
               schema:
