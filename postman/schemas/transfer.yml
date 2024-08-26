@@ -109,6 +109,12 @@ paths:
                             name: Card Id
                             placeholderText: Card Id
                             visibility: SHOW_AND_REQUIRED
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"
   "/accounts":
     post:
       tags:
@@ -264,6 +270,12 @@ paths:
                         type: BOOLEAN
                         value: 'True'
                     name: Account test
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"
   "/accounts/{account_id}":
     get:
       tags:
@@ -385,6 +397,12 @@ paths:
                           type: TEXT
                           value: '1113'
                       name: Account test
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"
     delete:
       tags:
         - Accounts
@@ -394,6 +412,12 @@ paths:
       responses:
         '200':
           description: 200 - Account Deleted
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"
     parameters:
       - name: account_id
         in: path
@@ -630,6 +654,12 @@ paths:
                             type: TEXT
                             value: '1113'
                         name: Account test
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"
     parameters:
       - name: account_holder_id
         in: path
@@ -3743,6 +3773,12 @@ paths:
       responses:
         '200':
           description: SUCCESS
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"
     parameters:
       - name: cardId
         in: path
