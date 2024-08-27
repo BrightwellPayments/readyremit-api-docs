@@ -4050,6 +4050,245 @@ paths:
               schema:
                 "$ref": "#/components/schemas/response401"
 components:
+  examples:
+    transferResponseExampleNotAft:
+      summary: Non-AFT example
+      value:
+        transferId: d53d90ad-4de8-415d-8286-90c41853a3dd
+        confirmationNumber: 33TF041162650
+        quote:
+          sendAmount:
+            value: 100000
+            currency:
+              name: US Dollar
+              iso3Code: USD
+              symbol: "$"
+              decimalPlaces: 2
+          receiveAmount:
+            value: 7445765
+            currency:
+              name: Indian rupee
+              iso3Code: INR
+              symbol: "₹"
+              decimalPlaces: 2
+          rate: 74.4576574896
+          adjustments:
+          - label: Transfer Fee
+            amount:
+              value: 879
+              currency:
+                name: US Dollar
+                iso3Code: USD
+                symbol: "$"
+                decimalPlaces: 2
+          totalCost:
+            value: 100879
+            currency:
+              name: US Dollar
+              iso3Code: USD
+              symbol: "$"
+              decimalPlaces: 2
+          disclosures: []
+        senderDetails:
+          senderId: 9711fb4c-df97-49bd-ba03-78706761c23c
+          fields: []
+        recipientDetails:
+          recipientId: 260d1f4f-4fe3-4620-a104-a25ae57b51c3
+          senderId: 9711fb4c-df97-49bd-ba03-78706761c23c
+          recipientType: PERSON
+          firstName: Camilia
+          lastName: Noceda
+          fields:
+          - id: LAST_NAME
+            type: TEXT
+            value: Noceda
+          - id: FIRST_NAME
+            type: TEXT
+            value: Camilia
+        recipientAccountDetails:
+          recipientAccountId: 236d76c2-8b0b-4eef-a28a-25353926ade9
+          accountNumber: '333000333'
+          fields:
+          - id: BANK_NAME
+            type: TEXT
+            value: Baink
+          disclaimers: []
+    transferResponseExampleAft:
+      summary: AFT example
+      value:
+        transferId: "f15f480e-b6d5-43d0-8a9e-4cc07f37f6a5"
+        confirmationNumber: "421913656311"
+        quote:
+          customerId: "9a57cffe-9c1e-4060-931c-c6685f34c2bf"
+          senderId: "b9f458bd-d51d-4a17-ac49-77c01bd5e6a6"
+          sendAmount:
+            value: 4590
+            currency:
+              name: "US Dollar"
+              iso3Code: "USD"
+              symbol: "$"
+              decimalPlaces: 2,
+              roundDirection: "STANDARD"
+              iso4217Code: "840"
+          receiveAmount:
+            value: 2595,
+            currency:
+              name: "Philippine peso"
+              iso3Code: "PHP"
+              symbol: "₱"
+              decimalPlaces: 0
+              roundDirection: "UP"
+              iso4217Code: "608"
+          rate: 56.5293
+          adjustments":
+            - id: "TransferFee"
+              label: "Transfer Fee"
+              amount:
+                value: 165
+                currency:
+                  name: "US Dollar"
+                  iso3Code: "USD"
+                  symbol: "$"
+                  decimalPlaces: 2
+                  roundDirection: "STANDARD"
+                  iso4217Code: "840"
+          totalCost:
+            value: 4755,
+            currency:
+              name: "US Dollar"
+              iso3Code: "USD"
+              symbol: "$"
+              decimalPlaces: 2
+              roundDirection: "STANDARD"
+              iso4217Code: "840"
+          associatedTransferRecordStatus: "NotInProgress"
+          destinationCountryISO3Code: "PHL"
+          destinationCurrencyISO3Code: "PHP"
+          sourceCurrencyIso3Code: "USD"
+          destinationCountry:
+            name: "Philippines"
+            iso2Code: "PH"
+            iso3Code: "PHL"
+            phoneCode: 63
+          transferMethod: "MOBILE_WALLET"
+          disclosures: []
+          deliverySLA:
+            id: "INSTANT"
+            name: "instant"
+          quoteHistoryId: "4b2d991c-3a91-418a-98bc-c460fd4c2576"
+        senderDetails:
+          senderId: "b9f458bd-d51d-4a17-ac49-77c01bd5e6a6"
+          senderType: "PERSON"
+          firstName: "Sven"
+          lastName: "Emmerich"
+          kycStatus: "SKIPPED"
+          customerFundingSource: "ACCOUNTFUNDING"
+          fields:
+            - id: "FIRST_NAME"
+              name: "LegalFirstName"
+              type: "TEXT"
+              value: "Sven"
+            - id: "LAST_NAME"
+              name: "LegalLastName"
+              type: "TEXT"
+              value: "Emmerich"
+            - id: "ADDRESS_LINE_1"
+              name: "Address line 1"
+              type: "TEXT"
+              value: "7688 Orlando Av"
+            - id: "ADDRESS_STATE"
+              name: "State"
+              type: "DROPDOWN"
+              value: "NY"
+            - id: "ADDRESS_CITY"
+              name: "City"
+              type: "TEXT"
+              value: "ACCORD"
+            - id: "ADDRESS_ZIP"
+              name: "Zip code"
+              type: "TEXT"
+              value: "30003"
+            - id: "ADDRESS_COUNTRY"
+              name: "Country"
+              type: "DROPDOWN"
+              value: "USA"
+            - id: "PHONE_NUMBER"
+              name: "Phone number"
+              type: "PHONE_NUMBER"
+              value:
+                number: "19345889786"
+                countryIso3Code: "USA"
+                countryPhoneCode: 1
+            - id: "ID_TYPE"
+              name: "ID type"
+              type: "DROPDOWN"
+              value: "SSN"
+            - id: "EMAIL_ADDRESS"
+              name: "Email"
+              type: "TEXT"
+              value: "guillpiedra@gmail.com"
+        recipientDetails:
+          recipientId: "df164b04-91d8-4b1d-b43a-a6dec79e9b1f"
+          senderId: "b9f458bd-d51d-4a17-ac49-77c01bd5e6a6"
+          recipientType: "PERSON"
+          firstName: "John"
+          lastName: "Do"
+          fields:
+            - id: "FIRST_NAME"
+              name: "First name"
+              type: "TEXT"
+              value: "John"
+            - id: "LAST_NAME"
+              name: "Last name"
+              type: "TEXT"
+              value: "Do"
+            - id: "PHONE_NUMBER"
+              name: "Mobile phone number"
+              type: "PHONE_NUMBER"
+              value:
+                number: "1888513100"
+                countryIso3Code: "PHL"
+                countryPhoneCode: 63
+        recipientAccountDetails":
+          dstCurrencyIso3Code: "PHP"
+          dstCountryIso3Code: "PHL"
+          transferMethod: "MOBILE_WALLET"
+          recipientAccountId: "c8fbb124-115b-47f9-a362-939323ae2bab"
+          fields:
+            - id: "MOBILE_WALLET_PROVIDER"
+              type: "DROPDOWN"
+              value: "COINS"
+        disclaimers: []
+        createdAt: "2024-08-06T13:56:14.3992509Z"
+        fields: []
+        customer:
+          name: "BWP Visa"
+          addressLine1: "California St. 0001"
+          addressLine2: ""
+          addressCity: "Los Angeles"
+          addressState: "CA"
+          addressCountry: "USA"
+          addressZipCode: "150001"
+          phoneNumber: ""
+          website: "www.visa.com"
+        dateAvailable: "2024-08-09T13:56:14.3992509Z"
+        status: "Initiated"
+        providerResponse:
+          transactionDetail:
+            clientReferenceId: "421913656311"
+            expectedPostingDate: "2024-08-06"
+            transactionAmount: 45.5
+            transactionCurrencyCode: "USD"
+            destinationAmount: 2594.70
+            destinationCurrencyCode: "PHP"
+            fxConversionRate: 57.026300000000
+            initiatingPartyId: 10047681103
+            payoutId: "281474988917353"
+            endToEndId: "421913656311"
+            settlementAmount: 45.50
+            settlementCurrencyCode: "USD"
+            transactionDateTime: "2024-08-06T13:56:18.740Z"
+            status: "PAYMENT_RECEIVED"
   schemas:
     cardOnboardingSession:
       type: object
