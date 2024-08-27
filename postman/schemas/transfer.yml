@@ -4371,14 +4371,9 @@ components:
         dateAvailable:
           type: string
         status:
-          type: string
-          enum:
-          - Unknown
-          - Initiated
-          - Pending
-          - Failed
-          - Canceled
-          - Complete
+          "$ref": "#/components/schemas/transferStatuses"
+        providerResponse:
+          type: object
     transferProgressResponse:
       type: object
       properties:
@@ -4459,6 +4454,16 @@ components:
       - FAILED
       - PENDING
       - REQUEST_FAILED
+    transferStatuses:
+      type: string
+      description: See [Transfer Status](https://developer.readyremit.com/reference/enum-types#transfer-status).
+      enum:
+      - Unknown
+      - Initiated
+      - Pending
+      - Failed
+      - Canceled
+      - Complete
     transferMethods:
       type: string
       description: See [Transfer Method](https://developer.readyremit.com/reference/enum-types#transfer-method).
