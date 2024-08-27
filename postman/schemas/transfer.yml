@@ -4327,8 +4327,12 @@ components:
       properties:
         transferId:
           type: string
+          format: uuid
         confirmationNumber:
           type: string
+        createdAt:
+          type: string
+          format: date-time
         quote:
           "$ref": "#/components/schemas/getQuoteResponse200"
         senderDetails:
@@ -4337,10 +4341,44 @@ components:
           "$ref": "#/components/schemas/recipient"
         recipientAccountDetails:
           "$ref": "#/components/schemas/recipientAccount"
+        fields:
+          type: array
         disclaimers:
           type: array
           items:
             type: string
+        customer:
+          type: object
+          properties:
+            name:
+              type: string
+            addressLine1:
+              type: string
+            addressLine2:
+              type: string
+            addressCity:
+              type: string
+            addressState:
+              type: string
+            addressCountry:
+              type: string
+            addressZipCode:
+              type: string
+            phoneNumber:
+              type: string
+            website:
+              type: string
+        dateAvailable:
+          type: string
+        status:
+          type: string
+          enum:
+          - Unknown
+          - Initiated
+          - Pending
+          - Failed
+          - Canceled
+          - Complete
     transferProgressResponse:
       type: object
       properties:
