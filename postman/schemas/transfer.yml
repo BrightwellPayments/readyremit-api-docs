@@ -3712,20 +3712,20 @@ paths:
                   value:
                     id: "d53d90ad-4de8-415d-8286-90c41853a3dd"
                     personalName: "Daniel P Fix"
-                    cardNumber: "************4242"
+                    cardNumber: "********4242"
                     cvv2: "***"
                     expiryDate: "08/27"
                 "CVV not required":
                   value:
                     id: "d53d90ad-4de8-415d-8286-90c41853a3dd"
                     personalName: "Daniel P Fix"
-                    cardNumber: "************4242"
+                    cardNumber: "********4242"
                     expiryDate: "08/27"
                 "PUSH_TO_CARD Provider is Visa - CVV Required":
                   value:
                     id: "d53d90ad-4de8-415d-8286-90c41853a3dd"
                     personalName: "Daniel P Fix"
-                    cardNumber: "************4242"
+                    cardNumber: "********4242"
                     cvv2: "***"
                     expiryDate: "08/27"
                     cardCountryIso3Codes:
@@ -3736,7 +3736,7 @@ paths:
                   value:
                     id: "d53d90ad-4de8-415d-8286-90c41853a3dd"
                     personalName: "Daniel P Fix"
-                    cardNumber: "************4242"
+                    cardNumber: "********4242"
                     expiryDate: "08/27"
                     cardCountryIso3Codes:
                       - USA
@@ -4361,7 +4361,7 @@ components:
           type: string
         cardNumber:
           type: string
-          description: The first 12 digits will be replaced with * for each one
+          description: A 12 character string made of eight * characters and the last 4 digits of the card number.
         expiryDate:
           type: string
         cvv2:
