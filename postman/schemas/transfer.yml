@@ -2819,66 +2819,11 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/transferResponse"
-              example:
-                transferId: d53d90ad-4de8-415d-8286-90c41853a3dd
-                confirmationNumber: 33TF041162650
-                quote:
-                  sendAmount:
-                    value: 100000
-                    currency:
-                      name: US Dollar
-                      iso3Code: USD
-                      symbol: "$"
-                      decimalPlaces: 2
-                  receiveAmount:
-                    value: 7445765
-                    currency:
-                      name: Indian rupee
-                      iso3Code: INR
-                      symbol: "₹"
-                      decimalPlaces: 2
-                  rate: 74.4576574896
-                  adjustments:
-                  - label: Transfer Fee
-                    amount:
-                      value: 879
-                      currency:
-                        name: US Dollar
-                        iso3Code: USD
-                        symbol: "$"
-                        decimalPlaces: 2
-                  totalCost:
-                    value: 100879
-                    currency:
-                      name: US Dollar
-                      iso3Code: USD
-                      symbol: "$"
-                      decimalPlaces: 2
-                  disclosures: []
-                senderDetails:
-                  senderId: 9711fb4c-df97-49bd-ba03-78706761c23c
-                  fields: []
-                recipientDetails:
-                  recipientId: 260d1f4f-4fe3-4620-a104-a25ae57b51c3
-                  senderId: 9711fb4c-df97-49bd-ba03-78706761c23c
-                  recipientType: PERSON
-                  firstName: Camilia
-                  lastName: Noceda
-                  fields:
-                  - id: LAST_NAME
-                    type: TEXT
-                    value: Noceda
-                  - id: FIRST_NAME
-                    type: TEXT
-                    value: Camilia
-                recipientAccountDetails:
-                  recipientAccountId": 236d76c2-8b0b-4eef-a28a-25353926ade9
-                  accountNumber": '333000333'
-                  fields:
-                  - id: BANK_NAME
-                    type: TEXT
-                    value: Baink
-                  disclaimers: []
+              examples:
+                nonAft:
+                  "$ref": "#/components/examples/transferResponseExampleNotAft"
+                aft:
+                  "$ref": "#/components/examples/transferResponseExampleAft"
         '400':
           description: Bad Request
           content:
@@ -4612,6 +4557,7 @@ components:
         status:
           "$ref": "#/components/schemas/transferStatuses"
         providerResponse:
+          description: This is the response from the provider.
           type: object
     transferProgressResponse:
       type: object
