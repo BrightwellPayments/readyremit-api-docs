@@ -2772,6 +2772,46 @@ paths:
           application/json:
             schema:
               "$ref": "#/components/schemas/executeTransferRequest"
+            examples:
+              notAftNoSenderId:
+                summary: "Non-AFT - no senderId"
+                description: It will use the senderId of the logged in user
+                value:
+                  dstCountryIso3Code: "PHL"
+                  dstCurrencyIso3Code: "PHP"
+                  srcCurrencyIso3Code: USD
+                  transferMethod: "MOBILE_WALLET"
+                  quoteBy: "SEND_AMOUNT"
+                  amount: 23456
+                  recipientId: "1cf07ebd-7969-48e7-a56b-da9396fc314c"
+                  recipientAccountId: "ccf3cf7d-592a-45c4-96d2-b99f111104fe"
+                  purposeOfRemittance: 1
+              notAftExplicitSenderId:
+                summary: "Non-AFT - senderId supplied"
+                value:
+                  dstCountryIso3Code: "PHL"
+                  dstCurrencyIso3Code: "PHP"
+                  srcCurrencyIso3Code: USD
+                  transferMethod: "MOBILE_WALLET"
+                  quoteBy: "SEND_AMOUNT"
+                  amount: 23456
+                  senderId: "e59d258d-f7be-43d5-99f1-8e8059d1f6db"
+                  recipientId: "1cf07ebd-7969-48e7-a56b-da9396fc314c"
+                  recipientAccountId: "ccf3cf7d-592a-45c4-96d2-b99f111104fe"
+                  purposeOfRemittance: 1
+              aft:
+                summary: "AFT example - no senderId"
+                value:
+                  dstCountryIso3Code: "PHL"
+                  dstCurrencyIso3Code: "PHP"
+                  srcCurrencyIso3Code: USD
+                  transferMethod: "MOBILE_WALLET"
+                  quoteBy: "SEND_AMOUNT"
+                  amount: 23456
+                  recipientId: "1cf07ebd-7969-48e7-a56b-da9396fc314c"
+                  recipientAccountId: "ccf3cf7d-592a-45c4-96d2-b99f111104fe"
+                  purposeOfRemittance: 1
+                  sourceAccountId: "fa528843-da0c-427b-8c8f-a4de9fbe6974"
       responses:
         '200':
           description: Success
@@ -4265,6 +4305,7 @@ components:
           type: integer
         senderId:
           type: string
+          description: If not supplied, it will use the senderId supplied in the log in call.
         recipientId:
           type: string
         recipientAccountId:
@@ -4276,6 +4317,11 @@ components:
           type: array
           items:
             "$ref": "#/components/schemas/fieldValue"
+        sourceAccountId:
+          type: string
+          format: uuid
+          description: |
+            This should only be populated for AFT.  This is the id associated with the sender's "account".
     transferResponse:
       type: object
       properties:
