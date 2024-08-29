@@ -1,0 +1,38 @@
+openapi: 3.0.1
+info:
+  title: MastercardOut
+  description: Copy from Production - 08/29/24
+  version: '1.0'
+paths:
+  /*:
+    get:
+      summary: GET
+      operationId: get
+      responses:
+        '200':
+          description: 
+    post:
+      summary: POST
+      operationId: post
+      responses:
+        '200':
+          description: 
+    put:
+      summary: PUT
+      operationId: put
+      responses:
+        '200':
+          description: 
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]

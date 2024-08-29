@@ -1,0 +1,26 @@
+openapi: 3.0.1
+info:
+  title: MastercardWebhooks
+  description: Copy from Production - 08/29/24
+  version: '1.0'
+paths:
+  /transferstatusupdate:
+    post:
+      summary: TransferStatusUpdate
+      operationId: transferstatusupdate
+      responses:
+        '200':
+          description: 
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]
