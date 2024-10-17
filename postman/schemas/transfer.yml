@@ -3782,7 +3782,10 @@ paths:
       description: |
         This operation creates a session for onboarding a card.
 
-        __Note__: Some of the data for the response is dependant on what is sent in the request.  Example:  Any customization data passed in is added to the response.
+        __Notes__:
+        - Some of the data for the response is dependant on what is sent in the request.
+          - Example:  Any customization data passed in is added to the response.
+        - This endpoint contains some limited release functionality.  If this feature is not available, contact your implementation manager.
       operationId: createCardOnboardingSession
       requestBody:
         content:
@@ -3847,7 +3850,7 @@ paths:
                     customerId: "39af57e9-9fe6-4359-af51-bf89b1af582e"
                     senderId: "9214a118-e11b-44d2-acf7-6426f65048c4"
                 customizationSupplied:
-                  summary: "Response for Some Customization Supplied"
+                  summary: "Response for Some Customization Supplied with FieldSets"
                   value:
                     id: "d53d90ad-4de8-415d-8286-90c41853a3dd"
                     expirationDate: "2023-09-25T00:00:00.000Z"
@@ -3864,8 +3867,55 @@ paths:
                     expiryDateRequired: true,
                     customerId: "39af57e9-9fe6-4359-af51-bf89b1af582e"
                     senderId: "9214a118-e11b-44d2-acf7-6426f65048c4"
+                    fieldSets:
+                      - fieldSetId: "CARD_DETAILS"
+                        fieldSetName: "CardDetails"
+                        fields:
+                          - fieldType: "TEXT"
+                            minLength: 1
+                            maxLength: 100
+                            fieldId: "CARD_HOLDER_NAME"
+                            name: "CardholderName"
+                            isRequired: true
+                            visibility: "SHOW_AND_REQUIRED"
+                            placeholderText: "CardholderName"
+                            sortOrder: 1
+                            dependencies: {}
+                          - fieldType: "TEXT"
+                            minLength: 14
+                            maxLength: 16
+                            regex: "^\\d{14,16}$"
+                            fieldId: "CARD_NUMBER"
+                            name: "CardNumber"
+                            isRequired: true
+                            visibility: "SHOW_AND_REQUIRED"
+                            placeholderText: "CardNumber"
+                            sortOrder: 2
+                            dependencies: {}
+                          - fieldType: "TEXT"
+                            minLength: 3
+                            maxLength: 4
+                            regex: "^\\d{3,4}$"
+                            fieldId: "EXPIRATION_DATE"
+                            name: "Expiration Date"
+                            isRequired: true
+                            visibility: "SHOW_AND_REQUIRED"
+                            placeholderText: "Expiration Date"
+                            sortOrder: 3
+                            dependencies: {}
+                          - fieldType: "TEXT"
+                            minLength: 3
+                            maxLength: 4
+                            regex: "^\\d{3,4}$"
+                            fieldId: "CVV2"
+                            name: "Cvv2"
+                            isRequired: true
+                            visibility: "SHOW_AND_REQUIRED"
+                            placeholderText: "Cvv"
+                            sortOrder: 4
+                            dependencies: {}
                 moreCustomizationSupplied:
-                  summary: "Response for More Customization Supplied"
+                  summary: "Response for More Customization Supplied without FieldSets"
                   description: "Notice how the customization's texts object has a default value set for family and weight even though they were not in the request."
                   value:
                     id: "d53d90ad-4de8-415d-8286-90c41853a3dd"
@@ -4277,6 +4327,31 @@ components:
           items:
             "$ref": "#/components/schemas/threeUppercaseChars"
           description:  This may be supplied is the provider setup for PUSH_TO_CARD is Visa
+        fieldSets:
+          allOf:
+            - description: There is currently 1 fieldset returned in the array.  It is named "CardDetails"
+            - "$ref": "#/components/schemas/cardOnboardingSessionFieldSets"
+    cardOnboardingSessionFieldSet:
+      required:
+      - fields
+      - fieldSetId
+      - fieldSetName
+      type: object
+      properties:
+        fieldSetId:
+          type: string
+        fieldSetName:
+          type: string
+        fields:
+          type: array
+          items:
+            allOf:
+              - description: This provides information for the fields used for card data entry.
+              - "$ref": "#/components/schemas/textField"
+    cardOnboardingSessionFieldSets:
+      type: array
+      items:
+        "$ref": "#/components/schemas/cardOnboardingSessionFieldSet"
     createCardOnboardingSessionCustomizationObject:
       type: object
       properties:
@@ -4312,16 +4387,32 @@ components:
               type: string
     createCardOnboardingSessionRequest:
       type: object
+      required:
+      - entityMode
       properties:
         entityMode:
           "$ref": "#/components/schemas/entityMode"
+        countryIso3Code:
+          allOf:
+            - description: If supplied, this is used as an additional flag to determine if cvv is required.  See [country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).
+            - "$ref": "#/components/schemas/threeUppercaseChars"
         customizations:
           "$ref": "#/components/schemas/createCardOnboardingSessionCustomization"
     cardOnboardingSessionResponse:
+      required:
+        - id
+        - cardHolderNameRequired
+        - cardNumberRequired
+        - customerId
+        - cvv2Required
+        - expirationDate
+        - expiryDateRequired
+        - senderId
+        - status
       allOf:
       - "$ref": "#/components/schemas/cardOnboardingSession"
       - "$ref": "#/components/schemas/createCardOnboardingSessionCustomizationObject"
-      - "$ref": "#/components/schemas/cardOnboardingSessionAdditional" 
+      - "$ref": "#/components/schemas/cardOnboardingSessionAdditional"
     cardOnboardingFontObject:
       type: object
       description: "If this object is supplied on the request, it will be sent back on the response.  Any properties not supplied in the request will be defaulted."
