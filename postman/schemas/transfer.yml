@@ -135,11 +135,13 @@ paths:
                 accountType:
                   "$ref": "#/components/schemas/createAccountAccountTypes"
                 countryIso3Code:
-                  description: "See [country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)."
-                  "$ref": "#/components/schemas/threeUppercaseChars"
+                  allOf:
+                    - description: "See [country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)."
+                    - "$ref": "#/components/schemas/threeUppercaseChars"
                 currencyIso3Code:
-                  description: "See [currency codes](https://en.wikipedia.org/wiki/ISO_4217)."
-                  "$ref": "#/components/schemas/threeUppercaseChars"
+                  allOf:
+                    - description: "See [currency codes](https://en.wikipedia.org/wiki/ISO_4217)."
+                    - "$ref": "#/components/schemas/threeUppercaseChars"
                 fields:
                   type: array
                   items:
