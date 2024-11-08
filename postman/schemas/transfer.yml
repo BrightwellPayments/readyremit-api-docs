@@ -16,7 +16,7 @@ paths:
       tags:
         - Accounts
       summary: Get Account Fields
-      description: Get Account Fields
+      description: Given a corridor, userType, and category, this operation returns the required and optional fields for creating an account record. See [Dynamic fields](https://developer.readyremit.com/reference/dynamic-fields).
       operationId: getAccountFields
       parameters:
         - name: countryIso3Code
@@ -120,7 +120,7 @@ paths:
       tags:
         - Accounts
       summary: Create Account
-      description: Create Account
+      description: This operation creates an account record.  An account record is used to specify a card from a card onboarding session that can be used for AFT (pull funds from the card) transfers.
       operationId: createAccount
       requestBody:
         content:
@@ -283,7 +283,7 @@ paths:
       tags:
         - Accounts
       summary: Get Account
-      description: Get Account
+      description: This operation returns the account information associated with the specified `account_id`.
       operationId: getAccount
       responses:
         '200':
@@ -409,7 +409,7 @@ paths:
       tags:
         - Accounts
       summary: Delete Account
-      description: Delete Account
+      description: This operation deletes the account record associated with the specified `account_id`.
       operationId: deleteAccount
       responses:
         '200':
@@ -427,6 +427,7 @@ paths:
         schema:
           type: string
           format: uuid
+        description: The Account Id
   "/accountHolders/{account_holder_id}/accounts":
     get:
       tags:
@@ -4710,7 +4711,7 @@ components:
       - TRANSFER
     createAccountAccountTypes:
       type: string
-      description: See [User Type](https://developer.readyremit.com/reference/enum-types#create-account-account-type).
+      description: See [Create Account Account Type](https://developer.readyremit.com/reference/enum-types#create-account-account-type).
       enum:
       - BANK_ACCOUNT
       - CARD
