@@ -4613,7 +4613,7 @@ components:
           type: string
           format: uuid
           description: |
-            This should only be populated for AFT.  This is the id associated with the sender's "account".
+            This should only be populated for Account Funding Transaction (AFT) transfers (pull funds from a card).  This is the id associated with the sender's "account" record.
     transferResponse:
       type: object
       properties:
