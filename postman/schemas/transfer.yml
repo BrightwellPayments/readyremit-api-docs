@@ -3354,6 +3354,11 @@ components:
         purposeOfRemittance:
           type: integer
           default: 1
+        validationPending:
+          type: boolean
+          default: false
+          description: | 
+              If true, the transfer will be created in a validation pending state, indicating that the customer needs to confirm the outcome of their validations by calling [endpoint reference here] before the transfer can be completed.
         fields:
           type: array
           items:
