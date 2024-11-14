@@ -3763,7 +3763,7 @@ paths:
       tags:
         - Cards
       summary: Delete Card
-      description: Delete the Card
+      description: Delete the card so it cannot be used to create another transfer.
       operationId: deleteCard
       responses:
         '200':
@@ -4455,7 +4455,8 @@ components:
         expiryDate:
           type: string
           description: |
-            A 4 character string in the format MMYY.
+            A 4 character string in the format MMYY
+
             For MM, January is considered 01 and December is considered 12.
     createCardResponse:
       type: object
