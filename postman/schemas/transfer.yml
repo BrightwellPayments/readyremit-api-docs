@@ -3398,7 +3398,7 @@ components:
         cancellationReason:
           type: string
           description: Reason for canceling the transfer
-          example: "NO_RCV_LOC"
+          example: "CUSTOMER_HOLD"
         senderId:
           type: string
           description: The sender identifier associated with the transfer
