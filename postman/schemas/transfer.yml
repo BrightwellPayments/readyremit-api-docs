@@ -3040,18 +3040,13 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/response401"
-  "/transfers/{transferId}/validate":
+  "/transfers/{transferId}/release":
         patch:
           tags: 
            - Transfers
-          summary: Update transfer with customer validation results
-          description: This operation updates the transfer with the customer validation results.  To determine the status of the transfer after a successful request, call the Get Transfer or Get Transfer Statuses operation.
-          operationId: validateTransfer
-          requestBody:
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/validateTransferRequest"
+          summary: Release customer hold on transfer
+          description: This operation releases a customer hold on a transfer.  Other holds may exist.  To determine the status of the transfer after a successful request, call the Get Transfer or Get Transfer Statuses operation.
+          operationId: releaseTransfer
           responses:
             '200':
               description: Success
@@ -3508,11 +3503,11 @@ components:
         purposeOfRemittance:
           type: integer
           default: 1
-        validationPending:
+        customerHold:
           type: boolean
           default: false
           description: | 
-              If true, the transfer will be created in a validation pending state, indicating that the customer needs to confirm the outcome of their validations by calling [endpoint reference here] before the transfer can be completed.
+              If true, the customer has placed a hold on the transfer.  The customer must release the hold before the transfer can be completed.
         fields:
           type: array
           items:
@@ -3562,20 +3557,6 @@ components:
           type: array
           items:
             "$ref": "#/components/schemas/statusEntry"
-    validateTransferRequest:
-      type: object
-      properties:
-        validationStatus:
-          type: string
-          enum:
-          - Passed
-          - Failed
-          - Pending      
-          description: |
-              The result of the customer validation. 
-              If "Passed", the transfer has passed the customer validations. 
-              If "Failed", the transfer has failed the customer validations.
-              If "Pending", the transfer should wait for additional validation results from the customer.
     recipientTypes:
       type: string
       description: See [Recipient Type](https://developer.readyremit.com/reference/enum-types#recipient-type).
