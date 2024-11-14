@@ -3045,8 +3045,13 @@ paths:
           tags: 
            - Transfers
           summary: Release customer hold on transfer
-          description: This operation releases a customer hold on a transfer.  Other holds may exist.  To determine the status of the transfer after a successful request, call the Get Transfer or Get Transfer Statuses operation.
+          description: This operation releases a customer hold on a transfer.  Other holds may also exist.  To determine the status of the transfer after a successful request, call the Get Transfer or Get Transfer Statuses operation.
           operationId: releaseTransfer
+          requestBody:
+            content:
+              application/json:
+                schema:
+                  "$ref": "#/components/schemas/releaseTransferRequest"
           responses:
             '200':
               description: Success
@@ -3332,7 +3337,14 @@ components:
           example: "NO_RCV_LOC"
         senderId:
           type: string
-          description: The sender identifier to whom the transfer belongs
+          description: The sender identifier associated with the transfer
+          example: "9711fb4c-df97-49bd-ba03-78706761c23c"
+    releaseTransferRequest:
+      type: object
+      properties:
+        senderId:
+          type: string
+          description: The sender identifier associated with the transfer
           example: "9711fb4c-df97-49bd-ba03-78706761c23c"
     createCardOnboardingSessionRequest:
       type: object
