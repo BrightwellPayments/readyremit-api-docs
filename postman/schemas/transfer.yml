@@ -4462,6 +4462,7 @@ components:
       properties:
         id:
           type: string
+          description: The id used as a reference for the supplied card information. 
         personalName:
           type: string
         cardNumber:
@@ -4469,6 +4470,8 @@ components:
           description: A 12 character string made of eight * characters and the last 4 digits of the card number.
         expiryDate:
           type: string
+          description: This will return the expiration date in the format MM/YY.
+          example: January 2024 will return as 01/24
         cvv2:
           type: string
           description:  This will return *** if the CVV is required.  Otherwise it will not be supplied.
