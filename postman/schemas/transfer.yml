@@ -435,12 +435,12 @@ paths:
           type: string
           format: uuid
         description: The accountId for the specific account
-  "/accountHolders/{account_holder_id}/accounts":
+  "/accountHolders/{accountHolderId}/accounts":
     get:
       tags:
         - Accounts
       summary: Get Accounts By Account Holder
-      description: Get Accounts By Account Holder
+      description: Get the accounts associated with an `accountHolderId` (senderId)
       operationId: getAccountsByAccountHolder
       responses:
         '200':
@@ -671,7 +671,7 @@ paths:
               schema:
                 "$ref": "#/components/schemas/response401"
     parameters:
-      - name: account_holder_id
+      - name: accountHolderId
         in: path
         required: true
         schema:
@@ -4720,9 +4720,6 @@ components:
       default: SENDER
       enum:
       - SENDER
-      - RECIPIENT
-      - RECIPIENT_ACCOUNT
-      - TRANSFER
     createAccountAccountTypes:
       type: string
       description: See [Create Account Account Type](https://developer.readyremit.com/reference/enum-types#create-account-account-type).
