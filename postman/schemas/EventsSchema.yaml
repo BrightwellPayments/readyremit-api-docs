@@ -1,8 +1,10 @@
 openapi: 3.0.1
 info:
   title: Events
-  description: Export from "apim-rr-prod-centralus-001"
+  description: Import from "func-rr-events-dev-eastus-001" Function App
   version: '1.0'
+servers:
+  - url: https://api.readyremit.com/events
 paths:
   /:
     post:
@@ -10,7 +12,7 @@ paths:
       operationId: post-logevent
       responses:
         '200':
-          description: 
+          description:
 components:
   securitySchemes:
     apiKeyHeader:
@@ -22,5 +24,5 @@ components:
       name: subscription-key
       in: query
 security:
-  - apiKeyHeader: [ ]
-  - apiKeyQuery: [ ]
+  - apiKeyHeader: []
+  - apiKeyQuery: []
