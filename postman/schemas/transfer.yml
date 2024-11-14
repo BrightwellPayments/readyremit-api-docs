@@ -3763,7 +3763,7 @@ paths:
       tags:
         - Cards
       summary: Delete Card
-      description: Delete Card
+      description: Delete the Card
       operationId: deleteCard
       responses:
         '200':
@@ -4439,8 +4439,9 @@ components:
       required:
       - cardOnboardingSessionId
       - cardNumber
-      - expiryDate
-      - cvv2
+      description: |
+        Cvv2 and expiryDate are optional on this object, but may actually be required based on the data supplied when calling the 
+        [/card-onboarding-sessions] endpoint to start a card onboarding session.
       properties:
         cardOnboardingSessionId:
           type: string
@@ -4453,6 +4454,9 @@ components:
           type: string
         expiryDate:
           type: string
+          description: |
+            A 4 character string in the format MMYY.
+            For MM, January is considered 01 and December is considered 12.
     createCardResponse:
       type: object
       properties:
