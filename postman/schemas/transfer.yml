@@ -120,9 +120,15 @@ paths:
       tags:
         - Accounts
       summary: Create Account
-      description: This operation creates an account record.  An account record is used to specify a card from a card onboarding session that can be used for AFT (pull funds from the card) transfers.
+      description: This operation creates an account record.  An account record is used to specify a card from a card onboarding session that can be used for Account Funding Transaction (AFT) transfers (pull funds from a card).
       operationId: createAccount
       requestBody:
+        description: |
+          __NOTES:__
+          - __accountHolderId__: should be populated with the senderId this is being set up for.
+          - __fields__
+            - __CARD_ID__
+              - __value__: should be populated with the id of the card set up for the sender using the [/cards] endpoint.
         content:
           application/json:
             schema:
@@ -149,7 +155,8 @@ paths:
                     description: "The fields to be used are defined in the response from /account-fields"
                 name:
                   type: string
-                  example: Account test
+                  description: An identifier for the account record
+                  example: John Test Visa
             examples:
               Create Account:
                 value:
@@ -161,7 +168,7 @@ paths:
                     - id: CARD_ID
                       type: TEXT
                       value: 31543f78-879e-48bd-90d3-7473ead3d188
-                  name: Account test
+                  name: John Test Visa
       responses:
         '201':
           description: 201 - Create Account
