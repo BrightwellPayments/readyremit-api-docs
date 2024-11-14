@@ -3085,6 +3085,104 @@ paths:
                 application/json:
                   schema:
                     "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
+  "/transfers/{transferId}/cancel":
+    post:
+      tags:
+      - Transfers
+      summary: Cancel Transfer
+      description: This operation requests to cancel a transfer given the ID.
+      operationId: cancelTransfer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/cancelTransferRequest"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/transferResponse"
+              example:
+                transferId: d53d90ad-4de8-415d-8286-90c41853a3dd
+                confirmationNumber: 33TF041162650
+                quote:
+                  sendAmount:
+                    value: 100000
+                    currency:
+                      name: US Dollar
+                      iso3Code: USD
+                      symbol: "$"
+                      decimalPlaces: 2
+                  receiveAmount:
+                    value: 7445765
+                    currency:
+                      name: Indian rupee
+                      iso3Code: INR
+                      symbol: "₹"
+                      decimalPlaces: 2
+                  rate: 74.4576574896
+                  adjustments:
+                  - label: Transfer Fee
+                    amount:
+                      value: 879
+                      currency:
+                        name: US Dollar
+                        iso3Code: USD
+                        symbol: "$"
+                        decimalPlaces: 2
+                  totalCost:
+                    value: 100879
+                    currency:
+                      name: US Dollar
+                      iso3Code: USD
+                      symbol: "$"
+                      decimalPlaces: 2
+                  disclosures: []
+                senderDetails:
+                  senderId: 9711fb4c-df97-49bd-ba03-78706761c23c
+                  fields: []
+                recipientDetails:
+                  recipientId: 260d1f4f-4fe3-4620-a104-a25ae57b51c3
+                  senderId: 9711fb4c-df97-49bd-ba03-78706761c23c
+                  recipientType: PERSON
+                  firstName: Camilia
+                  lastName: Noceda
+                  fields:
+                  - id: LAST_NAME
+                    type: TEXT
+                    value: Noceda
+                  - id: FIRST_NAME
+                    type: TEXT
+                    value: Camilia
+                recipientAccountDetails:
+                  recipientAccountId": 236d76c2-8b0b-4eef-a28a-25353926ade9
+                  accountNumber": '333000333'
+                  fields:
+                  - id: BANK_NAME
+                    type: TEXT
+                    value: Baink
+                  disclaimers: []
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
+              example:
+              - code: NotEmptyValidator
+                message: "'Sender Id' is required."
+                fieldId: SenderId
+              - code: NotEmptyValidator
+                message: "'Cancellation reason' is required."
+                fieldId: cancellationReason
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"                
   "/cards":
     post:
       tags:
@@ -3230,6 +3328,17 @@ components:
               type: string
             locale:
               type: string
+    cancelTransferRequest:
+      type: object
+      properties:
+        cancellationReason:
+          type: string
+          description: Reason for canceling the transfer
+          example: "NO_RCV_LOC"
+        senderId:
+          type: string
+          description: The sender identifier to whom the transfer belongs
+          example: "9711fb4c-df97-49bd-ba03-78706761c23c"
     createCardOnboardingSessionRequest:
       type: object
       properties:
