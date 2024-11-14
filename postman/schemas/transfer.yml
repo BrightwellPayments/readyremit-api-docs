@@ -3040,6 +3040,51 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/response401"
+  "/transfers/{transferId}/validate":
+        patch:
+          tags: 
+           - Transfers
+          summary: Update transfer with customer validation results
+          description: This operation updates the transfer with the customer validation results.  To determine the status of the transfer after a successful request, call the Get Transfer or Get Transfer Statuses operation.
+          operationId: validateTransfer
+          requestBody:
+            content:
+              application/json:
+                schema:
+                  "$ref": "#/components/schemas/validateTransferRequest"
+          responses:
+            '200':
+              description: Success
+            '400':
+              description: Bad Request
+              content:
+                application/json:
+                  schema:
+                    "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
+            '401':
+              description: Unauthorized
+              content:
+                application/json:
+                  schema:
+                    "$ref": "#/components/schemas/response401"
+            '403':
+              description: Forbidden
+              content:
+                application/json:
+                  schema:
+                    "$ref": "#/components/schemas/codeMsgDescObjectArray"
+            '404':
+              description: Not Found
+              content:
+                application/json:
+                  schema:
+                    "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
+            '500':
+              description: Internal Server Error
+              content:
+                application/json:
+                  schema:
+                    "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
   "/cards":
     post:
       tags:
@@ -3408,6 +3453,20 @@ components:
           type: array
           items:
             "$ref": "#/components/schemas/statusEntry"
+    validateTransferRequest:
+      type: object
+      properties:
+        validationStatus:
+          type: string
+          enum:
+          - Passed
+          - Failed
+          - Pending      
+          description: |
+              The result of the customer validation. 
+              If "Passed", the transfer has passed the customer validations. 
+              If "Failed", the transfer has failed the customer validations.
+              If "Pending", the transfer should wait for additional validation results from the customer.
     recipientTypes:
       type: string
       description: See [Recipient Type](https://developer.readyremit.com/reference/enum-types#recipient-type).
