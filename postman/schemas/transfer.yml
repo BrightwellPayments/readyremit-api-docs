@@ -3040,6 +3040,172 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/response401"
+  "/transfers/{transferId}/cancel":
+    post:
+      tags:
+      - Transfers
+      summary: Cancel Transfer
+      description: Provides the ability to cancel a transfer that has been submitted for payment. 
+      operationId: cancelTransfer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/cancelTransferRequest"
+      parameters:
+      - name: transferId
+        in: path
+        description: The transfer identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/cancelTransferResponse"
+              example:
+                transferId: fcd3016b-8e44-4659-a582-754fb854c2f9
+                confirmationNumber: 33TF041162650
+                quote:
+                  customerId: 5b17d94b-a0e4-4e53-bcbd-679e37d9cde8
+                  senderId: dc7190f1-a0ab-466c-9fa2-6f04670b031c
+                  sendAmount:
+                    value: 100000
+                    currency:
+                      name: US Dollar
+                      iso3Code: USD
+                      symbol: "$"
+                      decimalPlaces: 2
+                      roundDirection: STANDARD
+                      iso4217Code: "840"
+                  receiveAmount:
+                    value: 7445765
+                    currency:
+                      name: Indian rupee
+                      iso3Code: INR
+                      symbol: "₹"
+                      decimalPlaces: 2
+                      roundDirection: STANDARD
+                      iso4217Code: "356"
+                  rate: 74.4576574896
+                  adjustments:
+                  - label: Transfer Fee
+                    amount:
+                      value: 879
+                      currency:
+                        name: US Dollar
+                        iso3Code: USD
+                        symbol: "$"
+                        decimalPlaces: 2
+                        roundDirection: STANDARD
+                        iso4217Code: "840"
+                  totalCost:
+                    value: 100879
+                    currency:
+                      name: US Dollar
+                      iso3Code: USD
+                      symbol: "$"
+                      decimalPlaces: 2
+                      roundDirection: STANDARD
+                      iso4217Code: "840"
+                  associatedTransferRecordStatus: Created
+                  destinationCountryISO3Code: IND
+                  destinationCurrencyISO3Code: INR
+                  sourceCurrencyIso3Code: USD
+                  destinationCountry: 
+                    name: India
+                    iso2Code: IN
+                    iso3Code: IND
+                    phoneCode: 91
+                  transferMethod: BANK_ACCOUNT
+                  deliverySLA: 
+                    id: FIVE_BUSINESS_DAYS
+                    name: "five business days"
+                  quoteHistoryId: b6e5b770-ff89-48d2-acaf-eb0e24888e8c
+                  disclosures: []
+                senderDetails:
+                  senderId: 9711fb4c-df97-49bd-ba03-78706761c23c
+                  senderType: PERSON
+                  firstName: Firstname
+                  lastName: Lastname
+                  customerId: 5b17d94b-a0e4-4e53-bcbd-679e37d9cde8
+                  kycStatus: SKIPPED
+                  customerFundingSource: PREFUNDING
+                  fields: 
+                  - id: LAST_NAME
+                    type: TEXT
+                    value: Lastname
+                  - id: FIRST_NAME
+                    type: TEXT
+                    value: Firstname
+                recipientDetails:
+                  recipientId: 260d1f4f-4fe3-4620-a104-a25ae57b51c3
+                  senderId: 9711fb4c-df97-49bd-ba03-78706761c23c
+                  recipientType: PERSON
+                  firstName: Camilia
+                  lastName: Noceda
+                  fields:
+                  - id: LAST_NAME
+                    type: TEXT
+                    value: Noceda
+                  - id: FIRST_NAME
+                    type: TEXT
+                    value: Camilia
+                recipientAccountDetails:
+                  recipientAccountId: 236d76c2-8b0b-4eef-a28a-25353926ade9
+                  dstCurrencyIso3Code: IND
+                  dstCountryIso3Code: INR
+                  transferMethod: BANK_ACCOUNT
+                  accountNumber: '*******0333'
+                  fields:
+                  - id: BANK_NAME
+                    type: TEXT
+                    value: Baink
+                  - id: BANK_ACCOUNT_NUMBER
+                    type: TEXT
+                    value: "*******0333"
+                disclaimers: []
+                createdAt: "2025-02-03T18:14:33.11012Z"
+                fields: 
+                - id: REMITTANCE_PURPOSE
+                  type: DROPDOWN
+                  value: "FAMILY MAINTENANCE"
+                customer: 
+                    name: "Customer Name"
+                    addressLine1: "California St. 0002"
+                    addressLine2: ""
+                    addressCity: "Los Angeles"
+                    addressState: "CA"
+                    addressCountry: "USA"
+                    addressZipCode: "150003"
+                    phoneNumber: "33335555584"
+                    website: "www.testsite.com"
+                dateAvailable: "2025-02-13T18:14:33.11012Z"
+                status: "Canceled"
+        
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response40XV2"
+              example:
+                code: TransferCancelIneligible
+                message: BadRequest
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response40XV2"
+              example:
+                code: Unauthorized
+                message: Unauthorized
   "/cards":
     post:
       tags:
@@ -3261,6 +3427,27 @@ components:
       type: array
       items:
         "$ref": "#/components/schemas/codeMsgFieldIdObject"
+    customer:
+      type: object
+      properties:
+        name:
+          type: string
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        addressCity:
+          type: string
+        addressState:
+          type: string
+        addressCountry:
+          type: string
+        addressZipCode:
+          type: string
+        phoneNumber:
+          type: string
+        website:
+          type: string
     idNameObject:
       required:
       - id
@@ -3289,6 +3476,13 @@ components:
           description:
             type: string
             default: Unauthorized
+    response40XV2:
+        type: object
+        properties:
+          code:
+            type: string
+          message:
+            type: string
     threeUppercaseChars:
       maxLength: 3
       minLength: 3
@@ -3465,6 +3659,18 @@ components:
           minLength: 3
           pattern: "^[A-Z]{3}$"
           type: string
+    countryV2:
+      allOf:
+        - "$ref": "#/components/schemas/country"
+      type: object
+      properties:
+        iso2Code:
+          maxLength: 2
+          minLength: 2
+          pattern: "^[A-Z]{2}$"
+          type: string
+        phoneCode:
+          type: number
     currency:
       required:
       - decimalPlaces
@@ -3487,6 +3693,22 @@ components:
           maximum: 3
           minimum: 0
           type: integer
+    currencyV2:
+      allOf:
+        - "$ref": "#/components/schemas/currency"
+      type: object
+      properties:
+        roundDirection:
+          type: string
+          enum:
+            - UP
+            - DOWN
+            - STANDARD
+        iso4217Code:
+          type: string
+          maxLength: 3
+          minLength: 3
+          pattern: "^[0-9]{3}$"
     corridor:
       required:
       - iso3Code
@@ -3509,6 +3731,13 @@ components:
           type: integer
         currency:
           "$ref": "#/components/schemas/currency"
+    moneyV2:
+      allOf:
+        - "$ref": "#/components/schemas/money"
+      type: object
+      properties:
+        currency:
+          "$ref": "#/components/schemas/currencyV2"
     adjustment:
       required:
       - amount
@@ -3519,6 +3748,15 @@ components:
           type: string
         amount:
           "$ref": "#/components/schemas/money"
+    adjustmentV2:
+      allOf:
+        - "$ref": "#/components/schemas/adjustment"
+      type: object
+      properties:
+        id:
+          type: string
+        amount:
+          "$ref": "#/components/schemas/moneyV2"
     getQuoteResponse200:
       required:
       - adjustments
@@ -3545,6 +3783,58 @@ components:
           type: array
           items:
             type: string
+    getQuoteResponse200V2:
+      allOf:
+          - "$ref": "#/components/schemas/getQuoteResponse200"
+      type: object
+      properties:
+        customerId:
+            type: string
+            format: uuid
+        senderId:
+            type: string
+            format: uuid
+        sendAmount:
+          "$ref": "#/components/schemas/moneyV2"
+        receiveAmount:
+          "$ref": "#/components/schemas/moneyV2"
+        adjustments:
+          type: array
+          items:
+            "$ref": "#/components/schemas/adjustmentV2"
+        totalCost:
+          "$ref": "#/components/schemas/moneyV2"
+        associatedTransferRecordStatus:
+          type: string
+        destinationCountryISO3Code:
+          maxLength: 3
+          minLength: 3
+          pattern: "^[A-Z]{3}$"
+          type: string
+        destinationCurrencyISO3Code:
+          maxLength: 3
+          minLength: 3
+          pattern: "^[A-Z]{3}$"
+          type: string
+        sourceCurrencyIso3Code:
+          maxLength: 3
+          minLength: 3
+          pattern: "^[A-Z]{3}$"
+          type: string
+        destinationCountry:
+          "$ref": "#/components/schemas/countryV2"
+        transferMethod:
+          "$ref": "#/components/schemas/transferMethods"
+        deliverySLA:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+        quoteHistoryId:
+            type: string
+            format: uuid
     fieldSet:
       required:
       - fields
@@ -3644,6 +3934,13 @@ components:
                 minLength: 3
                 pattern: "^[A-Z]{3}$"
                 type: string
+    fieldValueV2:
+      allOf:
+        - "$ref": "#/components/schemas/fieldValue"
+      type: object
+      properties:
+        name:
+          type: string
     sender:
       type: object
       properties:
@@ -3678,6 +3975,17 @@ components:
           type: array
           items:
             "$ref": "#/components/schemas/fieldValue"
+    recipientV2:
+      allOf:
+        - "$ref": "#/components/schemas/recipient"
+      type: object
+      properties:
+        recipientType:
+          "$ref": "#/components/schemas/recipientTypes"
+        fields:
+          type: array
+          items:
+            "$ref": "#/components/schemas/fieldValueV2"
     recipientAccount:
       type: object
       properties:
@@ -3689,6 +3997,21 @@ components:
           type: array
           items:
             "$ref": "#/components/schemas/fieldValue"
+    recipientAccountV2:
+      allOf:
+          - "$ref": "#/components/schemas/recipientAccount"
+      type: object
+      properties:
+        dstCurrencyIso3Code:
+          type: string
+        dstCountryIso3Code:
+          type: string
+        transferMethods:
+          "$ref": "#/components/schemas/transferMethods"
+        fields:
+          type: array
+          items:
+            "$ref": "#/components/schemas/fieldValueV2"   
     getTransferFieldsResponse200:
       type: object
       properties:
@@ -3727,6 +4050,28 @@ components:
           items:
             "$ref": "#/components/schemas/textField"
       example:
+    transferResponse_senderDetailsV2:
+      allOf:
+        - "$ref": "#/components/schemas/transferResponse_senderDetails"
+      type: object
+      properties:
+        senderType:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        customerId:
+          type: string
+          format: uuid
+        kycStatus:
+          type: string
+        customerFundingSource:
+          type: string
+        fields:
+          type: array
+          items:
+            "$ref": "#/components/schemas/fieldValueV2"
     payerLocation:
       required:
       - id
@@ -3751,6 +4096,61 @@ components:
         changedDate:
           type: string
           format: date-time
+    cancelTransferRequest:
+      type: object
+      properties:
+        cancellationReason:
+          type: string
+          enum:
+            - NO_RCV_LOC
+            - WRONG_SERVICE
+            - INCORRECT_AMT
+            - DUP_TRAN
+            - STATE_CNTRY_REST
+            - PROB_AT_LOC
+            - WRONG_STATE
+            - WRONG_CNTRY
+            - WRONG_CRNCY
+            - TECH_PROB
+            - CHANGE_MIND
+        senderId:
+          type: string
+          format: uuid        
+    cancelTransferResponse:
+      type: object
+      properties:
+        transferId:
+          type: string
+          format: uuid
+        confirmationNumber:
+          type: string
+        quote:
+          "$ref": "#/components/schemas/getQuoteResponse200V2"
+        senderDetails:
+          "$ref": "#/components/schemas/transferResponse_senderDetailsV2"
+        recipientDetails:
+          "$ref": "#/components/schemas/recipientV2"
+        recipientAccountDetails:
+          "$ref": "#/components/schemas/recipientAccountV2"
+        disclaimers:
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+        fields:
+          type: array
+          items:
+            "$ref": "#/components/schemas/fieldValueV2"
+        customer:
+          type: object
+          "$ref": "#/components/schemas/customer"
+        dateAvailable:
+          type: string
+          format: date-time
+        status:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http
