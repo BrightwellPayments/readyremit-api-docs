@@ -3040,6 +3040,156 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/response401"
+  "/transfers/{transferId}/customer-hold/release":
+                  post:
+                    tags:
+                    - Transfers
+                    summary: Release Customer Hold
+                    description: This operation releases a customer hold on a transfer.
+                    operationId: releaseCustomerHold
+                    parameters:
+                    - name: transferId
+                      in: path
+                      description: The transfer identifier
+                      required: true
+                      style: simple
+                      explode: false
+                      schema:
+                        type: object
+                        properties:
+                          comment:
+                            type: string
+                            description: The comment for the release
+                    responses:
+                      '200':
+                        description: OK
+                        headers:
+                          Content-Type:
+                            schema:
+                              type: string
+                              example: application/json
+                        content:
+                          application/json:
+                            schema:
+                              "$ref": "#/components/schemas/transferResponse"
+                      '400':
+                        description: Bad Request
+                        headers:
+                          Content-Type:
+                            schema:
+                              type: string
+                              example: application/json
+                        content:
+                          application/json:
+                            schema:
+                              type: object
+                      '401':
+                        description: Unauthorized
+                        headers:
+                          Content-Type:
+                            schema:
+                              type: string
+                              example: application/json
+                        content:
+                          application/json:
+                            schema:
+                              type: object
+                            example:
+                              code: '000'
+                              message: Something went wrong!
+                              description: Unauthorized        
+                      '500':
+                        description: Internal Server Error
+                        headers:
+                          Content-Type:
+                            schema:
+                              type: string
+                              example: application/json
+                        content:
+                          application/json:
+                            schema:
+                              "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
+                            example:
+                            - code: '000'
+                              message: Something went wrong!
+                              description: One or more errors occurred.
+                              type: string
+                              example: application/json      
+                "/transfers/{transferId}/customer-hold/cancel":
+                  post:
+                    tags:
+                    - Transfers
+                    summary: Cancel transfer in Customer Hold
+                    description: This operation cancels a transfer with a customer hold.
+                    operationId: cancelCustomerHold
+                    parameters:
+                    - name: transferId
+                      in: path
+                      description: The transfer identifier
+                      required: true
+                      style: simple
+                      explode: false
+                      schema:
+                        type: object
+                        properties:
+                          comment:
+                            type: string
+                            description: The comment for the cancelation
+                    responses:
+                      '200':
+                        description: OK
+                        headers:
+                          Content-Type:
+                            schema:
+                              type: string
+                              example: application/json
+                        content:
+                          application/json:
+                            schema:
+                              "$ref": "#/components/schemas/transferResponse"
+                      '400':
+                        description: Bad Request
+                        headers:
+                          Content-Type:
+                            schema:
+                              type: string
+                              example: application/json
+                        content:
+                          application/json:
+                            schema:
+                              type: object
+                      '401':
+                        description: Unauthorized
+                        headers:
+                          Content-Type:
+                            schema:
+                              type: string
+                              example: application/json
+                        content:
+                          application/json:
+                            schema:
+                              type: object
+                            example:
+                              code: '000'
+                              message: Something went wrong!
+                              description: Unauthorized        
+                      '500':
+                        description: Internal Server Error
+                        headers:
+                          Content-Type:
+                            schema:
+                              type: string
+                              example: application/json
+                        content:
+                          application/json:
+                            schema:
+                              "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
+                            example:
+                            - code: '000'
+                              message: Something went wrong!
+                              description: One or more errors occurred.
+                              type: string
+                              example: application/json
   "/cards":
     post:
       tags:
@@ -3354,6 +3504,9 @@ components:
         purposeOfRemittance:
           type: integer
           default: 1
+        customerHold:
+          type: boolean
+          default: false
         fields:
           type: array
           items:
