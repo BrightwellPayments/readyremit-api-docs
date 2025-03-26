@@ -24,4 +24,4 @@ jobs:
         # Docs: https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#example-using-versioned-actions
         uses: readmeio/rdme@v8
         with:
-          rdme: openapi postman/schemas/transfer.yml --key=${{ secrets.README_API_KEY }} --id=64e78fe5090fe300733e94fc --version=${{ env.VERSION }}
+          rdme: openapi postman/schemas/transfer.yml --key=${{ secrets.README_API_KEY }} --version=${{ env.VERSION }}
