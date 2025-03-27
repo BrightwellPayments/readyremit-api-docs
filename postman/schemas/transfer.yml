@@ -5956,6 +5956,151 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
+  "/transfers/{transferId}/customer-hold/release":
+    post:
+      tags:
+      - Transfers
+      summary: Release Customer Hold
+      description: This operation releases a customer hold on a transfer if one was set during the transfer creation.  A success response indicates that the request was validated and recorded.  Note that other holds may still exist.
+      operationId: releaseCustomerHold
+      parameters:
+      - name: transferId
+        in: path
+        description: The transfer identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: object
+          properties: {}
+      responses:
+        '202':
+          description: Accepted
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                code: '000'
+                message: Something went wrong!
+                description: Unauthorized        
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
+              example:
+              - code: '000'
+                message: Something went wrong!
+                description: One or more errors occurred.
+                type: string
+                example: application/json      
+  "/transfers/{transferId}/customer-hold/cancel":
+    post:
+      tags:
+      - Transfers
+      summary: Cancel transfer in Customer Hold
+      description: This operation cancels a transfer currently under a customer hold.  A success response indicates that the request was validated and recorded.
+      operationId: cancelCustomerHold
+      parameters:
+      - name: transferId
+        in: path
+        description: The transfer identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: object
+          properties: {}
+      responses:
+        '202':
+          description: Accepted
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                code: '000'
+                message: Something went wrong!
+                description: Unauthorized        
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
+              example:
+              - code: '000'
+                message: Something went wrong!
+                description: One or more errors occurred.
+                type: string              
   "/cards":
     post:
       tags:
@@ -6793,6 +6938,12 @@ components:
           description:  >
             The purpose of the remittance. This field specifies the reason for the transfer, such as family maintenance, education, or medical expenses. It helps in categorizing and managing the transfer.
             Example: 1
+        customerHold:
+          type: boolean
+          default: false
+          description: >
+            Indicates whether to immediately place a customer hold on the transfer. If true, the transfer will be placed on hold and will not be processed until the hold is released.
+            Example: false
         fields:
           type: array
           description: >
