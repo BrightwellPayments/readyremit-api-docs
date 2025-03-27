@@ -5903,6 +5903,54 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/response401"
+  "/transfers/{transferId}/receipt":
+    get:
+      tags:
+      - Transfers
+      summary: Get Transfer Receipt
+      description: This operation retrieves the receipt for a specific transfer based on the provided transfer ID.  The receipt is a PDF document that contains the details of the transfer.  It should be displayed to the user and be available to download.
+      operationId: getTransferReceipt
+      parameters:
+      - name: transferId
+        in: path
+        description: The transfer identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The transfer receipt was successfully retrieved.
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: The request was invalid. This response typically occurs if the `transferId` parameter is missing or invalid.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgFieldIdObject"
+        '401':
+          description: The request requires user authentication. This response occurs if the authentication token is missing or invalid.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"
+        '404':
+          description: The transfer receipt could not be retrieved. This response occurs if the `transferId` does not match any existing records.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"                
   "/transfers/{transferId}/statuses":
     get:
       tags:
