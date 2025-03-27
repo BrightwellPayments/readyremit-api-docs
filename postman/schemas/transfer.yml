@@ -6012,6 +6012,12 @@ paths:
                 code: '000'
                 message: Something went wrong!
                 description: Unauthorized        
+        '404':
+          description: The transfer could not be found. This response occurs if the `transferId` does not match any existing records.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
         '500':
           description: Internal Server Error
           headers:
@@ -6085,6 +6091,13 @@ paths:
                 code: '000'
                 message: Something went wrong!
                 description: Unauthorized        
+        '404':
+          description: The transfer could not be found. This response occurs if the `transferId` does not match any existing records.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
+
         '500':
           description: Internal Server Error
           headers:
