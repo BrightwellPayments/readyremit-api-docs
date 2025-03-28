@@ -6004,6 +6004,114 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
+  "/transfers/{transferId}/customer-hold/release":
+    post:
+      tags:
+      - Transfers
+      summary: Release Customer Hold
+      description: This operation releases a customer hold on a transfer if one was set during the transfer creation.  A success response indicates that the request was validated and recorded.  Note that other holds may still exist.
+      operationId: releaseCustomerHold
+      parameters:
+      - name: transferId
+        in: path
+        description: The transfer identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: object
+          properties: {}
+      responses:
+        '202':
+          description: Accepted
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: The request was invalid. This response typically occurs if the `transferId` parameter is missing or invalid.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgFieldIdObject"
+        '401':
+          description: The request requires user authentication. This response occurs if the authentication token is missing or invalid.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"
+        '404':
+          description: The transfer could not be found. This response occurs if the `transferId` does not match any existing records.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"    
+  "/transfers/{transferId}/customer-hold/cancel":
+    post:
+      tags:
+      - Transfers
+      summary: Cancel transfer in Customer Hold
+      description: This operation cancels a transfer currently under a customer hold.  A success response indicates that the request was validated and recorded.
+      operationId: cancelCustomerHold
+      parameters:
+      - name: transferId
+        in: path
+        description: The transfer identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: object
+          properties: {}
+      responses:
+        '202':
+          description: Accepted
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: The request was invalid. This response typically occurs if the `transferId` parameter is missing or invalid.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgFieldIdObject"
+        '401':
+          description: The request requires user authentication. This response occurs if the authentication token is missing or invalid.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"
+        '404':
+          description: The transfer could not be found. This response occurs if the `transferId` does not match any existing records.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"                
   "/cards":
     post:
       tags:
@@ -6841,6 +6949,12 @@ components:
           description:  >
             The purpose of the remittance. This field specifies the reason for the transfer, such as family maintenance, education, or medical expenses. It helps in categorizing and managing the transfer.
             Example: 1
+        customerHold:
+          type: boolean
+          default: false
+          description: >
+            Controls whether to place a customer initiated hold on the transfer. If set to true, the transfer will be created in a held state and will not be processed until this hold is explicitly released. Note that transfers may also be subject to additional system-initiated holds independent of this setting. All holds (both customer-initiated and system-initiated) must be released before the transfer will be processed.
+            Example: false
         fields:
           type: array
           description: >
