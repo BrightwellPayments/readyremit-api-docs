@@ -5903,6 +5903,211 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/response401"
+  "/transfers/{transferId}/cancel":
+    post:
+      tags:
+      - Transfers
+      summary: Cancel Transfer
+      description: Provides the ability to cancel a transfer that has been submitted for payment. 
+      operationId: cancelTransfer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/cancelTransferRequest"
+      parameters:
+      - name: transferId
+        in: path
+        description: The transfer identifier
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/transferResponse"
+              example:
+                transferId: "5fb33fb8-6bb5-481b-882e-be754162bd68"
+                confirmationNumber: "33TF025057483"
+                quote:
+                  customerId: "9ce909de-f585-4233-bdc5-fdc42cbfd7c4"
+                  senderId: "2f14254c-7433-408d-9007-ff279b2b06cd"
+                  sendAmount:
+                    value: 3055
+                    currency:
+                      name: "US Dollar"
+                      iso3Code: "USD"
+                      symbol: "$"
+                      decimalPlaces: 2
+                      roundDirection: "STANDARD"
+                      iso4217Code: "840"
+                  receiveAmount:
+                    value: 62175
+                    currency:
+                      name: "Mexican peso"
+                      iso3Code: "MXN"
+                      symbol: "$"
+                      decimalPlaces: 2
+                      roundDirection: "STANDARD"
+                      iso4217Code: "484"
+                  rate: 20.3519
+                  adjustments:
+                    - id: "TransferFee"
+                      label: "Transfer Fee"
+                      amount:
+                        value: 499
+                        currency:
+                          name: "US Dollar"
+                          iso3Code: "USD"
+                          symbol: "$"
+                          decimalPlaces: 2
+                          roundDirection: "STANDARD"
+                          iso4217Code: "840"
+                  totalCost:
+                    value: 3554
+                    currency:
+                      name: "US Dollar"
+                      iso3Code: "USD"
+                      symbol: "$"
+                      decimalPlaces: 2
+                      roundDirection: "STANDARD"
+                      iso4217Code: "840"
+                  associatedTransferRecordStatus: "NotInProgress"
+                  destinationCountryISO3Code: "MEX"
+                  destinationCurrencyISO3Code: "MXN"
+                  sourceCurrencyIso3Code: "USD"
+                  destinationCountry:
+                    name: "Mexico"
+                    iso2Code: "MX"
+                    iso3Code: "MEX"
+                    phoneCode: 52
+                  transferMethod: "BANK_ACCOUNT"
+                  rsp: "Remittance Service Provider"
+                  disclosures: []
+                  deliverySLA:
+                    id: "SAME_BUSINESS_DAY"
+                    name: "Same Business Day"
+                senderDetails:
+                  senderId: "2f14254c-7433-408d-9007-ff279b2b06cd"
+                  senderType: "PERSON"
+                  firstName: "Peter"
+                  lastName: "Bradford"
+                  customerId: "9ce909de-f585-4233-bdc5-fdc42cbfd7c4"
+                  kycStatus: "SKIPPED"
+                  customerFundingSource: "PREFUNDING"
+                  fields:
+                    - id: "FIRST_NAME"
+                      name: "Legal first name"
+                      type: "TEXT"
+                      value: "Peter"
+                    - id: "LAST_NAME"
+                      name: "Legal last name"
+                      type: "TEXT"
+                      value: "Bradford"
+                    - id: "ADDRESS_LINE_1"
+                      name: "Address line 1"
+                      type: "TEXT"
+                      value: "Asd Kas"
+                    - id: "ADDRESS_STATE"
+                      name: "State"
+                      type: "DROPDOWN"
+                      value: "MN"
+                    - id: "ADDRESS_CITY"
+                      name: "City"
+                      type: "TEXT"
+                      value: "Cohasset"
+                    - id: "ADDRESS_ZIP"
+                      name: "Zip code"
+                      type: "TEXT"
+                      value: "55721"
+                    - id: "ADDRESS_COUNTRY"
+                      name: "Country"
+                      type: "DROPDOWN"
+                      value: "USA"
+                    - id: "PHONE_NUMBER"
+                      name: "Phone number"
+                      type: "PHONE_NUMBER"
+                      value:
+                        number: "14045558888"
+                        countryIso3Code: "USA"
+                        countryPhoneCode: 1
+                    - id: "ID_TYPE"
+                      name: "ID type"
+                      type: "DROPDOWN"
+                      value: "SSN"
+                    - id: "EMAIL_ADDRESS"
+                      name: "Email"
+                      type: "TEXT"
+                      value: "geneva.mcintosh2009@example.com"
+                recipientDetails:
+                  recipientId: "51e93d0c-1a6f-4474-a8a7-93ed8b2aa06f"
+                  senderId: "2f14254c-7433-408d-9007-ff279b2b06cd"
+                  recipientType: "PERSON"
+                  firstName: "Mex"
+                  lastName: "Bank"
+                  fields:
+                    - id: "FIRST_NAME"
+                      name: "First name"
+                      type: "TEXT"
+                      value: "Mex"
+                    - id: "LAST_NAME"
+                      name: "Last name"
+                      type: "TEXT"
+                      value: "Bank"
+                    - id: "SECOND_LAST_NAME"
+                      name: "Second last name"
+                      type: "TEXT"
+                      value: "Account"
+                    - id: "ADDRESS_COUNTRY"
+                      name: "Country"
+                      type: "DROPDOWN"
+                      value: "MEX"
+                    - id: "PHONE_NUMBER"
+                      name: "Mobile phone number"
+                      type: "PHONE_NUMBER"
+                      value:
+                        number: "14045558888"
+                        countryIso3Code: "MEX"
+                        countryPhoneCode: 52
+                recipientAccountDetails:
+                  dstCurrencyIso3Code: "MXN"
+                  dstCountryIso3Code: "MEX"
+                  transferMethod: "BANK_ACCOUNT"
+                  recipientAccountId: "10dc1426-e726-40cc-8a20-93765f2c2048"
+                  accountNumber: "**************4567"
+                  fields:
+                    - id: "BANK"
+                      name: "Bank name"
+                      type: "DROPDOWN"
+                      value: "ME1"
+                    - id: "BANK_NAME"
+                      name: "Bank name"
+                      type: "TEXT"
+                      value: "BBVA BANCOMER SA"
+                    - id: "BANK_ACCOUNT_NUMBER"
+                      name: "CLABE"
+                      type: "TEXT"
+                      value: "**************4567"
+                disclaimers: []
+                createdAt: "2025-02-13T21:46:37.5005701Z"
+                fields: []
+                customer:
+                  name: "Customer Name"
+                  addressLine1: "100 Main Street"
+                  addressLine2: ""
+                  addressCity: "Pembroke Pine"
+                  addressState: "GA"
+                  addressCountry: "USA"
+                  addressZipCode: "11100"
+                  phoneNumber: "1-833-000-5768"
+                  website: "www.customerwebsite.com"
+                dateAvailable: "2025-02-17T21:46:37.5005701Z"
+                status: "Canceled"                
   "/transfers/{transferId}/receipt":
     get:
       tags:
@@ -6914,6 +7119,26 @@ components:
                 type: string
                 format: date-time
                 description: "The date and time when the status change occurred. Example: '2022-09-16T01:41:02.520258Z'"
+    cancelTransferRequest:
+      type: object
+      properties:
+        cancellationReason:
+          type: string
+          enum:
+            - NO_RCV_LOC
+            - WRONG_SERVICE
+            - INCORRECT_AMT
+            - DUP_TRAN
+            - STATE_CNTRY_REST
+            - PROB_AT_LOC
+            - WRONG_STATE
+            - WRONG_CNTRY
+            - WRONG_CRNCY
+            - TECH_PROB
+            - CHANGE_MIND
+        senderId:
+          type: string
+          format: uuid                
     recipientTypes:
       type: string
       description: The type of recipient. See [Recipient Type](https://developer.readyremit.com/reference/enum-types#recipient-type).
