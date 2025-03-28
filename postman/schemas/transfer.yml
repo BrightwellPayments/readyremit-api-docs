@@ -6035,31 +6035,17 @@ paths:
                 type: object
                 properties: {}
         '400':
-          description: Bad Request
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
+          description: The request was invalid. This response typically occurs if the `transferId` parameter is missing or invalid.
           content:
             application/json:
               schema:
-                type: object
+                "$ref": "#/components/schemas/codeMsgFieldIdObject"
         '401':
-          description: Unauthorized
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
+          description: The request requires user authentication. This response occurs if the authentication token is missing or invalid.
           content:
             application/json:
               schema:
-                type: object
-              example:
-                code: '000'
-                message: Something went wrong!
-                description: Unauthorized        
+                "$ref": "#/components/schemas/response401"
         '404':
           description: The transfer could not be found. This response occurs if the `transferId` does not match any existing records.
           content:
@@ -6068,21 +6054,10 @@ paths:
                 "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
         '500':
           description: Internal Server Error
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
-              example:
-              - code: '000'
-                message: Something went wrong!
-                description: One or more errors occurred.
-                type: string
-                example: application/json      
+                "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"    
   "/transfers/{transferId}/customer-hold/cancel":
     post:
       tags:
@@ -6114,54 +6089,29 @@ paths:
                 type: object
                 properties: {}
         '400':
-          description: Bad Request
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
+          description: The request was invalid. This response typically occurs if the `transferId` parameter is missing or invalid.
           content:
             application/json:
               schema:
-                type: object
+                "$ref": "#/components/schemas/codeMsgFieldIdObject"
         '401':
-          description: Unauthorized
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
+          description: The request requires user authentication. This response occurs if the authentication token is missing or invalid.
           content:
             application/json:
               schema:
-                type: object
-              example:
-                code: '000'
-                message: Something went wrong!
-                description: Unauthorized        
+                "$ref": "#/components/schemas/response401"
         '404':
           description: The transfer could not be found. This response occurs if the `transferId` does not match any existing records.
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
-
         '500':
           description: Internal Server Error
-          headers:
-            Content-Type:
-              schema:
-                type: string
-                example: application/json
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
-              example:
-              - code: '000'
-                message: Something went wrong!
-                description: One or more errors occurred.
-                type: string              
+                "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"                
   "/cards":
     post:
       tags:
@@ -7003,7 +6953,7 @@ components:
           type: boolean
           default: false
           description: >
-            Indicates whether to immediately place a customer hold on the transfer. If true, the transfer will be placed on hold and will not be processed until the hold is released.
+            Controls whether to place a customer initiated hold on the transfer. If set to true, the transfer will be created in a held state and will not be processed until this hold is explicitly released. Note that transfers may also be subject to additional system-initiated holds independent of this setting. All holds (both customer-initiated and system-initiated) must be released before the transfer will be processed.
             Example: false
         fields:
           type: array
