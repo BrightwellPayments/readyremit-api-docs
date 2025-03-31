@@ -5908,7 +5908,7 @@ paths:
       tags:
       - Transfers
       summary: Cancel Transfer
-      description: Provides the ability to cancel a transfer that has been submitted for payment. 
+      description: Provides the ability for a user to request the cancelation of a transfer, if available.  The system limits the availability of this option based on a number of factors.
       operationId: cancelTransfer
       requestBody:
         content:
