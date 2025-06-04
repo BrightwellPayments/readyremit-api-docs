@@ -10,21 +10,21 @@ paths:
       operationId: get-getbanksasync-get
       responses:
         '200':
-          description: 
+          description: ''
   /countries-and-currencies:
     get:
       summary: GetCurrenciesAsync_get
       operationId: get-getcurrenciesasync-get
       responses:
         '200':
-          description: 
+          description: ''
   /senders:
     post:
       summary: PostSenderAsync_post
       operationId: post-postsenderasync-post
       responses:
         '200':
-          description: 
+          description: ''
   '/recipients/{id}/accounts/{accountId}':
     put:
       summary: PutRecipientAccountAsync_put
@@ -42,7 +42,7 @@ paths:
             type: string
       responses:
         '200':
-          description: 
+          description: ''
     delete:
       summary: DeleteRecipientAccountAsync_delete
       operationId: delete-deleterecipientaccountasync-delete
@@ -59,7 +59,7 @@ paths:
             type: string
       responses:
         '200':
-          description: 
+          description: ''
     get:
       summary: GetRecipientAccountAsync_get
       operationId: get-getrecipientaccountasync-get
@@ -76,20 +76,20 @@ paths:
             type: string
       responses:
         '200':
-          description: 
+          description: ''
   /sender-fields:
     post:
       summary: PostSenderFieldsAsync_post
       operationId: post-postsenderfieldsasync-post
       responses:
         '200':
-          description: 
+          description: ''
     get:
       summary: GetSenderFieldsAsync_get
       operationId: getsenderfieldsasync-get
       responses:
         '200':
-          description: 
+          description: ''
   '/banks/{bankId}/branches':
     get:
       summary: GetBankBranchesAsync_get
@@ -102,7 +102,7 @@ paths:
             type: ''
       responses:
         '200':
-          description: 
+          description: ''
   '/senders/{id}':
     delete:
       summary: DeleteSenderAsync_delete
@@ -115,7 +115,7 @@ paths:
             type: string
       responses:
         '200':
-          description: 
+          description: ''
     put:
       summary: PutSenderAsync_put
       operationId: put-putsenderasync-put
@@ -127,7 +127,7 @@ paths:
             type: string
       responses:
         '200':
-          description: 
+          description: ''
     get:
       summary: GetSenderAsync_get
       operationId: getsenderasync-get
@@ -139,7 +139,7 @@ paths:
             type: ''
       responses:
         '200':
-          description: 
+          description: ''
     patch:
       summary: PatchSenderAsync_patch
       operationId: patchsenderasync-patch
@@ -151,14 +151,14 @@ paths:
             type: ''
       responses:
         '200':
-          description: 
+          description: ''
   /transfers:
     post:
       summary: PostTransferAsync_post
       operationId: post-posttransferasync-post
       responses:
         '200':
-          description: 
+          description: ''
     get:
       summary: GetTransfers
       description: GetTransfers
@@ -172,33 +172,33 @@ paths:
       operationId: get-getuserasync-get
       responses:
         '200':
-          description: 
+          description: ''
   /recipient-account-fields:
     post:
       summary: PostRecipientAccountFieldsAsync_post
       operationId: post-postrecipientaccountfieldsasync-post
       responses:
         '200':
-          description: 
+          description: ''
     get:
       summary: GetRecipientAccountFields_get
       operationId: get-getrecipientaccountfields-get
       responses:
         '200':
-          description: 
+          description: ''
   /recipients:
     post:
       summary: PostRecipientAsync_post
       operationId: post-postrecipientasync-post
       responses:
         '200':
-          description: 
+          description: ''
     get:
       summary: GetRecipientsBySenderAsync_get
       operationId: get-getrecipientsbysenderasync-get
       responses:
         '200':
-          description: 
+          description: ''
   '/recipients/{id}':
     put:
       summary: PutRecipientAsync_put
@@ -211,7 +211,7 @@ paths:
             type: string
       responses:
         '200':
-          description: 
+          description: ''
     delete:
       summary: DeleteRecipientAsync_delete
       operationId: delete-deleterecipientasync-delete
@@ -223,7 +223,7 @@ paths:
             type: string
       responses:
         '200':
-          description: 
+          description: ''
     get:
       summary: GetRecipientAsync_get
       operationId: get-getrecipientasync-get
@@ -235,7 +235,7 @@ paths:
             type: string
       responses:
         '200':
-          description: 
+          description: ''
   '/recipients/{id}/accounts':
     post:
       summary: PostRecipientAccountAsync_post
@@ -248,7 +248,7 @@ paths:
             type: string
       responses:
         '200':
-          description: 
+          description: ''
     get:
       summary: GetRecipientsAccountsByRecipientAsync_get
       operationId: get-getrecipientsaccountsbyrecipientasync-get
@@ -260,70 +260,70 @@ paths:
             type: string
       responses:
         '200':
-          description: 
+          description: ''
   /recipient-fields:
     get:
       summary: GetRecipientFieldsAsync_get
       operationId: get-getrecipientfieldsasync-get
       responses:
         '200':
-          description: 
+          description: ''
   /transfer-fields:
     get:
       summary: GetTransferFields_get
       operationId: get-gettransferfields-get
       responses:
         '200':
-          description: 
+          description: ''
   /quote:
     get:
       summary: GetQuotesAsync_get
       operationId: get-getquotesasync-get
       responses:
         '200':
-          description: 
+          description: ''
   /health:
     get:
       summary: GetHealthAsync_get
       operationId: get-gethealthasync-get
       responses:
         '200':
-          description: 
+          description: ''
   /ping:
     get:
       summary: GetPing_get
       operationId: get-getping-get
       responses:
         '200':
-          description: 
+          description: ''
   /oauth/token:
     post:
       summary: Token
       operationId: token
       responses:
         '200':
-          description: 
+          description: ''
   /countries:
     get:
       summary: GetCountriesAsync_get
       operationId: getcountriesasync-get
       responses:
         '200':
-          description: 
+          description: ''
   /corridors:
     get:
       summary: GetCorridorsAsync_get
       operationId: getcorridorsasync-get
       responses:
         '200':
-          description: 
+          description: ''
   /recipients-with-accounts:
     get:
       summary: GetRecipientsWithAccountsAsync_get
       operationId: getrecipientswithaccountsasync-get
       responses:
         '200':
-          description: 
+          description: ''
   '/transfers/{id}':
     get:
       summary: GetTransferAsync_get
@@ -336,21 +336,21 @@ paths:
             type: ''
       responses:
         '200':
-          description: 
+          description: ''
   /balance-starting:
     get:
       summary: GetStartingBalanceAsync_get
       operationId: 62e17bcf73899436eb1f9a01
       responses:
         '200':
-          description: 
+          description: ''
   /balance-intermittance:
     get:
       summary: GetIntermittanceBalance_get
       operationId: get-getintermittancebalance-get
       responses:
         '200':
-          description: 
+          description: ''
   '/partner/countries/{countryIso3Code}/states-and-provinces/{stateId}/cities':
     get:
       summary: GetPartnerCitiesAsync_get
@@ -368,7 +368,7 @@ paths:
             type: ''
       responses:
         '200':
-          description: 
+          description: ''
   '/partner/countries/{countryIso3Code}/states-and-provinces/{stateId}/cities/{cityId}/payers/{payerId}/locations':
     get:
       summary: GetPartnerPayerLocationsAsync_get
@@ -396,7 +396,7 @@ paths:
             type: ''
       responses:
         '200':
-          description: 
+          description: ''
   '/partner/countries/{countryIso3Code}/states-and-provinces/{stateId}/cities/{cityId}/payers':
     get:
       summary: GetPartnerPayersAsync_get
@@ -419,7 +419,7 @@ paths:
             type: ''
       responses:
         '200':
-          description: 
+          description: ''
   '/partner/countries/{countryIso3Code}/states-and-provinces':
     get:
       summary: GetPartnerStatesAsync_get
@@ -432,7 +432,7 @@ paths:
             type: ''
       responses:
         '200':
-          description: 
+          description: ''
   /states-and-provinces:
     get:
       summary: GetStatesAndProvincesAsync_get
