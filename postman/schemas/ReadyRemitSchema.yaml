@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: ReadyRemit
-  description: Copy from Production - 08/22/24
+  description: "Export from apim-rr-prod-centralus-001 06/04/25"
   version: v1
 paths:
   /banks:
@@ -140,6 +140,18 @@ paths:
       responses:
         '200':
           description: 
+    patch:
+      summary: PatchSenderAsync_patch
+      operationId: patchsenderasync-patch
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
   /transfers:
     post:
       summary: PostTransferAsync_post
@@ -147,6 +159,13 @@ paths:
       responses:
         '200':
           description: 
+    get:
+      summary: GetTransfers
+      description: GetTransfers
+      operationId: get-transfers
+      responses:
+        '200':
+          description: ''
   /user:
     get:
       summary: GetUserAsync_get
@@ -746,6 +765,62 @@ paths:
       responses:
         '200':
           description: ''
+  '/transfers/{id}/cancel':
+    post:
+      summary: CancelTransferAsync
+      description: CancelTransferAsync
+      operationId: canceltransferasync
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: ''
+  /senders/authenticated:
+    get:
+      summary: GetSenderDetailsAsync_get
+      description: GetSenderDetailsAsync_get
+      operationId: getsenderdetailsasync-get
+      responses:
+        '200':
+          description: ''
+  '/rradmin/senders/{id}':
+    patch:
+      summary: PatchSenderStatusAsync_patch
+      operationId: patchsenderstatusasync-patch
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  '/quote/{id:guid}':
+    get:
+      summary: Get Quote Details
+      operationId: 6757179f3d74a9f5570a326c
+      responses:
+        '200':
+          description: ''
+  /sender-missing-fields:
+    get:
+      summary: GetSenderMissingFieldsAsync_get
+      operationId: getsendermissingfieldsasync-get
+      responses:
+        '200':
+          description: 
+  /rradmin/bin_list:
+    post:
+      summary: BinList
+      operationId: binlist
+      responses:
+        '200':
+          description: 
 components:
   securitySchemes:
     apiKeyHeader:
