@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: ReadyRemit
-  description: Copy from Production - 08/22/24
+  description: "Export from apim-rr-prod-centralus-001 06/04/25"
   version: v2
 paths:
   '/transfer-requests/{id}':
@@ -90,7 +90,7 @@ paths:
           description: ''
         '403':
           description: ''
-  /transfer-requests/create:
+  /transfer-requests/bulk:
     post:
       summary: CreateTransferRequestAsync
       operationId: createtransferrequestasync
@@ -111,8 +111,8 @@ paths:
       responses:
         '200':
           description: 
-  '/users/{id}':
-    delete:
+  '/users/{id}/deactivate':
+    patch:
       summary: DeactivateUser
       operationId: deactivateuser
       parameters:
@@ -124,6 +124,7 @@ paths:
       responses:
         '200':
           description: 
+  '/users/{id}':
     patch:
       summary: UpdateUser
       operationId: updateuser
@@ -137,9 +138,172 @@ paths:
         '200':
           description: 
   '/users/{id}/change-password':
-    get:
+    post:
       summary: ChangePassword
       operationId: changepassword
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  '/transfer-requests/{id}/receipt':
+    get:
+      summary: GetTransferRequestReceipt
+      operationId: gettransferrequestreceipt
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  /oauth/token:
+    post:
+      summary: oAuth Token
+      operationId: oauth-token
+      responses:
+        '200':
+          description: 
+  '/transfer-requests/{id}/resend-invitation':
+    post:
+      summary: PostTransferRequestsResendInvitation
+      operationId: posttransferrequestsresendinvitation
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  '/users/{id}/activate':
+    patch:
+      summary: ActivateUser
+      operationId: activateuser
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  '/users/{id}/reset-mfa':
+    post:
+      summary: PostUserResetMfa
+      operationId: postuserresetmfa
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  '/transfer-requests/{id}/notes':
+    post:
+      summary: CreateTranserRequestNotes
+      operationId: createtranserrequestnotes
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  '/transfer-requests/{id}/reissue':
+    post:
+      summary: ReissueTransferRequest
+      operationId: reissuetransferrequest
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  '/users/{id}/resend-invitation':
+    post:
+      summary: ResendPortalInvite
+      operationId: resendportalinvite
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  /recipient-portal-sessions:
+    post:
+      summary: CreateRecipientPortalSession
+      operationId: createrecipientportalsession
+      responses:
+        '200':
+          description: 
+  '/recipient-portal-sessions/{id}':
+    get:
+      summary: GetRecipientPortalSession
+      operationId: getrecipientportalsession
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+    patch:
+      summary: UpdateRecipientPortalSession
+      operationId: updaterecipientportalsession
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  /oauth/embedded/token:
+    get:
+      summary: GetEmbeddedToken
+      operationId: getembeddedtoken
+      responses:
+        '200':
+          description: 
+  '/transfer-requests-users/{id}/accept-tos':
+    post:
+      summary: AcceptTOSForTransferRequestUser
+      operationId: accepttosfortransferrequestuser
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: 
+  '/transfer-requests-users/{id}':
+    get:
+      summary: GetTransferRequestUserInfo
+      operationId: gettransferrequestuserinfo
       parameters:
         - name: id
           in: path
