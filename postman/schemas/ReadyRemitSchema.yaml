@@ -1,12 +1,15 @@
 openapi: 3.0.1
 info:
-  title: ReadyRemit
-  description: "Export from apim-rr-prod-centralus-001 06/04/25"
+  title: ReadyRemit API
+  description: ''
   version: v1
+servers:
+  - url: https://apim-readyremit-prod-103.azure-api.net/v1
 paths:
   /banks:
     get:
       summary: GetBanksAsync_get
+      description: GetBanksAsync_get
       operationId: get-getbanksasync-get
       responses:
         '200':
@@ -14,6 +17,7 @@ paths:
   /countries-and-currencies:
     get:
       summary: GetCurrenciesAsync_get
+      description: GetCurrenciesAsync_get
       operationId: get-getcurrenciesasync-get
       responses:
         '200':
@@ -21,6 +25,7 @@ paths:
   /senders:
     post:
       summary: PostSenderAsync_post
+      description: PostSenderAsync_post
       operationId: post-postsenderasync-post
       responses:
         '200':
@@ -28,6 +33,7 @@ paths:
   '/recipients/{id}/accounts/{accountId}':
     put:
       summary: PutRecipientAccountAsync_put
+      description: PutRecipientAccountAsync_put
       operationId: put-putrecipientaccountasync-put
       parameters:
         - name: id
@@ -45,6 +51,7 @@ paths:
           description: ''
     delete:
       summary: DeleteRecipientAccountAsync_delete
+      description: DeleteRecipientAccountAsync_delete
       operationId: delete-deleterecipientaccountasync-delete
       parameters:
         - name: id
@@ -62,6 +69,7 @@ paths:
           description: ''
     get:
       summary: GetRecipientAccountAsync_get
+      description: GetRecipientAccountAsync_get
       operationId: get-getrecipientaccountasync-get
       parameters:
         - name: id
@@ -80,12 +88,14 @@ paths:
   /sender-fields:
     post:
       summary: PostSenderFieldsAsync_post
+      description: PostSenderFieldsAsync_post
       operationId: post-postsenderfieldsasync-post
       responses:
         '200':
           description: ''
     get:
       summary: GetSenderFieldsAsync_get
+      description: GetSenderFieldsAsync_get
       operationId: getsenderfieldsasync-get
       responses:
         '200':
@@ -93,6 +103,7 @@ paths:
   '/banks/{bankId}/branches':
     get:
       summary: GetBankBranchesAsync_get
+      description: GetBankBranchesAsync_get
       operationId: get-getbankbranchesasync-get
       parameters:
         - name: bankId
@@ -106,6 +117,7 @@ paths:
   '/senders/{id}':
     delete:
       summary: DeleteSenderAsync_delete
+      description: DeleteSenderAsync_delete
       operationId: delete-deletesenderasync-delete
       parameters:
         - name: id
@@ -118,6 +130,7 @@ paths:
           description: ''
     put:
       summary: PutSenderAsync_put
+      description: PutSenderAsync_put
       operationId: put-putsenderasync-put
       parameters:
         - name: id
@@ -130,19 +143,8 @@ paths:
           description: ''
     get:
       summary: GetSenderAsync_get
+      description: GetSenderAsync_get
       operationId: getsenderasync-get
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: ''
-      responses:
-        '200':
-          description: ''
-    patch:
-      summary: PatchSenderAsync_patch
-      operationId: patchsenderasync-patch
       parameters:
         - name: id
           in: path
@@ -155,20 +157,15 @@ paths:
   /transfers:
     post:
       summary: PostTransferAsync_post
+      description: PostTransferAsync_post
       operationId: post-posttransferasync-post
-      responses:
-        '200':
-          description: ''
-    get:
-      summary: GetTransfers
-      description: GetTransfers
-      operationId: get-transfers
       responses:
         '200':
           description: ''
   /user:
     get:
       summary: GetUserAsync_get
+      description: GetUserAsync_get
       operationId: get-getuserasync-get
       responses:
         '200':
@@ -176,12 +173,14 @@ paths:
   /recipient-account-fields:
     post:
       summary: PostRecipientAccountFieldsAsync_post
+      description: PostRecipientAccountFieldsAsync_post
       operationId: post-postrecipientaccountfieldsasync-post
       responses:
         '200':
           description: ''
     get:
       summary: GetRecipientAccountFields_get
+      description: GetRecipientAccountFields_get
       operationId: get-getrecipientaccountfields-get
       responses:
         '200':
@@ -189,12 +188,14 @@ paths:
   /recipients:
     post:
       summary: PostRecipientAsync_post
+      description: PostRecipientAsync_post
       operationId: post-postrecipientasync-post
       responses:
         '200':
           description: ''
     get:
       summary: GetRecipientsBySenderAsync_get
+      description: GetRecipientsBySenderAsync_get
       operationId: get-getrecipientsbysenderasync-get
       responses:
         '200':
@@ -202,6 +203,7 @@ paths:
   '/recipients/{id}':
     put:
       summary: PutRecipientAsync_put
+      description: PutRecipientAsync_put
       operationId: put-putrecipientasync-put
       parameters:
         - name: id
@@ -214,6 +216,7 @@ paths:
           description: ''
     delete:
       summary: DeleteRecipientAsync_delete
+      description: DeleteRecipientAsync_delete
       operationId: delete-deleterecipientasync-delete
       parameters:
         - name: id
@@ -226,6 +229,7 @@ paths:
           description: ''
     get:
       summary: GetRecipientAsync_get
+      description: GetRecipientAsync_get
       operationId: get-getrecipientasync-get
       parameters:
         - name: id
@@ -239,6 +243,7 @@ paths:
   '/recipients/{id}/accounts':
     post:
       summary: PostRecipientAccountAsync_post
+      description: PostRecipientAccountAsync_post
       operationId: post-postrecipientaccountasync-post
       parameters:
         - name: id
@@ -251,6 +256,7 @@ paths:
           description: ''
     get:
       summary: GetRecipientsAccountsByRecipientAsync_get
+      description: GetRecipientsAccountsByRecipientAsync_get
       operationId: get-getrecipientsaccountsbyrecipientasync-get
       parameters:
         - name: id
@@ -264,6 +270,7 @@ paths:
   /recipient-fields:
     get:
       summary: GetRecipientFieldsAsync_get
+      description: GetRecipientFieldsAsync_get
       operationId: get-getrecipientfieldsasync-get
       responses:
         '200':
@@ -271,6 +278,7 @@ paths:
   /transfer-fields:
     get:
       summary: GetTransferFields_get
+      description: GetTransferFields_get
       operationId: get-gettransferfields-get
       responses:
         '200':
@@ -278,6 +286,7 @@ paths:
   /quote:
     get:
       summary: GetQuotesAsync_get
+      description: GetQuotesAsync_get
       operationId: get-getquotesasync-get
       responses:
         '200':
@@ -285,6 +294,7 @@ paths:
   /health:
     get:
       summary: GetHealthAsync_get
+      description: GetHealthAsync_get
       operationId: get-gethealthasync-get
       responses:
         '200':
@@ -292,6 +302,7 @@ paths:
   /ping:
     get:
       summary: GetPing_get
+      description: GetPing_get
       operationId: get-getping-get
       responses:
         '200':
@@ -299,6 +310,7 @@ paths:
   /oauth/token:
     post:
       summary: Token
+      description: Token
       operationId: token
       responses:
         '200':
@@ -306,6 +318,7 @@ paths:
   /countries:
     get:
       summary: GetCountriesAsync_get
+      description: GetCountriesAsync_get
       operationId: getcountriesasync-get
       responses:
         '200':
@@ -313,6 +326,7 @@ paths:
   /corridors:
     get:
       summary: GetCorridorsAsync_get
+      description: GetCorridorsAsync_get
       operationId: getcorridorsasync-get
       responses:
         '200':
@@ -320,6 +334,7 @@ paths:
   /recipients-with-accounts:
     get:
       summary: GetRecipientsWithAccountsAsync_get
+      description: GetRecipientsWithAccountsAsync_get
       operationId: getrecipientswithaccountsasync-get
       responses:
         '200':
@@ -327,6 +342,7 @@ paths:
   '/transfers/{id}':
     get:
       summary: GetTransferAsync_get
+      description: GetTransferAsync_get
       operationId: 62d84cb282d14025bc5efb56
       parameters:
         - name: id
@@ -340,6 +356,7 @@ paths:
   /balance-starting:
     get:
       summary: GetStartingBalanceAsync_get
+      description: GetStartingBalanceAsync_get
       operationId: 62e17bcf73899436eb1f9a01
       responses:
         '200':
@@ -347,6 +364,7 @@ paths:
   /balance-intermittance:
     get:
       summary: GetIntermittanceBalance_get
+      description: GetIntermittanceBalance_get
       operationId: get-getintermittancebalance-get
       responses:
         '200':
@@ -354,6 +372,7 @@ paths:
   '/partner/countries/{countryIso3Code}/states-and-provinces/{stateId}/cities':
     get:
       summary: GetPartnerCitiesAsync_get
+      description: GetPartnerCitiesAsync_get
       operationId: get-getpartnercitiesasync-get
       parameters:
         - name: countryIso3Code
@@ -372,6 +391,7 @@ paths:
   '/partner/countries/{countryIso3Code}/states-and-provinces/{stateId}/cities/{cityId}/payers/{payerId}/locations':
     get:
       summary: GetPartnerPayerLocationsAsync_get
+      description: GetPartnerPayerLocationsAsync_get
       operationId: get-getpartnerpayerlocationsasync-get
       parameters:
         - name: countryIso3Code
@@ -400,6 +420,7 @@ paths:
   '/partner/countries/{countryIso3Code}/states-and-provinces/{stateId}/cities/{cityId}/payers':
     get:
       summary: GetPartnerPayersAsync_get
+      description: GetPartnerPayersAsync_get
       operationId: get-getpartnerpayersasync-get
       parameters:
         - name: countryIso3Code
@@ -423,6 +444,7 @@ paths:
   '/partner/countries/{countryIso3Code}/states-and-provinces':
     get:
       summary: GetPartnerStatesAsync_get
+      description: GetPartnerStatesAsync_get
       operationId: get-getpartnerstatesasync-get
       parameters:
         - name: countryIso3Code
@@ -436,20 +458,23 @@ paths:
   /states-and-provinces:
     get:
       summary: GetStatesAndProvincesAsync_get
+      description: GetStatesAndProvincesAsync_get
       operationId: get-getstatesandprovincesasync-get
       responses:
         '200':
-          description: 
+          description: ''
   /UpdateTransferStatus:
     post:
       summary: PostTransferUpdateStatusAsync_post
+      description: PostTransferUpdateStatusAsync_post
       operationId: post-posttransferupdatestatusasync-post
       responses:
         '200':
-          description: 
+          description: ''
   '/transfers/{id}/statuses':
     get:
       summary: GetTransferStatusAsync_get
+      description: GetTransferStatusAsync_get
       operationId: 6331d1dc521f567037019351
       parameters:
         - name: id
@@ -459,14 +484,15 @@ paths:
             type: ''
       responses:
         '200':
-          description: 
+          description: ''
   /idology/idstatusupdate:
     post:
       summary: PostIDologyCallBack
+      description: PostIDologyCallBack
       operationId: 636a9830cd5a2b32846e3ab3
       responses:
         '200':
-          description: 
+          description: ''
   '/senders/{id}/idverification':
     post:
       tags:
@@ -489,6 +515,7 @@ paths:
   '/card/{cardId}':
     delete:
       summary: DeleteCard_delete
+      description: DeleteCard_delete
       operationId: 64106b743ef14bad1cc3e3b2
       parameters:
         - name: cardId
@@ -498,10 +525,11 @@ paths:
             type: ''
       responses:
         '200':
-          description: 
+          description: ''
   '/card-onboarding-sessions/{sessionId}':
     get:
       summary: GetCardOnboardingSession
+      description: GetCardOnboardingSession
       operationId: 64106ba02fa7364f957f117d
       parameters:
         - name: sessionId
@@ -511,10 +539,11 @@ paths:
             type: ''
       responses:
         '200':
-          description: 
+          description: ''
   '/card/status/{operationId}':
     get:
       summary: GetCardStatus_get
+      description: GetCardStatus_get
       operationId: 64106bc1c2e2c592982584f3
       parameters:
         - name: operationId
@@ -524,31 +553,35 @@ paths:
             type: ''
       responses:
         '200':
-          description: 
+          description: ''
   /cards:
     post:
       summary: PostCardAsync_post
+      description: PostCardAsync_post
       operationId: 64106bf76256bf69c857aee3
       responses:
         '200':
-          description: 
+          description: ''
   /card-onboarding-sessions:
     post:
       summary: PostCardOnboardingSessionsAsync_post
+      description: PostCardOnboardingSessionsAsync_post
       operationId: 64106c1bdeb844af4a57ace8
       responses:
         '200':
-          description: 
+          description: ''
   /cardvalidation:
     post:
       summary: PostCardValidationAsync_post
+      description: PostCardValidationAsync_post
       operationId: 64106c44c778fed4d0fe062d
       responses:
         '200':
-          description: 
+          description: ''
   '/transfer-requests/{id}':
     get:
       summary: GetTransferRequestAsync
+      description: GetTransferRequestAsync
       operationId: gettransferrequestasync
       parameters:
         - name: id
@@ -558,7 +591,7 @@ paths:
             type: ''
       responses:
         '200':
-          description: 
+          description: ''
   '/transfer-requests/{id}/verifications':
     post:
       summary: PostTransferRequestVerificationAsync
@@ -572,10 +605,11 @@ paths:
             type: ''
       responses:
         '200':
-          description: 
+          description: ''
   '/transfer-requests/{id}/submit':
     put:
       summary: SubmitTransferRequestAsync
+      description: SubmitTransferRequestAsync
       operationId: submittransferrequestasync
       parameters:
         - name: id
@@ -585,7 +619,7 @@ paths:
             type: ''
       responses:
         '200':
-          description: 
+          description: ''
   /customer/settings:
     get:
       summary: GetCustomerSettingsAsync
@@ -597,6 +631,7 @@ paths:
   '/rradmin/transfers/{id}/cancel':
     patch:
       summary: PatchOfacCancelTransfer_patch
+      description: PatchOfacCancelTransfer_patch
       operationId: patchofaccanceltransfer-patch
       parameters:
         - name: id
@@ -606,7 +641,7 @@ paths:
             type: string
       responses:
         '200':
-          description: 
+          description: ''
   '/rradmin/transfers/{id}/release':
     patch:
       summary: PatchOfacReleaseTransfer_patch
@@ -620,10 +655,11 @@ paths:
             type: string
       responses:
         '200':
-          description: 
+          description: ''
   '/rradmin/senders/{id}/kyc/reset':
     patch:
       summary: PatchKYCIdResetAsync
+      description: PatchKYCIdResetAsync
       operationId: patchkycidresetasync
       parameters:
         - name: id
@@ -637,6 +673,7 @@ paths:
   '/transfer-requests/{id}/cancel':
     post:
       summary: CancelTransferRequestAsync
+      description: CancelTransferRequestAsync
       operationId: canceltransferrequestasync
       parameters:
         - name: id
@@ -646,28 +683,31 @@ paths:
             type: ''
       responses:
         '200':
-          description: 
+          description: ''
   /visa/ledger-notification:
     post:
       summary: PostLedgerNotificationAsync_post
+      description: PostLedgerNotificationAsync_post
       operationId: postledgernotificationasync-post
       responses:
         '200':
-          description: 
+          description: ''
   /visa/return-notification:
     post:
       summary: PostReturnNotificationAsync_post
+      description: PostReturnNotificationAsync_post
       operationId: postreturnnotificationasync-post
       responses:
         '200':
-          description: 
+          description: ''
   /visa/status-notification:
     post:
       summary: PostStatusNotificationAsync_post
+      description: PostStatusNotificationAsync_post
       operationId: poststatusnotificationasync-post
       responses:
         '200':
-          description: 
+          description: ''
   /account-fields:
     get:
       summary: Get Account Fields
@@ -675,10 +715,11 @@ paths:
       operationId: get-account-fields
       responses:
         '200':
-          description: 
+          description: ''
   '/accountHolders/{id}/accounts':
     get:
       summary: Get Account Holder Accounts
+      description: Get Account Holder Accounts
       operationId: get-account-holder-accounts
       parameters:
         - name: id
@@ -688,7 +729,7 @@ paths:
             type: ''
       responses:
         '200':
-          description: 
+          description: ''
   '/accounts/{id}':
     get:
       summary: 'Get Account '
@@ -702,7 +743,7 @@ paths:
             type: ''
       responses:
         '200':
-          description: 
+          description: ''
     delete:
       summary: Delete Accounts
       description: DeleteAccountAsync_post
@@ -715,7 +756,7 @@ paths:
             type: ''
       responses:
         '200':
-          description: 
+          description: ''
   /accounts:
     post:
       summary: Post Account
@@ -723,23 +764,26 @@ paths:
       operationId: post-account
       responses:
         '200':
-          description: 
+          description: ''
   /accept-policies:
     get:
       summary: GetAcceptPolicies_get
+      description: GetAcceptPolicies_get
       operationId: getacceptpolicies-get
       responses:
         '200':
-          description: 
+          description: ''
     post:
       summary: PostAcceptPolicies_post
+      description: PostAcceptPolicies_post
       operationId: postacceptpolicies-post
       responses:
         '200':
-          description: 
+          description: ''
   '/transfers/progress/{quoteId}':
     get:
       summary: GetTransferStatusOfQuote_get
+      description: GetTransferStatusOfQuote_get
       operationId: gettransferstatusofquote-get
       parameters:
         - name: quoteId
@@ -749,14 +793,15 @@ paths:
             type: ''
       responses:
         '200':
-          description: 
+          description: ''
   /socure/docvevent:
     post:
       summary: PostSocureDocVEventAsync
+      description: PostSocureDocVEventAsync
       operationId: postsocuredocveventasync
       responses:
         '200':
-          description: 
+          description: ''
   /senders/verification/link:
     get:
       summary: GetDocumentCaptureUrl_Get
@@ -790,6 +835,7 @@ paths:
   '/rradmin/senders/{id}':
     patch:
       summary: PatchSenderStatusAsync_patch
+      description: PatchSenderStatusAsync_patch
       operationId: patchsenderstatusasync-patch
       parameters:
         - name: id
@@ -799,28 +845,23 @@ paths:
             type: ''
       responses:
         '200':
-          description: 
-  '/quote/{id:guid}':
-    get:
-      summary: Get Quote Details
-      operationId: 6757179f3d74a9f5570a326c
-      responses:
-        '200':
           description: ''
   /sender-missing-fields:
     get:
       summary: GetSenderMissingFieldsAsync_get
+      description: GetSenderMissingFieldsAsync_get
       operationId: getsendermissingfieldsasync-get
       responses:
         '200':
-          description: 
+          description: ''
   /rradmin/bin_list:
     post:
       summary: BinList
+      description: BinList
       operationId: binlist
       responses:
         '200':
-          description: 
+          description: ''
 components:
   securitySchemes:
     apiKeyHeader:
