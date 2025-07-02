@@ -743,33 +743,213 @@ paths:
                       name: thirty minutes
                     quoteHistoryId: 29bd0ff4-4cd4-41e9-badc-d9e3c6bcc3e8
 
-        '400':
+        "400":
           description: The request was invalid. This response typically occurs if required parameters are missing or invalid.
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
               example:
-              - code: NoCorridorFoundForSpecificValues
-                message: "No corridor found for [DestinationCountry: '', DestinationCurrency: 'PHP', TransferMethod: 'BANK_ACCOUNT', Customer: 'BWP Shipping']"
-                # description: "No corridor found for [DestinationCountry: '', DestinationCurrency: 'PHP', TransferMethod: 'BANK_ACCOUNT', Customer: 'BWP Shipping']""
-              - code: InvalidEnumOption
-                message: "'QuoteBy' must be a valid option."
-                fieldId: QuoteBy
-              - code: GreaterThanValidator
-                message: "'Amount' must be greater than '0'."
-                fieldId: Amount
-              - code: MaxLimitOutOfRange
-                message: "Maximum allowable amount exceeded for this transaction."
-              - code: ErrorGettingQuote
-                message: "Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException' was thrown."
-        '401':
+                - code: NoCorridorFoundForSpecificValues
+                  message: "No corridor found for [DestinationCountry: '', DestinationCurrency: 'PHP', TransferMethod: 'BANK_ACCOUNT', Customer: 'BWP Shipping']"
+                  # description: "No corridor found for [DestinationCountry: '', DestinationCurrency: 'PHP', TransferMethod: 'BANK_ACCOUNT', Customer: 'BWP Shipping']""
+                - code: InvalidEnumOption
+                  message: "'QuoteBy' must be a valid option."
+                  fieldId: QuoteBy
+                - code: GreaterThanValidator
+                  message: "'Amount' must be greater than '0'."
+                  fieldId: Amount
+                - code: MaxLimitOutOfRange
+                  message: "Maximum allowable amount exceeded for this transaction."
+                - code: ErrorGettingQuote
+                  message: "Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException' was thrown."
+        "401":
           description: The request requires user authentication. This response occurs if the authentication token is missing or invalid.
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/response401"
-        '404':
+        "404":
+          description: The quote could not be retrieved. This response occurs if the parameters provided do not match any available quotes.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
+  "/quote/{quoteHistoryId}":
+    get:
+      tags:
+        - Quote
+      summary: Quote Details
+      description: |
+        The `GET /quote/{quoteHistoryId}` endpoint retrieves a previously obtained quote based on the quote history ID.
+
+        **Implementation Guide:**
+        - The quote history id is provided in the response of the `GET /quote` endpoint and from the SDK when preparing to post a transfer.
+        - This endpoint should be used to retrieve a previously obtained quote for reference to confirm the total cost of the transfer during the transfer process.
+
+      operationId: getQuoteDetail
+      parameters:
+        - name: quoteHistoryId
+          in: path
+          description: The unique identifier for the previously obtained quote.
+          example: d5ae37ac-612f-4706-b5a2-375770fed4b8
+          required: true
+          style: simple
+          explode: true
+          schema:
+            type: string
+            format: uuid
+            description: Unique identifier for the quote history.
+      responses:
+        "200":
+          description: The quote was successfully retrieved.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - "$ref": "#/components/schemas/getQuoteSendAmountResponse200"
+                  - "$ref": "#/components/schemas/getQuoteReceiveAmountResponse200"
+              examples:
+                Quote by Send Amount:
+                  summary: Quote by Send Amount
+                  value:
+                    customerId: 9ce909de-f585-4233-bdc5-fdc42cbfd7c4
+                    senderId: 12f67072-19c0-4613-876b-146051c1728a
+                    sendAmount:
+                      value: 2200
+                      currency:
+                        name: US Dollar
+                        iso3Code: USD
+                        symbol: $
+                        decimalPlaces: 2
+                        roundDirection: STANDARD
+                        iso4217Code: "840"
+                    receiveAmount:
+                      value: 111486
+                      currency:
+                        name: Philippine peso
+                        iso3Code: PHP
+                        symbol: ₱
+                        decimalPlaces: 2
+                        roundDirection: UP
+                        iso4217Code: "608"
+                    rate: 50.6754
+                    adjustments:
+                      - id: TransferFee
+                        label: Transfer Fee
+                        amount:
+                          value: 779
+                          currency:
+                            name: US Dollar
+                            iso3Code: USD
+                            symbol: $
+                            decimalPlaces: 2
+                            roundDirection: STANDARD
+                            iso4217Code: "840"
+                    totalCost:
+                      value: 2979
+                      currency:
+                        name: US Dollar
+                        iso3Code: USD
+                        symbol: $
+                        decimalPlaces: 2
+                        roundDirection: STANDARD
+                        iso4217Code: "840"
+                    associatedTransferRecordStatus: NotInProgress
+                    destinationCountryISO3Code: PHL
+                    destinationCurrencyISO3Code: PHP
+                    sourceCurrencyIso3Code: USD
+                    destinationCountry:
+                      name: Philippines
+                      iso2Code: PH
+                      iso3Code: PHL
+                      phoneCode: 63
+                    transferMethod: BANK_ACCOUNT
+                    rsp: <RemittanceServiceProvider>
+                    disclosures: []
+                    deliverySLA:
+                      id: FIVE_BUSINESS_DAYS
+                      name: five business days
+                    quoteHistoryId: d5ae37ac-612f-4706-b5a2-375770fed4b8
+
+                Quote by Receive Amount:
+                  summary: Quote by Receive Amount
+                  value:
+                    customerId: 9ce909de-f585-4233-bdc5-fdc42cbfd7c4
+                    senderId: f7f398e5-1430-4957-96dc-559d52933b1c
+                    sendAmount:
+                      value: 1904
+                      currency:
+                        name: US Dollar
+                        iso3Code: USD
+                        symbol: "$"
+                        decimalPlaces: 2
+                        roundDirection: STANDARD
+                        iso4217Code: 840
+                    receiveAmount:
+                      value: 2800
+                      currency:
+                        name: Japanese yen
+                        iso3Code: JPY
+                        symbol: "¥"
+                        decimalPlaces: 0
+                        roundDirection: STANDARD
+                        iso4217Code: 392
+                    rate: 147.0704
+                    adjustments:
+                      - id: TransferFee
+                        label: Transfer Fee
+                        amount:
+                          value: -100
+                          currency:
+                            name: US Dollar
+                            iso3Code: USD
+                            symbol: "$"
+                            decimalPlaces: 2
+                            roundDirection: STANDARD
+                            iso4217Code: 840
+                    totalCost:
+                      value: 1804
+                      currency:
+                        name: US Dollar
+                        iso3Code: USD
+                        symbol: "$"
+                        decimalPlaces: 2
+                        roundDirection: STANDARD
+                        iso4217Code: 840
+                    associatedTransferRecordStatus: NotInProgress
+                    destinationCountryISO3Code: JPN
+                    destinationCurrencyISO3Code: JPY
+                    sourceCurrencyIso3Code: USD
+                    destinationCountry:
+                      name: Japan
+                      iso2Code: JP
+                      iso3Code: JPN
+                      phoneCode: 81
+                    transferMethod: PUSH_TO_CARD
+                    rsp: Visa
+                    disclosures: []
+                    deliverySLA:
+                      id: THIRTY_MINUTES
+                      name: thirty minutes
+                    quoteHistoryId: 29bd0ff4-4cd4-41e9-badc-d9e3c6bcc3e8
+
+        "400":
+          description: The request was invalid. This response typically occurs if required parameters are missing or invalid.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
+              example:
+                - code: ErrorGettingQuote
+                  message: "Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException' was thrown."
+        "401":
+          description: The request requires user authentication. This response occurs if the authentication token is missing or invalid.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"
+        "404":
           description: The quote could not be retrieved. This response occurs if the parameters provided do not match any available quotes.
           content:
             application/json:
@@ -7376,7 +7556,6 @@ components:
           type: string
         amount:
           "$ref": "#/components/schemas/money"
-
     getQuoteReceiveAmountResponse200:
       title: "Quote by Receive Amount"
       type: object
