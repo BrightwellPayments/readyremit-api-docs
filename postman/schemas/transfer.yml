@@ -7251,9 +7251,19 @@ components:
         - recipientType
         - fields
       properties:
-        recipientType:
+        userType:
           "$ref": "#/components/schemas/recipientTypes"
           description: The type of recipient. See [Recipient Type](https://developer.readyremit.com/reference/enum-types#recipient-type).
+        dstCountryIso3Code:
+          "$ref": "#/components/schemas/threeUppercaseChars"
+          description: The ISO 3166-1 alpha-3 code of the destination country.
+        dstCurrencyIso3Code:
+          description: The ISO 4217 code of the currency of the amount you would like to receive money. A string of exactly 3 uppercase alphabetical characters. This code is used to identify the currency in which the recipient will receive the funds.
+          type: string
+          pattern: "^[A-Z]{3}$"
+        transferMethod:
+          "$ref": "#/components/schemas/transferMethods"
+          description: The method of transfer (BANK_ACCOUNT, CASH_PICKUP, etc.).
         senderId:
           type: string
           description: Unique identifier for the sender.
@@ -7316,6 +7326,9 @@ components:
           type: integer
           description:  >
             Numeric value. The amount the sender wishes to transfer. Example- If you want to send 100 USD, this would be 10000. See [how to format an amount based on the currency you would like to send or receive money](https://developer.readyremit.com/reference/currencies).
+        quoteHistoryId:
+          type: string
+          description: The quote history ID from the GET /quote endpoint response.
         # senderId:
         #   type: string
         recipientId:
