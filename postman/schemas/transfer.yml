@@ -993,14 +993,14 @@ paths:
         explode: true
         schema:
           "$ref": "#/components/schemas/transferMethods"
-      - name: userType
+      - name: recipientType
         in: query
         description: The type of recipient. See [Recipient Type](https://developer.readyremit.com/reference/enum-types#recipient-type).
         required: true
         style: form
         explode: true
         schema:
-          "$ref": "#/components/schemas/userTypes"
+          "$ref": "#/components/schemas/recipientTypes"
       responses:
         '200':
           description: The request was successful, and the response contains a collection of field sets. Each field set includes a collection of fields with details such as field type, length constraints, and whether the field is required.
