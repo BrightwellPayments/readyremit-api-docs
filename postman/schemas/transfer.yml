@@ -993,14 +993,14 @@ paths:
         explode: true
         schema:
           "$ref": "#/components/schemas/transferMethods"
-      - name: recipientType
+      - name: userType
         in: query
         description: The type of recipient. See [Recipient Type](https://developer.readyremit.com/reference/enum-types#recipient-type).
         required: true
         style: form
         explode: true
         schema:
-          "$ref": "#/components/schemas/recipientTypes"
+          "$ref": "#/components/schemas/userTypes"
       responses:
         '200':
           description: The request was successful, and the response contains a collection of field sets. Each field set includes a collection of fields with details such as field type, length constraints, and whether the field is required.
@@ -7252,7 +7252,7 @@ components:
         - fields
       properties:
         userType:
-          "$ref": "#/components/schemas/recipientTypes"
+          "$ref": "#/components/schemas/userTypes"
           description: The type of recipient. See [Recipient Type](https://developer.readyremit.com/reference/enum-types#recipient-type).
         dstCountryIso3Code:
           "$ref": "#/components/schemas/threeUppercaseChars"
@@ -7453,6 +7453,9 @@ components:
       enum:
       - BUSINESS
       - PERSON
+    userTypes:
+      allOf:
+        - $ref: '#/components/schemas/recipientTypes'
     senderTypes:
       type: string
       description: |
