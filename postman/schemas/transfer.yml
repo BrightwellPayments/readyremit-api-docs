@@ -7244,6 +7244,11 @@ components:
             - The required fields vary based on the `senderType` and compliance rules.
           items:
             "$ref": "#/components/schemas/fieldValue"
+        senderGroupId:
+          type: string
+          format: uuid
+          description: |
+            Optional sender group identifier for the sender. Assigning a sender to a sender group allows segmentation of senders. When creating a new sender, if this parameter is not included, set to null or empty the sender will be added to the default sender group. When updating an existing sender, if this parameter is not included, set to null or empty the sender group of the sender will be unchanged. Example: "b3b8e7e2-9c1b-4e2b-8a7d-2e4c8e2b7c1d".
 
     createRecipientRequest:
       type: object
