@@ -547,7 +547,7 @@ paths:
     get:
       tags:
       - Quote
-      summary: Quote
+      summary: Get Quote
       description: |
         The `GET /quote` endpoint provides a real-time quote for a money transfer. By specifying the source currency, transfer corridor, transfer method, and sender amount, this operation returns a detailed breakdown of the estimated transfer cost and recipient amount.
 
@@ -779,13 +779,14 @@ paths:
     get:
       tags:
         - Quote
-      summary: Quote Details
+      summary: Get Quote Details
       description: |
         The `GET /quote/{quoteHistoryId}` endpoint retrieves a previously obtained quote based on the quote history ID.
 
         **Implementation Guide:**
         - The quote history id is provided in the response of the `GET /quote` endpoint and from the SDK when preparing to post a transfer.
         - This endpoint should be used to retrieve a previously obtained quote for reference to confirm the total cost of the transfer during the transfer process.
+        - See [Posting a Transfer](https://developer.readyremit.com/docs/posting-a-transfer) for examples.
 
       operationId: getQuoteDetail
       parameters:
@@ -4429,6 +4430,7 @@ paths:
         - **Prerequisite**: Ensure that the `GET /transfer-fields` endpoint is called first to retrieve the necessary fields for executing a transfer.
         - **Dynamic Fields**: The fields required for executing a transfer are dynamic and may change based on the transfer details such as source and destination countries, currencies, and transfer method. Always use the latest field requirements from the `GET /transfer-fields` endpoint.
         - **Validation**: Validate the request body against the field requirements obtained from the `GET /transfer-fields` endpoint to ensure all required fields are included and correctly formatted.
+        - **Examples**: See [Posting a Transfer](https://developer.readyremit.com/docs/posting-a-transfer).
 
       operationId: executeTransfer
       requestBody:
