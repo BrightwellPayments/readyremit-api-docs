@@ -4464,7 +4464,7 @@ paths:
                   srcCurrencyIso3Code: "USD"
                   quoteBy: "SEND_AMOUNT"
                   amount: 3055
-                  fee: 2000
+                  fee: 499
                   recipientId: "4d5a7d05-cce5-49ec-ad67-7b5eb7035e5a"
                   recipientAccountId: "04eda1ab-664b-4983-a3a1-9c2ab9181895"
                   quoteHistoryId: "7345e138-dbfe-4f7a-8c66-fb5bdb52ecc9"
@@ -4480,7 +4480,7 @@ paths:
                   srcCurrencyIso3Code: "USD"
                   quoteBy: "SEND_AMOUNT"
                   amount: 3055
-                  fee: 1399
+                  fee: 499
                   recipientId: "fe40f74d-eb52-4034-a2f8-8e478730ad9f"
                   quoteHistoryId: "96d7413b-4921-4fa4-9fe3-0389498d04a3"
                   fields:
@@ -4712,7 +4712,7 @@ paths:
                         - id: TransferFee
                           label: Transfer Fee
                           amount:
-                            value: 2000
+                            value: 499
                             currency:
                               name: US Dollar
                               iso3Code: USD
@@ -4721,7 +4721,7 @@ paths:
                               roundDirection: STANDARD
                               iso4217Code: "840"
                       totalCost:
-                        value: 5055
+                        value: 3554
                         currency:
                           name: US Dollar
                           iso3Code: USD
@@ -4932,7 +4932,7 @@ paths:
                         - id: TransferFee
                           label: Transfer Fee
                           amount:
-                            value: 1399
+                            value: 499
                             currency:
                               name: US Dollar
                               iso3Code: USD
@@ -4941,7 +4941,7 @@ paths:
                               roundDirection: STANDARD
                               iso4217Code: "840"
                       totalCost:
-                        value: 4454
+                        value: 3554
                         currency:
                           name: US Dollar
                           iso3Code: USD
