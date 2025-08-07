@@ -7397,8 +7397,6 @@ components:
         - quoteHistoryId
         - recipientId
         - recipientAccountId
-        - customerHold
-        - fields
 
     transferResponse:
       type: object
