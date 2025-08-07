@@ -4443,8 +4443,8 @@ paths:
               Bank Account:
                 summary: Bank Account
                 value:
-                  dstCountryIso3Code: "MEX"
-                  dstCurrencyIso3Code: "MXN"
+                  dstCountryIso3Code: "JPN"
+                  dstCurrencyIso3Code: "JPY"
                   transferMethod: "BANK_ACCOUNT"
                   srcCurrencyIso3Code: "USD"
                   quoteBy: "SEND_AMOUNT"
@@ -4453,7 +4453,11 @@ paths:
                   recipientId: "51e93d0c-1a6f-4474-a8a7-93ed8b2aa06f"
                   recipientAccountId: "10dc1426-e726-40cc-8a20-93765f2c2048"
                   quoteHistoryId: "1f347698-7f48-4b69-931f-176ac6c41198"
-                  purposeOfRemittance: 1
+                  fields:
+                    - id: "SOURCE_OF_FUNDS"
+                      value: 3
+                    - id: "REMITTANCE_PURPOSE"
+                      value: 1
 
               Push to Card:
                 summary: Push to Card
@@ -7387,6 +7391,18 @@ components:
                 description: >
                   The value of the field. This is the actual data entered for the field. It provides the necessary information required for the transfer.
                   Example: 267832567846347900
+      required:
+        - dstCountryIso3Code
+        - dstCurrencyIso3Code
+        - srcCurrencyIso3Code
+        - transferMethod
+        - quoteBy
+        - amount
+        - quoteHistoryId
+        - recipientId
+        - recipientAccountId
+        - customerHold
+        - fields
 
     transferResponse:
       type: object
