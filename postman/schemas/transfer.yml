@@ -7337,7 +7337,6 @@ components:
           type: integer
           description:  >
             Numeric value. The amount the sender wishes to transfer. Example- If you want to send 100 USD, this would be 10000. See [how to format an amount based on the currency you would like to send or receive money](https://developer.readyremit.com/reference/currencies).
-          deprecated: true
         fee:
           type: integer
           description: >
