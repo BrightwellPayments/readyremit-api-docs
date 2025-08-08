@@ -547,7 +547,7 @@ paths:
     get:
       tags:
       - Quote
-      summary: Quote
+      summary: Get Quote
       description: |
         The `GET /quote` endpoint provides a real-time quote for a money transfer. By specifying the source currency, transfer corridor, transfer method, and sender amount, this operation returns a detailed breakdown of the estimated transfer cost and recipient amount.
 
@@ -779,13 +779,14 @@ paths:
     get:
       tags:
         - Quote
-      summary: Quote Details
+      summary: Get Quote Details
       description: |
         The `GET /quote/{quoteHistoryId}` endpoint retrieves a previously obtained quote based on the quote history ID.
 
         **Implementation Guide:**
         - The quote history id is provided in the response of the `GET /quote` endpoint and from the SDK when preparing to post a transfer.
         - This endpoint should be used to retrieve a previously obtained quote for reference to confirm the total cost of the transfer during the transfer process.
+        - See [Posting a Transfer](https://developer.readyremit.com/docs/posting-a-transfer) for examples.
 
       operationId: getQuoteDetail
       parameters:
@@ -4429,6 +4430,7 @@ paths:
         - **Prerequisite**: Ensure that the `GET /transfer-fields` endpoint is called first to retrieve the necessary fields for executing a transfer.
         - **Dynamic Fields**: The fields required for executing a transfer are dynamic and may change based on the transfer details such as source and destination countries, currencies, and transfer method. Always use the latest field requirements from the `GET /transfer-fields` endpoint.
         - **Validation**: Validate the request body against the field requirements obtained from the `GET /transfer-fields` endpoint to ensure all required fields are included and correctly formatted.
+        - **Examples**: See [Posting a Transfer](https://developer.readyremit.com/docs/posting-a-transfer) and the example request and response payloads below or to the right.
 
       operationId: executeTransfer
       requestBody:
@@ -4441,8 +4443,8 @@ paths:
               Bank Account:
                 summary: Bank Account
                 value:
-                  dstCountryIso3Code: "MEX"
-                  dstCurrencyIso3Code: "MXN"
+                  dstCountryIso3Code: "JPN"
+                  dstCurrencyIso3Code: "JPY"
                   transferMethod: "BANK_ACCOUNT"
                   srcCurrencyIso3Code: "USD"
                   quoteBy: "SEND_AMOUNT"
@@ -4450,7 +4452,11 @@ paths:
                   recipientId: "51e93d0c-1a6f-4474-a8a7-93ed8b2aa06f"
                   recipientAccountId: "10dc1426-e726-40cc-8a20-93765f2c2048"
                   quoteHistoryId: "1f347698-7f48-4b69-931f-176ac6c41198"
-                  purposeOfRemittance: 1
+                  fields:
+                    - id: "SOURCE_OF_FUNDS"
+                      value: 3
+                    - id: "REMITTANCE_PURPOSE"
+                      value: 1
 
               Push to Card:
                 summary: Push to Card
@@ -4707,7 +4713,7 @@ paths:
                         - id: TransferFee
                           label: Transfer Fee
                           amount:
-                            value: 2000
+                            value: 499
                             currency:
                               name: US Dollar
                               iso3Code: USD
@@ -4716,7 +4722,7 @@ paths:
                               roundDirection: STANDARD
                               iso4217Code: "840"
                       totalCost:
-                        value: 5055
+                        value: 3554
                         currency:
                           name: US Dollar
                           iso3Code: USD
@@ -4927,7 +4933,7 @@ paths:
                         - id: TransferFee
                           label: Transfer Fee
                           amount:
-                            value: 1399
+                            value: 499
                             currency:
                               name: US Dollar
                               iso3Code: USD
@@ -4936,7 +4942,7 @@ paths:
                               roundDirection: STANDARD
                               iso4217Code: "840"
                       totalCost:
-                        value: 4454
+                        value: 3554
                         currency:
                           name: US Dollar
                           iso3Code: USD
@@ -7331,6 +7337,12 @@ components:
           type: integer
           description:  >
             Numeric value. The amount the sender wishes to transfer. Example- If you want to send 100 USD, this would be 10000. See [how to format an amount based on the currency you would like to send or receive money](https://developer.readyremit.com/reference/currencies).
+        fee:
+          type: integer
+          description: >
+            The transaction fee associated with the transfer.
+            Example: 499 ($4.99 USD)
+          deprecated: true
         quoteHistoryId:
           type: string
           description: The quote history ID from the GET /quote endpoint response.
@@ -7375,6 +7387,16 @@ components:
                 description: >
                   The value of the field. This is the actual data entered for the field. It provides the necessary information required for the transfer.
                   Example: 267832567846347900
+      required:
+        - dstCountryIso3Code
+        - dstCurrencyIso3Code
+        - srcCurrencyIso3Code
+        - transferMethod
+        - quoteBy
+        - amount
+        - quoteHistoryId
+        - recipientId
+        - recipientAccountId
 
     transferResponse:
       type: object
