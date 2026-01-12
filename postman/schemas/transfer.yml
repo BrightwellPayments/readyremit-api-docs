@@ -543,6 +543,37 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/response401"
+  "/nonce":
+    get:
+      tags:
+      - Helpers
+      summary: Get Nonce
+      description: |
+        The `GET /nonce` endpoint generates a unique nonce identifier that can be used to prevent duplicate transfer submissions.
+
+        **Implementation Guide:**
+        - Call this endpoint before initiating a transfer to obtain a unique nonce identifier.
+        - Include the returned nonce value in the `POST /transfers` request body.
+        - Each nonce can only be used once. If a transfer request is submitted with a nonce that has already been used, the request will be rejected.
+        - Nonces are associated with the authenticated customer and cannot be used by other customers.
+        - Use nonces to implement idempotency and prevent accidental duplicate transfers caused by network issues or user double-clicks.
+
+      operationId: getNonce
+      responses:
+        '200':
+          description: A new nonce was successfully generated.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/nonceResponse"
+              example:
+                nonce: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+        '401':
+          description: The request requires user authentication. This response occurs if the authentication token is missing or invalid.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"
   "/quote":
     get:
       tags:
@@ -6824,6 +6855,19 @@ paths:
 components:
   schemas:
 
+    nonceResponse:
+      type: object
+      description: Response containing a unique nonce identifier for preventing duplicate transfer submissions.
+      properties:
+        nonce:
+          type: string
+          format: uuid
+          description: >
+            A unique identifier that can be included in the `POST /transfers` request to prevent duplicate submissions. Each nonce is associated with the authenticated customer and can only be used once.
+            Example: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+      required:
+        - nonce
+
     GetcardOnboardingSessionResponse:
       type: object
       properties:
@@ -7370,6 +7414,13 @@ components:
           description: >
             Controls whether to place a customer initiated hold on the transfer. If set to true, the transfer will be created in a held state and will not be processed until this hold is explicitly released. Note that transfers may also be subject to additional system-initiated holds independent of this setting. All holds (both customer-initiated and system-initiated) must be released before the transfer will be processed.
             Example: false
+        nonce:
+          type: string
+          format: uuid
+          nullable: true
+          description: >
+            Optional unique identifier obtained from the `GET /nonce` endpoint. Use this to prevent duplicate transfer submissions. Each nonce can only be used once per customer. If a nonce has already been used, the transfer request will be rejected with an error. 
+            Example: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
         fields:
           type: array
           description: >
