@@ -6497,6 +6497,11 @@ paths:
         schema:
           type: object
           properties: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/cancelCustomerHoldRequest"
       responses:
         '202':
           description: Accepted
@@ -6854,6 +6859,21 @@ paths:
                     description: "UnhandledException"
 components:
   schemas:
+    cancelCustomerHoldRequest:
+      type: object
+      properties:
+        reason:
+          type: string
+          description: >
+            The reason for canceling the transfer that is on customer hold. This field provides context for the cancellation and helps in record-keeping and auditing.
+          default: "CUSTOMER_REQUEST"
+          enum:
+            - "SUSPECTED_FRAUD"
+            - "CONFIRMED_FRAUD"
+            - "EVALUATION_EXPIRED"
+            - "CUSTOMER_REQUEST"
+      required:
+        - reason
 
     nonceResponse:
       type: object
