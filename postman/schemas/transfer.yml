@@ -8520,9 +8520,6 @@ components:
       enum:
       - BUSINESS
       - PERSON
-    userTypes:
-      allOf:
-        - $ref: '#/components/schemas/recipientTypes'
     senderTypes:
       type: string
       description: |
