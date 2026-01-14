@@ -5118,7 +5118,6 @@ paths:
                   recipientAccountId: "ccf3cf7d-592a-45c4-96d2-b99f111104fe"
                   purposeOfRemittance: 1
                   sourceAccountId: "fa528843-da0c-427b-8c8f-a4de9fbe6974"
-            examples:
 
               Bank Account:
                 summary: Bank Account
