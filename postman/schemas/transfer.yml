@@ -11,6 +11,673 @@ servers:
 security:
 - bearerAuth: []
 paths:
+  "/account-fields":
+    get:
+      tags:
+        - Accounts
+      summary: Get Account Fields
+      description: Given a corridor, userType, and category, this operation returns the required and optional fields for creating an account record. See [Dynamic fields](https://developer.readyremit.com/reference/dynamic-fields).
+      operationId: getAccountFields
+      parameters:
+        - name: countryIso3Code
+          in: query
+          required: true
+          description: See [country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).
+          schema:
+            "$ref": "#/components/schemas/threeUppercaseChars"
+        - name: currencyISO3Code
+          in: query
+          required: true
+          description: See [currency codes](https://en.wikipedia.org/wiki/ISO_4217).
+          schema:
+            "$ref": "#/components/schemas/threeUppercaseChars"
+        - name: transferMethod
+          in: query
+          required: true
+          schema:
+            "$ref": "#/components/schemas/transferMethods"
+        - name: userType
+          in: query
+          required: true
+          schema:
+            "$ref": "#/components/schemas/userTypes"
+        - name: category
+          in: query
+          required: true
+          schema:
+            "$ref": "#/components/schemas/accountFieldCategories"
+      responses:
+        '200':
+          description: Get Account Fields
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  fieldSets:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        fieldSetId:
+                          type: string
+                          example: BANK_DETAILS
+                        fieldSetName:
+                          type: string
+                          example: Bank Details
+                        fields:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              dependencies:
+                                type: object
+                                properties: {}
+                              fieldId:
+                                type: string
+                                example: CARD_ID
+                              fieldType:
+                                type: string
+                                example: TEXT
+                              hintText:
+                                type: string
+                                example: Card Id
+                              isRequired:
+                                type: boolean
+                                example: true
+                              name:
+                                type: string
+                                example: Card Id
+                              placeholderText:
+                                type: string
+                                example: Card Id
+                              visibility:
+                                type: string
+                                example: SHOW_AND_REQUIRED
+              examples:
+                Get Account Fields:
+                  value:
+                    fieldSets:
+                      - fieldSetId: BANK_DETAILS
+                        fieldSetName: Bank Details
+                        fields:
+                          - dependencies: {}
+                            fieldId: CARD_ID
+                            fieldType: TEXT
+                            hintText: Card Id
+                            isRequired: true
+                            name: Card Id
+                            placeholderText: Card Id
+                            visibility: SHOW_AND_REQUIRED
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"
+  "/accounts":
+    post:
+      tags:
+        - Accounts
+      summary: Create Account
+      description: This operation creates an account record.  An account record is used to specify a card from a card onboarding session that can be used for Account Funding Transaction (AFT) transfers (pull funds from a card).
+      operationId: createAccount
+      requestBody:
+        description: |
+          __NOTES:__
+          - __accountHolderId__: should be populated with the senderId this is being set up for.
+          - __fields__
+            - __CARD_ID__
+              - __value__: should be populated with the id of the card set up for the sender using the [/cards] endpoint.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                accountHolderId:
+                  type: string
+                  format: uuid
+                  example: aa4365c8-1ab8-4589-a33c-72928795b971
+                accountType:
+                  "$ref": "#/components/schemas/createAccountAccountTypes"
+                countryIso3Code:
+                  allOf:
+                    - description: "See [country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)."
+                    - "$ref": "#/components/schemas/threeUppercaseChars"
+                currencyIso3Code:
+                  allOf:
+                    - description: "See [currency codes](https://en.wikipedia.org/wiki/ISO_4217)."
+                    - "$ref": "#/components/schemas/threeUppercaseChars"
+                fields:
+                  type: array
+                  items:
+                    type: object
+                    description: "The fields to be used are defined in the response from /account-fields"
+                name:
+                  type: string
+                  description: An identifier for the account record
+                  example: John Test Visa
+            examples:
+              Create Account:
+                value:
+                  accountHolderId: aa4365c8-1ab8-4589-a33c-72928795b971
+                  accountType: CARD
+                  countryIso3Code: USA
+                  currencyIso3Code: USD
+                  fields:
+                    - id: CARD_ID
+                      type: TEXT
+                      value: 31543f78-879e-48bd-90d3-7473ead3d188
+                  name: John Test Visa
+      responses:
+        '201':
+          description: 201 - Create Account
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accountHolderId:
+                    type: string
+                    example: aa4365c8-1ab8-4589-a33c-72928795b971
+                  accountId:
+                    type: string
+                    example: 4b22f022-c096-4ea5-924f-680685cb963b
+                  accountType:
+                    type: string
+                    example: CARD
+                  countryIso3Code:
+                    type: string
+                    example: USA
+                  currencyIso3Code:
+                    type: string
+                    example: USD
+                  fields:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: CARD_ID
+                        name:
+                          type: string
+                          example: Card Id
+                        type:
+                          type: string
+                          example: TEXT
+                        value:
+                          type: string
+                          example: 8ae8282a-2054-4ab6-922e-ce335234e58a
+                    example:
+                      - id: CARD_ID
+                        name: Card Id
+                        type: TEXT
+                        value: 8ae8282a-2054-4ab6-922e-ce335234e58a
+                      - id: PAYMENT_ACCOUNT_NUMBER
+                        name: Payment account number
+                        type: TEXT
+                        value: '1113'
+                      - id: EXPIRATION_DATE
+                        name: Expiration Date
+                        type: TEXT
+                        value: '1231'
+                      - id: CARD_HOLDER_NAME
+                        name: Cardholder name
+                        type: TEXT
+                        value: Francisca Cazzuela
+                      - id: ISSUER_NAME
+                        name: Issuer name
+                        type: TEXT
+                        value: INTL HDQTRS-CENTER OWNED
+                      - id: CARD_BRAND
+                        name: Card Brand
+                        type: TEXT
+                        value: Visa
+                      - id: FAST_FUNDS
+                        name: Fast Funds
+                        type: BOOLEAN
+                        value: 'True'
+                  name:
+                    type: string
+                    example: Account test
+              examples:
+                201 - Create Account:
+                  value:
+                    accountHolderId: aa4365c8-1ab8-4589-a33c-72928795b971
+                    accountId: 4b22f022-c096-4ea5-924f-680685cb963b
+                    accountType: CARD
+                    countryIso3Code: USA
+                    currencyIso3Code: USD
+                    fields:
+                      - id: CARD_ID
+                        name: Card Id
+                        type: TEXT
+                        value: 8ae8282a-2054-4ab6-922e-ce335234e58a
+                      - id: PAYMENT_ACCOUNT_NUMBER
+                        name: Payment account number
+                        type: TEXT
+                        value: '1113'
+                      - id: EXPIRATION_DATE
+                        name: Expiration Date
+                        type: TEXT
+                        value: '1231'
+                      - id: CARD_HOLDER_NAME
+                        name: Cardholder name
+                        type: TEXT
+                        value: Francisca Cazzuela
+                      - id: ISSUER_NAME
+                        name: Issuer name
+                        type: TEXT
+                        value: INTL HDQTRS-CENTER OWNED
+                      - id: CARD_BRAND
+                        name: Card Brand
+                        type: TEXT
+                        value: Visa
+                      - id: FAST_FUNDS
+                        name: Fast Funds
+                        type: BOOLEAN
+                        value: 'True'
+                    name: Account test
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"
+  "/accounts/{accountId}":
+    get:
+      tags:
+        - Accounts
+      summary: Get Account
+      description: This operation returns the account information associated with the specified `accountId`.
+      operationId: getAccount
+      responses:
+        '200':
+          description: 200 - Get Account
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  account:
+                    type: object
+                    properties:
+                      accountHolderId:
+                        type: string
+                        example: aa4365c8-1ab8-4589-a33c-72928795b971
+                      accountId:
+                        type: string
+                        example: 4b22f022-c096-4ea5-924f-680685cb963b
+                      accountType:
+                        type: string
+                        example: CARD
+                      countryIso3Code:
+                        type: string
+                        example: USA
+                      currencyIso3Code:
+                        type: string
+                        example: USD
+                      fields:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: CARD_ID
+                            name:
+                              type: string
+                              example: Card Id
+                            type:
+                              type: string
+                              example: TEXT
+                            value:
+                              type: string
+                              example: 8ae8282a-2054-4ab6-922e-ce335234e58a
+                        example:
+                          - id: CARD_ID
+                            name: Card Id
+                            type: TEXT
+                            value: 8ae8282a-2054-4ab6-922e-ce335234e58a
+                          - id: CARD_BRAND
+                            name: Card Brand
+                            type: TEXT
+                            value: Visa
+                          - id: FAST_FUNDS
+                            name: Fast Funds
+                            type: BOOLEAN
+                            value: 'True'
+                          - id: ISSUER_NAME
+                            name: Issuer name
+                            type: TEXT
+                            value: INTL HDQTRS-CENTER OWNED
+                          - id: EXPIRATION_DATE
+                            name: Expiration Date
+                            type: TEXT
+                            value: '1231'
+                          - id: CARD_HOLDER_NAME
+                            name: Cardholder name
+                            type: TEXT
+                            value: Francisca Cazzuela
+                          - id: PAYMENT_ACCOUNT_NUMBER
+                            name: Payment account number
+                            type: TEXT
+                            value: '1113'
+                      name:
+                        type: string
+                        example: Account test
+              examples:
+                200 - Get Account:
+                  value:
+                    account:
+                      accountHolderId: aa4365c8-1ab8-4589-a33c-72928795b971
+                      accountId: 4b22f022-c096-4ea5-924f-680685cb963b
+                      accountType: CARD
+                      countryIso3Code: USA
+                      currencyIso3Code: USD
+                      fields:
+                        - id: CARD_ID
+                          name: Card Id
+                          type: TEXT
+                          value: 8ae8282a-2054-4ab6-922e-ce335234e58a
+                        - id: CARD_BRAND
+                          name: Card Brand
+                          type: TEXT
+                          value: Visa
+                        - id: FAST_FUNDS
+                          name: Fast Funds
+                          type: BOOLEAN
+                          value: 'True'
+                        - id: ISSUER_NAME
+                          name: Issuer name
+                          type: TEXT
+                          value: INTL HDQTRS-CENTER OWNED
+                        - id: EXPIRATION_DATE
+                          name: Expiration Date
+                          type: TEXT
+                          value: '1231'
+                        - id: CARD_HOLDER_NAME
+                          name: Cardholder name
+                          type: TEXT
+                          value: Francisca Cazzuela
+                        - id: PAYMENT_ACCOUNT_NUMBER
+                          name: Payment account number
+                          type: TEXT
+                          value: '1113'
+                      name: Account test
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"
+    delete:
+      tags:
+        - Accounts
+      summary: Delete Account
+      description: This operation deletes the account record associated with the specified `accountId`.
+      operationId: deleteAccount
+      responses:
+        '200':
+          description: 200 - Account Deleted
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"
+    parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The accountId for the specific account
+  "/accountHolders/{accountHolderId}/accounts":
+    get:
+      tags:
+        - Accounts
+      summary: Get Accounts By Account Holder
+      description: Get the accounts associated with an `accountHolderId` (senderId)
+      operationId: getAccountsByAccountHolder
+      responses:
+        '200':
+          description: 200 - Get Accounts By Account Holder
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accounts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        accountHolderId:
+                          type: string
+                          example: aa4365c8-1ab8-4589-a33c-72928795b971
+                        accountId:
+                          type: string
+                          example: 5a5114a1-de4e-4de5-8a4a-48b80ec752f1
+                        accountType:
+                          type: string
+                          example: CARD
+                        countryIso3Code:
+                          type: string
+                          example: USA
+                        currencyIso3Code:
+                          type: string
+                          example: USD
+                        fields:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                example: CARD_ID
+                              name:
+                                type: string
+                                example: Card Id
+                              type:
+                                type: string
+                                example: TEXT
+                              value:
+                                type: string
+                                example: 89458b93-ebe7-4c87-9cad-e7bffd6657c5
+                          example:
+                            - id: CARD_ID
+                              name: Card Id
+                              type: TEXT
+                              value: 89458b93-ebe7-4c87-9cad-e7bffd6657c5
+                            - id: CARD_BRAND
+                              name: Card Brand
+                              type: TEXT
+                              value: Visa
+                            - id: FAST_FUNDS
+                              name: Fast Funds
+                              type: BOOLEAN
+                              value: 'True'
+                            - id: ISSUER_NAME
+                              name: Issuer name
+                              type: TEXT
+                              value: U.S. REGION
+                            - id: EXPIRATION_DATE
+                              name: Expiration Date
+                              type: TEXT
+                              value: '1231'
+                            - id: CARD_HOLDER_NAME
+                              name: Cardholder name
+                              type: TEXT
+                              value: TheLa Planta
+                            - id: PAYMENT_ACCOUNT_NUMBER
+                              name: Payment account number
+                              type: TEXT
+                              value: '2256'
+                        name:
+                          type: string
+                          example: Account test 2
+                    example:
+                      - accountHolderId: aa4365c8-1ab8-4589-a33c-72928795b971
+                        accountId: 5a5114a1-de4e-4de5-8a4a-48b80ec752f1
+                        accountType: CARD
+                        countryIso3Code: USA
+                        currencyIso3Code: USD
+                        fields:
+                          - id: CARD_ID
+                            name: Card Id
+                            type: TEXT
+                            value: 89458b93-ebe7-4c87-9cad-e7bffd6657c5
+                          - id: CARD_BRAND
+                            name: Card Brand
+                            type: TEXT
+                            value: Visa
+                          - id: FAST_FUNDS
+                            name: Fast Funds
+                            type: BOOLEAN
+                            value: 'True'
+                          - id: ISSUER_NAME
+                            name: Issuer name
+                            type: TEXT
+                            value: U.S. REGION
+                          - id: EXPIRATION_DATE
+                            name: Expiration Date
+                            type: TEXT
+                            value: '1231'
+                          - id: CARD_HOLDER_NAME
+                            name: Cardholder name
+                            type: TEXT
+                            value: TheLa Planta
+                          - id: PAYMENT_ACCOUNT_NUMBER
+                            name: Payment account number
+                            type: TEXT
+                            value: '2256'
+                        name: Account test 2
+                      - accountHolderId: aa4365c8-1ab8-4589-a33c-72928795b971
+                        accountId: 4b22f022-c096-4ea5-924f-680685cb963b
+                        accountType: CARD
+                        countryIso3Code: USA
+                        currencyIso3Code: USD
+                        fields:
+                          - id: CARD_ID
+                            name: Card Id
+                            type: TEXT
+                            value: 8ae8282a-2054-4ab6-922e-ce335234e58a
+                          - id: CARD_BRAND
+                            name: Card Brand
+                            type: TEXT
+                            value: Visa
+                          - id: FAST_FUNDS
+                            name: Fast Funds
+                            type: BOOLEAN
+                            value: 'True'
+                          - id: ISSUER_NAME
+                            name: Issuer name
+                            type: TEXT
+                            value: INTL HDQTRS-CENTER OWNED
+                          - id: EXPIRATION_DATE
+                            name: Expiration Date
+                            type: TEXT
+                            value: '1231'
+                          - id: CARD_HOLDER_NAME
+                            name: Cardholder name
+                            type: TEXT
+                            value: Francisca Cazzuela
+                          - id: PAYMENT_ACCOUNT_NUMBER
+                            name: Payment account number
+                            type: TEXT
+                            value: '1113'
+                        name: Account test
+              examples:
+                200 - Get Accounts By Account Holder:
+                  value:
+                    accounts:
+                      - accountHolderId: aa4365c8-1ab8-4589-a33c-72928795b971
+                        accountId: 5a5114a1-de4e-4de5-8a4a-48b80ec752f1
+                        accountType: CARD
+                        countryIso3Code: USA
+                        currencyIso3Code: USD
+                        fields:
+                          - id: CARD_ID
+                            name: Card Id
+                            type: TEXT
+                            value: 89458b93-ebe7-4c87-9cad-e7bffd6657c5
+                          - id: CARD_BRAND
+                            name: Card Brand
+                            type: TEXT
+                            value: Visa
+                          - id: FAST_FUNDS
+                            name: Fast Funds
+                            type: BOOLEAN
+                            value: 'True'
+                          - id: ISSUER_NAME
+                            name: Issuer name
+                            type: TEXT
+                            value: U.S. REGION
+                          - id: EXPIRATION_DATE
+                            name: Expiration Date
+                            type: TEXT
+                            value: '1231'
+                          - id: CARD_HOLDER_NAME
+                            name: Cardholder name
+                            type: TEXT
+                            value: TheLa Planta
+                          - id: PAYMENT_ACCOUNT_NUMBER
+                            name: Payment account number
+                            type: TEXT
+                            value: '2256'
+                        name: Account test 2
+                      - accountHolderId: aa4365c8-1ab8-4589-a33c-72928795b971
+                        accountId: 4b22f022-c096-4ea5-924f-680685cb963b
+                        accountType: CARD
+                        countryIso3Code: USA
+                        currencyIso3Code: USD
+                        fields:
+                          - id: CARD_ID
+                            name: Card Id
+                            type: TEXT
+                            value: 8ae8282a-2054-4ab6-922e-ce335234e58a
+                          - id: CARD_BRAND
+                            name: Card Brand
+                            type: TEXT
+                            value: Visa
+                          - id: FAST_FUNDS
+                            name: Fast Funds
+                            type: BOOLEAN
+                            value: 'True'
+                          - id: ISSUER_NAME
+                            name: Issuer name
+                            type: TEXT
+                            value: INTL HDQTRS-CENTER OWNED
+                          - id: EXPIRATION_DATE
+                            name: Expiration Date
+                            type: TEXT
+                            value: '1231'
+                          - id: CARD_HOLDER_NAME
+                            name: Cardholder name
+                            type: TEXT
+                            value: Francisca Cazzuela
+                          - id: PAYMENT_ACCOUNT_NUMBER
+                            name: Payment account number
+                            type: TEXT
+                            value: '1113'
+                        name: Account test
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"
+    parameters:
+      - name: accountHolderId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The Sender Id
   "/banks":
     get:
       tags:
@@ -4471,6 +5138,20 @@ paths:
               "$ref": "#/components/schemas/executeTransferRequest"
             examples:
 
+              aft:
+                summary: "Account Funding"
+                value:
+                  dstCountryIso3Code: "PHL"
+                  dstCurrencyIso3Code: "PHP"
+                  srcCurrencyIso3Code: USD
+                  transferMethod: "MOBILE_WALLET"
+                  quoteBy: "SEND_AMOUNT"
+                  amount: 23456
+                  recipientId: "1cf07ebd-7969-48e7-a56b-da9396fc314c"
+                  recipientAccountId: "ccf3cf7d-592a-45c4-96d2-b99f111104fe"
+                  purposeOfRemittance: 1
+                  sourceAccountId: "fa528843-da0c-427b-8c8f-a4de9fbe6974"
+
               Bank Account:
                 summary: Bank Account
                 value:
@@ -4532,6 +5213,8 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/transferResponse"
+                aft:
+                  "$ref": "#/components/examples/transferResponseExampleAft"
               examples:
                 Bank Account:
                   summary: Bank Account
@@ -6551,15 +7234,12 @@ paths:
           application/json:
             schema:
               "$ref": "#/components/schemas/createCardRequest"
-            examples:
-              Success:
-                summary: SUCCESS
-                value:
-                  cardOnboardingSessionId: "d53d90ad-4de8-415d-8286-90c41853a3dd"
-                  cardHolderName: "Daniel P Fix"
-                  cardNumber: "4242424242424242"
-                  cvv2: "123"
-                  expiryDate: "0827"
+            example:
+              cardOnboardingSessionId: "d53d90ad-4de8-415d-8286-90c41853a3dd"
+              cardHolderName: "Daniel P Fix"
+              cardNumber: "4242424242424242"
+              cvv2: "123"
+              expiryDate: "0827"
       responses:
         '201':
           description: The card record was successfully created.
@@ -6601,6 +7281,30 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
+  "/card/{cardId}":
+    delete:
+      tags:
+        - Cards
+      summary: Delete Card
+      description: Delete the card so it cannot be used to create another transfer.
+      operationId: deleteCard
+      responses:
+        '200':
+          description: SUCCESS
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"
+    parameters:
+      - name: cardId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The Card Identifier
   "/card-onboarding-sessions":
     post:
       tags:
@@ -6677,7 +7381,58 @@ paths:
                 expiryDateRequired: true
                 customerId: 9ce909de-f585-4233-bdc5-fdc42cbfd7c4
                 senderId: 5311fd82-ba46-4ebf-a446-b32c58c6ecb3
-                fieldSets: []
+                fieldSets:
+                  - fieldSetId: "CARD_DETAILS"
+                    fieldSetName: "CardDetails"
+                    fields:
+                      - fieldType: "TEXT"
+                        minLength: 1
+                        maxLength: 100
+                        fieldId: "CARD_HOLDER_NAME"
+                        name: "CardholderName"
+                        isRequired: true
+                        visibility: "SHOW_AND_REQUIRED"
+                        placeholderText: "CardholderName"
+                        sortOrder: 1
+                        dependencies: {}
+                      - fieldType: "TEXT"
+                        minLength: 14
+                        maxLength: 16
+                        regex: "^\\d{14,16}$"
+                        fieldId: "CARD_NUMBER"
+                        name: "CardNumber"
+                        isRequired: true
+                        visibility: "SHOW_AND_REQUIRED"
+                        placeholderText: "CardNumber"
+                        sortOrder: 2
+                        dependencies: {}
+                      - fieldType: "TEXT"
+                        minLength: 3
+                        maxLength: 4
+                        regex: "^\\d{3,4}$"
+                        fieldId: "EXPIRATION_DATE"
+                        name: "Expiration Date"
+                        isRequired: true
+                        visibility: "SHOW_AND_REQUIRED"
+                        placeholderText: "Expiration Date"
+                        sortOrder: 3
+                        dependencies:
+                          isRequired:
+                            - comparisonOperator: EQUAL_TO
+                              comparisonValues:
+                                - "*"
+                              fieldId: CVV2
+                      - fieldType: "TEXT"
+                        minLength: 3
+                        maxLength: 4
+                        regex: "^\\d{3,4}$"
+                        fieldId: "CVV2"
+                        name: "Cvv2"
+                        isRequired: true
+                        visibility: "SHOW_AND_REQUIRED"
+                        placeholderText: "Cvv"
+                        sortOrder: 4
+                        dependencies: {}
         '400':
           description: The request was invalid. This response typically occurs if required parameters are missing or invalid.
           content:
@@ -6726,6 +7481,7 @@ paths:
         explode: false
         schema:
           type: string
+          format: uuid
       responses:
         '200':
           description:  The card onboarding session details were successfully retrieved.
@@ -6764,6 +7520,58 @@ paths:
                 senderId: 5311fd82-ba46-4ebf-a446-b32c58c6ecb3
                 cardCountryIso3Codes: []
                 cardCurrencyIso3Codes: []
+                fieldSets:
+                  - fieldSetId: "CARD_DETAILS"
+                    fieldSetName: "CardDetails"
+                    fields:
+                      - fieldType: "TEXT"
+                        minLength: 1
+                        maxLength: 100
+                        fieldId: "CARD_HOLDER_NAME"
+                        name: "CardholderName"
+                        isRequired: true
+                        visibility: "SHOW_AND_REQUIRED"
+                        placeholderText: "CardholderName"
+                        sortOrder: 1
+                        dependencies: {}
+                      - fieldType: "TEXT"
+                        minLength: 14
+                        maxLength: 16
+                        regex: "^\\d{14,16}$"
+                        fieldId: "CARD_NUMBER"
+                        name: "CardNumber"
+                        isRequired: true
+                        visibility: "SHOW_AND_REQUIRED"
+                        placeholderText: "CardNumber"
+                        sortOrder: 2
+                        dependencies: {}
+                      - fieldType: "TEXT"
+                        minLength: 3
+                        maxLength: 4
+                        regex: "^\\d{3,4}$"
+                        fieldId: "EXPIRATION_DATE"
+                        name: "Expiration Date"
+                        isRequired: true
+                        visibility: "SHOW_AND_REQUIRED"
+                        placeholderText: "Expiration Date"
+                        sortOrder: 3
+                        dependencies:
+                          isRequired:
+                            - comparisonOperator: EQUAL_TO
+                              comparisonValues:
+                                - "*"
+                              fieldId: CVV2
+                      - fieldType: "TEXT"
+                        minLength: 3
+                        maxLength: 4
+                        regex: "^\\d{3,4}$"
+                        fieldId: "CVV2"
+                        name: "Cvv2"
+                        isRequired: true
+                        visibility: "SHOW_AND_REQUIRED"
+                        placeholderText: "Cvv"
+                        sortOrder: 4
+                        dependencies: {}
 
         '400':
           description: The request was invalid. This response typically occurs if the `cardOnboardingSessionId` parameter is missing or invalid.
@@ -6853,6 +7661,245 @@ paths:
                     message: "Something went wrong!"
                     description: "UnhandledException"
 components:
+  examples:
+    transferResponseExampleNotAft:
+      summary: Non-AFT example
+      value:
+        transferId: d53d90ad-4de8-415d-8286-90c41853a3dd
+        confirmationNumber: 33TF041162650
+        quote:
+          sendAmount:
+            value: 100000
+            currency:
+              name: US Dollar
+              iso3Code: USD
+              symbol: "$"
+              decimalPlaces: 2
+          receiveAmount:
+            value: 7445765
+            currency:
+              name: Indian rupee
+              iso3Code: INR
+              symbol: "₹"
+              decimalPlaces: 2
+          rate: 74.4576574896
+          adjustments:
+          - label: Transfer Fee
+            amount:
+              value: 879
+              currency:
+                name: US Dollar
+                iso3Code: USD
+                symbol: "$"
+                decimalPlaces: 2
+          totalCost:
+            value: 100879
+            currency:
+              name: US Dollar
+              iso3Code: USD
+              symbol: "$"
+              decimalPlaces: 2
+          disclosures: []
+        senderDetails:
+          senderId: 9711fb4c-df97-49bd-ba03-78706761c23c
+          fields: []
+        recipientDetails:
+          recipientId: 260d1f4f-4fe3-4620-a104-a25ae57b51c3
+          senderId: 9711fb4c-df97-49bd-ba03-78706761c23c
+          recipientType: PERSON
+          firstName: Camilia
+          lastName: Noceda
+          fields:
+          - id: LAST_NAME
+            type: TEXT
+            value: Noceda
+          - id: FIRST_NAME
+            type: TEXT
+            value: Camilia
+        recipientAccountDetails:
+          recipientAccountId: 236d76c2-8b0b-4eef-a28a-25353926ade9
+          accountNumber: '333000333'
+          fields:
+          - id: BANK_NAME
+            type: TEXT
+            value: Baink
+          disclaimers: []
+    transferResponseExampleAft:
+      summary: AFT example
+      value:
+        transferId: "f15f480e-b6d5-43d0-8a9e-4cc07f37f6a5"
+        confirmationNumber: "421913656311"
+        quote:
+          customerId: "9a57cffe-9c1e-4060-931c-c6685f34c2bf"
+          senderId: "b9f458bd-d51d-4a17-ac49-77c01bd5e6a6"
+          sendAmount:
+            value: 4590
+            currency:
+              name: "US Dollar"
+              iso3Code: "USD"
+              symbol: "$"
+              decimalPlaces: 2,
+              roundDirection: "STANDARD"
+              iso4217Code: "840"
+          receiveAmount:
+            value: 2595,
+            currency:
+              name: "Philippine peso"
+              iso3Code: "PHP"
+              symbol: "₱"
+              decimalPlaces: 0
+              roundDirection: "UP"
+              iso4217Code: "608"
+          rate: 56.5293
+          adjustments":
+            - id: "TransferFee"
+              label: "Transfer Fee"
+              amount:
+                value: 165
+                currency:
+                  name: "US Dollar"
+                  iso3Code: "USD"
+                  symbol: "$"
+                  decimalPlaces: 2
+                  roundDirection: "STANDARD"
+                  iso4217Code: "840"
+          totalCost:
+            value: 4755,
+            currency:
+              name: "US Dollar"
+              iso3Code: "USD"
+              symbol: "$"
+              decimalPlaces: 2
+              roundDirection: "STANDARD"
+              iso4217Code: "840"
+          associatedTransferRecordStatus: "NotInProgress"
+          destinationCountryISO3Code: "PHL"
+          destinationCurrencyISO3Code: "PHP"
+          sourceCurrencyIso3Code: "USD"
+          destinationCountry:
+            name: "Philippines"
+            iso2Code: "PH"
+            iso3Code: "PHL"
+            phoneCode: 63
+          transferMethod: "MOBILE_WALLET"
+          disclosures: []
+          deliverySLA:
+            id: "INSTANT"
+            name: "instant"
+          quoteHistoryId: "4b2d991c-3a91-418a-98bc-c460fd4c2576"
+        senderDetails:
+          senderId: "b9f458bd-d51d-4a17-ac49-77c01bd5e6a6"
+          senderType: "PERSON"
+          firstName: "Sven"
+          lastName: "Emmerich"
+          kycStatus: "SKIPPED"
+          customerFundingSource: "ACCOUNTFUNDING"
+          fields:
+            - id: "FIRST_NAME"
+              name: "LegalFirstName"
+              type: "TEXT"
+              value: "Sven"
+            - id: "LAST_NAME"
+              name: "LegalLastName"
+              type: "TEXT"
+              value: "Emmerich"
+            - id: "ADDRESS_LINE_1"
+              name: "Address line 1"
+              type: "TEXT"
+              value: "7688 Orlando Av"
+            - id: "ADDRESS_STATE"
+              name: "State"
+              type: "DROPDOWN"
+              value: "NY"
+            - id: "ADDRESS_CITY"
+              name: "City"
+              type: "TEXT"
+              value: "ACCORD"
+            - id: "ADDRESS_ZIP"
+              name: "Zip code"
+              type: "TEXT"
+              value: "30003"
+            - id: "ADDRESS_COUNTRY"
+              name: "Country"
+              type: "DROPDOWN"
+              value: "USA"
+            - id: "PHONE_NUMBER"
+              name: "Phone number"
+              type: "PHONE_NUMBER"
+              value:
+                number: "19345889786"
+                countryIso3Code: "USA"
+                countryPhoneCode: 1
+            - id: "ID_TYPE"
+              name: "ID type"
+              type: "DROPDOWN"
+              value: "SSN"
+            - id: "EMAIL_ADDRESS"
+              name: "Email"
+              type: "TEXT"
+              value: "guillpiedra@gmail.com"
+        recipientDetails:
+          recipientId: "df164b04-91d8-4b1d-b43a-a6dec79e9b1f"
+          senderId: "b9f458bd-d51d-4a17-ac49-77c01bd5e6a6"
+          recipientType: "PERSON"
+          firstName: "John"
+          lastName: "Do"
+          fields:
+            - id: "FIRST_NAME"
+              name: "First name"
+              type: "TEXT"
+              value: "John"
+            - id: "LAST_NAME"
+              name: "Last name"
+              type: "TEXT"
+              value: "Do"
+            - id: "PHONE_NUMBER"
+              name: "Mobile phone number"
+              type: "PHONE_NUMBER"
+              value:
+                number: "1888513100"
+                countryIso3Code: "PHL"
+                countryPhoneCode: 63
+        recipientAccountDetails":
+          dstCurrencyIso3Code: "PHP"
+          dstCountryIso3Code: "PHL"
+          transferMethod: "MOBILE_WALLET"
+          recipientAccountId: "c8fbb124-115b-47f9-a362-939323ae2bab"
+          fields:
+            - id: "MOBILE_WALLET_PROVIDER"
+              type: "DROPDOWN"
+              value: "COINS"
+        disclaimers: []
+        createdAt: "2024-08-06T13:56:14.3992509Z"
+        fields: []
+        customer:
+          name: "BWP Visa"
+          addressLine1: "California St. 0001"
+          addressLine2: ""
+          addressCity: "Los Angeles"
+          addressState: "CA"
+          addressCountry: "USA"
+          addressZipCode: "150001"
+          phoneNumber: ""
+          website: "www.visa.com"
+        dateAvailable: "2024-08-09T13:56:14.3992509Z"
+        status: "Initiated"
+        providerResponse:
+          transactionDetail:
+            clientReferenceId: "421913656311"
+            expectedPostingDate: "2024-08-06"
+            transactionAmount: 45.5
+            transactionCurrencyCode: "USD"
+            destinationAmount: 2594.70
+            destinationCurrencyCode: "PHP"
+            fxConversionRate: 57.026300000000
+            initiatingPartyId: 10047681103
+            payoutId: "281474988917353"
+            endToEndId: "421913656311"
+            settlementAmount: 45.50
+            settlementCurrencyCode: "USD"
+            transactionDateTime: "2024-08-06T13:56:18.740Z"
+            status: "PAYMENT_RECEIVED"
   schemas:
 
     nonceResponse:
@@ -6873,7 +7920,7 @@ components:
       properties:
         status:
           type: string
-          description: "The current status of the card onboarding session. It indicates whether the session is complete or incomplete. Refer to the [Card Onboarding Session Status](https://developer.readyremit.com/v10/reference/enum-types#card-onboarding-session-status) for the full list of supported values. Example: INCOMPLETE"
+          description: "The current status of the card onboarding session. It indicates whether the session is complete or incomplete. Refer to the [Card Onboarding Session Status](https://developer.readyremit.com/reference/enum-types#card-onboarding-session-status) for the full list of supported values. Example: INCOMPLETE"
         id:
           type: string
           description: "The unique identifier for the card onboarding session. It is used to track and manage the session within the system. Example: 56cc9f6c-5e3d-482a-bfef-154b4c8bea6a"
@@ -6908,7 +7955,7 @@ components:
               description: "The title of the customization. It provides a heading for the interface. Example: Deposit via debit card"
             description:
               type: string
-              description: "A description of the customization. It provides additional information about the interface. Example: Your refund will be credited directly to your bank account via your <Remittance Service Provider> debit card."
+              description: "A description of the customization. It provides additional information about the interface. Example: Your refund will be credited directly to your bank account via your <RemittanceServiceProvider> debit card."
             texts:
               type: object
               properties:
@@ -6969,7 +8016,11 @@ components:
           items:
             type: string
           description: "A list of ISO 4217 codes for the currencies that the card supports. Example: []"
-
+        fieldSets:
+          type: array
+          items:
+            "$ref": "#/components/schemas/fieldSet"
+          description: "A collection of field sets included in the card onboarding session. Each field set contains related fields that are grouped together for better organization and management."
 
 
     cardOnboardingSessionResponse:
@@ -6977,7 +8028,7 @@ components:
       properties:
         status:
           type: string
-          description: "The current status of the card onboarding session. It indicates whether the session is complete or incomplete. See other [Card Onboarding Statuses](https://developer.readyremit.com/v10/reference/enum-types#card-onboarding-session-status). Example: INCOMPLETE "
+          description: "The current status of the card onboarding session. It indicates whether the session is complete or incomplete. See other [Card Onboarding Statuses](https://developer.readyremit.com/reference/enum-types#card-onboarding-session-status). Example: INCOMPLETE "
         id:
           type: string
           description: "The unique identifier for the card onboarding session. It is used to track and manage the session within the system. Example: 16303d3f-7a2b-45c2-b958-03930f709d22"
@@ -7066,97 +8117,75 @@ components:
         fieldSets:
           type: array
           items:
-            type: object
-          description: "A collection of field sets included in the card onboarding session. Each field set contains related fields that are grouped together for better organization and management. Example: []"
+            "$ref": "#/components/schemas/fieldSet"
+          description: "A collection of field sets included in the card onboarding session. Each field set contains related fields that are grouped together for better organization and management."
 
 
-    cardOnboardingSession:
+    createCardOnboardingSessionRequest:
       type: object
       required:
-        - customization
+      - entityMode
       properties:
-        id:
+        entityMode:
           type: string
-        expirationDate:
-          type: string
-        status:
-          "$ref": "#/components/schemas/cardOnboardingSessionStatuses"
-        cardId:
-          type: string
+          description: "Specifies the mode of the entity. It determines the context in which the customization is applied. Example: RECIPIENT"
         customization:
           type: object
           properties:
             primaryColor:
               type: string
+              description: "The primary color used in the customization. It defines the main color theme for the interface. Example: #00A000"
             submitButtonLabel:
               type: string
+              description: "The label displayed on the submit button. It provides a clear action for the user to proceed. Example: NEXT: REVIEW"
+            submitBorderRadius:
+              type: integer
+              description: "The border radius of the submit button. It defines the roundness of the button corners. Example: 40"
+            wrapperMargin:
+              type: string
+              description: "The margin around the wrapper element. It defines the spacing between the wrapper and other elements. Example: 10%"
+            title:
+              type: string
+              description: "The title of the customization. It provides a heading for the interface. Example: Deposit via debit card"
+            description:
+              type: string
+              description: "A description of the customization. It provides additional information about the interface. Example: Your refund will be credited directly to your bank account via your <RemittanceServiceProvider> debit card."
             locale:
               type: string
-    createCardOnboardingSessionRequest:
-      type: object
-      properties:
-        customization:
-          type: object
-          properties:
-            entityMode:
-              type: string
-              description: "Specifies the mode of the entity. It determines the context in which the customization is applied. Example: RECIPIENT"
-            customization:
+              description: "The locale setting for the customization. It defines the language and regional settings. Example: en-US"
+            texts:
               type: object
               properties:
-                primaryColor:
+                family:
                   type: string
-                  description: "The primary color used in the customization. It defines the main color theme for the interface. Example: #00A000"
-                submitButtonLabel:
-                  type: string
-                  description: "The label displayed on the submit button. It provides a clear action for the user to proceed. Example: NEXT: REVIEW"
-                submitBorderRadius:
+                  description: "The font family used for text elements. It defines the typeface for the text. Example: Arial"
+                size:
                   type: integer
-                  description: "The border radius of the submit button. It defines the roundness of the button corners. Example: 40"
-                wrapperMargin:
+                  description: "The font size used for text elements. It defines the size of the text. Example: 14"
+                weight:
+                  type: integer
+                  description: "The font weight used for text elements. It defines the thickness of the text. Example: 500"
+            inputs:
+              type: object
+              properties:
+                family:
                   type: string
-                  description: "The margin around the wrapper element. It defines the spacing between the wrapper and other elements. Example: 10%"
-                title:
-                  type: string
-                  description: "The title of the customization. It provides a heading for the interface. Example: Deposit via debit card"
-                description:
-                  type: string
-                  description: "A description of the customization. It provides additional information about the interface. Example: Your refund will be credited directly to your bank account via your <RemittanceServiceProvider> debit card."
-                locale:
-                  type: string
-                  description: "The locale setting for the customization. It defines the language and regional settings. Example: en-US"
-                texts:
-                  type: object
-                  properties:
-                    family:
-                      type: string
-                      description: "The font family used for text elements. It defines the typeface for the text. Example: Arial"
-                    size:
-                      type: integer
-                      description: "The font size used for text elements. It defines the size of the text. Example: 14"
-                    weight:
-                      type: integer
-                      description: "The font weight used for text elements. It defines the thickness of the text. Example: 500"
-                inputs:
-                  type: object
-                  properties:
-                    family:
-                      type: string
-                      description: "The font family used for input elements. It defines the typeface for the input text. Example: Roboto"
-                    size:
-                      type: integer
-                      description: "The font size used for input elements. It defines the size of the input text. Example: 18"
-                    weight:
-                      type: integer
-                      description: "The font weight used for input elements. It defines the thickness of the input text. Example: 500"
+                  description: "The font family used for input elements. It defines the typeface for the input text. Example: Roboto"
+                size:
+                  type: integer
+                  description: "The font size used for input elements. It defines the size of the input text. Example: 18"
+                weight:
+                  type: integer
+                  description: "The font weight used for input elements. It defines the thickness of the input text. Example: 500"
 
     createCardRequest:
       type: object
       required:
       - cardOnboardingSessionId
       - cardNumber
-      - expiryDate
-      - cvv2
+      description: |
+        Cvv2 and expiryDate are optional on this object, but may actually be required based on the data supplied when calling the 
+        [/card-onboarding-sessions] endpoint to start a card onboarding session.
       properties:
         cardonboardingsessionid:
           type: string
@@ -7449,6 +8478,12 @@ components:
         - recipientId
         - recipientAccountId
 
+            "$ref": "#/components/schemas/fieldValue"
+        sourceAccountId:
+          type: string
+          format: uuid
+          description: |
+            This should only be populated for Account Funding Transaction (AFT) transfers (pull funds from a card).  This is the id associated with the sender's "account" record.
     transferResponse:
       type: object
       properties:
@@ -7457,6 +8492,9 @@ components:
           description: Unique identifier for the transfer.
         confirmationNumber:
           type: string
+        createdAt:
+          type: string
+          format: date-time
         quote:
           "$ref": "#/components/schemas/getQuoteSendAmountResponse200"
         senderDetails:
@@ -7465,10 +8503,40 @@ components:
           "$ref": "#/components/schemas/recipient"
         recipientAccountDetails:
           "$ref": "#/components/schemas/recipientAccount"
+        fields:
+          type: array
         disclaimers:
           type: array
           items:
             type: string
+        customer:
+          type: object
+          properties:
+            name:
+              type: string
+            addressLine1:
+              type: string
+            addressLine2:
+              type: string
+            addressCity:
+              type: string
+            addressState:
+              type: string
+            addressCountry:
+              type: string
+            addressZipCode:
+              type: string
+            phoneNumber:
+              type: string
+            website:
+              type: string
+        dateAvailable:
+          type: string
+        status:
+          "$ref": "#/components/schemas/transferStatuses"
+        providerResponse:
+          description: This is the response from the provider.
+          type: object
     transferProgressResponse:
       type: object
       properties:
@@ -7531,9 +8599,6 @@ components:
       enum:
       - BUSINESS
       - PERSON
-    userTypes:
-      allOf:
-        - $ref: '#/components/schemas/recipientTypes'
     senderTypes:
       type: string
       description: |
@@ -7544,6 +8609,27 @@ components:
       enum:
       - BUSINESS
       - PERSON
+    userTypes:
+      type: string
+      description: See [User Type](https://developer.readyremit.com/reference/enum-types#user-type).
+      default: PERSON
+      enum:
+      - BUSINESS
+      - PERSON
+    accountFieldCategories:
+      type: string
+      description: See [Account Field Category](https://developer.readyremit.com/reference/enum-types#account-field-category).
+      default: SENDER
+      enum:
+      - SENDER
+    createAccountAccountTypes:
+      type: string
+      description: See [Create Account Account Type](https://developer.readyremit.com/reference/enum-types#create-account-account-type).
+      enum:
+      - BANK_ACCOUNT
+      - CARD
+      - CASH_PICKUP
+      - WALLET
     kycStatuses:
       type: string
       description: "The current status of the user's Know Your Customer (KYC) verification process. See [KYC Status](https://developer.readyremit.com/reference/enum-types#kyc-status). Example: 'SKIPPED'"
@@ -7556,6 +8642,16 @@ components:
       - FAILED
       - PENDING
       - REQUEST_FAILED
+    transferStatuses:
+      type: string
+      description: See [Transfer Status](https://developer.readyremit.com/reference/enum-types#transfer-status).
+      enum:
+      - Unknown
+      - Initiated
+      - Pending
+      - Failed
+      - Canceled
+      - Complete
     transferMethods:
       type: string
       description:  >
@@ -7567,14 +8663,6 @@ components:
       - CASH_PICKUP
       - PUSH_TO_CARD
       - MOBILE_WALLET
-    cardOnboardingSessionStatuses:
-      type: string
-      description: See [Card Onboarding Session Status](https://developer.readyremit.com/reference/enum-types#card-onboarding-session-status).
-      default: INCOMPLETE
-      enum:
-      - INCOMPLETE
-      - SUCCEEDED
-      - EXPIRED
     quoteBy:
       type: string
       description:  >
@@ -7632,24 +8720,6 @@ components:
           "$ref": "#/components/schemas/currency"
         transferMethod:
           "$ref": "#/components/schemas/transferMethods"
-    money:
-      type: object
-      properties:
-        value:
-          minimum: 0
-          type: integer
-        currency:
-          "$ref": "#/components/schemas/currency"
-    adjustment:
-      # required:
-      # - amount
-      # - label
-      type: object
-      properties:
-        label:
-          type: string
-        amount:
-          "$ref": "#/components/schemas/money"
     getQuoteReceiveAmountResponse200:
       title: "Quote by Receive Amount"
       type: object
@@ -7840,37 +8910,6 @@ components:
           description: "Unique identifier for the quote history. Example: 29bd0ff4-4cd4-41e9-badc-d9e3c6bcc3e8"
 
     getQuoteSendAmountResponse200:
-      # title: "Quote by Send Amount"
-      # # required:
-      # # - customerId
-      # # - adjustments
-      # # - disclosures
-      # # - rate
-      # # - receiveAmount
-      # # - sendAmount
-      # # - totalCost
-      # type: object
-      # properties:
-      #   customerId:
-      #     type: string
-      #     description: "Unique identifier for the customer. This ID is used to track and manage customer details within the system, ensuring that each customer's transactions and information are correctly associated. example: 9ce909de-f585-4233-bdc5-fdc42cbfd7c4"
-      #   sendAmount:
-      #     description: "The amount of money the sender wishes to transfer. This field includes the value and currency details of the amount being sent by the sender. It helps in calculating the total cost and the amount the recipient will receive. example: 2200"
-      #     "$ref": "#/components/schemas/money"
-      #   receiveAmount:
-      #     description: "The amount of money the recipient will receive. This field includes the value and currency details of the amount being received by the recipient. It is calculated based on the send amount and the exchange rate. example: value: 111486"
-      #     "$ref": "#/components/schemas/money"
-      #   rate:
-      #     description: "The exchange rate applied to the transfer. This rate determines how much of the destination currency the recipient will receive for each unit of the source currency. It helps in calculating the receive amount. example: 50.6754"
-      #     type: number
-      #   adjustments:
-      #     description: "A list of adjustments applied to the transfer, such as fees or discounts. Each adjustment includes details like the label and amount, which are used to calculate the total cost of the transfer."
-      #     type: array
-      #     items:
-      #       "$ref": "#/components/schemas/adjustment"
-      #   totalCost:
-      #     description: "The total cost of the transfer, including the send amount and any adjustments. This is the amount the sender will be charged for the transfer. It helps in providing a clear breakdown of the costs involved. example: value: 2979"
-      #     "$ref": "#/components/schemas/money"
       title: "Quote by Send Amount"
       type: object
       properties:
@@ -8584,17 +9623,6 @@ components:
           type: string
         description:
           type: string
-    statusEntry:
-      type: object
-      required:
-      - status
-      - changedDate
-      properties:
-        status:
-          type: string
-        changedDate:
-          type: string
-          format: date-time
   securitySchemes:
     bearerAuth:
       type: http
