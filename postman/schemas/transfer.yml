@@ -7966,7 +7966,11 @@ components:
           items:
             type: string
           description: "A list of ISO 4217 codes for the currencies that the card supports. Example: []"
-
+        fieldSets:
+          type: array
+          items:
+            "$ref": "#/components/schemas/fieldSet"
+          description: "A collection of field sets included in the card onboarding session. Each field set contains related fields that are grouped together for better organization and management."
 
 
     cardOnboardingSessionResponse:
@@ -8064,7 +8068,7 @@ components:
           type: array
           items:
             "$ref": "#/components/schemas/fieldSet"
-          description: "A collection of field sets included in the card onboarding session. Each field set contains related fields that are grouped together for better organization and management. Example: []"
+          description: "A collection of field sets included in the card onboarding session. Each field set contains related fields that are grouped together for better organization and management."
 
 
     createCardOnboardingSessionRequest:
