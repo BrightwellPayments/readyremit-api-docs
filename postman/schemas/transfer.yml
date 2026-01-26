@@ -7344,7 +7344,58 @@ paths:
                 expiryDateRequired: true
                 customerId: 9ce909de-f585-4233-bdc5-fdc42cbfd7c4
                 senderId: 5311fd82-ba46-4ebf-a446-b32c58c6ecb3
-                fieldSets: []
+                fieldSets:
+                  - fieldSetId: "CARD_DETAILS"
+                    fieldSetName: "CardDetails"
+                    fields:
+                      - fieldType: "TEXT"
+                        minLength: 1
+                        maxLength: 100
+                        fieldId: "CARD_HOLDER_NAME"
+                        name: "CardholderName"
+                        isRequired: true
+                        visibility: "SHOW_AND_REQUIRED"
+                        placeholderText: "CardholderName"
+                        sortOrder: 1
+                        dependencies: {}
+                      - fieldType: "TEXT"
+                        minLength: 14
+                        maxLength: 16
+                        regex: "^\\d{14,16}$"
+                        fieldId: "CARD_NUMBER"
+                        name: "CardNumber"
+                        isRequired: true
+                        visibility: "SHOW_AND_REQUIRED"
+                        placeholderText: "CardNumber"
+                        sortOrder: 2
+                        dependencies: {}
+                      - fieldType: "TEXT"
+                        minLength: 3
+                        maxLength: 4
+                        regex: "^\\d{3,4}$"
+                        fieldId: "EXPIRATION_DATE"
+                        name: "Expiration Date"
+                        isRequired: true
+                        visibility: "SHOW_AND_REQUIRED"
+                        placeholderText: "Expiration Date"
+                        sortOrder: 3
+                        dependencies:
+                          isRequired:
+                            - comparisonOperator: EQUAL_TO
+                              comparisonValues:
+                                - "*"
+                              fieldId: CVV2
+                      - fieldType: "TEXT"
+                        minLength: 3
+                        maxLength: 4
+                        regex: "^\\d{3,4}$"
+                        fieldId: "CVV2"
+                        name: "Cvv2"
+                        isRequired: true
+                        visibility: "SHOW_AND_REQUIRED"
+                        placeholderText: "Cvv"
+                        sortOrder: 4
+                        dependencies: {}
         '400':
           description: The request was invalid. This response typically occurs if required parameters are missing or invalid.
           content:
@@ -7960,167 +8011,66 @@ components:
         fieldSets:
           type: array
           items:
-            type: object
+            "$ref": "#/components/schemas/fieldSet"
           description: "A collection of field sets included in the card onboarding session. Each field set contains related fields that are grouped together for better organization and management. Example: []"
 
 
-    cardOnboardingSession:
-      type: object
-      properties:
-        id:
-          type: string
-        expirationDate:
-          type: string
-        status:
-          "$ref": "#/components/schemas/cardOnboardingSessionStatuses"
-        cardId:
-          type: string
-    cardOnboardingSessionAdditional:
-      type: object
-      properties:
-        entityMode:
-          "$ref": "#/components/schemas/entityMode"
-        cvv2Required:
-          type: boolean
-        cardNumberRequired:
-          type: boolean
-        cardHolderNameRequired:
-          type: boolean
-        expiryDateRequired:
-          type: boolean
-        customerId:
-          type: string
-          format: uuid
-        senderId:
-          type: string
-          format: uuid
-        cardCountryIso3Codes:
-          type: array
-          items:
-            "$ref": "#/components/schemas/threeUppercaseChars"
-          description:  This may be supplied is the provider setup for PUSH_TO_CARD is Visa
-        cardCurrencyIso3Codes:
-          type: array
-          items:
-            "$ref": "#/components/schemas/threeUppercaseChars"
-          description:  This may be supplied is the provider setup for PUSH_TO_CARD is Visa
-        fieldSets:
-          allOf:
-            - description: There is currently 1 fieldset returned in the array.  It is named "CardDetails"
-            - "$ref": "#/components/schemas/cardOnboardingSessionFieldSets"
-    cardOnboardingSessionFieldSet:
-      required:
-      - fields
-      - fieldSetId
-      - fieldSetName
-      type: object
-      properties:
-        fieldSetId:
-          type: string
-        fieldSetName:
-          type: string
-        fields:
-          type: array
-          items:
-            allOf:
-              - description: This provides information for the fields used for card data entry.
-              - "$ref": "#/components/schemas/textField"
-    cardOnboardingSessionFieldSets:
-      type: array
-      items:
-        "$ref": "#/components/schemas/cardOnboardingSessionFieldSet"
-    createCardOnboardingSessionCustomizationObject:
-      type: object
-      properties:
-        customization:
-          "$ref": "#/components/schemas/createCardOnboardingSessionCustomization"
-    createCardOnboardingSessionCustomization:
-      type: object
-      properties:
-        primaryColor:
-          type: string
-        submitButtonLabel:
-          type: string
-        submitBorderRadius:
-          type: integer
-        wrapperMargin:
-          type: string
-        locale:
-          type: string
-        title:
-          type: string
-        description:
-          type: string
-        texts:
-          "$ref": "#/components/schemas/cardOnboardingFontObject"
-        inputs:
-          "$ref": "#/components/schemas/cardOnboardingFontObject"
-        hints:
-          type: array
-          description: This is a list of objects.  The objects can have any number of string properties on them.
-          items:
-            type: object
-            additionalProperties:
-              type: string
     createCardOnboardingSessionRequest:
       type: object
       required:
       - entityMode
       properties:
+        entityMode:
+          type: string
+          description: "Specifies the mode of the entity. It determines the context in which the customization is applied. Example: RECIPIENT"
         customization:
           type: object
           properties:
-            entityMode:
+            primaryColor:
               type: string
-              description: "Specifies the mode of the entity. It determines the context in which the customization is applied. Example: RECIPIENT"
-            customization:
+              description: "The primary color used in the customization. It defines the main color theme for the interface. Example: #00A000"
+            submitButtonLabel:
+              type: string
+              description: "The label displayed on the submit button. It provides a clear action for the user to proceed. Example: NEXT: REVIEW"
+            submitBorderRadius:
+              type: integer
+              description: "The border radius of the submit button. It defines the roundness of the button corners. Example: 40"
+            wrapperMargin:
+              type: string
+              description: "The margin around the wrapper element. It defines the spacing between the wrapper and other elements. Example: 10%"
+            title:
+              type: string
+              description: "The title of the customization. It provides a heading for the interface. Example: Deposit via debit card"
+            description:
+              type: string
+              description: "A description of the customization. It provides additional information about the interface. Example: Your refund will be credited directly to your bank account via your <RemittanceServiceProvider> debit card."
+            locale:
+              type: string
+              description: "The locale setting for the customization. It defines the language and regional settings. Example: en-US"
+            texts:
               type: object
               properties:
-                primaryColor:
+                family:
                   type: string
-                  description: "The primary color used in the customization. It defines the main color theme for the interface. Example: #00A000"
-                submitButtonLabel:
-                  type: string
-                  description: "The label displayed on the submit button. It provides a clear action for the user to proceed. Example: NEXT: REVIEW"
-                submitBorderRadius:
+                  description: "The font family used for text elements. It defines the typeface for the text. Example: Arial"
+                size:
                   type: integer
-                  description: "The border radius of the submit button. It defines the roundness of the button corners. Example: 40"
-                wrapperMargin:
+                  description: "The font size used for text elements. It defines the size of the text. Example: 14"
+                weight:
+                  type: integer
+                  description: "The font weight used for text elements. It defines the thickness of the text. Example: 500"
+            inputs:
+              type: object
+              properties:
+                family:
                   type: string
-                  description: "The margin around the wrapper element. It defines the spacing between the wrapper and other elements. Example: 10%"
-                title:
-                  type: string
-                  description: "The title of the customization. It provides a heading for the interface. Example: Deposit via debit card"
-                description:
-                  type: string
-                  description: "A description of the customization. It provides additional information about the interface. Example: Your refund will be credited directly to your bank account via your <RemittanceServiceProvider> debit card."
-                locale:
-                  type: string
-                  description: "The locale setting for the customization. It defines the language and regional settings. Example: en-US"
-                texts:
-                  type: object
-                  properties:
-                    family:
-                      type: string
-                      description: "The font family used for text elements. It defines the typeface for the text. Example: Arial"
-                    size:
-                      type: integer
-                      description: "The font size used for text elements. It defines the size of the text. Example: 14"
-                    weight:
-                      type: integer
-                      description: "The font weight used for text elements. It defines the thickness of the text. Example: 500"
-                inputs:
-                  type: object
-                  properties:
-                    family:
-                      type: string
-                      description: "The font family used for input elements. It defines the typeface for the input text. Example: Roboto"
-                    size:
-                      type: integer
-                      description: "The font size used for input elements. It defines the size of the input text. Example: 18"
-                    weight:
-                      type: integer
-                      description: "The font weight used for input elements. It defines the thickness of the input text. Example: 500"
+                  description: "The font family used for input elements. It defines the typeface for the input text. Example: Roboto"
+                size:
+                  type: integer
+                  description: "The font size used for input elements. It defines the size of the input text. Example: 18"
+                weight:
+                  type: integer
+                  description: "The font weight used for input elements. It defines the thickness of the input text. Example: 500"
 
     createCardRequest:
       type: object
@@ -8551,11 +8501,6 @@ components:
       - CARD
       - CASH_PICKUP
       - WALLET
-    entityMode:
-      type: string
-      enum:
-      - SENDER
-      - RECIPIENT
     kycStatuses:
       type: string
       description: "The current status of the user's Know Your Customer (KYC) verification process. See [KYC Status](https://developer.readyremit.com/reference/enum-types#kyc-status). Example: 'SKIPPED'"
@@ -8589,14 +8534,6 @@ components:
       - CASH_PICKUP
       - PUSH_TO_CARD
       - MOBILE_WALLET
-    cardOnboardingSessionStatuses:
-      type: string
-      description: See [Card Onboarding Session Status](https://developer.readyremit.com/reference/enum-types#card-onboarding-session-status).
-      default: INCOMPLETE
-      enum:
-      - INCOMPLETE
-      - SUCCEEDED
-      - EXPIRED
     quoteBy:
       type: string
       description:  >
@@ -8654,24 +8591,6 @@ components:
           "$ref": "#/components/schemas/currency"
         transferMethod:
           "$ref": "#/components/schemas/transferMethods"
-    money:
-      type: object
-      properties:
-        value:
-          minimum: 0
-          type: integer
-        currency:
-          "$ref": "#/components/schemas/currency"
-    adjustment:
-      # required:
-      # - amount
-      # - label
-      type: object
-      properties:
-        label:
-          type: string
-        amount:
-          "$ref": "#/components/schemas/money"
     getQuoteReceiveAmountResponse200:
       title: "Quote by Receive Amount"
       type: object
@@ -8862,37 +8781,6 @@ components:
           description: "Unique identifier for the quote history. Example: 29bd0ff4-4cd4-41e9-badc-d9e3c6bcc3e8"
 
     getQuoteSendAmountResponse200:
-      # title: "Quote by Send Amount"
-      # # required:
-      # # - customerId
-      # # - adjustments
-      # # - disclosures
-      # # - rate
-      # # - receiveAmount
-      # # - sendAmount
-      # # - totalCost
-      # type: object
-      # properties:
-      #   customerId:
-      #     type: string
-      #     description: "Unique identifier for the customer. This ID is used to track and manage customer details within the system, ensuring that each customer's transactions and information are correctly associated. example: 9ce909de-f585-4233-bdc5-fdc42cbfd7c4"
-      #   sendAmount:
-      #     description: "The amount of money the sender wishes to transfer. This field includes the value and currency details of the amount being sent by the sender. It helps in calculating the total cost and the amount the recipient will receive. example: 2200"
-      #     "$ref": "#/components/schemas/money"
-      #   receiveAmount:
-      #     description: "The amount of money the recipient will receive. This field includes the value and currency details of the amount being received by the recipient. It is calculated based on the send amount and the exchange rate. example: value: 111486"
-      #     "$ref": "#/components/schemas/money"
-      #   rate:
-      #     description: "The exchange rate applied to the transfer. This rate determines how much of the destination currency the recipient will receive for each unit of the source currency. It helps in calculating the receive amount. example: 50.6754"
-      #     type: number
-      #   adjustments:
-      #     description: "A list of adjustments applied to the transfer, such as fees or discounts. Each adjustment includes details like the label and amount, which are used to calculate the total cost of the transfer."
-      #     type: array
-      #     items:
-      #       "$ref": "#/components/schemas/adjustment"
-      #   totalCost:
-      #     description: "The total cost of the transfer, including the send amount and any adjustments. This is the amount the sender will be charged for the transfer. It helps in providing a clear breakdown of the costs involved. example: value: 2979"
-      #     "$ref": "#/components/schemas/money"
       title: "Quote by Send Amount"
       type: object
       properties:
@@ -9606,17 +9494,6 @@ components:
           type: string
         description:
           type: string
-    statusEntry:
-      type: object
-      required:
-      - status
-      - changedDate
-      properties:
-        status:
-          type: string
-        changedDate:
-          type: string
-          format: date-time
   securitySchemes:
     bearerAuth:
       type: http
