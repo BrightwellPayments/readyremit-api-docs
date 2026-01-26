@@ -7483,6 +7483,58 @@ paths:
                 senderId: 5311fd82-ba46-4ebf-a446-b32c58c6ecb3
                 cardCountryIso3Codes: []
                 cardCurrencyIso3Codes: []
+                fieldSets:
+                  - fieldSetId: "CARD_DETAILS"
+                    fieldSetName: "CardDetails"
+                    fields:
+                      - fieldType: "TEXT"
+                        minLength: 1
+                        maxLength: 100
+                        fieldId: "CARD_HOLDER_NAME"
+                        name: "CardholderName"
+                        isRequired: true
+                        visibility: "SHOW_AND_REQUIRED"
+                        placeholderText: "CardholderName"
+                        sortOrder: 1
+                        dependencies: {}
+                      - fieldType: "TEXT"
+                        minLength: 14
+                        maxLength: 16
+                        regex: "^\\d{14,16}$"
+                        fieldId: "CARD_NUMBER"
+                        name: "CardNumber"
+                        isRequired: true
+                        visibility: "SHOW_AND_REQUIRED"
+                        placeholderText: "CardNumber"
+                        sortOrder: 2
+                        dependencies: {}
+                      - fieldType: "TEXT"
+                        minLength: 3
+                        maxLength: 4
+                        regex: "^\\d{3,4}$"
+                        fieldId: "EXPIRATION_DATE"
+                        name: "Expiration Date"
+                        isRequired: true
+                        visibility: "SHOW_AND_REQUIRED"
+                        placeholderText: "Expiration Date"
+                        sortOrder: 3
+                        dependencies:
+                          isRequired:
+                            - comparisonOperator: EQUAL_TO
+                              comparisonValues:
+                                - "*"
+                              fieldId: CVV2
+                      - fieldType: "TEXT"
+                        minLength: 3
+                        maxLength: 4
+                        regex: "^\\d{3,4}$"
+                        fieldId: "CVV2"
+                        name: "Cvv2"
+                        isRequired: true
+                        visibility: "SHOW_AND_REQUIRED"
+                        placeholderText: "Cvv"
+                        sortOrder: 4
+                        dependencies: {}
 
         '400':
           description: The request was invalid. This response typically occurs if the `cardOnboardingSessionId` parameter is missing or invalid.
@@ -7818,7 +7870,7 @@ components:
       properties:
         status:
           type: string
-          description: "The current status of the card onboarding session. It indicates whether the session is complete or incomplete. Refer to the [Card Onboarding Session Status](https://developer.readyremit.com/v10/reference/enum-types#card-onboarding-session-status) for the full list of supported values. Example: INCOMPLETE"
+          description: "The current status of the card onboarding session. It indicates whether the session is complete or incomplete. Refer to the [Card Onboarding Session Status](https://developer.readyremit.com/reference/enum-types#card-onboarding-session-status) for the full list of supported values. Example: INCOMPLETE"
         id:
           type: string
           description: "The unique identifier for the card onboarding session. It is used to track and manage the session within the system. Example: 56cc9f6c-5e3d-482a-bfef-154b4c8bea6a"
@@ -7853,7 +7905,7 @@ components:
               description: "The title of the customization. It provides a heading for the interface. Example: Deposit via debit card"
             description:
               type: string
-              description: "A description of the customization. It provides additional information about the interface. Example: Your refund will be credited directly to your bank account via your <Remittance Service Provider> debit card."
+              description: "A description of the customization. It provides additional information about the interface. Example: Your refund will be credited directly to your bank account via your <RemittanceServiceProvider> debit card."
             texts:
               type: object
               properties:
@@ -7922,7 +7974,7 @@ components:
       properties:
         status:
           type: string
-          description: "The current status of the card onboarding session. It indicates whether the session is complete or incomplete. See other [Card Onboarding Statuses](https://developer.readyremit.com/v10/reference/enum-types#card-onboarding-session-status). Example: INCOMPLETE "
+          description: "The current status of the card onboarding session. It indicates whether the session is complete or incomplete. See other [Card Onboarding Statuses](https://developer.readyremit.com/reference/enum-types#card-onboarding-session-status). Example: INCOMPLETE "
         id:
           type: string
           description: "The unique identifier for the card onboarding session. It is used to track and manage the session within the system. Example: 16303d3f-7a2b-45c2-b958-03930f709d22"
