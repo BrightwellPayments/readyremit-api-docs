@@ -4145,6 +4145,245 @@ paths:
               example:
               - code: SenderNotFound
                 message: "Sender cannot be found."
+    patch:
+      tags:
+      - Senders
+      summary: Patch Sender
+      description:  |
+        The `PATCH /senders/{senderId}` endpoint partially updates the details of an existing sender record.
+
+        **Implementation Guide:**
+        - **Prerequisite**: Ensure that the `GET /sender-fields` endpoint is called first to retrieve the necessary fields for updating a sender record.
+        - **Dynamic Fields**: The fields required for updating a sender record are dynamic and may change based on the sender type and other factors. Always use the latest field requirements from the `GET /sender-fields` endpoint.
+        - **Validation**: Validate the request body against the field requirements obtained from the `GET /sender-fields` endpoint to ensure all included fields are correctly formatted.
+
+        **Note** : The PATCH /senders endpoint performs a partial update, only modifying the fields included in the request. Any field not included in the field collection is left unchanged. This differs from the PUT /senders endpoint, which replaces the sender's information entirely.
+
+      operationId: patchSender
+      parameters:
+      - name: senderId
+        in: path
+        description: The unique identifier of the sender.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          format: uuid
+          description: The unique identifier of the sender.
+      requestBody:
+        description: Array of fields to update on the sender. Only include fields that should be modified.
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/createSenderRequest"
+            examples:
+              Person:
+                summary: PERSON
+                value:
+                  senderType: PERSON
+                  fields:
+                    - id: FIRST_NAME
+                      value: Giuseppe
+                    - id: LAST_NAME
+                      value: Jakubowski
+                    - id: EMAIL_ADDRESS
+                      value: Considine@hotmail.com
+              Business:
+                summary: BUSINESS
+                value:
+                  senderType: BUSINESS
+                  fields:
+                    senderType: BUSINESS
+                    fields:
+                      - id: COMPANY_NAME
+                        value: Lehner Cummerata
+                      - id: EMAIL_ADDRESS
+                        value: finsup@pt.com
+
+      responses:
+        '200':
+          description: The sender record was successfully updated.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/sender"
+              examples:
+                Person:
+                  summary: PERSON
+                  value:
+                    senderType: PERSON
+                    fields:
+                      - id: FIRST_NAME
+                        name: LegalFirstName
+                        type: TEXT
+                        value: Giuseppe
+                      - id: LAST_NAME
+                        name: LegalLastName
+                        type: TEXT
+                        value: Jakubowski
+                      - id: ADDRESS_LINE_1
+                        name: Address line 1
+                        type: TEXT
+                        value: 65426 London Road
+                      - id: ADDRESS_STATE
+                        name: State
+                        type: DROPDOWN
+                        value: OK
+                      - id: ADDRESS_CITY
+                        name: City
+                        type: TEXT
+                        value: Lavadaworth
+                      - id: ADDRESS_ZIP
+                        name: Zip code
+                        type: TEXT
+                        value: '59701'
+                      - id: ADDRESS_COUNTRY
+                        name: Country
+                        type: DROPDOWN
+                        value: USA
+                      - id: NATIONALITY
+                        name: Country of incorporation
+                        type: DROPDOWN
+                        value: USA
+                      - id: PHONE_NUMBER
+                        name: Phone number
+                        type: PHONE_NUMBER
+                        value:
+                          number: '123456789'
+                          countryIso3Code: USA
+                          countryPhoneCode: 1
+                      - id: ID_NUMBER
+                        name: ID number
+                        type: TEXT
+                        value: '284421088'
+                      - id: ID_TYPE
+                        name: ID type
+                        type: DROPDOWN
+                        value: SSN
+                      - id: EMAIL_ADDRESS
+                        name: Email
+                        type: TEXT
+                        value: Considine@hotmail.com
+                      - id: ID_COUNTRY
+                        name: ID issuing country
+                        type: DROPDOWN
+                        value: USA
+                      - id: ID_EXPIRATION_DATE
+                        name: ID expiration date
+                        type: DATE
+                        value: '2025-10-22'
+                      - id: DATE_OF_BIRTH
+                        name: Date of birth
+                        type: DATE
+                        value: '1978-08-06'
+                      - id: BIRTH_COUNTRY
+                        name: Country of birth
+                        type: DROPDOWN
+                        value: USA
+
+                Business:
+                  summary: BUSINESS
+                  value:
+                    senderId: b6f9ae79-d0cf-4816-b4d3-0bae0011053e
+                    senderType: BUSINESS
+                    companyName: Lehner Cummerata
+                    customerId: 9ce909de-f585-4233-bdc5-fdc42cbfd7c4
+                    kycStatus: SKIPPED
+                    customerFundingSource: PREFUNDING
+                    fields:
+                      - id: COMPANY_NAME
+                        name: Company name
+                        type: TEXT
+                        value: Lehner Cummerata
+                      - id: FIRST_NAME
+                        name: LegalFirstName
+                        type: TEXT
+                        value: Giuseppe
+                      - id: LAST_NAME
+                        name: LegalLastName
+                        type: TEXT
+                        value: Jakubowski
+                      - id: ADDRESS_LINE_1
+                        name: Address line 1
+                        type: TEXT
+                        value: 1022 Main St
+                      - id: ADDRESS_STATE
+                        name: State
+                        type: DROPDOWN
+                        value: OH
+                      - id: ADDRESS_CITY
+                        name: City
+                        type: TEXT
+                        value: CINCINNATI
+                      - id: ADDRESS_ZIP
+                        name: Zip code
+                        type: TEXT
+                        value: '30303'
+                      - id: ADDRESS_COUNTRY
+                        name: Country
+                        type: DROPDOWN
+                        value: USA
+                      - id: NATIONALITY
+                        name: Country of incorporation
+                        type: DROPDOWN
+                        value: USA
+                      - id: PHONE_NUMBER
+                        name: Phone number
+                        type: PHONE_NUMBER
+                        value:
+                          number: '19082349786'
+                          countryIso3Code: USA
+                          countryPhoneCode: 1
+                      - id: NAICS
+                        name: NAICS code
+                        type: TEXT
+                        value: '324333'
+                      - id: ID_NUMBER
+                        name: ID number
+                        type: TEXT
+                        value: '232457432'
+                      - id: ID_TYPE
+                        name: ID type
+                        type: DROPDOWN
+                        value: TIN
+                      - id: EMAIL_ADDRESS
+                        name: Email
+                        type: TEXT
+                        value: finsup@pt.com
+                      - id: BIRTH_COUNTRY
+                        type: DROPDOWN
+                        value: USA
+                      - id: ID_COUNTRY
+                        type: DROPDOWN
+                        value: USA
+                      - id: ID_EXPIRATION_DATE
+                        name: ID expiration date
+                        type: DATE
+                        value: '2025-10-22T13:10:37.6290000Z'
+                      - id: DATE_OF_BIRTH
+                        name: Date of birth
+                        type: DATE
+                        value: '1978-08-06'
+                      - id: DATE_OF_COMPANY_REGISTRATION
+                        name: Date of incorporation
+                        type: DATE
+                        value: '1977-01-01'
+        '401':
+          description: The request requires user authentication. This response occurs if the authentication token is missing or invalid.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"
+        '404':
+          description: The specified sender record was not found. This response occurs if the `senderId` does not match any existing sender records.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
+              example:
+              - code: SenderNotFound
+                message: "Sender cannot be found."
     delete:
       tags:
       - Senders
