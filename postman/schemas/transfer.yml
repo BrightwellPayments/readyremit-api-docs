@@ -774,6 +774,68 @@ paths:
                       name: thirty minutes
                     quoteHistoryId: 29bd0ff4-4cd4-41e9-badc-d9e3c6bcc3e8
 
+                Transfer Method ACCOUNT_FUNDING:
+                  summary: Account Funding
+                  value:
+                    customerId: 9ce909de-f585-4233-bdc5-fdc42cbfd7c4
+                    senderId: 5311fd82-ba46-4ebf-a446-b32c58c6ecb3
+                    sendAmount:
+                      value: 5000
+                      currency:
+                        name: US Dollar
+                        iso3Code: USD
+                        symbol: "$"
+                        decimalPlaces: 2
+                        roundDirection: STANDARD
+                        iso4217Code: "840"
+                    receiveAmount:
+                      value: 5000
+                      currency:
+                        name: US Dollar
+                        iso3Code: USD
+                        symbol: "$"
+                        decimalPlaces: 2
+                        roundDirection: STANDARD
+                        iso4217Code: "840"
+                    rate: 1.0
+                    adjustments:
+                      - id: TransferFee
+                        label: Transfer Fee
+                        amount:
+                          value: 0
+                          currency:
+                            name: US Dollar
+                            iso3Code: USD
+                            symbol: "$"
+                            decimalPlaces: 2
+                            roundDirection: STANDARD
+                            iso4217Code: "840"
+                    totalCost:
+                      value: 5000
+                      currency:
+                        name: US Dollar
+                        iso3Code: USD
+                        symbol: "$"
+                        decimalPlaces: 2
+                        roundDirection: STANDARD
+                        iso4217Code: "840"
+                    associatedTransferRecordStatus: NotInProgress
+                    destinationCountryISO3Code: USA
+                    destinationCurrencyISO3Code: USD
+                    sourceCurrencyIso3Code: USD
+                    destinationCountry:
+                      name: United States
+                      iso2Code: US
+                      iso3Code: USA
+                      phoneCode: 1
+                    transferMethod: ACCOUNT_FUNDING
+                    rsp: Visa
+                    disclosures: []
+                    deliverySLA:
+                      id: INSTANT
+                      name: instant
+                    quoteHistoryId: a3f92c1d-8b74-4e2a-9d35-7c81f0e4b256
+
         "400":
           description: The request was invalid. This response typically occurs if required parameters are missing or invalid.
           content:
@@ -6851,6 +6913,7 @@ paths:
         **Implementation Guide:**
         - **Prerequisite**: Ensure that all required fields are provided to create the onboarding session accurately.
         - **Validation**: Validate the request body to ensure all required fields are included and correctly formatted.
+        - **Configuration-based fields**: Some fields — such as `addressZip` and `addressStreet` — are driven by the onboarding configuration defined for the customer/entity combination. Depending on the configuration, these fields may be **required**, **optional**, or **not applicable** for a given use case. Check the session response to determine which fields are expected before submitting.
 
       operationId: createCardOnboardingSession
       requestBody:
@@ -6879,6 +6942,8 @@ paths:
                       family: "Roboto"
                       size: 18
                       weight: 500
+                  addressZip: "12345"
+                  addressStreet: "123 Main St"
 
       responses:
         '200':
@@ -6916,6 +6981,8 @@ paths:
                 expiryDateRequired: true
                 customerId: 9ce909de-f585-4233-bdc5-fdc42cbfd7c4
                 senderId: 5311fd82-ba46-4ebf-a446-b32c58c6ecb3
+                addressZip: true
+                addressStreet: true
                 fieldSets: []
         '400':
           description: The request was invalid. This response typically occurs if required parameters are missing or invalid.
@@ -7001,6 +7068,8 @@ paths:
                 expiryDateRequired: true
                 customerId: 9ce909de-f585-4233-bdc5-fdc42cbfd7c4
                 senderId: 5311fd82-ba46-4ebf-a446-b32c58c6ecb3
+                addressZip: true
+                addressStreet: true
                 cardCountryIso3Codes: []
                 cardCurrencyIso3Codes: []
 
@@ -7091,6 +7160,299 @@ paths:
                     code: "000"
                     message: "Something went wrong!"
                     description: "UnhandledException"
+  "/account-funding-transactions":
+    post:
+      tags:
+      - Account Funding
+      summary: Create Account Funding Transaction
+      description: |
+        The `POST /account-funding-transactions` endpoint executes an account funding transfer, loading funds onto a cardholder's account using a previously created card onboarding session.
+
+        **Implementation Guide:**
+        - **Prerequisite**: Before submitting an account funding transaction, the `POST /card-onboarding-sessions` endpoint must be called to facilitate card capture. Upon successful completion of the onboarding session, a card and its associated account are created. The resulting account ID is the `sourceAccountId` required in this request.
+        - **Quote Required**: Obtain a real-time quote using `GET /quote` with `transferMethod: ACCOUNT_FUNDING` before submitting. Include the returned `quoteHistoryId` in the request.
+        - **Transfer Method**: This endpoint is exclusively for the `ACCOUNT_FUNDING` transfer method. For other transfer methods, use the `POST /transfers` endpoint.
+        - **Examples**: See the example request and response payloads below.
+
+      operationId: createAccountFundingTransaction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/accountFundingTransactionRequest"
+            examples:
+              Account Funding:
+                summary: Account Funding
+                value:
+                  quoteBy: "SEND_AMOUNT"
+                  amount: 5000
+                  quoteHistoryId: "a3f92c1d-8b74-4e2a-9d35-7c81f0e4b256"
+                  sourceAccountId: "04eda1ab-664b-4983-a3a1-9c2ab9181895"
+
+      responses:
+        '200':
+          description: The account funding transaction was successfully executed.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/transferResponse"
+              example:
+                transferId: "8ce2ee41-3a34-4192-8fb1-e23c2c181a73"
+                confirmationNumber: "607620957443"
+                quote:
+                  customerId: "9ce909de-f585-4233-bdc5-fdc42cbfd7c4"
+                  senderId: "2f14254c-7433-408d-9007-ff279b2b06cd"
+                  sendAmount:
+                    value: 3000
+                    currency:
+                      name: "US Dollar"
+                      iso3Code: "USD"
+                      symbol: "$"
+                      decimalPlaces: 2
+                      roundDirection: "STANDARD"
+                      iso4217Code: "840"
+                  adjustedSendAmount:
+                    value: 3000
+                    currency:
+                      name: "US Dollar"
+                      iso3Code: "USD"
+                      symbol: "$"
+                      decimalPlaces: 2
+                      roundDirection: "STANDARD"
+                      iso4217Code: "840"
+                  receiveAmount:
+                    value: 3000
+                    currency:
+                      name: "US Dollar"
+                      iso3Code: "USD"
+                      symbol: "$"
+                      decimalPlaces: 2
+                      roundDirection: "STANDARD"
+                      iso4217Code: "840"
+                  rate: 1
+                  totalCost:
+                    value: 3000
+                    currency:
+                      name: "US Dollar"
+                      iso3Code: "USD"
+                      symbol: "$"
+                      decimalPlaces: 2
+                      roundDirection: "STANDARD"
+                      iso4217Code: "840"
+                  associatedTransferRecordStatus: "NotInProgress"
+                  destinationCountryISO3Code: "USA"
+                  destinationCountrySubdivisionCode: ""
+                  destinationCurrencyISO3Code: "USD"
+                  sourceCurrencyIso3Code: "USD"
+                  destinationCountry:
+                    name: "United States"
+                    iso2Code: "US"
+                    iso3Code: "USA"
+                    phoneCode: 1
+                  transferMethod: "ACCOUNT_FUNDING"
+                  adjustedFxRate: 1
+                  rsp: "Remittance Service Provider"
+                  disclosures: []
+                  deliverySLA:
+                    id: "INSTANT"
+                    name: "instant"
+                  quoteHistoryId: "a3f92c1d-8b74-4e2a-9d35-7c81f0e4b256"
+                  adjustments:
+                    - id: "TransferFee"
+                      label: "Transfer fee"
+                      amount:
+                        value: 0
+                        currency:
+                          name: "US Dollar"
+                          iso3Code: "USD"
+                          symbol: "$"
+                          decimalPlaces: 2
+                          roundDirection: "STANDARD"
+                          iso4217Code: "840"
+                senderDetails:
+                  senderId: "2f14254c-7433-408d-9007-ff279b2b06cd"
+                  senderType: "PERSON"
+                  firstName: "Peter"
+                  lastName: "Bradford"
+                  customerId: "9ce909de-f585-4233-bdc5-fdc42cbfd7c4"
+                  kycStatus: "SKIPPED"
+                  customerFundingSource: "PREFUNDING"
+                  fields:
+                    - id: "FIRST_NAME"
+                      name: "LegalFirstName"
+                      type: "TEXT"
+                      value: "Peter"
+                    - id: "LAST_NAME"
+                      name: "LegalLastName"
+                      type: "TEXT"
+                      value: "Bradford"
+                    - id: "ADDRESS_LINE_1"
+                      name: "Address line 1"
+                      type: "TEXT"
+                      value: "Asd Kas"
+                    - id: "ADDRESS_STATE"
+                      name: "State"
+                      type: "DROPDOWN"
+                      value: "MN"
+                    - id: "ADDRESS_CITY"
+                      name: "City"
+                      type: "TEXT"
+                      value: "Cohasset"
+                    - id: "ADDRESS_ZIP"
+                      name: "Zip code"
+                      type: "TEXT"
+                      value: "55721"
+                    - id: "ADDRESS_COUNTRY"
+                      name: "Country"
+                      type: "DROPDOWN"
+                      value: "USA"
+                    - id: "PHONE_NUMBER"
+                      name: "Phone number"
+                      type: "PHONE_NUMBER"
+                      value:
+                        number: "14045558888"
+                        countryIso3Code: "USA"
+                        countryPhoneCode: 1
+                    - id: "ID_TYPE"
+                      name: "ID type"
+                      type: "DROPDOWN"
+                      value: "SSN"
+                    - id: "EMAIL_ADDRESS"
+                      name: "Email"
+                      type: "TEXT"
+                      value: "geneva.mcintosh2009@example.com"
+                recipientDetails:
+                  recipientId: "51e93d0c-1a6f-4474-a8a7-93ed8b2aa06f"
+                  senderId: "2f14254c-7433-408d-9007-ff279b2b06cd"
+                  recipientType: "PERSON"
+                  firstName: "Peter"
+                  lastName: "Bradford"
+                  fields:
+                    - id: "ID_TYPE"
+                      name: "ID type"
+                      type: "DROPDOWN"
+                      value: "Social Security Number"
+                    - id: "ID_NUMBER"
+                      name: "ID number"
+                      type: "TEXT"
+                      value: "123456789"
+                    - id: "LAST_NAME"
+                      name: "LegalLastName"
+                      type: "TEXT"
+                      value: "Bradford"
+                    - id: "FIRST_NAME"
+                      name: "LegalFirstName"
+                      type: "TEXT"
+                      value: "Peter"
+                    - id: "ID_COUNTRY"
+                      name: "ID issuing country"
+                      type: "DROPDOWN"
+                      value: "USA"
+                    - id: "ADDRESS_ZIP"
+                      name: "Zip code"
+                      type: "TEXT"
+                      value: "55721"
+                    - id: "NATIONALITY"
+                      name: "Country of incorporation"
+                      type: "DROPDOWN"
+                      value: "USA"
+                    - id: "ADDRESS_CITY"
+                      name: "City"
+                      type: "TEXT"
+                      value: "Cohasset"
+                    - id: "PHONE_NUMBER"
+                      name: "Phone number"
+                      type: "PHONE_NUMBER"
+                      value:
+                        number: "14045558888"
+                        countryIso3Code: "USA"
+                        countryPhoneCode: 1
+                    - id: "ADDRESS_STATE"
+                      name: "State"
+                      type: "DROPDOWN"
+                      value: "MN"
+                    - id: "BIRTH_COUNTRY"
+                      name: "Country of birth"
+                      type: "DROPDOWN"
+                      value: "USA"
+                    - id: "DATE_OF_BIRTH"
+                      name: "Date of birth"
+                      type: "DATE"
+                      value: "1985-06-15"
+                    - id: "EMAIL_ADDRESS"
+                      name: "Email"
+                      type: "TEXT"
+                      value: "geneva.mcintosh2009@example.com"
+                    - id: "ADDRESS_LINE_1"
+                      name: "Address line 1"
+                      type: "TEXT"
+                      value: "Asd Kas"
+                    - id: "ADDRESS_COUNTRY"
+                      name: "Country"
+                      type: "DROPDOWN"
+                      value: "USA"
+                disclaimers: []
+                createdAt: "2026-03-17T20:46:54.1737953Z"
+                fields: []
+                customer:
+                  name: "<Customer Name>"
+                  addressLine1: "100 Main Street"
+                  addressLine2: ""
+                  addressCity: "Pembroke Pine"
+                  addressState: "GA"
+                  addressCountry: "USA"
+                  addressZipCode: "11100"
+                  phoneNumber: "1-833-000-5768"
+                  website: "www.customerwebsite.com"
+                dateAvailable: "2026-03-20"
+                status: "Complete"
+
+        '400':
+          description: The request was invalid. This response typically occurs if required parameters are missing or invalid.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
+              example:
+                - code: "NotEmptyValidator"
+                  message: "'Amount' is required."
+                  fieldId: "Amount"
+                - code: "GreaterThanValidator"
+                  message: "'Amount' must be greater than '0'."
+                  fieldId: "Amount"
+                - code: "NotEmptyValidator"
+                  message: "'QuoteBy' is required."
+                  fieldId: "QuoteBy"
+                - code: "InvalidEnumOption"
+                  message: "'QuoteBy' must be a valid option."
+                  fieldId: "QuoteBy"
+                - code: "NotEmptyValidator"
+                  message: "'Quote History Id' is required."
+                  fieldId: "QuoteHistoryId"
+                - code: "ErrorGettingQuote"
+                  message: "The provided quote history ID is invalid or has expired."
+                  fieldId: "QuoteHistoryId"
+                - code: "NotEmptyValidator"
+                  message: "'Source Account Id' is required."
+                  fieldId: "SourceAccountId"
+        '401':
+          description: The request requires user authentication. This response occurs if the authentication token is missing or invalid.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"
+        '403':
+          description: The request was valid, but the server is refusing action. This response occurs if the user does not have permission to execute the account funding transaction.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgDescObject"
+        '404':
+          description: The account funding transaction could not be executed. This response occurs if the parameters provided do not match any available options.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
 components:
   schemas:
 
@@ -7106,6 +7468,40 @@ components:
             Example: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
       required:
         - nonce
+
+    accountFundingTransactionRequest:
+      type: object
+      properties:
+        quoteBy:
+          "$ref": "#/components/schemas/quoteBy"
+        amount:
+          type: integer
+          minimum: 0
+          description: >
+            The amount to fund onto the account. Example: If you want to fund $30.00 USD, this would be 3000. See [how to format an amount based on the currency](https://developer.readyremit.com/reference/currencies).
+            Example: 3000
+        quoteHistoryId:
+          type: string
+          description: >
+            The quote history ID obtained from the `GET /quote` response using `transferMethod: ACCOUNT_FUNDING`. This links the transaction to the pre-calculated rate and fee.
+            Example: "a3f92c1d-8b74-4e2a-9d35-7c81f0e4b256"
+        sourceAccountId:
+          type: string
+          description: >
+            The unique identifier of the source account from which funds will be loaded. This must correspond to a valid account associated with the sender.
+            Example: "04eda1ab-664b-4983-a3a1-9c2ab9181895"
+        nonce:
+          type: string
+          format: uuid
+          nullable: true
+          description: >
+            Optional unique identifier obtained from the `GET /nonce` endpoint. Use this to prevent duplicate transaction submissions. Each nonce can only be used once per customer.
+            Example: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+      required:
+        - quoteBy
+        - amount
+        - quoteHistoryId
+        - sourceAccountId
 
     GetcardOnboardingSessionResponse:
       type: object
@@ -7198,6 +7594,14 @@ components:
         senderId:
           type: string
           description: "Unique identifier for the sender. It is used to track and manage sender details within the system. Example: 5311fd82-ba46-4ebf-a446-b32c58c6ecb3"
+        addressZip:
+          type: string
+          nullable: true
+          description: "The ZIP or postal code of the cardholder's address. It is used for address verification during the onboarding process. Example: 12345"
+        addressStreet:
+          type: string
+          nullable: true
+          description: "The street address of the cardholder. It is used for address verification during the onboarding process. Example: 123 Main St"
         cardCountryIso3Codes:
           type: array
           items:
@@ -7302,6 +7706,14 @@ components:
         senderId:
           type: string
           description: "Unique identifier for the sender. It is used to track and manage sender details within the system. Example: 5311fd82-ba46-4ebf-a446-b32c58c6ecb3"
+        addressZip:
+          type: string
+          nullable: true
+          description: "The ZIP or postal code captured during the onboarding session. This field is present in the response only when address capture is enabled by the onboarding configuration for the customer/entity combination. The value will be null if not yet provided or if the field is not part of the session configuration. Example: 12345"
+        addressStreet:
+          type: string
+          nullable: true
+          description: "The street address captured during the onboarding session. This field is present in the response only when address capture is enabled by the onboarding configuration for the customer/entity combination. The value will be null if not yet provided or if the field is not part of the session configuration. Example: 123 Main St"
         fieldSets:
           type: array
           items:
@@ -7388,6 +7800,12 @@ components:
                     weight:
                       type: integer
                       description: "The font weight used for input elements. It defines the thickness of the input text. Example: 500"
+        addressZip:
+          type: string
+          description: "The ZIP or postal code of the cardholder's address. The presence and requirement of this field is determined by the onboarding configuration for the customer/entity combination — it may be required, optional, or not applicable. Only include this field if address capture is part of the session configuration. Example: 12345"
+        addressStreet:
+          type: string
+          description: "The street address of the cardholder. The presence and requirement of this field is determined by the onboarding configuration for the customer/entity combination — it may be required, optional, or not applicable. Only include this field if address capture is part of the session configuration. Example: 123 Main St"
 
     createCardRequest:
       type: object
@@ -7798,7 +8216,7 @@ components:
     transferMethods:
       type: string
       description:  >
-            The method used for transferring money. This field specifies how the funds will be delivered to the recipient's account, such as via bank account, cash pickup, or push to card.
+            The method used for transferring money. This field specifies how the funds will be delivered to the recipient's account, such as via bank account, cash pickup, push to card, or account funding.
             Example- "BANK_ACCOUNT". See [Transfer Method](https://developer.readyremit.com/reference/enum-types#transfer-method).
       default: BANK_ACCOUNT
       enum:
@@ -7806,6 +8224,7 @@ components:
       - CASH_PICKUP
       - PUSH_TO_CARD
       - MOBILE_WALLET
+      - ACCOUNT_FUNDING
     cardOnboardingSessionStatuses:
       type: string
       description: See [Card Onboarding Session Status](https://developer.readyremit.com/reference/enum-types#card-onboarding-session-status).
