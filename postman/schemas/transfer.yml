@@ -618,12 +618,19 @@ paths:
           "$ref": "#/components/schemas/threeUppercaseChars"
       - name: transferMethod
         in: query
-        description: The method used for transferring money. eg - Bank Account, Cash Pickup, Push to Card. See [Transfer Method](https://developer.readyremit.com/reference/enum-types#transfer-method).
+        description: The method used for transferring money. eg - Bank Account, Cash Pickup, Push to Card, Account Funding. See [Transfer Method](https://developer.readyremit.com/reference/enum-types#transfer-method).
         required: true
         style: form
         explode: true
         schema:
-          "$ref": "#/components/schemas/transferMethods"
+          type: string
+          default: BANK_ACCOUNT
+          enum:
+          - BANK_ACCOUNT
+          - CASH_PICKUP
+          - PUSH_TO_CARD
+          - MOBILE_WALLET
+          - ACCOUNT_FUNDING
       - name: quoteBy
         in: query
         required: true
@@ -649,6 +656,7 @@ paths:
                 oneOf:
                   - "$ref": "#/components/schemas/getQuoteSendAmountResponse200"
                   - "$ref": "#/components/schemas/getQuoteReceiveAmountResponse200"
+                  - "$ref": "#/components/schemas/getQuoteAccountFundingResponse200"
               examples:
                 Quote by Send Amount:
                   summary: Quote by Send Amount
@@ -6861,6 +6869,8 @@ paths:
                   cardNumber: "4242424242424242"
                   cvv2: "123"
                   expiryDate: "0827"
+                  street: "123 Main St"
+                  postalCode: "10001"
       responses:
         '201':
           description: The card record was successfully created.
@@ -6874,6 +6884,8 @@ paths:
                 cardNumber: "********0078"
                 expiryDate: "12/31"
                 cvv2: "***"
+                addressStreet: "123 Main St"
+                addressZip: "10001"
                 cardCountryIso3Codes:
                   - IND
                 cardCurrencyIso3Codes:
@@ -6912,8 +6924,7 @@ paths:
 
         **Implementation Guide:**
         - **Prerequisite**: Ensure that all required fields are provided to create the onboarding session accurately.
-        - **Validation**: Validate the request body to ensure all required fields are included and correctly formatted.
-        - **Configuration-based fields**: Some fields — such as `addressZip` and `addressStreet` — are driven by the onboarding configuration defined for the customer/entity combination. Depending on the configuration, these fields may be **required**, **optional**, or **not applicable** for a given use case. Check the session response to determine which fields are expected before submitting.
+        - **Validation**: Validate the request body to ensure all required fields are included and correctly formatted.        
 
       operationId: createCardOnboardingSession
       requestBody:
@@ -6941,9 +6952,7 @@ paths:
                     inputs:
                       family: "Roboto"
                       size: 18
-                      weight: 500
-                  addressZip: "12345"
-                  addressStreet: "123 Main St"
+                      weight: 500                  
 
       responses:
         '200':
@@ -6952,38 +6961,150 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/cardOnboardingSessionResponse"
-              example:
-                status: INCOMPLETE
-                id: 16303d3f-7a2b-45c2-b958-03930f709d22
-                expirationDate: 2025-02-17T06:46:05.2447002Z
-                cardId: null
-                customization:
-                  primaryColor: "#00A000"
-                  submitButtonLabel: "NEXT: REVIEW"
-                  submitBorderRadius: 40
-                  wrapperMargin: "10%"
-                  locale: "en-US"
-                  title: "Deposit via debit card"
-                  description: "Your refund will be credited directly to your bank account via your RemittanceServiceProvider debit card."
-                  texts:
-                    family: "Arial"
-                    size: 14
-                    weight: 500
-                  inputs:
-                    family: "Roboto"
-                    size: 18
-                    weight: 500
-                  hints: []
-                entityMode: RECIPIENT
-                cvv2Required: true
-                cardNumberRequired: true
-                cardHolderNameRequired: true
-                expiryDateRequired: true
-                customerId: 9ce909de-f585-4233-bdc5-fdc42cbfd7c4
-                senderId: 5311fd82-ba46-4ebf-a446-b32c58c6ecb3
-                addressZip: true
-                addressStreet: true
-                fieldSets: []
+              examples:
+                Recipient:
+                  summary: RECIPIENT
+                  value:
+                    status: INCOMPLETE
+                    id: 16303d3f-7a2b-45c2-b958-03930f709d22
+                    expirationDate: 2025-02-17T06:46:05.2447002Z
+                    cardId: null
+                    customization:
+                      primaryColor: "#00A000"
+                      submitButtonLabel: "NEXT: REVIEW"
+                      submitBorderRadius: 40
+                      wrapperMargin: "10%"
+                      locale: "en-US"
+                      title: "Deposit via debit card"
+                      description: "Your refund will be credited directly to your bank account via your RemittanceServiceProvider debit card."
+                      texts:
+                        family: "Arial"
+                        size: 14
+                        weight: 500
+                      inputs:
+                        family: "Roboto"
+                        size: 18
+                        weight: 500
+                      hints: []
+                    entityMode: RECIPIENT
+                    cvv2Required: true
+                    cardNumberRequired: true
+                    cardHolderNameRequired: true
+                    expiryDateRequired: true
+                    customerId: 9ce909de-f585-4233-bdc5-fdc42cbfd7c4
+                    senderId: 5311fd82-ba46-4ebf-a446-b32c58c6ecb3
+                    fieldSets: []
+                Sender:
+                  summary: SENDER
+                  value:
+                    status: INCOMPLETE
+                    id: dddc8409-b4e1-4f1c-aed8-2aa8f8fcb604
+                    expirationDate: 2026-04-02T01:42:52.4573638Z
+                    cardId: null
+                    customization:
+                      primaryColor: "#00A000"
+                      submitButtonLabel: "NEXT: REVIEW"
+                      submitBorderRadius: 40
+                      wrapperMargin: "10%"
+                      locale: "en-US"
+                      title: "Deposit via debit card"
+                      description: "Your refund will be credited directly to your bank account via your Visa or Mastercard debit card."
+                      texts:
+                        family: "Arial"
+                        size: 14
+                        weight: "500"
+                      inputs:
+                        family: "Roboto"
+                        size: 18
+                        weight: "500"
+                      hints: []
+                    entityMode: SENDER
+                    cvv2Required: true
+                    cardNumberRequired: true
+                    cardHolderNameRequired: false
+                    expiryDateRequired: true
+                    customerId: e1d1298a-e597-454b-b09b-ef87fde43a5b
+                    senderId: 509ecc29-c6b9-41c1-a949-e4f0f71423dc
+                    fieldSets:
+                      - fieldSetId: CARD_DETAILS
+                        fieldSetName: CardDetails
+                        fields:
+                          - fieldType: TEXT
+                            minLength: 1
+                            maxLength: 100
+                            fieldId: CARD_HOLDER_NAME
+                            name: CardholderName
+                            isRequired: false
+                            visibility: HIDE_AND_OPTIONAL
+                            placeholderText: CardholderName
+                            label: CardholderName
+                            sortOrder: 1
+                            dependencies: {}
+                          - fieldType: TEXT
+                            minLength: 14
+                            maxLength: 16
+                            regex: "^\\d{14,16}$"
+                            fieldId: CARD_NUMBER
+                            name: CardNumber
+                            isRequired: true
+                            visibility: SHOW_AND_REQUIRED
+                            placeholderText: CardNumber
+                            label: CardNumber
+                            sortOrder: 2
+                            dependencies: {}
+                          - fieldType: TEXT
+                            minLength: 3
+                            maxLength: 4
+                            regex: "^\\d{3,4}$"
+                            fieldId: EXPIRATION_DATE
+                            name: Expiration Date
+                            isRequired: true
+                            visibility: SHOW_AND_REQUIRED
+                            placeholderText: Expiration Date
+                            label: Expiration Date
+                            sortOrder: 3
+                            dependencies:
+                              isRequired:
+                                - comparisonOperator: EQUAL_TO
+                                  comparisonValues:
+                                    - "*"
+                                  fieldId: CVV2
+                          - fieldType: TEXT
+                            minLength: 3
+                            maxLength: 4
+                            regex: "^\\d{3,4}$"
+                            fieldId: CVV2
+                            name: Cvv2
+                            isRequired: true
+                            visibility: SHOW_AND_REQUIRED
+                            placeholderText: Cvv
+                            label: Cvv2
+                            sortOrder: 4
+                            dependencies: {}
+                          - fieldType: TEXT
+                            minLength: 1
+                            maxLength: 100
+                            regex: "^[A-Za-z0-9\\s\\-]{1,100}$"
+                            fieldId: ADDRESS_LINE_1
+                            name: Street
+                            isRequired: true
+                            visibility: SHOW_AND_REQUIRED
+                            placeholderText: Street
+                            label: Street
+                            sortOrder: 5
+                            dependencies: {}
+                          - fieldType: TEXT
+                            minLength: 5
+                            maxLength: 10
+                            regex: "^[A-Za-z0-9\\s\\-]{5,10}$"
+                            fieldId: ADDRESS_ZIP
+                            name: PostalCode
+                            isRequired: true
+                            visibility: SHOW_AND_REQUIRED
+                            placeholderText: PostalCode
+                            label: PostalCode
+                            sortOrder: 6
+                            dependencies: {}
         '400':
           description: The request was invalid. This response typically occurs if required parameters are missing or invalid.
           content:
@@ -7067,9 +7188,7 @@ paths:
                 cardHolderNameRequired: true
                 expiryDateRequired: true
                 customerId: 9ce909de-f585-4233-bdc5-fdc42cbfd7c4
-                senderId: 5311fd82-ba46-4ebf-a446-b32c58c6ecb3
-                addressZip: true
-                addressStreet: true
+                senderId: 5311fd82-ba46-4ebf-a446-b32c58c6ecb3                
                 cardCountryIso3Codes: []
                 cardCurrencyIso3Codes: []
 
@@ -7166,10 +7285,10 @@ paths:
       - Account Funding
       summary: Create Account Funding Transaction
       description: |
-        The `POST /account-funding-transactions` endpoint executes an account funding transfer, loading funds onto a cardholder's account using a previously created card onboarding session.
+        The `POST /account-funding-transactions` endpoint  executes a request to fund an account. The account to which funds are added to is defined with the sourceAccountId in the request.
 
         **Implementation Guide:**
-        - **Prerequisite**: Before submitting an account funding transaction, the `POST /card-onboarding-sessions` endpoint must be called to facilitate card capture. Upon successful completion of the onboarding session, a card and its associated account are created. The resulting account ID is the `sourceAccountId` required in this request.
+        - **Prerequisite**: Before submitting an account funding transaction, a `sourceAccountId` should be obtained by first getting an onboarding session [`POST /card-onboarding-sessions`](#tag/Card-Onboarding-Sessions/operation/createCardOnboardingSession), then creating a card [`POST /cards`](#tag/Cards/operation/createCard), and finally creating an account [`POST /recipients/{recipientId}/accounts`](#tag/Recipient-Accounts/operation/createRecipientAccount).
         - **Quote Required**: Obtain a real-time quote using `GET /quote` with `transferMethod: ACCOUNT_FUNDING` before submitting. Include the returned `quoteHistoryId` in the request.
         - **Transfer Method**: This endpoint is exclusively for the `ACCOUNT_FUNDING` transfer method. For other transfer methods, use the `POST /transfers` endpoint.
         - **Examples**: See the example request and response payloads below.
@@ -7478,7 +7597,7 @@ components:
           type: integer
           minimum: 0
           description: >
-            The amount to fund onto the account. Example: If you want to fund $30.00 USD, this would be 3000. See [how to format an amount based on the currency](https://developer.readyremit.com/reference/currencies).
+            Numeric Value. The amount an account holder wishes to fund. Example: If you want to fund $30.00 USD, this would be 3000. See [how to format an amount based on the currency](https://developer.readyremit.com/reference/currencies).
             Example: 3000
         quoteHistoryId:
           type: string
@@ -7575,7 +7694,7 @@ components:
               description: "A list of hints provided for the customization. These hints offer additional guidance to the user. Example: []"
         entityMode:
           type: string
-          description: "Specifies the mode of the entity. It determines the context in which the customization is applied. Example: RECIPIENT"
+          description: "Specifies the mode of the entity. It determines the context in which the customization is applied. Example: RECIPIENT or SENDER"
         cvv2Required:
           type: boolean
           description: "Indicates whether the CVV2 code is required for the card. It ensures that the CVV2 code is provided during the onboarding process. Example: true"
@@ -7593,15 +7712,7 @@ components:
           description: "Unique identifier for the customer. This ID is used to track and manage customer details within the system. Example: 9ce909de-f585-4233-bdc5-fdc42cbfd7c4"
         senderId:
           type: string
-          description: "Unique identifier for the sender. It is used to track and manage sender details within the system. Example: 5311fd82-ba46-4ebf-a446-b32c58c6ecb3"
-        addressZip:
-          type: string
-          nullable: true
-          description: "The ZIP or postal code of the cardholder's address. It is used for address verification during the onboarding process. Example: 12345"
-        addressStreet:
-          type: string
-          nullable: true
-          description: "The street address of the cardholder. It is used for address verification during the onboarding process. Example: 123 Main St"
+          description: "Unique identifier for the sender. It is used to track and manage sender details within the system. Example: 5311fd82-ba46-4ebf-a446-b32c58c6ecb3"       
         cardCountryIso3Codes:
           type: array
           items:
@@ -7705,15 +7816,7 @@ components:
           description: "Unique identifier for the customer. This ID is used to track and manage customer details within the system. Example: 9ce909de-f585-4233-bdc5-fdc42cbfd7c4"
         senderId:
           type: string
-          description: "Unique identifier for the sender. It is used to track and manage sender details within the system. Example: 5311fd82-ba46-4ebf-a446-b32c58c6ecb3"
-        addressZip:
-          type: string
-          nullable: true
-          description: "The ZIP or postal code captured during the onboarding session. This field is present in the response only when address capture is enabled by the onboarding configuration for the customer/entity combination. The value will be null if not yet provided or if the field is not part of the session configuration. Example: 12345"
-        addressStreet:
-          type: string
-          nullable: true
-          description: "The street address captured during the onboarding session. This field is present in the response only when address capture is enabled by the onboarding configuration for the customer/entity combination. The value will be null if not yet provided or if the field is not part of the session configuration. Example: 123 Main St"
+          description: "Unique identifier for the sender. It is used to track and manage sender details within the system. Example: 5311fd82-ba46-4ebf-a446-b32c58c6ecb3"        
         fieldSets:
           type: array
           items:
@@ -7751,7 +7854,7 @@ components:
           properties:
             entityMode:
               type: string
-              description: "Specifies the mode of the entity. It determines the context in which the customization is applied. Example: RECIPIENT"
+              description: "Specifies the mode of the entity. It determines the context in which the customization is applied. Example: RECIPIENT or SENDER"
             customization:
               type: object
               properties:
@@ -7799,13 +7902,7 @@ components:
                       description: "The font size used for input elements. It defines the size of the input text. Example: 18"
                     weight:
                       type: integer
-                      description: "The font weight used for input elements. It defines the thickness of the input text. Example: 500"
-        addressZip:
-          type: string
-          description: "The ZIP or postal code of the cardholder's address. The presence and requirement of this field is determined by the onboarding configuration for the customer/entity combination — it may be required, optional, or not applicable. Only include this field if address capture is part of the session configuration. Example: 12345"
-        addressStreet:
-          type: string
-          description: "The street address of the cardholder. The presence and requirement of this field is determined by the onboarding configuration for the customer/entity combination — it may be required, optional, or not applicable. Only include this field if address capture is part of the session configuration. Example: 123 Main St"
+                      description: "The font weight used for input elements. It defines the thickness of the input text. Example: 500"        
 
     createCardRequest:
       type: object
@@ -7820,13 +7917,7 @@ components:
           description: "The unique identifier for the card onboarding session. This ID is used to track and manage the session within the system. Example: 'e22e6884-ae4d-4bd9-aa1d-e28b6b894bac'"
         cardholderName:
           type: string
-          description: "The name of the cardholder. This name is printed on the card and used for identification purposes. Example: 'Ruth Morris'"
-        addressStreet:
-          type: string
-          description: "The street address of the cardholder. This address is used for billing and verification purposes. Example: 'Ruth Morris'"
-        addressZip:
-          type: string
-          description: "The ZIP code of the cardholder's address. This code is used for billing and verification purposes. Example: 'PL27 8JJ'"
+          description: "The name of the cardholder. This name is printed on the card and used for identification purposes. Example: 'Ruth Morris'"        
         cardNumber:
           type: string
           description: "The full card number. This number is used for processing transactions. Example: '4761369999000078'"
@@ -7836,6 +7927,12 @@ components:
         expiryDate:
           type: string
           description: "The expiration date of the card. This date indicates when the card will expire and need to be renewed. Example: '1231'"
+        street:
+          type: string
+          description: "The street address associated with the card. Example: '123 Main St'"
+        postalCode:
+          type: string
+          description: "The postal code associated with the card. Example: '10001'"
 
     createCardResponse:
       type: object
@@ -7854,7 +7951,13 @@ components:
           description: "The expiration date of the card. This date indicates when the card will expire and need to be renewed. Example: '12/31'"
         cvv2:
           type: string
-          description: "The masked CVV2 code. Only asterisks are shown for security reasons. Example: '***'"
+          description: "The masked CVV2 code. Only asterisks are shown for security reasons. Example: '***'"        
+        addressStreet:
+          type: string
+          description: "The street address associated with the card. Example: '123 Main St'"
+        addressZip:
+          type: string
+          description: "The postal code associated with the card. Example: '10001'"
         cardCountryIso3Codes:
           type: array
           description: "A list of ISO 3166-1 alpha-3 codes for the countries where the card can be used. Example: ['IND']"
@@ -8224,7 +8327,6 @@ components:
       - CASH_PICKUP
       - PUSH_TO_CARD
       - MOBILE_WALLET
-      - ACCOUNT_FUNDING
     cardOnboardingSessionStatuses:
       type: string
       description: See [Card Onboarding Session Status](https://developer.readyremit.com/reference/enum-types#card-onboarding-session-status).
@@ -8715,6 +8817,192 @@ components:
           type: string
           description: "The unique identifier for the quote history. It is used to track and manage the history of quotes within the system. Example: d5ae37ac-612f-4706-b5a2-375770fed4b8"
 
+    getQuoteAccountFundingResponse200:
+      title: "Transfer Method ACCOUNT_FUNDING"
+      type: object
+      properties:
+        customerId:
+          type: string
+          description: "Unique identifier for the customer. This ID is used to track and manage customer details within the system, ensuring that each customer's transactions and information are correctly associated. Example: 9ce909de-f585-4233-bdc5-fdc42cbfd7c4"
+        senderId:
+          type: string
+          description: "Unique identifier for the sender. It is used to track and manage sender details within the system. Example: 5311fd82-ba46-4ebf-a446-b32c58c6ecb3"
+        sendAmount:
+          description: "The amount of money the sender wishes to transfer. This field includes the value and currency details of the amount being sent by the sender. It helps in calculating the total cost and the amount the recipient will receive. Example: 5000"
+          type: object
+          properties:
+            value:
+              type: integer
+              description: "The amount of money the sender wishes to transfer. Example: 5000"
+            currency:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: "The name of the currency. Example: US Dollar"
+                iso3Code:
+                  type: string
+                  description: "The ISO 4217 code of the currency. Example: USD"
+                symbol:
+                  type: string
+                  description: "The symbol of the currency. Example: $"
+                decimalPlaces:
+                  type: integer
+                  description: "The number of decimal places used by the currency. Example: 2"
+                roundDirection:
+                  type: string
+                  description: "The rounding direction for the currency. Example: STANDARD"
+                iso4217Code:
+                  type: string
+                  description: "The ISO 4217 numeric code of the currency. Example: 840"
+        receiveAmount:
+          description: "The amount of money the recipient will receive. This field includes the value and currency details of the amount being received by the recipient. It is calculated based on the send amount and the exchange rate. Example: 5000"
+          type: object
+          properties:
+            value:
+              type: integer
+              description: "The amount of money the recipient will receive. Example: 5000"
+            currency:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: "The name of the currency. Example: US Dollar"
+                iso3Code:
+                  type: string
+                  description: "The ISO 4217 code of the currency. Example: USD"
+                symbol:
+                  type: string
+                  description: "The symbol of the currency. Example: $"
+                decimalPlaces:
+                  type: integer
+                  description: "The number of decimal places used by the currency. Example: 2"
+                roundDirection:
+                  type: string
+                  description: "The rounding direction for the currency. Example: STANDARD"
+                iso4217Code:
+                  type: string
+                  description: "The ISO 4217 numeric code of the currency. Example: 840"
+        rate:
+          type: number
+          description: "The exchange rate applied to the transfer. This rate determines how much of the destination currency the recipient will receive for each unit of the source currency. It helps in calculating the receive amount. Example: 1.0"
+        adjustments:
+          description: "A list of adjustments applied to the transfer, such as fees or discounts. Each adjustment includes details like the label and amount, which are used to calculate the total cost of the transfer."
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: "The unique identifier for the adjustment. Example: TransferFee"
+              label:
+                type: string
+                description: "The label for the adjustment. Example: Transfer Fee"
+              amount:
+                type: object
+                properties:
+                  value:
+                    type: integer
+                    description: "The amount of the adjustment. Example: 0"
+                  currency:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: "The name of the currency. Example: US Dollar"
+                      iso3Code:
+                        type: string
+                        description: "The ISO 4217 code of the currency. Example: USD"
+                      symbol:
+                        type: string
+                        description: "The symbol of the currency. Example: $"
+                      decimalPlaces:
+                        type: integer
+                        description: "The number of decimal places used by the currency. Example: 2"
+                      roundDirection:
+                        type: string
+                        description: "The rounding direction for the currency. Example: STANDARD"
+                      iso4217Code:
+                        type: string
+                        description: "The ISO 4217 numeric code of the currency. Example: 840"
+        totalCost:
+          description: "The total cost of the transfer, including the send amount and any adjustments. This is the amount the sender will be charged for the transfer. It helps in providing a clear breakdown of the costs involved. Example: 5000"
+          type: object
+          properties:
+            value:
+              type: integer
+              description: "The total cost of the transfer, including the send amount and any adjustments. Example: 5000"
+            currency:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: "The name of the currency. Example: US Dollar"
+                iso3Code:
+                  type: string
+                  description: "The ISO 4217 code of the currency. Example: USD"
+                symbol:
+                  type: string
+                  description: "The symbol of the currency. Example: $"
+                decimalPlaces:
+                  type: integer
+                  description: "The number of decimal places used by the currency. Example: 2"
+                roundDirection:
+                  type: string
+                  description: "The rounding direction for the currency. Example: STANDARD"
+                iso4217Code:
+                  type: string
+                  description: "The ISO 4217 numeric code of the currency. Example: 840"
+        associatedTransferRecordStatus:
+          type: string
+          description: "The status of the associated transfer record. Example: NotInProgress"
+        destinationCountryISO3Code:
+          type: string
+          description: "The ISO 3166-1 alpha-3 code of the destination country. Example: USA"
+        destinationCurrencyISO3Code:
+          type: string
+          description: "The ISO 4217 code of the destination currency. Example: USD"
+        sourceCurrencyIso3Code:
+          type: string
+          description: "The ISO 4217 code of the source currency. Example: USD"
+        destinationCountry:
+          type: object
+          properties:
+            name:
+              type: string
+              description: "The name of the destination country. Example: United States"
+            iso2Code:
+              type: string
+              description: "The ISO 3166-1 alpha-2 code of the destination country. Example: US"
+            iso3Code:
+              type: string
+              description: "The ISO 3166-1 alpha-3 code of the destination country. Example: USA"
+            phoneCode:
+              type: integer
+              description: "The phone code of the destination country. Example: 1"
+        transferMethod:
+          type: string
+          description: "The method used for transferring money. Example: ACCOUNT_FUNDING"
+        rsp:
+          type: string
+          description: "The remittance service provider. Example: 'Visa'"
+        disclosures:
+          description: "A list of disclosures related to the transfer. These disclosures provide important information about the transfer process and any associated terms and conditions. They ensure transparency and compliance with regulatory requirements."
+          type: array
+          items:
+            type: string
+        deliverySLA:
+          type: object
+          properties:
+            id:
+              type: string
+              description: "The unique identifier for the delivery service level agreement. It is used to reference and manage the specific SLA within the system. Example: INSTANT"
+            name:
+              type: string
+              description: "The name of the delivery service level agreement. It provides a human-readable label that describes the SLA. Example: instant"
+        quoteHistoryId:
+          type: string
+          description: "The unique identifier for the quote history. It is used to track and manage the history of quotes within the system. Example: a3f92c1d-8b74-4e2a-9d35-7c81f0e4b256"
 
     fieldSet:
       # required:

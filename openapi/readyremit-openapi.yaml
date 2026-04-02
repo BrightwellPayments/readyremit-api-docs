@@ -223,7 +223,14 @@ paths:
         style: form
         explode: true
         schema:
-          $ref: '#/components/schemas/transferMethods'
+          type: string
+          default: BANK_ACCOUNT
+          enum:
+          - BANK_ACCOUNT
+          - CASH_PICKUP
+          - PUSH_TO_CARD
+          - MOBILE_WALLET
+          - ACCOUNT_FUNDING
       - name: quoteBy
         in: query
         required: true
