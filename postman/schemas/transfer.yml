@@ -6917,7 +6917,7 @@ paths:
   "/card-onboarding-sessions":
     post:
       tags:
-      - Cards
+      - Card Onboarding Sessions
       summary: Create Card Onboarding Session
       description:  |
         The POST /card-onboarding-sessions endpoint is used to create a new card onboarding session, allowing users to securely enter and link their card details. This session enables customization of the user interface and validation of required card information.
