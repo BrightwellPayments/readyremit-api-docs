@@ -8428,17 +8428,14 @@ components:
           oneOf:
             - type: string
               description: >
-                The value of the field when the selected field type is `TEXT`, `EMAIL_ADDRESS`, or `DROPDOWN`.
+                The value of the field when the selected field type is `TEXT`, `EMAIL_ADDRESS`, `DROPDOWN` or `DATE`.
                 Example: "John Doe"
+                When the selected field type is `DATE`, the value must be a valid date in `YYYY-MM-DD` format.
+                Example: "1990-05-15"
             - type: number
               description: >
                 The value of the field when the selected field type is `ID_NUMBER` or other numeric values.
                 Example: 1234567890
-            - type: string
-              format: date
-              description: >
-                The value of the field when the selected field type is `DATE_OF_BIRTH`. Must be a valid date in `YYYY-MM-DD` format.
-                Example: "1990-05-15"
             - type: object
               description: >
                 The value of the field when the selected field type is `PHONE_NUMBER`. This is an object containing the phone number and country details.
