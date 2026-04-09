@@ -10,6 +10,18 @@ servers:
 - url: https://api.readyremit.com/v1
 security:
 - bearerAuth: []
+tags:
+- name: Banks and Branches
+- name: Partner Locations
+- name: Helpers
+- name: Quote
+- name: Recipients
+- name: Recipient Accounts
+- name: Senders
+- name: Transfers
+- name: Card Onboarding Sessions
+- name: Cards
+- name: Account Funding
 paths:
   "/banks":
     get:
@@ -6847,77 +6859,6 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"                
-  "/cards":
-    post:
-      tags:
-      - Cards
-      summary: Create card
-      description: |
-        The `POST /cards` endpoint creates a new card record.
-
-        **Implementation Guide:**
-        - **Prerequisite**: Ensure that all required fields are provided to create the card accurately.
-        - **Validation**: Validate the request body to ensure all required fields are included and correctly formatted.
-      operationId: createCard
-      requestBody:
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/createCardRequest"
-            examples:
-              Success:
-                summary: SUCCESS
-                value:
-                  cardOnboardingSessionId: "d53d90ad-4de8-415d-8286-90c41853a3dd"
-                  cardHolderName: "Daniel P Fix"
-                  cardNumber: "4242424242424242"
-                  cvv2: "123"
-                  expiryDate: "0827"
-                  street: "123 Main St"
-                  postalCode: "10001"
-      responses:
-        '201':
-          description: The card record was successfully created.
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/createCardResponse"
-              example:
-                id: 654ef2cb-6550-45db-ac42-decc7be1616a
-                personalName: Ruth Morris
-                cardNumber: "********0078"
-                expiryDate: "12/31"
-                cvv2: "***"
-                addressStreet: "123 Main St"
-                addressZip: "10001"
-                cardCountryIso3Codes:
-                  - IND
-                cardCurrencyIso3Codes:
-                  - INR
-        '400':
-          description: The request was invalid. This response typically occurs if required parameters are missing or invalid.
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/codeMsgFieldIdObject"
-        '401':
-          description: The request requires user authentication. This response occurs if the authentication token is missing or invalid.
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/response401"
-        '403':
-          description: The request was valid, but the server is refusing action. This response occurs if the user does not have permission to create the card record.
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/codeMsgDescObject"
-        '404':
-          description: The card record could not be created. This response occurs if the parameters provided do not match any available card options.
-          content:
-            application/json:
-              schema:
                 "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
   "/card-onboarding-sessions":
     post:
@@ -7284,6 +7225,77 @@ paths:
                     code: "000"
                     message: "Something went wrong!"
                     description: "UnhandledException"
+  "/cards":
+    post:
+      tags:
+      - Cards
+      summary: Create card
+      description: |
+        The `POST /cards` endpoint creates a new card record.
+
+        **Implementation Guide:**
+        - **Prerequisite**: Ensure that all required fields are provided to create the card accurately.
+        - **Validation**: Validate the request body to ensure all required fields are included and correctly formatted.
+      operationId: createCard
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/createCardRequest"
+            examples:
+              Success:
+                summary: SUCCESS
+                value:
+                  cardOnboardingSessionId: "d53d90ad-4de8-415d-8286-90c41853a3dd"
+                  cardHolderName: "Daniel P Fix"
+                  cardNumber: "4242424242424242"
+                  cvv2: "123"
+                  expiryDate: "0827"
+                  street: "123 Main St"
+                  postalCode: "10001"
+      responses:
+        '201':
+          description: The card record was successfully created.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/createCardResponse"
+              example:
+                id: 654ef2cb-6550-45db-ac42-decc7be1616a
+                personalName: Ruth Morris
+                cardNumber: "********0078"
+                expiryDate: "12/31"
+                cvv2: "***"
+                addressStreet: "123 Main St"
+                addressZip: "10001"
+                cardCountryIso3Codes:
+                  - IND
+                cardCurrencyIso3Codes:
+                  - INR
+        '400':
+          description: The request was invalid. This response typically occurs if required parameters are missing or invalid.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgFieldIdObject"
+        '401':
+          description: The request requires user authentication. This response occurs if the authentication token is missing or invalid.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"
+        '403':
+          description: The request was valid, but the server is refusing action. This response occurs if the user does not have permission to create the card record.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgDescObject"
+        '404':
+          description: The card record could not be created. This response occurs if the parameters provided do not match any available card options.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
   "/account-funding-transactions":
     post:
       tags:
