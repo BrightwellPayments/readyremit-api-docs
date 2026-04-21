@@ -2601,11 +2601,11 @@ paths:
       - Recipient Accounts
       summary: Get Recipient Account
       description:  |
-        The `POST /recipients/{recipientId}/accounts` endpoint creates a new account record for a specified recipient.
+        The `GET /recipients/{recipientId}/accounts/{accId}` endpoint retrieves a single recipient account record by its identifier.
 
         **Implementation Guide:**
-        - **Prerequisite**: Ensure that the `GET /recipient-account-fields` endpoint is called first to retrieve the necessary fields for creating a recipient account record.
-        - **Dynamic Fields**: The fields required for creating a recipient account record are dynamic and may change based on the recipient type, destination country, destination currency, and transfer method. Always use the latest field requirements from the `GET /recipient-account-fields` endpoint.
+        - **Prerequisite**: Ensure that the `recipientId` and `accId` parameters are correctly specified and correspond to existing records.
+        - **Dynamic Fields**: The fields returned are dynamic and may vary based on the destination country, destination currency, and transfer method.
       operationId: getRecipientAccount
       parameters:
       - name: recipientId
@@ -2639,6 +2639,25 @@ paths:
                     description: >
                       The unique identifier for the recipient's account. This ID is used to track and manage the account within the system.
                       Example: "e27c7395-b46a-4b9b-89fd-cd6a3da7fd85"
+                  dstCountryIso3Code:
+                    type: string
+                    description: >
+                      The ISO 3166-1 alpha-3 code of the destination country.
+                      Example: "IND"
+                  dstCurrencyIso3Code:
+                    type: string
+                    description: >
+                      The ISO 4217 code of the destination currency.
+                      Example: "INR"
+                  transferMethod:
+                    type: string
+                    description: >
+                      The method used for transferring money.
+                      Example: "BANK_ACCOUNT"
+                  name:
+                    type: string
+                    description: >
+                      Optional name for the recipient account.
                   accountNumber:
                     type: string
                     description: >
