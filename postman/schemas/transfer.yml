@@ -2669,11 +2669,14 @@ paths:
 
               example:
                 recipientAccountId: e27c7395-b46a-4b9b-89fd-cd6a3da7fd85
+                dstCountryIso3Code: IND
+                dstCurrencyIso3Code: INR
+                transferMethod: BANK_ACCOUNT
                 accountNumber: '333000333'
                 fields:
-                - id: BANK_NAME
+                - id: BANK_ACCOUNT_NUMBER
                   type: TEXT
-                  value: Bank
+                  value: '333000333'
         '400':
           description: Bad Request
           content:
@@ -2686,6 +2689,16 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/response401"
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgDescObjectArray"
+              example:
+              - code: AccessDenied
+                message: Sorry! Access denied :(
+                description: The sender is not associated with this recipient.
         '404':
           description: Not Found
           content:
@@ -2746,6 +2759,16 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/recipientAccount"
+              example:
+                recipientAccountId: e27c7395-b46a-4b9b-89fd-cd6a3da7fd85
+                dstCountryIso3Code: IND
+                dstCurrencyIso3Code: INR
+                transferMethod: BANK_ACCOUNT
+                accountNumber: '333000333'
+                fields:
+                - id: BANK_ACCOUNT_NUMBER
+                  type: TEXT
+                  value: '333000333'
         '400':
           description: The request was invalid. This response typically occurs if required parameters are missing or invalid.
           content:
@@ -2789,6 +2812,16 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/response401"
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgDescObjectArray"
+              example:
+              - code: AccessDenied
+                message: Sorry! Access denied :(
+                description: The sender is not associated with this recipient.
         '404':
           description: The specified recipient account record was not found. This response occurs if the `recipientId` or `accId` does not match any existing records.
           content:
