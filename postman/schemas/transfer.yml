@@ -9207,6 +9207,7 @@ components:
           - ADDRESS_LINE_1
           - ADDRESS_CITY
           - ADDRESS_STATE
+          - ADDRESS_ZIP
           - ADDRESS_COUNTRY
           - DATE_OF_BIRTH
           - EMAIL_ADDRESS
