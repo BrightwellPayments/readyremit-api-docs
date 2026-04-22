@@ -2177,7 +2177,6 @@ paths:
                 oneOf:
                   - "$ref": "#/components/schemas/fieldSetsObject"
                   - "$ref": "#/components/schemas/recipientAccountMobileWallet"
-                  - "$ref": "#/components/schemas/fieldSetsObject"
               examples:
                 Bank Account:
                   summary: Bank Account
@@ -5530,6 +5529,7 @@ paths:
       tags:
         - Transfers
       summary: Get Transfers
+      operationId: getTransfers
       description:  >
         The `GET /transfers` endpoint retrieves a list of transfers based on the provided query parameters. This operation allows you to filter and paginate through the list of transfers. It is useful for fetching transfer records associated with a specific sender, and for managing large datasets by limiting the number of records returned in a single request and skipping a specified number of records.
 
@@ -7996,7 +7996,7 @@ components:
       - expiryDate
       - cvv2
       properties:
-        cardonboardingsessionid:
+        cardOnboardingSessionId:
           type: string
           description: "The unique identifier for the card onboarding session. This ID is used to track and manage the session within the system. Example: 'e22e6884-ae4d-4bd9-aa1d-e28b6b894bac'"
         cardholderName:
@@ -8147,7 +8147,7 @@ components:
     createRecipientRequest:
       type: object
       required:
-        - recipientType
+        - userType
         - fields
       properties:
         userType:
@@ -9109,7 +9109,7 @@ components:
     baseField:
       required:
       - fieldType
-      - id
+      - fieldId
       - name
       # - required
       type: object
