@@ -7997,7 +7997,7 @@ components:
       - expiryDate
       - cvv2
       properties:
-        cardonboardingsessionid:
+        cardOnboardingSessionId:
           type: string
           description: "The unique identifier for the card onboarding session. This ID is used to track and manage the session within the system. Example: 'e22e6884-ae4d-4bd9-aa1d-e28b6b894bac'"
         cardholderName:
