@@ -9110,7 +9110,7 @@ components:
     baseField:
       required:
       - fieldType
-      - id
+      - fieldId
       - name
       # - required
       type: object
