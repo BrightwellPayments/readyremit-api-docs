@@ -2177,7 +2177,6 @@ paths:
                 oneOf:
                   - "$ref": "#/components/schemas/fieldSetsObject"
                   - "$ref": "#/components/schemas/recipientAccountMobileWallet"
-                  - "$ref": "#/components/schemas/fieldSetsObject"
               examples:
                 Bank Account:
                   summary: Bank Account
