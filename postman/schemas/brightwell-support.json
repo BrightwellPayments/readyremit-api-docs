@@ -1,0 +1,737 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Brightwell Support API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    { "url": "https://sandbox-api.readyremit.com/v2" },
+    { "url": "https://api.readyremit.com/v2" }
+  ],
+  "security": [
+    { "bearerAuth": [] }
+  ],
+  "tags": [
+    {
+      "name": "Zendesk (Customer Scoped)",
+      "description": "Support ticket operations scoped to the authenticated customer."
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "Bearer token for authentication"
+      }
+    },
+    "schemas": {
+      "Error": {
+        "title": "Error",
+        "oneOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "code": "UNRECOVERABLE",
+                "message": "UNRECOVERABLE",
+                "description": "UNRECOVERABLE"
+              }
+            },
+            "example": [
+              {
+                "code": "UNRECOVERABLE",
+                "message": "UNRECOVERABLE",
+                "description": "UNRECOVERABLE"
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              },
+              "errors": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "code": "UNRECOVERABLE",
+                    "message": "UNRECOVERABLE",
+                    "description": "UNRECOVERABLE"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "paths": {
+    "/support/tickets": {
+      "post": {
+        "tags": ["Zendesk (Customer Scoped)"],
+        "summary": "Create support ticket",
+        "description": "Create a new support ticket. Available to customer-scoped API clients. The customer_id custom field is automatically injected from the authenticated customer — any client-supplied value for that field is ignored.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["subject"],
+                "properties": {
+                  "subject": {
+                    "type": "string",
+                    "example": "Transfer stuck with hold",
+                    "description": "Ticket subject line"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Transfer ID: XXXX-XXXX-XXXX-XXXX is stuck with a hold and is not clearing. Please investigate.",
+                    "description": "Initial ticket description (plain text)"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "new",
+                      "open",
+                      "pending",
+                      "hold",
+                      "solved",
+                      "closed"
+                    ],
+                    "description": "Ticket status"
+                  },
+                  "priority": {
+                    "type": "string",
+                    "enum": ["urgent", "high", "normal", "low"],
+                    "description": "Ticket priority"
+                  },
+                  "reference_id": {
+                    "type": "string",
+                    "example": "AZ31AAFVU",
+                    "description": "Your confirmation # or some other reference ID for the transfer."
+                  },
+                  "category": {
+                    "type": "string",
+                    "enum": ["portal_dispute", "portal_fraud", "portal_brightwell_rfi", "portal_general_inquiry"],
+                    "description": "Ticket category"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created ticket",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Created ticket",
+                  "type": "object",
+                  "additionalProperties": true
+                },
+                "example": {
+                  "ticket": {
+                    "created_at": "2026-07-20T22:55:29Z",
+                    "custom_fields": [
+                      {
+                        "id": 49741958647579,
+                        "value": "XXXX-XXXX-XXXX-XXXX"
+                      },
+                      {
+                        "id": 49762163676443,
+                        "value": "AZ31AAFVU"
+                      },
+                      {
+                        "id": 49762099026459,
+                        "value": "portal_brightwell_rfi"
+                      }
+                    ],
+                    "description": "Transfer ID: XXXX-XXXX-XXXX-XXXX is stuck with a hold and is not clearing. Please investigate.",
+                    "id": 35436,
+                    "priority": "urgent",
+                    "requester_id": 20978392,
+                    "status": "new",
+                    "subject": "Transfer stuck with hold",
+                    "updated_at": "2026-05-05T10:38:52Z",
+                    "url": ""
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Error Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error",
+                  "description": "Error Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/support/uploads": {
+      "post": {
+        "tags": ["Zendesk (Customer Scoped)"],
+        "summary": "Upload attachment",
+        "description": "Upload a file attachment to Brightwell Support. Available to customer-scoped API clients. Returns an upload token that should be passed in the `uploads` array when adding a comment via POST /support/tickets/{ticketId}/comments.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "filename",
+            "required": true,
+            "description": "Name of the file being uploaded"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "File uploaded successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "File uploaded successfully",
+                  "type": "object",
+                  "properties": {
+                    "upload": {
+                      "type": "object",
+                      "properties": {
+                        "token": {
+                          "type": "string",
+                          "description": "Upload token — pass this in the comment `uploads` array"
+                        },
+                        "attachment": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "number"
+                            },
+                            "file_name": {
+                              "type": "string"
+                            },
+                            "content_url": {
+                              "type": "string"
+                            },
+                            "content_type": {
+                              "type": "string"
+                            },
+                            "size": {
+                              "type": "number"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "example": {
+                  "upload": {
+                    "token": "4bLLKSOU63CPqaIeOMXYyXzUh",
+                    "expires_at": "2021-05-08T22:50:18Z",
+                    "attachment": {
+                      "url": "https://example.zendesk.com/api/v2/attachments/1503194928902.json",
+                      "id": 1503194928902,
+                      "file_name": "order_issue.png",
+                      "content_url": "https://example.zendesk.com/attachments/token/vp7DnuiSvehLZtK2yrPjqJ1l6/?name=order_issue.png",
+                      "content_type": "image/png"
+                    },
+                    "attachments": [
+                      {
+                        "url": "https://example.zendesk.com/api/v2/attachments/1503194928902.json",
+                        "id": 1503194928902,
+                        "file_name": "order_issue.png",
+                        "content_url": "https://example.zendesk.com/attachments/token/vp7DnuiSvehLZtK2yrPjqJ1l6/?name=order_issue.png",
+                        "content_type": "image/png"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Error Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error",
+                  "description": "Error Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/support/search": {
+      "get": {
+        "tags": ["Zendesk (Customer Scoped)"],
+        "summary": "Search tickets",
+        "description": "Search Brightwell Support tickets and objects. Available to customer-scoped API clients. A customer_id filter is automatically appended to every query — results are always restricted to the authenticated customer's own tickets regardless of what the client supplies.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "query",
+            "required": true,
+            "example": "<br />Search for a specific word: <strong>greenbriar</strong> <br /> Search by status: <strong>status:open</strong> <br /> Search by ticket id: <strong>413915</strong>",
+            "description": "Brightwell Support search query (search by ticket ID, subject, status). A customer_id custom field filter is always appended server-side."
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "sort_by",
+            "required": false,
+            "description": "Field to sort by"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": ["asc", "desc"]
+            },
+            "in": "query",
+            "name": "sort_order",
+            "required": false,
+            "description": "Sort direction"
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "page",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "per_page",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Search results",
+                  "type": "object",
+                  "additionalProperties": true
+                },
+                "example": {
+                  "count": 1,
+                  "facets": null,
+                  "next_page": null,
+                  "previous_page": null,
+                  "results": [
+                    {
+                      "created_at": "2018-04-06T03:17:05Z",
+                      "default": false,
+                      "deleted": false,
+                      "description": "",
+                      "id": 1835972,
+                      "name": "Ragtail",
+                      "result_type": "group",
+                      "updated_at": "2018-04-06T03:17:05Z",
+                      "url": ""
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Error Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error",
+                  "description": "Error Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/support/tickets/{ticketId}": {
+      "get": {
+        "tags": ["Zendesk (Customer Scoped)"],
+        "summary": "Get ticket",
+        "description": "Retrieve a single support ticket by ID. Available to customer-scoped API clients. Only tickets belonging to the authenticated customer are accessible.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "ticketId",
+            "required": true,
+            "description": "Brightwell Support ticket ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ticket details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Ticket details",
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Error Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error",
+                  "description": "Error Response"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Zendesk (Customer Scoped)"],
+        "summary": "Update ticket",
+        "description": "Update a support ticket by ID. Available to customer-scoped API clients. The customer_id custom field is automatically injected — any client-supplied value is ignored.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "subject": {
+                    "type": "string",
+                    "description": "Updated ticket subject"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Updated ticket description"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "new",
+                      "open",
+                      "pending",
+                      "hold",
+                      "solved",
+                      "closed"
+                    ],
+                    "description": "Updated ticket status"
+                  },
+                  "priority": {
+                    "type": "string",
+                    "enum": ["urgent", "high", "normal", "low"],
+                    "description": "Updated ticket priority"
+                  },
+                  "reference_id": {
+                    "type": "string",
+                    "example": "AZ31AAFVU",
+                    "description": "Your confirmation # or some other reference ID for the transfer."
+                  },
+                  "category": {
+                    "type": "string",
+                    "enum": ["portal_dispute", "portal_fraud", "portal_brightwell_rfi", "portal_general_inquiry"],
+                    "description": "Ticket category"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "ticketId",
+            "required": true,
+            "description": "Brightwell Support ticket ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated ticket",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Updated ticket",
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Error Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error",
+                  "description": "Error Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/support/tickets/{ticketId}/comments": {
+      "get": {
+        "tags": ["Zendesk (Customer Scoped)"],
+        "summary": "List ticket comments",
+        "description": "List comments on a support ticket. Available to customer-scoped API clients.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "ticketId",
+            "required": true,
+            "description": "Brightwell Support ticket ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of ticket comments",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "List of ticket comments",
+                  "type": "object",
+                  "additionalProperties": true
+                },
+                "example": {
+                  "comments": [
+                    {
+                      "attachments": [
+                        {
+                          "content_type": "text/plain",
+                          "content_url": "https://company.zendesk.com/attachments/crash.log",
+                          "file_name": "crash.log",
+                          "id": 498483,
+                          "size": 2532,
+                          "thumbnails": []
+                        }
+                      ],
+                      "audit_id": 432567,
+                      "author_id": 123123,
+                      "body": "Thanks for your help!",
+                      "created_at": "2009-07-20T22:55:29Z",
+                      "id": 1274,
+                      "metadata": {
+                        "system": {
+                          "client": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36",
+                          "ip_address": "1.1.1.1",
+                          "latitude": -37.000000000001,
+                          "location": "Melbourne, 07, Australia",
+                          "longitude": 144.0000000000002
+                        },
+                        "via": {
+                          "channel": "web",
+                          "source": {
+                            "from": {},
+                            "rel": "web_widget",
+                            "to": {}
+                          }
+                        }
+                      },
+                      "public": true,
+                      "type": "Comment"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Error Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error",
+                  "description": "Error Response"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Zendesk (Customer Scoped)"],
+        "summary": "Add ticket comment",
+        "description": "Add a comment to a support ticket. Available to customer-scoped API clients. Attach previously uploaded files by including their tokens in the `uploads` array.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["comment"],
+                "properties": {
+                  "comment": {
+                    "type": "object",
+                    "required": ["body"],
+                    "properties": {
+                      "body": {
+                        "type": "string",
+                        "description": "Comment text (plain text)"
+                      },
+                      "html_body": {
+                        "type": "string",
+                        "description": "Comment text (HTML). Overrides body if provided."
+                      },
+                      "public": {
+                        "type": "boolean",
+                        "description": "Whether the comment is visible to the end user. Defaults to true."
+                      },
+                      "author_id": {
+                        "type": "number",
+                        "description": "Brightwell Support user ID of the comment author"
+                      },
+                      "uploads": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "Upload tokens returned by POST /support/uploads"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "ticketId",
+            "required": true,
+            "description": "Brightwell Support ticket ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated ticket with new comment",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Updated ticket with new comment",
+                  "type": "object",
+                  "additionalProperties": true
+                },
+                "example": {
+                  "attachments": [
+                    {
+                      "content_type": "text/plain",
+                      "content_url": "https://company.zendesk.com/attachments/crash.log",
+                      "file_name": "crash.log",
+                      "id": 498483,
+                      "size": 2532,
+                      "thumbnails": []
+                    }
+                  ],
+                  "author_id": 123123,
+                  "body": "Thanks for your help!",
+                  "created_at": "2009-07-20T22:55:29Z",
+                  "id": 1274,
+                  "metadata": {
+                    "system": {
+                      "client": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36",
+                      "ip_address": "1.1.1.1",
+                      "latitude": -37.000000000001,
+                      "location": "Melbourne, 07, Australia",
+                      "longitude": 144.0000000000002
+                    },
+                    "via": {
+                      "channel": "web",
+                      "source": {
+                        "from": {},
+                        "rel": "web_widget",
+                        "to": {}
+                      }
+                    }
+                  },
+                  "public": true,
+                  "type": "Comment"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Error Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error",
+                  "description": "Error Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true,
+    "samples-enabled": true
+  }
+}
