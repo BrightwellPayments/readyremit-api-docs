@@ -13,7 +13,7 @@
   ],
   "tags": [
     {
-      "name": "Zendesk (Customer Scoped)",
+      "name": "Customer Support",
       "description": "Support ticket operations scoped to the authenticated customer."
     }
   ],
