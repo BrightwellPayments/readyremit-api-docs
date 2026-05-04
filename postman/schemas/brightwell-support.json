@@ -97,6 +97,7 @@
     "/support/tickets": {
       "post": {
         "tags": ["Zendesk (Customer Scoped)"],
+        "summary": "Create support ticket",
         "description": "Create a new support ticket. Available to customer-scoped API clients. The customer_id custom field is automatically injected from the authenticated customer — any client-supplied value for that field is ignored.",
         "requestBody": {
           "content": {
@@ -139,7 +140,7 @@
                   },
                   "category": {
                     "type": "string",
-                    "enum": ["portal_dispute", "portal_fraud", "portal_brightwell_rfi", "portal_nfcu_rfi", "portal_general_inquiry"],
+                    "enum": ["portal_dispute", "portal_fraud", "portal_brightwell_rfi", "portal_general_inquiry"],
                     "description": "Ticket category"
                   }
                 }
@@ -205,6 +206,7 @@
     "/support/uploads": {
       "post": {
         "tags": ["Zendesk (Customer Scoped)"],
+        "summary": "Upload attachment",
         "description": "Upload a file attachment to Brightwell Support. Available to customer-scoped API clients. Returns an upload token that should be passed in the `uploads` array when adding a comment via POST /support/tickets/{ticketId}/comments.",
         "parameters": [
           {
@@ -300,6 +302,7 @@
     "/support/search": {
       "get": {
         "tags": ["Zendesk (Customer Scoped)"],
+        "summary": "Search tickets",
         "description": "Search Brightwell Support tickets and objects. Available to customer-scoped API clients. A customer_id filter is automatically appended to every query — results are always restricted to the authenticated customer's own tickets regardless of what the client supplies.",
         "parameters": [
           {
@@ -397,6 +400,7 @@
     "/support/tickets/{ticketId}": {
       "get": {
         "tags": ["Zendesk (Customer Scoped)"],
+        "summary": "Get ticket",
         "description": "Retrieve a single support ticket by ID. Available to customer-scoped API clients. Only tickets belonging to the authenticated customer are accessible.",
         "parameters": [
           {
@@ -437,6 +441,7 @@
       },
       "put": {
         "tags": ["Zendesk (Customer Scoped)"],
+        "summary": "Update ticket",
         "description": "Update a support ticket by ID. Available to customer-scoped API clients. The customer_id custom field is automatically injected — any client-supplied value is ignored.",
         "requestBody": {
           "content": {
@@ -476,7 +481,7 @@
                   },
                   "category": {
                     "type": "string",
-                    "enum": ["portal_dispute", "portal_fraud", "portal_brightwell_rfi", "portal_nfcu_rfi", "portal_general_inquiry"],
+                    "enum": ["portal_dispute", "portal_fraud", "portal_brightwell_rfi", "portal_general_inquiry"],
                     "description": "Ticket category"
                   }
                 }
@@ -525,6 +530,7 @@
     "/support/tickets/{ticketId}/comments": {
       "get": {
         "tags": ["Zendesk (Customer Scoped)"],
+        "summary": "List ticket comments",
         "description": "List comments on a support ticket. Available to customer-scoped API clients.",
         "parameters": [
           {
@@ -605,6 +611,7 @@
       },
       "post": {
         "tags": ["Zendesk (Customer Scoped)"],
+        "summary": "Add ticket comment",
         "description": "Add a comment to a support ticket. Available to customer-scoped API clients. Attach previously uploaded files by including their tokens in the `uploads` array.",
         "requestBody": {
           "content": {
