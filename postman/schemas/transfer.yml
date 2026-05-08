@@ -665,10 +665,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - "$ref": "#/components/schemas/getQuoteSendAmountResponse200"
-                  - "$ref": "#/components/schemas/getQuoteReceiveAmountResponse200"
-                  - "$ref": "#/components/schemas/getQuoteAccountFundingResponse200"
+                "$ref": "#/components/schemas/quoteResponse"
               examples:
                 Quote by Send Amount:
                   summary: Quote by Send Amount
@@ -920,9 +917,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - "$ref": "#/components/schemas/getQuoteSendAmountResponse200"
-                  - "$ref": "#/components/schemas/getQuoteReceiveAmountResponse200"
+                "$ref": "#/components/schemas/quoteResponse"
               examples:
                 Quote by Send Amount:
                   summary: Quote by Send Amount
@@ -1114,7 +1109,7 @@ paths:
         style: form
         explode: true
         schema:
-          "$ref": "#/components/schemas/recipientTypes"
+          "$ref": "#/components/schemas/userType"
       responses:
         '200':
           description: The request was successful, and the response contains a collection of field sets. Each field set includes a collection of fields with details such as field type, length constraints, and whether the field is required.
@@ -1182,7 +1177,7 @@ paths:
                                 description: "Default text displayed in the input field. Example: First name"
                               label:
                                 type: string
-                                description: "A unique key for localization and translation purposes. Example: FirstName"
+                                description: "Display label for the field, already localized to the request's language. Example: First name"
                               sortOrder:
                                 type: integer
                                 description: "Determines the order in which fields appear in the form. Example: 1"
@@ -2167,16 +2162,14 @@ paths:
         style: form
         explode: true
         schema:
-          "$ref": "#/components/schemas/recipientTypes"
+          "$ref": "#/components/schemas/userType"
       responses:
         '200':
           description: The request was successful, and the response contains a collection of field sets. Each field set includes a collection of fields with details such as field type, length constraints, and whether the field is required.
           content:
             application/json:
               schema:
-                oneOf:
-                  - "$ref": "#/components/schemas/fieldSetsObject"
-                  - "$ref": "#/components/schemas/recipientAccountMobileWallet"
+                "$ref": "#/components/schemas/fieldSetsObject"
               examples:
                 Bank Account:
                   summary: Bank Account
@@ -2877,12 +2870,12 @@ paths:
           type: string
       responses:
         '200':
-          description: The recipient account record was successfully deleted.
+          description: The recipient account record was successfully deleted. The response body is an empty JSON object.
           content:
             application/json:
-              example:
-                message: Recipient account record deleted successfully.
-                recipientAccountId: e27c7395-b46a-4b9b-89fd-cd6a3da7fd85
+              schema:
+                type: object
+                description: Empty response body on successful deletion.
         '400':
           description: The request was invalid. This response typically occurs if the `recipientId` or `accId` parameter is missing or invalid.
           content:
@@ -4628,10 +4621,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - "$ref": "#/components/schemas/TransferFieldsResponsePushtoCard"
-                  - "$ref": "#/components/schemas/TransferFieldsResponseBankAccount"
-                  - "$ref": "#/components/schemas/TransferFieldsResponseCashPickup"
+                "$ref": "#/components/schemas/transferFieldsResponse"
 
               examples:
                 Push to Card:
@@ -4744,7 +4734,7 @@ paths:
                             isRequired: false
                             visibility: HIDE_AND_OPTIONAL
                             placeholderText: -select-
-                            label: SourceOfFunds
+                            label: Source of funds
                             dependencies: {}
                           - fieldType: TEXT
                             minLength: 5
@@ -4756,7 +4746,7 @@ paths:
                             isRequired: false
                             visibility: HIDE_AND_OPTIONAL
                             placeholderText: -select-
-                            label: CardProxyNumber
+                            label: Card Proxy Number
                             dependencies: {}
                           - fieldType: DROPDOWN
                             options:
@@ -4775,7 +4765,7 @@ paths:
                             isRequired: false
                             visibility: HIDE_AND_OPTIONAL
                             placeholderText: -select-
-                            label: PurposeOfRemittance
+                            label: Purpose of remittance
                             dependencies: {}
 
 
@@ -8151,7 +8141,7 @@ components:
         - fields
       properties:
         userType:
-          "$ref": "#/components/schemas/userTypes"
+          "$ref": "#/components/schemas/userType"
           description: The type of recipient. See [Recipient Type](https://developer.readyremit.com/reference/enum-types#recipient-type).
         dstCountryIso3Code:
           "$ref": "#/components/schemas/threeUppercaseChars"
@@ -8302,7 +8292,7 @@ components:
         confirmationNumber:
           type: string
         quote:
-          "$ref": "#/components/schemas/getQuoteSendAmountResponse200"
+          "$ref": "#/components/schemas/quoteResponse"
         senderDetails:
           "$ref": "#/components/schemas/transferResponse_senderDetails"
         recipientDetails:
@@ -8368,16 +8358,13 @@ components:
         senderId:
           type: string
           format: uuid                
-    recipientTypes:
+    userType:
       type: string
       description: The type of recipient. See [Recipient Type](https://developer.readyremit.com/reference/enum-types#recipient-type).
       default: PERSON
       enum:
       - BUSINESS
       - PERSON
-    userTypes:
-      allOf:
-        - $ref: '#/components/schemas/recipientTypes'
     senderTypes:
       type: string
       description: |
@@ -8494,228 +8481,8 @@ components:
           type: string
         amount:
           "$ref": "#/components/schemas/money"
-    getQuoteReceiveAmountResponse200:
-      title: "Quote by Receive Amount"
-      type: object
-      properties:
-        customerId:
-          type: string
-          description: "Unique identifier for the customer. This ID is used to track and manage customer details within the system, ensuring that each customer's transactions and information are correctly associated. Example: 9ce909de-f585-4233-bdc5-fdc42cbfd7c4"
-        senderId:
-          type: string
-          description: "Unique identifier for the sender. It is used to track and manage sender details within the system. Example: 12f67072-19c0-4613-876b-146051c1728a"
-        receiveAmount:
-          description: "The amount of money the recipient will receive. This field includes the value and currency details of the amount being received by the recipient. Example: 2800"
-          type: object
-          properties:
-            value:
-              type: integer
-              description: "The amount of money the recipient will receive. Example: 2800"
-            currency:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: "The name of the currency. Example: Japanese yen"
-                iso3Code:
-                  type: string
-                  description: "The ISO 4217 three-letter currency code. Example: JPY"
-                symbol:
-                  type: string
-                  description: "The symbol of the currency. Example: ¥"
-                decimalPlaces:
-                  type: integer
-                  description: "The number of decimal places used by the currency. Example: 0"
-                roundDirection:
-                  type: string
-                  description: "The rounding direction for the currency. Example: STANDARD"
-                iso4217Code:
-                  type: string
-                  description: "The ISO 4217 numeric currency code. Example: 392"
-        sendAmount:
-          description: "The amount of money the sender wishes to transfer. This field includes the value and currency details of the amount being sent by the sender. It helps in calculating the total cost and the amount the recipient will receive. Example: 2200"
-          type: object
-          properties:
-            value:
-              type: integer
-              description: "The amount of money the sender wishes to transfer. Example: 2200"
-            currency:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: "The name of the currency. Example: US Dollar"
-                iso3Code:
-                  type: string
-                  description: "The ISO 4217 three-letter currency code. Example: USD"
-                symbol:
-                  type: string
-                  description: "The symbol of the currency. Example: $"
-                decimalPlaces:
-                  type: integer
-                  description: "The number of decimal places used by the currency. Example: 2"
-                roundDirection:
-                  type: string
-                  description: "The rounding direction for the currency. Example: STANDARD"
-                iso4217Code:
-                  type: string
-                  description: "The ISO 4217 numeric currency code. Example: 840"
-        rate:
-          type: number
-          description: "The exchange rate applied to the transaction. Example: 147.0704"
-        adjustments:
-          type: array
-          description: "Any adjustments applied to the transaction, such as fees. Example: Transfer Fee"
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: "The identifier for the adjustment. Example: TransferFee"
-              label:
-                type: string
-                description: "The label for the adjustment. Example: Transfer Fee"
-              amount:
-                type: object
-                properties:
-                  value:
-                    type: integer
-                    description: "The value of the adjustment. Example: -100"
-                  currency:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                        description: "The name of the currency. Example: US Dollar"
-                      iso3Code:
-                        type: string
-                        description: "The ISO 4217 three-letter currency code. Example: USD"
-                      symbol:
-                        type: string
-                        description: "The symbol of the currency. Example: $"
-                      decimalPlaces:
-                        type: integer
-                        description: "The number of decimal places used by the currency. Example: 2"
-                      roundDirection:
-                        type: string
-                        description: "The rounding direction for the currency. Example: STANDARD"
-                      iso4217Code:
-                        type: string
-                        description: "The ISO 4217 numeric currency code. Example: 840"
-        totalCost:
-          type: object
-          description: "The total cost of the transaction. Example: 1804"
-          properties:
-            value:
-              type: integer
-              description: "The total cost value. Example: 1804"
-            currency:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: "The name of the currency. Example: US Dollar"
-                iso3Code:
-                  type: string
-                  description: "The ISO 4217 three-letter currency code. Example: USD"
-                symbol:
-                  type: string
-                  description: "The symbol of the currency. Example: $"
-                decimalPlaces:
-                  type: integer
-                  description: "The number of decimal places used by the currency. Example: 2"
-                roundDirection:
-                  type: string
-                  description: "The rounding direction for the currency. Example: STANDARD"
-                iso4217Code:
-                  type: string
-                  description: "The ISO 4217 numeric currency code. Example: 840"
-        associatedTransferRecordStatus:
-          type: string
-          description: "The status of the associated transfer record. Example: NotInProgress"
-        destinationCountryISO3Code:
-          type: string
-          description: "The ISO 3166-1 alpha-3 code for the destination country. Example: JPN"
-        destinationCurrencyISO3Code:
-          type: string
-          description: "The ISO 4217 three-letter currency code for the destination currency. Example: JPY"
-        sourceCurrencyIso3Code:
-          type: string
-          description: "The ISO 4217 three-letter currency code for the source currency. Example: USD"
-        destinationCountry:
-          type: object
-          description: "Details of the destination country. Example: Japan"
-          properties:
-            name:
-              type: string
-              description: "The name of the destination country. Example: Japan"
-            iso2Code:
-              type: string
-              description: "The ISO 3166-1 alpha-2 code for the destination country. Example: JP"
-            iso3Code:
-              type: string
-              description: "The ISO 3166-1 alpha-3 code for the destination country. Example: JPN"
-            phoneCode:
-              type: integer
-              description: "The phone code for the destination country. Example: 81"
-        transferMethod:
-          type: string
-          description: "The method used for the transfer. Example: PUSH_TO_CARD"
-        rsp:
-          type: string
-          description: "The receiving service provider. Example: Visa"
-        disclosures:
-          type: array
-          description: "Any disclosures related to the transaction."
-          items:
-            type: string
-        deliverySLA:
-          type: object
-          description: "The service level agreement for delivery. Example: thirty minutes"
-          properties:
-            id:
-              type: string
-              description: "The identifier for the delivery SLA. Example: THIRTY_MINUTES"
-            name:
-              type: string
-              description: "The name of the delivery SLA. Example: thirty minutes"
-        quoteHistoryId:
-          type: string
-          description: "Unique identifier for the quote history. Example: 29bd0ff4-4cd4-41e9-badc-d9e3c6bcc3e8"
-
-    getQuoteSendAmountResponse200:
-      # title: "Quote by Send Amount"
-      # # required:
-      # # - customerId
-      # # - adjustments
-      # # - disclosures
-      # # - rate
-      # # - receiveAmount
-      # # - sendAmount
-      # # - totalCost
-      # type: object
-      # properties:
-      #   customerId:
-      #     type: string
-      #     description: "Unique identifier for the customer. This ID is used to track and manage customer details within the system, ensuring that each customer's transactions and information are correctly associated. example: 9ce909de-f585-4233-bdc5-fdc42cbfd7c4"
-      #   sendAmount:
-      #     description: "The amount of money the sender wishes to transfer. This field includes the value and currency details of the amount being sent by the sender. It helps in calculating the total cost and the amount the recipient will receive. example: 2200"
-      #     "$ref": "#/components/schemas/money"
-      #   receiveAmount:
-      #     description: "The amount of money the recipient will receive. This field includes the value and currency details of the amount being received by the recipient. It is calculated based on the send amount and the exchange rate. example: value: 111486"
-      #     "$ref": "#/components/schemas/money"
-      #   rate:
-      #     description: "The exchange rate applied to the transfer. This rate determines how much of the destination currency the recipient will receive for each unit of the source currency. It helps in calculating the receive amount. example: 50.6754"
-      #     type: number
-      #   adjustments:
-      #     description: "A list of adjustments applied to the transfer, such as fees or discounts. Each adjustment includes details like the label and amount, which are used to calculate the total cost of the transfer."
-      #     type: array
-      #     items:
-      #       "$ref": "#/components/schemas/adjustment"
-      #   totalCost:
-      #     description: "The total cost of the transfer, including the send amount and any adjustments. This is the amount the sender will be charged for the transfer. It helps in providing a clear breakdown of the costs involved. example: value: 2979"
-      #     "$ref": "#/components/schemas/money"
-      title: "Quote by Send Amount"
+    quoteResponse:
+      description: "Response shape for any quote retrieval, regardless of how the quote was requested (by send amount, receive amount, or for account funding). The `transferMethod` field indicates which flavor of quote is being returned."
       type: object
       properties:
         customerId:
@@ -8800,7 +8567,7 @@ components:
                 properties:
                   value:
                     type: integer
-                    description: "The amount of the adjustment. Example: 779"
+                    description: "The amount of the adjustment. Can be positive (e.g., a fee or surcharge added to the total cost) or negative (e.g., a discount or rebate deducted from the total cost). Example: 779 for a transfer fee, -100 for a promotional discount."
                   currency:
                     type: object
                     properties:
@@ -8864,6 +8631,7 @@ components:
           description: "The ISO 4217 code of the source currency. Example: USD"
         destinationCountry:
           type: object
+          description: "Details of the destination country."
           properties:
             name:
               type: string
@@ -8879,7 +8647,7 @@ components:
               description: "The phone code of the destination country. Example: 63"
         transferMethod:
           type: string
-          description: "The method used for transferring money. Example: BANK_ACCOUNT"
+          description: "The method used for transferring money. One of `PUSH_TO_CARD`, `BANK_ACCOUNT`, `CASH_PICKUP`, or `ACCOUNT_FUNDING`. Indicates which quote flavor this response represents. See [Transfer Method](https://developer.readyremit.com/reference/enum-types#transfer-method)."
         rsp:
           type: string
           description: "The remittance service provider. Example: 'VISA'"
@@ -8890,203 +8658,17 @@ components:
             type: string
         deliverySLA:
           type: object
+          description: "The service level agreement for delivery — how quickly the recipient will receive funds."
           properties:
             id:
               type: string
-              description: "The unique identifier for the delivery service level agreement. It is used to reference and manage the specific SLA within the system. Example: FIVE_BUSINESS_DAYS"
+              description: "The unique identifier for the delivery service level agreement. Common values include `INSTANT` (account-funding, real-time), `THIRTY_MINUTES` (push-to-card), and `FIVE_BUSINESS_DAYS` (bank account). Example: FIVE_BUSINESS_DAYS"
             name:
               type: string
               description: "The name of the delivery service level agreement. It provides a human-readable label that describes the SLA. Example: five business days"
         quoteHistoryId:
           type: string
           description: "The unique identifier for the quote history. It is used to track and manage the history of quotes within the system. Example: d5ae37ac-612f-4706-b5a2-375770fed4b8"
-
-    getQuoteAccountFundingResponse200:
-      title: "Transfer Method ACCOUNT_FUNDING"
-      type: object
-      properties:
-        customerId:
-          type: string
-          description: "Unique identifier for the customer. This ID is used to track and manage customer details within the system, ensuring that each customer's transactions and information are correctly associated. Example: 9ce909de-f585-4233-bdc5-fdc42cbfd7c4"
-        senderId:
-          type: string
-          description: "Unique identifier for the sender. It is used to track and manage sender details within the system. Example: 5311fd82-ba46-4ebf-a446-b32c58c6ecb3"
-        sendAmount:
-          description: "The amount of money the sender wishes to transfer. This field includes the value and currency details of the amount being sent by the sender. It helps in calculating the total cost and the amount the recipient will receive. Example: 5000"
-          type: object
-          properties:
-            value:
-              type: integer
-              description: "The amount of money the sender wishes to transfer. Example: 5000"
-            currency:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: "The name of the currency. Example: US Dollar"
-                iso3Code:
-                  type: string
-                  description: "The ISO 4217 code of the currency. Example: USD"
-                symbol:
-                  type: string
-                  description: "The symbol of the currency. Example: $"
-                decimalPlaces:
-                  type: integer
-                  description: "The number of decimal places used by the currency. Example: 2"
-                roundDirection:
-                  type: string
-                  description: "The rounding direction for the currency. Example: STANDARD"
-                iso4217Code:
-                  type: string
-                  description: "The ISO 4217 numeric code of the currency. Example: 840"
-        receiveAmount:
-          description: "The amount of money the recipient will receive. This field includes the value and currency details of the amount being received by the recipient. It is calculated based on the send amount and the exchange rate. Example: 5000"
-          type: object
-          properties:
-            value:
-              type: integer
-              description: "The amount of money the recipient will receive. Example: 5000"
-            currency:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: "The name of the currency. Example: US Dollar"
-                iso3Code:
-                  type: string
-                  description: "The ISO 4217 code of the currency. Example: USD"
-                symbol:
-                  type: string
-                  description: "The symbol of the currency. Example: $"
-                decimalPlaces:
-                  type: integer
-                  description: "The number of decimal places used by the currency. Example: 2"
-                roundDirection:
-                  type: string
-                  description: "The rounding direction for the currency. Example: STANDARD"
-                iso4217Code:
-                  type: string
-                  description: "The ISO 4217 numeric code of the currency. Example: 840"
-        rate:
-          type: number
-          description: "The exchange rate applied to the transfer. This rate determines how much of the destination currency the recipient will receive for each unit of the source currency. It helps in calculating the receive amount. Example: 1.0"
-        adjustments:
-          description: "A list of adjustments applied to the transfer, such as fees or discounts. Each adjustment includes details like the label and amount, which are used to calculate the total cost of the transfer."
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: "The unique identifier for the adjustment. Example: TransferFee"
-              label:
-                type: string
-                description: "The label for the adjustment. Example: Transfer Fee"
-              amount:
-                type: object
-                properties:
-                  value:
-                    type: integer
-                    description: "The amount of the adjustment. Example: 0"
-                  currency:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                        description: "The name of the currency. Example: US Dollar"
-                      iso3Code:
-                        type: string
-                        description: "The ISO 4217 code of the currency. Example: USD"
-                      symbol:
-                        type: string
-                        description: "The symbol of the currency. Example: $"
-                      decimalPlaces:
-                        type: integer
-                        description: "The number of decimal places used by the currency. Example: 2"
-                      roundDirection:
-                        type: string
-                        description: "The rounding direction for the currency. Example: STANDARD"
-                      iso4217Code:
-                        type: string
-                        description: "The ISO 4217 numeric code of the currency. Example: 840"
-        totalCost:
-          description: "The total cost of the transfer, including the send amount and any adjustments. This is the amount the sender will be charged for the transfer. It helps in providing a clear breakdown of the costs involved. Example: 5000"
-          type: object
-          properties:
-            value:
-              type: integer
-              description: "The total cost of the transfer, including the send amount and any adjustments. Example: 5000"
-            currency:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: "The name of the currency. Example: US Dollar"
-                iso3Code:
-                  type: string
-                  description: "The ISO 4217 code of the currency. Example: USD"
-                symbol:
-                  type: string
-                  description: "The symbol of the currency. Example: $"
-                decimalPlaces:
-                  type: integer
-                  description: "The number of decimal places used by the currency. Example: 2"
-                roundDirection:
-                  type: string
-                  description: "The rounding direction for the currency. Example: STANDARD"
-                iso4217Code:
-                  type: string
-                  description: "The ISO 4217 numeric code of the currency. Example: 840"
-        associatedTransferRecordStatus:
-          type: string
-          description: "The status of the associated transfer record. Example: NotInProgress"
-        destinationCountryISO3Code:
-          type: string
-          description: "The ISO 3166-1 alpha-3 code of the destination country. Example: USA"
-        destinationCurrencyISO3Code:
-          type: string
-          description: "The ISO 4217 code of the destination currency. Example: USD"
-        sourceCurrencyIso3Code:
-          type: string
-          description: "The ISO 4217 code of the source currency. Example: USD"
-        destinationCountry:
-          type: object
-          properties:
-            name:
-              type: string
-              description: "The name of the destination country. Example: United States"
-            iso2Code:
-              type: string
-              description: "The ISO 3166-1 alpha-2 code of the destination country. Example: US"
-            iso3Code:
-              type: string
-              description: "The ISO 3166-1 alpha-3 code of the destination country. Example: USA"
-            phoneCode:
-              type: integer
-              description: "The phone code of the destination country. Example: 1"
-        transferMethod:
-          type: string
-          description: "The method used for transferring money. Example: ACCOUNT_FUNDING"
-        rsp:
-          type: string
-          description: "The remittance service provider. Example: 'Visa'"
-        disclosures:
-          description: "A list of disclosures related to the transfer. These disclosures provide important information about the transfer process and any associated terms and conditions. They ensure transparency and compliance with regulatory requirements."
-          type: array
-          items:
-            type: string
-        deliverySLA:
-          type: object
-          properties:
-            id:
-              type: string
-              description: "The unique identifier for the delivery service level agreement. It is used to reference and manage the specific SLA within the system. Example: INSTANT"
-            name:
-              type: string
-              description: "The name of the delivery service level agreement. It provides a human-readable label that describes the SLA. Example: instant"
-        quoteHistoryId:
-          type: string
-          description: "The unique identifier for the quote history. It is used to track and manage the history of quotes within the system. Example: a3f92c1d-8b74-4e2a-9d35-7c81f0e4b256"
 
     fieldSet:
       # required:
@@ -9141,7 +8723,7 @@ components:
         properties:
           label:
             type: string
-            description: "A translation key for the field label. This is used for localization and language translations in the UI. Example: Sender_LegalFirstName"
+            description: "Display label for the field, already localized to the request's language (driven by `Accept-Language`; defaults to en-US). Resolved server-side; clients should render this value directly. Example: Legal first name"
           visibility:
             type: string
             enum:
@@ -9308,11 +8890,9 @@ components:
           items:
             "$ref": "#/components/schemas/fieldValue"
 
-
-    TransferFieldsResponsePushtoCard:
+    transferFieldsResponse:
+      description: "Response shape for transfer-field retrieval, regardless of transfer method (PUSH_TO_CARD, BANK_ACCOUNT, CASH_PICKUP, etc.). Each `fields[*]` entry includes every attribute that may apply to any transfer method; method-specific attributes (such as `options[]` for dropdowns or `dependencies` for conditional fields) are populated only when relevant."
       type: object
-      title: "Push to Card"
-      description: "Push to Card"
       properties:
         fieldSets:
           type: array
@@ -9322,10 +8902,10 @@ components:
             properties:
               fieldSetId:
                 type: string
-                description: "Unique identifier for the field set. This ID is used to reference and manage the specific set of fields within the system. Example: 'TRANSFER_FIELDS'"
+                description: "Unique identifier for the field set. Example: 'TRANSFER_FIELDS'"
               fieldSetName:
                 type: string
-                description: "Name of the field set. This name helps in identifying the purpose or context of the field set. Example: 'Transfer Fields'"
+                description: "Name of the field set. Example: 'Transfer Fields'"
               fields:
                 type: array
                 description: "A list of fields associated with the transfer process. Each field contains specific information and attributes, such as field type, validation rules, and display properties."
@@ -9336,223 +8916,60 @@ components:
                       type: string
                       enum:
                         - TEXT
-                      description: "Type of the field input. This defines the kind of data expected in this field, such as text. Example: 'TEXT'"
-                    minLength:
-                      type: integer
-                      description: "Minimum length of the field value. This specifies the smallest number of characters that the field value must contain. Example: 5"
-                    maxLength:
-                      type: integer
-                      description: "Maximum length of the field value. This specifies the largest number of characters that the field value can contain. Example: 30"
-                    regex:
-                      type: string
-                      description: "Regular expression to validate input format. This pattern ensures that the field value meets specific criteria. Example: '^[\\ -\\~\\ -\\ÿ]+$'"
+                        - PHONE_NUMBER
+                        - DATE
+                        - DROPDOWN
+                      description: "Type of the field input. The set of valid values that can appear depends on the transfer method (e.g., Push-to-Card typically uses `TEXT`; Cash-Pickup uses `TEXT` and `DROPDOWN`). Example: 'TEXT'"
                     fieldId:
                       type: string
-                      description: "Unique identifier for the field. This ID is used to reference and manage the specific field within the system. Example: 'CARD_PROXY_NUMBER'"
+                      description: "Unique identifier for the field. Example: 'CARD_PROXY_NUMBER'"
                     name:
                       type: string
-                      description: "Name of the field. This name helps in identifying the purpose or context of the field. Example: 'Card Proxy Number'"
+                      description: "Name of the field. Example: 'Card Proxy Number'"
+                    label:
+                      type: string
+                      description: "Display label for the field, already localized to the request's language (driven by `Accept-Language`; defaults to en-US). Resolved server-side from the i18n key — clients should render this value directly without further translation. Example: 'Card Proxy Number'"
                     hintText:
                       type: string
-                      description: "Hint text providing additional guidance. This text helps users understand what kind of input is expected in the field. Example: 'Insert The Card Proxy Number'"
+                      description: "Hint text providing additional guidance to the user. Example: 'Insert The Card Proxy Number'"
+                    placeholderText:
+                      type: string
+                      description: "Placeholder text displayed in the field when it is empty. Example: '-select-'"
                     isRequired:
                       type: boolean
-                      description: "Indicates if the field is required. If true, the field must be filled out. Example: false"
+                      description: "Indicates whether the field is required. Example: false"
                     visibility:
                       type: string
                       enum:
                         - SHOW_AND_REQUIRED
                         - SHOW_AND_OPTIONAL
                         - HIDE_AND_OPTIONAL
-                      description: "Defines whether a field is visible and required. Determines how fields appear on the UI and whether users must fill them out. Options are SHOW_REQUIRED (fields must be shown and are required), SHOW_OPTIONAL (fields are shown but optional), and HIDE_AND_OPTIONAL (fields are hidden but optional)."
-                    placeholderText:
+                      description: "Defines whether a field is visible and required. SHOW_AND_REQUIRED (shown and required), SHOW_AND_OPTIONAL (shown but optional), HIDE_AND_OPTIONAL (hidden but optional)."
+                    minLength:
+                      type: integer
+                      description: "Minimum length of the field value. Example: 5"
+                    maxLength:
+                      type: integer
+                      description: "Maximum length of the field value. Example: 30"
+                    regex:
                       type: string
-                      description: "Placeholder text displayed in the field. This text is shown inside the field when it is empty, providing a hint to the user about what to enter. Example: '-select-'"
-                    label:
-                      type: string
-                      description: "Label used for the field in user interfaces. This label is displayed to the user as the field's name. Example: 'Card Proxy Number'"
+                      description: "Regular expression to validate input format. Example: '^[\\ -\\~\\ -\\ÿ]+$'"
+                    options:
+                      type: array
+                      description: "A list of options for dropdown fields. Each option contains an ID and a name, providing predefined choices for the user. Populated only for `fieldType: DROPDOWN`."
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            description: "Unique identifier for the option. Example: '1'"
+                          name:
+                            type: string
+                            description: "Display name of the option. Example: 'FAMILY MAINTENANCE'"
                     dependencies:
                       type: object
                       description: "Specifies dependencies for this field. This can include conditions that must be met for the field to be displayed or required."
                       additionalProperties: true
-
-    TransferFieldsResponseBankAccount:
-      title: "Bank Account"
-      type: object
-      properties:
-        fieldSets:
-          type: array
-          description: >
-            A collection of field sets containing transfer-related fields. Each field set groups related fields together for better organization and management. Field sets help in structuring the data and making it easier to handle complex forms or data entry processes.
-          items:
-            type: object
-            properties:
-              fieldSetId:
-                type: string
-                description: >
-                  The unique identifier for the field set. This ID is used to reference and manage the specific set of fields within the system. It ensures that each field set can be uniquely identified and accessed.
-                  Example: "TRANSFER_FIELDS"
-              fieldSetName:
-                type: string
-                description: >
-                  The name of the field set. This name helps in identifying the purpose or context of the field set, making it easier for developers and API consumers to understand its use case.
-                  Example: "Transfer Fields"
-              fields:
-                type: array
-                description: >
-                  A list of fields associated with the transfer process. Each field contains specific information and attributes, such as field type, validation rules, and display properties.
-                items:
-                  type: object
-                  properties:
-                    fieldType:
-                      type: string
-                      description: >
-                        The type of the field, such as TEXT or DROPDOWN. This helps developers understand the kind of data expected in this field.
-                        Example: "TEXT"
-                    minLength:
-                      type: integer
-                      description: >
-                        The minimum length of the field value. This specifies the smallest number of characters that the field value must contain, ensuring data meets minimum requirements.
-                        Example: 5
-                    maxLength:
-                      type: integer
-                      description: >
-                        The maximum length of the field value. This specifies the largest number of characters that the field value can contain, preventing excessively long inputs.
-                        Example: 30
-                    regex:
-                      type: string
-                      description: >
-                        Regular expression pattern for the field value. This pattern is used to validate the format of the field value, ensuring it meets specific criteria.
-                        Example: "^[\\ -\\~\\ -\\ÿ]+$"
-                    fieldId:
-                      type: string
-                      description: >
-                        The unique identifier for the field. This ID is used to reference and manage the specific field within the system.
-                        Example: "CARD_PROXY_NUMBER"
-                    name:
-                      type: string
-                      description: >
-                        The name of the field. This name helps in identifying the purpose or context of the field, making it easier for developers to understand its use case.
-                        Example: "Card Proxy Number"
-                    hintText:
-                      type: string
-                      description: >
-                        Hint text for the field. This text provides additional guidance or information to the user, helping them understand what to enter in the field.
-                        Example: "Insert The Card Proxy Number"
-                    isRequired:
-                      type: boolean
-                      description: >
-                        Indicates whether the field is required. If true, the field must be filled out, ensuring that essential information is provided.
-                        Example: false
-                    visibility:
-                      type: string
-                      description: >
-                        Defines whether a field is visible and required. Determines how fields appear on the UI and whether users must fill them out. Options are SHOW_REQUIRED (fields must be shown and are required), SHOW_OPTIONAL (fields are shown but optional), and HIDE_AND_OPTIONAL (fields are hidden but optional). Example: "HIDE_AND_OPTIONAL"
-                    placeholderText:
-                      type: string
-                      description: >
-                        Placeholder text for the field. This text is displayed inside the field when it is empty, providing a hint to the user about what to enter.
-                        Example: "-select-"
-                    label:
-                      type: string
-                      description: >
-                        The label of the field. This is the text that will be displayed to the user as the field's name.
-                        Example: "CardProxyNumber"
-                    # dependencies:
-                    #   type: object
-                    #   description: >
-                    #     Any dependencies that the field has on other fields. This can include conditions that must be met for the field to be displayed or required.
-                    options:
-                      type: array
-                      description: >
-                        A list of options for dropdown fields. Each option contains an ID and a name, providing predefined choices for the user.
-                      items:
-                        type: object
-                        properties:
-                          id:
-                            type: string
-                            description: >
-                              The unique identifier for the option. This ID is used to reference and manage the specific option within the system.
-                              Example: "1"
-                          name:
-                            type: string
-                            description: >
-                              The name of the option. This name helps in identifying the purpose or context of the option, making it easier for developers to understand its use case.
-                              Example: "FAMILY MAINTENANCE"
-
-    TransferFieldsResponseCashPickup:
-      title: "Cash Pickup"
-      type: object
-      properties:
-        fieldSets:
-          type: array
-          description: "A collection of field sets containing transfer-related fields."
-          items:
-            type: object
-            properties:
-              fieldSetId:
-                type: string
-                description: >
-                  The unique identifier for the field set. This ID is used to reference and manage the specific set of fields within the system. It ensures that each field set can be uniquely identified and accessed.
-                  Example: "TRANSFER_FIELDS"
-              fieldSetName:
-                type: string
-                description: >
-                  The name of the field set. This name helps in identifying the purpose or context of the field set, making it easier for developers and API consumers to understand its use case.
-                  Example: "Transfer Fields"
-              fields:
-                type: array
-                description: >
-                  A list of fields associated with the transfer process. Each field contains specific information and attributes, such as field type, validation rules, and display properties.
-                items:
-                  type: object
-                  properties:
-                    fieldType:
-                      type: string
-                      enum:
-                        - DROPDOWN
-                        - TEXT
-                      description: "Defines the input type for the field. Example: DROPDOWN"
-                    fieldId:
-                      type: string
-                      description: "A unique identifier for the field. Example: SOURCE_OF_FUNDS"
-                    name:
-                      type: string
-                      description: "The display name of the field. Example: Source of funds"
-                    isRequired:
-                      type: boolean
-                      description: "Indicates whether this field is mandatory. Example: false"
-                    visibility:
-                      type: string
-                      enum:
-                        - SHOW_AND_REQUIRED
-                        - SHOW_AND_OPTIONAL
-                        - HIDE_AND_OPTIONAL
-                      description: "Defines whether a field is visible and required. Determines how fields appear on the UI and whether users must fill them out. Options are SHOW_REQUIRED (fields must be shown and are required), SHOW_OPTIONAL (fields are shown but optional), and HIDE_AND_OPTIONAL (fields are hidden but optional)."
-                    placeholderText:
-                      type: string
-                      description: "Placeholder text shown in the input field. Example: -select-"
-                    label:
-                      type: string
-                      description: "A unique key for localization and translation. Example: SourceOfFunds"
-                    dependencies:
-                      type: object
-                      description: "Defines conditions under which this field is required."
-                    regex:
-                      type: string
-                      description: "Regular expression for field validation. Example: ^[\\ -\\~\\ -\\ÿ]+$"
-                    options:
-                      type: array
-                      description: "Dropdown options if applicable."
-                      items:
-                        type: object
-                        properties:
-                          id:
-                            type: string
-                            description: "Unique identifier for the dropdown option. Example: 1"
-                          name:
-                            type: string
-                            description: "Display name of the dropdown option. Example: ACCUMULATED OWN SALARY"
 
     getCountriesAndCurrenciesResponse200:
       # required:
@@ -9567,17 +8984,6 @@ components:
           items:
             "$ref": "#/components/schemas/currency"
     fieldSetsObject:
-      # required:
-      # - fieldSets
-      type: object
-      description: A collection of logically grouped fields. Each field set consists of related fields that belong together. Each field set will have a unique identifier, a name, and an array of fields that define specific attributes and validation rules.
-      properties:
-        fieldSets:
-          type: array
-          items:
-            "$ref": "#/components/schemas/fieldSet"
-
-    recipientAccountMobileWallet:
       # required:
       # - fieldSets
       type: object
