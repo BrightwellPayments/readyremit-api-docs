@@ -3528,38 +3528,7 @@ paths:
                           type: array
                           description: A collection of detailed sender attributes, each providing additional information about the sender.
                           items:
-                            type: object
-                            properties:
-                              id:
-                                type: string
-                                description: The field’s unique identifier, used for mapping data to predefined attributes.
-                              name:
-                                type: string
-                                description: The user-friendly name of the field, displayed in forms and interfaces for clarity.
-                              type:
-                                type: string
-                                enum:
-                                  - TEXT
-                                  - PHONE_NUMBER
-                                  - DATE
-                                  - DROPDOWN
-                                description: Defines the format of the field, ensuring proper validation and user input handling.
-                              value:
-                                oneOf:
-                                  - type: string
-                                    description: Stores the actual input value for TEXT, DATE, and DROPDOWN fields, representing the sender’s information.
-                                  - type: object
-                                    description: Contains structured phone number data, ensuring proper formatting and validation for PHONE_NUMBER fields.
-                                    properties:
-                                      number:
-                                        type: string
-                                        description: The sender’s phone number, used for contact and verification purposes.
-                                      countryIso3Code:
-                                        type: string
-                                        description: The three-letter ISO country code associated with the phone number, aiding in region-specific validations.
-                                      countryPhoneCode:
-                                        type: integer
-                                        description: The international dialing code for the sender’s country, ensuring correct phone number formatting.
+                            $ref: '#/components/schemas/fieldValueResponse'
 
               examples:
                 Person:
@@ -5604,33 +5573,7 @@ paths:
                               type: array
                               description: "A list of fields associated with the recipient, each containing specific information and attributes."
                               items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                    description: "Unique identifier for the field. Example: 'LAST_NAME'"
-                                  name:
-                                    type: string
-                                    description: "Name of the field. Example: 'Last name'"
-                                  type:
-                                    type: string
-                                    description: "Type of the field input. Example: 'TEXT'"
-                                  value:
-                                    oneOf:
-                                      - type: string
-                                        description: "The value of the field if it is a simple text field. Example: 'Gonzales'"
-                                      - type: object
-                                        description: "The value of the field if it is a complex field like PHONE_NUMBER."
-                                        properties:
-                                          number:
-                                            type: string
-                                            description: "The phone number. Example: '9211551321'"
-                                          countryIso3Code:
-                                            type: string
-                                            description: "The ISO 3166-1 alpha-3 code of the country. Example: 'USA'"
-                                          countryPhoneCode:
-                                            type: integer
-                                            description: "The phone code of the country. Example: 1"
+                                "$ref": "#/components/schemas/fieldValueResponse"
                         status:
                           type: string
                           description: "The current status of the transfer. Example: 'Pending'"
@@ -8215,12 +8158,6 @@ components:
           type: integer
           description:  >
             Numeric value. The amount the sender wishes to transfer. Example- If you want to send 100 USD, this would be 10000. See [how to format an amount based on the currency you would like to send or receive money](https://developer.readyremit.com/reference/currencies).
-        fee:
-          type: integer
-          description: >
-            The transaction fee associated with the transfer.
-            Example: 499 ($4.99 USD)
-          deprecated: true
         quoteHistoryId:
           type: string
           description: The quote history ID from the GET /quote endpoint response.
@@ -8236,12 +8173,6 @@ components:
           description:  >
             Unique identifier assigned to the recipient's account. This ID is used to reference and manage the specific account within the system, ensuring that the funds are deposited into the correct account.
             Example: "ae22913a-521b-4d91-a86e-15c9c778bfaf"
-        purposeOfRemittance:
-          type: integer
-          default: 1
-          description:  >
-            The purpose of the remittance. This field specifies the reason for the transfer, such as family maintenance, education, or medical expenses. It helps in categorizing and managing the transfer.
-            Example: 1
         customerHold:
           type: boolean
           default: false
@@ -8268,10 +8199,10 @@ components:
                   The unique identifier for the field. This ID is used to reference and manage the specific field within the system. It ensures that each field can be uniquely identified and accessed.
                   Example: "CARD_PROXY_NUMBER"
               value:
-                type: integer
+                type: string
                 description: >
-                  The value of the field. This is the actual data entered for the field. It provides the necessary information required for the transfer.
-                  Example: 267832567846347900
+                  The value of the field. This is the actual data entered for the field. It provides the necessary information required for the transfer. Values may be strings (e.g. "MX06"), numeric strings (e.g. "267832567846347900"), or JSON-encoded objects depending on the field type.
+                  Example: "MX06"
       required:
         - dstCountryIso3Code
         - dstCurrencyIso3Code
@@ -8281,7 +8212,6 @@ components:
         - amount
         - quoteHistoryId
         - recipientId
-        - recipientAccountId
 
     transferResponse:
       type: object
@@ -8303,6 +8233,80 @@ components:
           type: array
           items:
             type: string
+        createdAt:
+          type: string
+          format: date-time
+          description: >
+            The date and time the transfer was created, in ISO 8601 format.
+            Example: "2025-02-13T21:46:37.5005701Z"
+        fields:
+          type: array
+          description: A list of dynamic fields associated with the transfer.
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: 'The unique identifier for the field. Example: "CARD_PROXY_NUMBER"'
+              name:
+                type: string
+                description: 'The human-readable name of the field. Example: "Card proxy number"'
+              type:
+                type: string
+                description: 'The type of the field. Example: "TEXT"'
+              value:
+                type: string
+                description: 'The value of the field. Example: "267832567846347900"'
+        customer:
+          type: object
+          description: Customer information associated with the transfer.
+          properties:
+            name:
+              type: string
+              description: 'Name of the customer. Example: "Customer Name"'
+            addressLine1:
+              type: string
+              description: 'Address line 1 of the customer. Example: "100 Main Street"'
+            addressLine2:
+              type: string
+              description: 'Address line 2 of the customer. Example: ""'
+            addressCity:
+              type: string
+              description: 'City of the customer address. Example: "Pembroke Pine"'
+            addressState:
+              type: string
+              description: 'State of the customer address. Example: "GA"'
+            addressCountry:
+              type: string
+              description: 'Country of the customer address. Example: "USA"'
+            addressZipCode:
+              type: string
+              description: 'Zip code of the customer address. Example: "11100"'
+            phoneNumber:
+              type: string
+              description: 'Phone number of the customer. Example: "1-833-000-5768"'
+            website:
+              type: string
+              description: 'Website of the customer. Example: "www.customerwebsite.com"'
+        dateAvailable:
+          type: string
+          format: date-time
+          description: >
+            The date when the transfer funds are expected to be available to the recipient.
+            Example: "2025-02-17T21:46:37.5005701Z"
+        status:
+          type: string
+          enum:
+            - Unknown
+            - Initiated
+            - Pending
+            - Failed
+            - Canceled
+            - Pending Cancelation
+            - Complete
+          description: >
+            The customer-facing status of the transfer.
+            Example: "Pending"
     transferProgressResponse:
       type: object
       properties:
@@ -8833,6 +8837,100 @@ components:
           # type: string
           # description: The value of the field. This is the actual data entered by the user. The value must conform to the expected format and constraints defined by the field's schema.
 
+    fieldValueResponse:
+      oneOf:
+        - $ref: '#/components/schemas/stringFieldValueResponse'
+        - $ref: '#/components/schemas/phoneNumberFieldValueResponse'
+      discriminator:
+        propertyName: type
+        mapping:
+          TEXT:         '#/components/schemas/stringFieldValueResponse'
+          DROPDOWN:     '#/components/schemas/stringFieldValueResponse'
+          DATE:         '#/components/schemas/stringFieldValueResponse'
+          PHONE_NUMBER: '#/components/schemas/phoneNumberFieldValueResponse'
+
+    baseFieldValueResponse:
+      type: object
+      required:
+        - id
+        - type
+        - value
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the field. Each field represents a specific user attribute.
+          enum:
+            - FIRST_NAME
+            - LAST_NAME
+            - PHONE_NUMBER
+            - ADDRESS_LINE_1
+            - ADDRESS_CITY
+            - ADDRESS_STATE
+            - ADDRESS_ZIP
+            - ADDRESS_COUNTRY
+            - DATE_OF_BIRTH
+            - EMAIL_ADDRESS
+            - ID_TYPE
+            - ID_NUMBER
+            - COMPANY_NAME
+            - NATIONALITY
+        name:
+          type: string
+          description: "Human-readable label for the field, suitable for display. Example: 'First name'"
+        type:
+          type: string
+          enum:
+            - TEXT
+            - PHONE_NUMBER
+            - DATE
+            - DROPDOWN
+          description: Discriminator that controls the shape of `value`. Matches the `fieldType` returned by `GET /sender-fields` and `GET /recipient-fields`.
+
+    stringFieldValueResponse:
+      allOf:
+        - $ref: '#/components/schemas/baseFieldValueResponse'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - TEXT
+                - DROPDOWN
+                - DATE
+              description: Discriminator value indicating `value` is a string.
+            value:
+              type: string
+              description: >
+                Value when `type` is `TEXT`, `DROPDOWN`, or `DATE`.
+                For `DATE`, must be a valid date in `YYYY-MM-DD` format.
+
+    phoneNumberFieldValueResponse:
+      allOf:
+        - $ref: '#/components/schemas/baseFieldValueResponse'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - PHONE_NUMBER
+              description: Discriminator value indicating `value` is a phone number object.
+            value:
+              type: object
+              required:
+                - number
+                - countryIso3Code
+                - countryPhoneCode
+              properties:
+                number:
+                  type: string
+                  description: "The phone number as a string. Example: 9345889786"
+                countryIso3Code:
+                  type: string
+                  description: "The ISO 3166-1 alpha-3 country code associated with the phone number. Example: USA"
+                countryPhoneCode:
+                  type: integer
+                  description: "The international dialing code for the phone number. Example: 1"
+
     sender:
       type: object
       properties:
@@ -8856,7 +8954,7 @@ components:
         fields:
           type: array
           items:
-            "$ref": "#/components/schemas/fieldValue"
+            "$ref": "#/components/schemas/fieldValueResponse"
 
     recipient:
       type: object
@@ -8876,7 +8974,7 @@ components:
         fields:
           type: array
           items:
-            "$ref": "#/components/schemas/fieldValue"
+            "$ref": "#/components/schemas/fieldValueResponse"
     recipientAccount:
       type: object
       properties:
@@ -8888,7 +8986,7 @@ components:
         fields:
           type: array
           items:
-            "$ref": "#/components/schemas/fieldValue"
+            "$ref": "#/components/schemas/fieldValueResponse"
 
     transferFieldsResponse:
       description: "Response shape for transfer-field retrieval, regardless of transfer method (PUSH_TO_CARD, BANK_ACCOUNT, CASH_PICKUP, etc.). Each `fields[*]` entry includes every attribute that may apply to any transfer method; method-specific attributes (such as `options[]` for dropdowns or `dependencies` for conditional fields) are populated only when relevant."
@@ -8956,7 +9054,7 @@ components:
                       description: "Regular expression to validate input format. Example: '^[\\ -\\~\\ -\\ÿ]+$'"
                     options:
                       type: array
-                      description: "A list of options for dropdown fields. Each option contains an ID and a name, providing predefined choices for the user. Populated only for `fieldType: DROPDOWN`."
+                      description: "A list of options for dropdown fields. Each option contains an ID and a name, providing predefined choices for the user. Populated only for `type: DROPDOWN`."
                       items:
                         type: object
                         properties:
