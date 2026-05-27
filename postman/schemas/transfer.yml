@@ -8891,13 +8891,6 @@ components:
         - $ref: '#/components/schemas/baseFieldValueResponse'
         - type: object
           properties:
-            type:
-              type: string
-              enum:
-                - TEXT
-                - DROPDOWN
-                - DATE
-              description: Discriminator value indicating `value` is a string.
             value:
               type: string
               description: >
@@ -8909,11 +8902,6 @@ components:
         - $ref: '#/components/schemas/baseFieldValueResponse'
         - type: object
           properties:
-            type:
-              type: string
-              enum:
-                - PHONE_NUMBER
-              description: Discriminator value indicating `value` is a phone number object.
             value:
               type: object
               required:
