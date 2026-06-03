@@ -1694,8 +1694,6 @@ paths:
                 example:
                 - code: AccessDenied
                   message: Sorry! Access denied
-                  description: Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException'
-                    was thrown.
 
     get:
       tags:
@@ -1775,8 +1773,6 @@ paths:
               example:
               - code: AccessDenied
                 message: Sorry! Access denied
-                description: Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException'
-                  was thrown.
         '404':
           description: The specified sender record was not found. This response occurs if the `senderId` does not match any existing sender records.
           content:
@@ -1910,7 +1906,6 @@ paths:
               example:
                 code: AccessDenied
                 message: Sorry! Access denied
-                description: Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException' was thrown.
         '404':
           description: The specified recipient record was not found. This response occurs if the `recipientId` does not match any existing recipient records.
           content:
@@ -2039,7 +2034,6 @@ paths:
               example:
                 code: AccessDenied
                 message: Sorry! Access denied :(
-                description: Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException' was thrown.
         '404':
           description: The specified recipient record was not found. This response occurs if the `recipientId` does not match any existing recipient records.
           content:
@@ -2103,7 +2097,6 @@ paths:
               example:
                 code: AccessDenied
                 message: Sorry! Access denied :(
-                description: Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException' was thrown.
         '404':
           description: The specified recipient record was not found. This response occurs if the `recipientId` does not match any existing recipient records.
           content:
@@ -2376,7 +2369,6 @@ paths:
               example:
                 code: AccessDenied
                 message: Sorry! Access denied :(
-                description: Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException' was thrown.
         '404':
           description: The specified recipient record was not found. This response occurs if the `recipientId` does not match any existing recipient records.
           content:
@@ -3719,8 +3711,6 @@ paths:
               example:
               - code: AccessDenied
                 message: Sorry! Access denied
-                description: Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException'
-                  was thrown.
   "/senders/{senderId}":
     get:
       tags:
@@ -3920,8 +3910,6 @@ paths:
               example:
               - code: AccessDenied
                 message: Sorry! Access denied
-                description: Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException'
-                  was thrown.
         '404':
           description: The specified sender record was not found. This response occurs if the `senderId` does not match any existing sender records.
           content:
@@ -4524,7 +4512,6 @@ paths:
               example:
                 code: AccessDenied
                 message: Sorry! Access denied :(
-                description: Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException' was thrown.
         '404':
           description: The specified sender record was not found. This response occurs if the `senderId` does not match any existing sender records.
           content:
