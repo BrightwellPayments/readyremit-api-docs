@@ -1171,7 +1171,7 @@ paths:
                                   - SHOW_AND_REQUIRED
                                   - SHOW_AND_OPTIONAL
                                   - HIDE_AND_OPTIONAL
-                                description: Defines whether a field is visible and required. Determines how fields appear on the UI and whether users must fill them out. Options are SHOW_REQUIRED (fields must be shown and are required), SHOW_OPTIONAL (fields are shown but optional), and HIDE_AND_OPTIONAL (fields are hidden but optional).
+                                description: Defines whether a field is visible and required. Determines how fields appear on the UI and whether users must fill them out. Options are SHOW_AND_REQUIRED (fields must be shown and are required), SHOW_AND_OPTIONAL (fields are shown but optional), and HIDE_AND_OPTIONAL (fields are hidden but optional).
                               placeholderText:
                                 type: string
                                 description: "Default text displayed in the input field. Example: First name"
@@ -8718,10 +8718,10 @@ components:
           visibility:
             type: string
             enum:
-            - SHOW_REQUIRED
-            - SHOW_OPTIONAL
+            - SHOW_AND_REQUIRED
+            - SHOW_AND_OPTIONAL
             - HIDE_AND_OPTIONAL
-            description: Defines whether a field is visible and required. Determines how fields appear on the UI and whether users must fill them out. Options are SHOW_REQUIRED (fields must be shown and are required), SHOW_OPTIONAL (fields are shown but optional), and HIDE_AND_OPTIONAL (fields are hidden but optional).
+            description: Defines whether a field is visible and required. Determines how fields appear on the UI and whether users must fill them out. Options are SHOW_AND_REQUIRED (fields must be shown and are required), SHOW_AND_OPTIONAL (fields are shown but optional), and HIDE_AND_OPTIONAL (fields are hidden but optional).
           sortOrder:
             type: integer
             description: Determines the order in which fields are displayed.  Fields with a lower sortOrder value will be shown first. Example- 1
