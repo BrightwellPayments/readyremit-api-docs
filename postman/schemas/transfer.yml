@@ -8822,18 +8822,6 @@ components:
             is a phone number object; see the `phoneNumberValue` schema. Example: "John Doe"
 
     fieldValueResponse:
-      oneOf:
-        - $ref: '#/components/schemas/stringFieldValueResponse'
-        - $ref: '#/components/schemas/phoneNumberFieldValueResponse'
-      discriminator:
-        propertyName: type
-        mapping:
-          TEXT:         '#/components/schemas/stringFieldValueResponse'
-          DROPDOWN:     '#/components/schemas/stringFieldValueResponse'
-          DATE:         '#/components/schemas/stringFieldValueResponse'
-          PHONE_NUMBER: '#/components/schemas/phoneNumberFieldValueResponse'
-
-    baseFieldValueResponse:
       type: object
       required:
         - id
@@ -8842,66 +8830,30 @@ components:
       properties:
         id:
           type: string
-          description: Unique identifier for the field. Each field represents a specific user attribute.
-          enum:
-            - FIRST_NAME
-            - LAST_NAME
-            - PHONE_NUMBER
-            - ADDRESS_LINE_1
-            - ADDRESS_CITY
-            - ADDRESS_STATE
-            - ADDRESS_ZIP
-            - ADDRESS_COUNTRY
-            - DATE_OF_BIRTH
-            - EMAIL_ADDRESS
-            - ID_TYPE
-            - ID_NUMBER
-            - COMPANY_NAME
-            - NATIONALITY
+          description: >
+            Identifier of the field (for example "FIRST_NAME"). The set of valid
+            identifiers is not fixed — it depends on the context the field is used in
+            (sender, recipient, recipient account, transfer) and is configured per
+            corridor and transfer method, so treat this as an open-ended string rather
+            than a fixed list. Commonly used identifiers include FIRST_NAME, LAST_NAME,
+            PHONE_NUMBER, ADDRESS_LINE_1, ADDRESS_CITY, ADDRESS_STATE, ADDRESS_ZIP,
+            ADDRESS_COUNTRY, DATE_OF_BIRTH, EMAIL_ADDRESS, ID_TYPE, ID_NUMBER,
+            COMPANY_NAME, and NATIONALITY.
         name:
           type: string
           description: "Human-readable label for the field, suitable for display. Example: 'First name'"
         type:
           type: string
-          enum:
-            - TEXT
-            - PHONE_NUMBER
-            - DATE
-            - DROPDOWN
-          description: Discriminator that controls the shape of `value`. Matches the `fieldType` returned by `GET /sender-fields` and `GET /recipient-fields`.
-
-    stringFieldValueResponse:
-      allOf:
-        - $ref: '#/components/schemas/baseFieldValueResponse'
-        - type: object
-          properties:
-            value:
-              type: string
-              description: >
-                Value when `type` is `TEXT`, `DROPDOWN`, or `DATE`.
-                For `DATE`, must be a valid date in `YYYY-MM-DD` format.
-
-    phoneNumberFieldValueResponse:
-      allOf:
-        - $ref: '#/components/schemas/baseFieldValueResponse'
-        - type: object
-          properties:
-            value:
-              type: object
-              required:
-                - number
-                - countryIso3Code
-                - countryPhoneCode
-              properties:
-                number:
-                  type: string
-                  description: "The phone number as a string. Example: 9345889786"
-                countryIso3Code:
-                  type: string
-                  description: "The ISO 3166-1 alpha-3 country code associated with the phone number. Example: USA"
-                countryPhoneCode:
-                  type: integer
-                  description: "The international dialing code for the phone number. Example: 1"
+          description: >
+            The field's data type, as returned by `GET /sender-fields` and
+            `GET /recipient-fields`. Open-ended string; current values include TEXT,
+            PHONE_NUMBER, NUMBER, AMOUNT, CURRENCY, BOOLEAN, DATE, DATETIME, TIME, MONEY,
+            and DROPDOWN. Example: "TEXT"
+        value:
+          description: >
+            The field's value. For most field types this is a plain string — for date
+            fields use `YYYY-MM-DD` format. For `PHONE_NUMBER` fields it is a phone number
+            object; see the `phoneNumberValue` schema. Example: "John Doe"
 
     sender:
       type: object
