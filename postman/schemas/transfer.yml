@@ -872,7 +872,7 @@ paths:
                 - code: MaxLimitOutOfRange
                   message: "Maximum allowable amount exceeded for this transaction."
                 - code: ErrorGettingQuote
-                  message: "Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException' was thrown."
+                  message: "We are having trouble retrieving your quote. Please try again. If this problem keeps happening, contact support."
         "401":
           description: The request requires user authentication. This response occurs if the authentication token is missing or invalid.
           content:
@@ -1051,7 +1051,7 @@ paths:
                 "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
               example:
                 - code: ErrorGettingQuote
-                  message: "Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException' was thrown."
+                  message: "We are having trouble retrieving your quote. Please try again. If this problem keeps happening, contact support."
         "401":
           description: The request requires user authentication. This response occurs if the authentication token is missing or invalid.
           content:
