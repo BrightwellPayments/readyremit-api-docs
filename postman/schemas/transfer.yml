@@ -8777,84 +8777,49 @@ components:
           regex:
             type: string
             description: "Regular expression pattern for the field value. It helps enforce structured input, such as email formats or phone numbers. Example: '^[ -~ -ÿ]+$'"
-    fieldValue:
-      oneOf:
-        - $ref: '#/components/schemas/stringFieldValue'
-        - $ref: '#/components/schemas/phoneNumberFieldValue'
-      discriminator:
-        propertyName: id
-        mapping:
-          FIRST_NAME:      '#/components/schemas/stringFieldValue'
-          LAST_NAME:       '#/components/schemas/stringFieldValue'
-          ADDRESS_LINE_1:  '#/components/schemas/stringFieldValue'
-          ADDRESS_CITY:    '#/components/schemas/stringFieldValue'
-          ADDRESS_STATE:   '#/components/schemas/stringFieldValue'
-          ADDRESS_ZIP:     '#/components/schemas/stringFieldValue'
-          ADDRESS_COUNTRY: '#/components/schemas/stringFieldValue'
-          DATE_OF_BIRTH:   '#/components/schemas/stringFieldValue'
-          EMAIL_ADDRESS:   '#/components/schemas/stringFieldValue'
-          ID_TYPE:         '#/components/schemas/stringFieldValue'
-          ID_NUMBER:       '#/components/schemas/stringFieldValue'
-          COMPANY_NAME:    '#/components/schemas/stringFieldValue'
-          NATIONALITY:     '#/components/schemas/stringFieldValue'
-          PHONE_NUMBER:    '#/components/schemas/phoneNumberFieldValue'
+    phoneNumberValue:
+      type: object
+      description: >
+        Structured value for `PHONE_NUMBER` fields — the phone number together with its
+        country details. Sent as a JSON object rather than a string.
+      required:
+        - number
+        - countryIso3Code
+        - countryPhoneCode
+      properties:
+        number:
+          type: string
+          description: "The phone number as a string. Example: 9345889786"
+        countryIso3Code:
+          type: string
+          description: "The ISO 3166-1 alpha-3 country code associated with the phone number. Example: USA"
+        countryPhoneCode:
+          type: integer
+          description: "The international dialing code for the phone number. Example: 1"
 
-    stringFieldValue:
+    fieldValue:
       type: object
       required:
         - id
         - value
       properties:
         id:
-          type: string
-          description: The unique identifier for the field. Each field represents a specific user attribute.
-          enum:
-            - FIRST_NAME
-            - LAST_NAME
-            - ADDRESS_LINE_1
-            - ADDRESS_CITY
-            - ADDRESS_STATE
-            - ADDRESS_ZIP
-            - ADDRESS_COUNTRY
-            - DATE_OF_BIRTH
-            - EMAIL_ADDRESS
-            - ID_TYPE
-            - ID_NUMBER
-            - COMPANY_NAME
-            - NATIONALITY
-        value:
           type: string
           description: >
-            Value when `id` is not `PHONE_NUMBER`. For `DATE_OF_BIRTH` fields,
-            the value must be in `YYYY-MM-DD` format. Example: "John Doe"
-
-    phoneNumberFieldValue:
-      type: object
-      required:
-        - id
-        - value
-      properties:
-        id:
-          type: string
-          description: Identifies the field as a phone number field.
-          enum:
-            - PHONE_NUMBER
+            Identifier of the field (for example "FIRST_NAME"). The set of valid
+            identifiers is not fixed — it depends on the context the field is used in
+            (sender, recipient, recipient account, transfer) and is configured per
+            corridor and transfer method, so treat this as an open-ended string and
+            retrieve the applicable identifiers from the field-definition endpoints
+            rather than assuming a fixed list. Commonly used identifiers include
+            FIRST_NAME, LAST_NAME, PHONE_NUMBER, ADDRESS_LINE_1, ADDRESS_CITY,
+            ADDRESS_STATE, ADDRESS_ZIP, ADDRESS_COUNTRY, DATE_OF_BIRTH, EMAIL_ADDRESS,
+            ID_TYPE, ID_NUMBER, COMPANY_NAME, and NATIONALITY.
         value:
-          type: object
-          required:
-            - number
-            - countryIso3Code
-            - countryPhoneCode
-          properties:
-            number:
-              type: string
-              description: "The phone number as a string. Example: 9345889786"
-            countryIso3Code:
-              type: string
-              description: "The ISO 3166-1 alpha-3 country code associated with the phone number. Example: USA"
-            countryPhoneCode:
-              type: integer
-              description: "The international dialing code for the phone number. Example: 1"
+          description: >
+            The field's value. For most fields this is a plain string — for date fields
+            use `YYYY-MM-DD` format (example: "1990-05-15"). For `PHONE_NUMBER` fields it
+            is a phone number object; see the `phoneNumberValue` schema. Example: "John Doe"
 
     fieldValueResponse:
       oneOf:
