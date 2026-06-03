@@ -8778,64 +8778,83 @@ components:
             type: string
             description: "Regular expression pattern for the field value. It helps enforce structured input, such as email formats or phone numbers. Example: '^[ -~ -ÿ]+$'"
     fieldValue:
-      # required:
-      # - id
-      # - value
+      oneOf:
+        - $ref: '#/components/schemas/stringFieldValue'
+        - $ref: '#/components/schemas/phoneNumberFieldValue'
+      discriminator:
+        propertyName: id
+        mapping:
+          FIRST_NAME:      '#/components/schemas/stringFieldValue'
+          LAST_NAME:       '#/components/schemas/stringFieldValue'
+          ADDRESS_LINE_1:  '#/components/schemas/stringFieldValue'
+          ADDRESS_CITY:    '#/components/schemas/stringFieldValue'
+          ADDRESS_STATE:   '#/components/schemas/stringFieldValue'
+          ADDRESS_ZIP:     '#/components/schemas/stringFieldValue'
+          ADDRESS_COUNTRY: '#/components/schemas/stringFieldValue'
+          DATE_OF_BIRTH:   '#/components/schemas/stringFieldValue'
+          EMAIL_ADDRESS:   '#/components/schemas/stringFieldValue'
+          ID_TYPE:         '#/components/schemas/stringFieldValue'
+          ID_NUMBER:       '#/components/schemas/stringFieldValue'
+          COMPANY_NAME:    '#/components/schemas/stringFieldValue'
+          NATIONALITY:     '#/components/schemas/stringFieldValue'
+          PHONE_NUMBER:    '#/components/schemas/phoneNumberFieldValue'
+
+    stringFieldValue:
       type: object
+      required:
+        - id
+        - value
       properties:
         id:
           type: string
           description: The unique identifier for the field. Each field represents a specific user attribute.
           enum:
-          - FIRST_NAME
-          - LAST_NAME
-          - PHONE_NUMBER
-          - ADDRESS_LINE_1
-          - ADDRESS_CITY
-          - ADDRESS_STATE
-          - ADDRESS_ZIP
-          - ADDRESS_COUNTRY
-          - DATE_OF_BIRTH
-          - EMAIL_ADDRESS
-          - ID_TYPE
-          - ID_NUMBER
-          - COMPANY_NAME
-          - NATIONALITY
-
+            - FIRST_NAME
+            - LAST_NAME
+            - ADDRESS_LINE_1
+            - ADDRESS_CITY
+            - ADDRESS_STATE
+            - ADDRESS_ZIP
+            - ADDRESS_COUNTRY
+            - DATE_OF_BIRTH
+            - EMAIL_ADDRESS
+            - ID_TYPE
+            - ID_NUMBER
+            - COMPANY_NAME
+            - NATIONALITY
         value:
-          oneOf:
-            - type: string
-              description: >
-                The value of the field when the selected field type is `TEXT`, `EMAIL_ADDRESS`, `DROPDOWN` or `DATE`.
-                Example: "John Doe"
-                When the selected field type is `DATE`, the value must be a valid date in `YYYY-MM-DD` format.
-                Example: "1990-05-15"
-            - type: number
-              description: >
-                The value of the field when the selected field type is `ID_NUMBER` or other numeric values.
-                Example: 1234567890
-            - type: object
-              description: >
-                The value of the field when the selected field type is `PHONE_NUMBER`. This is an object containing the phone number and country details.
-              properties:
-                number:
-                  type: string
-                  description: >
-                    The phone number as a string.
-                    Example: "9345889786"
-                countryIso3Code:
-                  type: string
-                  description: >
-                    The ISO 3166-1 alpha-3 country code associated with the phone number.
-                    Example: "USA"
-                countryPhoneCode:
-                  type: integer
-                  description: >
-                    The international dialing code for the phone number.
-                    Example: 1
+          type: string
+          description: >
+            Value when `id` is not `PHONE_NUMBER`. For `DATE_OF_BIRTH` fields,
+            the value must be in `YYYY-MM-DD` format. Example: "John Doe"
 
-          # type: string
-          # description: The value of the field. This is the actual data entered by the user. The value must conform to the expected format and constraints defined by the field's schema.
+    phoneNumberFieldValue:
+      type: object
+      required:
+        - id
+        - value
+      properties:
+        id:
+          type: string
+          description: Identifies the field as a phone number field.
+          enum:
+            - PHONE_NUMBER
+        value:
+          type: object
+          required:
+            - number
+            - countryIso3Code
+            - countryPhoneCode
+          properties:
+            number:
+              type: string
+              description: "The phone number as a string. Example: 9345889786"
+            countryIso3Code:
+              type: string
+              description: "The ISO 3166-1 alpha-3 country code associated with the phone number. Example: USA"
+            countryPhoneCode:
+              type: integer
+              description: "The international dialing code for the phone number. Example: 1"
 
     fieldValueResponse:
       oneOf:
