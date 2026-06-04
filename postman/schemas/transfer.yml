@@ -516,7 +516,7 @@ paths:
       description: |
         The `GET /countries-and-currencies` endpoint retrieves the list of countries and their respective currencies for which the app owner has established corridors.
         Each record includes a country object and an array of currency objects. The app can present these records to the end-user who can choose a recipient country and currency. The process of establishing
-        a corridor involves the app owner, bank, remittance provider, and Brightwell.
+        a corridor involves the app owner, bank, remittance provider, and ReadyRemit.
 
         **Implementation Guide:**
         - This endpoint returns a list of countries and their currencies that are available for transfers.
@@ -872,7 +872,7 @@ paths:
                 - code: MaxLimitOutOfRange
                   message: "Maximum allowable amount exceeded for this transaction."
                 - code: ErrorGettingQuote
-                  message: "Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException' was thrown."
+                  message: "We are having trouble retrieving your quote. Please try again. If this problem keeps happening, contact support."
         "401":
           description: The request requires user authentication. This response occurs if the authentication token is missing or invalid.
           content:
@@ -1051,7 +1051,7 @@ paths:
                 "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
               example:
                 - code: ErrorGettingQuote
-                  message: "Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException' was thrown."
+                  message: "We are having trouble retrieving your quote. Please try again. If this problem keeps happening, contact support."
         "401":
           description: The request requires user authentication. This response occurs if the authentication token is missing or invalid.
           content:
@@ -1171,7 +1171,7 @@ paths:
                                   - SHOW_AND_REQUIRED
                                   - SHOW_AND_OPTIONAL
                                   - HIDE_AND_OPTIONAL
-                                description: Defines whether a field is visible and required. Determines how fields appear on the UI and whether users must fill them out. Options are SHOW_REQUIRED (fields must be shown and are required), SHOW_OPTIONAL (fields are shown but optional), and HIDE_AND_OPTIONAL (fields are hidden but optional).
+                                description: Defines whether a field is visible and required. Determines how fields appear on the UI and whether users must fill them out. Options are SHOW_AND_REQUIRED (fields must be shown and are required), SHOW_AND_OPTIONAL (fields are shown but optional), and HIDE_AND_OPTIONAL (fields are hidden but optional).
                               placeholderText:
                                 type: string
                                 description: "Default text displayed in the input field. Example: First name"
@@ -1694,8 +1694,6 @@ paths:
                 example:
                 - code: AccessDenied
                   message: Sorry! Access denied
-                  description: Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException'
-                    was thrown.
 
     get:
       tags:
@@ -1775,8 +1773,6 @@ paths:
               example:
               - code: AccessDenied
                 message: Sorry! Access denied
-                description: Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException'
-                  was thrown.
         '404':
           description: The specified sender record was not found. This response occurs if the `senderId` does not match any existing sender records.
           content:
@@ -1910,7 +1906,6 @@ paths:
               example:
                 code: AccessDenied
                 message: Sorry! Access denied
-                description: Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException' was thrown.
         '404':
           description: The specified recipient record was not found. This response occurs if the `recipientId` does not match any existing recipient records.
           content:
@@ -2039,7 +2034,6 @@ paths:
               example:
                 code: AccessDenied
                 message: Sorry! Access denied :(
-                description: Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException' was thrown.
         '404':
           description: The specified recipient record was not found. This response occurs if the `recipientId` does not match any existing recipient records.
           content:
@@ -2103,7 +2097,6 @@ paths:
               example:
                 code: AccessDenied
                 message: Sorry! Access denied :(
-                description: Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException' was thrown.
         '404':
           description: The specified recipient record was not found. This response occurs if the `recipientId` does not match any existing recipient records.
           content:
@@ -2376,7 +2369,6 @@ paths:
               example:
                 code: AccessDenied
                 message: Sorry! Access denied :(
-                description: Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException' was thrown.
         '404':
           description: The specified recipient record was not found. This response occurs if the `recipientId` does not match any existing recipient records.
           content:
@@ -3719,8 +3711,6 @@ paths:
               example:
               - code: AccessDenied
                 message: Sorry! Access denied
-                description: Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException'
-                  was thrown.
   "/senders/{senderId}":
     get:
       tags:
@@ -3920,8 +3910,6 @@ paths:
               example:
               - code: AccessDenied
                 message: Sorry! Access denied
-                description: Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException'
-                  was thrown.
         '404':
           description: The specified sender record was not found. This response occurs if the `senderId` does not match any existing sender records.
           content:
@@ -4524,7 +4512,6 @@ paths:
               example:
                 code: AccessDenied
                 message: Sorry! Access denied :(
-                description: Exception of type 'brightwell.readyremit.common.ErrorHandling.BrightwellException' was thrown.
         '404':
           description: The specified sender record was not found. This response occurs if the `senderId` does not match any existing sender records.
           content:
@@ -8731,10 +8718,10 @@ components:
           visibility:
             type: string
             enum:
-            - SHOW_REQUIRED
-            - SHOW_OPTIONAL
+            - SHOW_AND_REQUIRED
+            - SHOW_AND_OPTIONAL
             - HIDE_AND_OPTIONAL
-            description: Defines whether a field is visible and required. Determines how fields appear on the UI and whether users must fill them out. Options are SHOW_REQUIRED (fields must be shown and are required), SHOW_OPTIONAL (fields are shown but optional), and HIDE_AND_OPTIONAL (fields are hidden but optional).
+            description: Defines whether a field is visible and required. Determines how fields appear on the UI and whether users must fill them out. Options are SHOW_AND_REQUIRED (fields must be shown and are required), SHOW_AND_OPTIONAL (fields are shown but optional), and HIDE_AND_OPTIONAL (fields are hidden but optional).
           sortOrder:
             type: integer
             description: Determines the order in which fields are displayed.  Fields with a lower sortOrder value will be shown first. Example- 1
