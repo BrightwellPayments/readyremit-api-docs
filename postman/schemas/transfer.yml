@@ -7279,6 +7279,7 @@ paths:
         **Implementation Guide:**
         - **Prerequisite**: Before submitting an account funding transaction, a `sourceAccountId` should be obtained by first getting an onboarding session [`POST /card-onboarding-sessions`](#tag/Card-Onboarding-Sessions/operation/createCardOnboardingSession), then creating a card [`POST /cards`](#tag/Cards/operation/createCard), and finally creating an account [`POST /recipients/{recipientId}/accounts`](#tag/Recipient-Accounts/operation/createRecipientAccount).
         - **Quote Required**: Obtain a real-time quote using `GET /quote` with `transferMethod: ACCOUNT_FUNDING` before submitting. Include the returned `quoteHistoryId` in the request.
+        - **Optional Fields**: `fields` array. For account funding, the `fields` array must include `CARD_PROXY_NUMBER`, whose value is the proxy (pseudo account) number that identifies the sender's funding account created during onboarding.
         - **Transfer Method**: This endpoint is exclusively for the `ACCOUNT_FUNDING` transfer method. For other transfer methods, use the `POST /transfers` endpoint.
         - **Examples**: See the example request and response payloads below.
 
@@ -7296,6 +7297,10 @@ paths:
                   amount: 5000
                   quoteHistoryId: "a3f92c1d-8b74-4e2a-9d35-7c81f0e4b256"
                   sourceAccountId: "04eda1ab-664b-4983-a3a1-9c2ab9181895"
+                  fields:
+                    - id: "CARD_PROXY_NUMBER"
+                      Type: "TEXT"
+                      value: "267832567846347900"
 
       responses:
         '200':
@@ -7620,11 +7625,29 @@ components:
           description: >
             Optional unique identifier obtained from the `GET /nonce` endpoint. Use this to prevent duplicate transaction submissions. Each nonce can only be used once per customer.
             Example: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+        fields:
+          type: array
+          description: >
+            A list of dynamic fields required to fund the account. For account funding, this collection must include the `CARD_PROXY_NUMBER` field, whose value is the proxy (pseudo account) number that identifies the sender's funding account created during onboarding.
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: >
+                  The unique identifier for the field. This ID is used to reference and manage the specific field within the system. For account funding, use `CARD_PROXY_NUMBER` to supply the sender's proxy (pseudo account) number.
+                  Example: "CARD_PROXY_NUMBER"
+              value:
+                type: string
+                description: >
+                  The value of the field. This is the actual data entered for the field. For `CARD_PROXY_NUMBER`, this is the proxy (pseudo account) number created for the sender. Values may be strings, numeric strings, or JSON-encoded objects depending on the field type.
+                  Example: "267832567846347900"
       required:
         - quoteBy
         - amount
         - quoteHistoryId
         - sourceAccountId
+        - fields
 
     GetcardOnboardingSessionResponse:
       type: object
