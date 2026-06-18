@@ -1589,6 +1589,7 @@ paths:
                     summary: PERSON
                     value:
                       recipientId: 23a9368c-dfa0-44d0-9aac-6693a2b727a6
+                      createdAt: '2025-02-13T21:46:37.5005701Z'
                       senderId: 7ca08202-07df-46b5-8cce-04009073017b
                       recipientType: PERSON
                       firstName: Tad
@@ -1633,6 +1634,7 @@ paths:
                     summary: BUSINESS
                     value:
                       recipientId: 0854c353-62d7-42d3-9a6c-0a8502e4c059
+                      createdAt: '2025-02-13T21:46:37.5005701Z'
                       senderId: c7d53d24-7ff7-42da-bf88-daba6b9b4096
                       recipientType: BUSINESS
                       lastName: Denesik
@@ -1729,6 +1731,7 @@ paths:
               example:
                 recipients:
                 - recipientId: 986d85c1-72b8-47ef-85d5-619b308fa6fa
+                  createdAt: '2025-02-13T21:46:37.5005701Z'
                   senderId: 55ef79b0-0f0f-459f-ad62-effcf516df7d
                   recipientType: PERSON
                   firstName: Robert
@@ -1741,6 +1744,7 @@ paths:
                     type: TEXT
                     value: Williams
                 - recipientId: 59555d87-5357-4e17-bcb1-83cbcf59a711
+                  createdAt: '2025-02-13T21:46:37.5005701Z'
                   senderId: 55ef79b0-0f0f-459f-ad62-effcf516df7d
                   recipientType: BUSINESS
                   companyName: Overseas Inc
@@ -1829,6 +1833,7 @@ paths:
                   summary: PERSON
                   value:
                     recipientId: 23a9368c-dfa0-44d0-9aac-6693a2b727a6
+                    createdAt: '2025-02-13T21:46:37.5005701Z'
                     senderId: 7ca08202-07df-46b5-8cce-04009073017b
                     recipientType: PERSON
                     firstName: Tad
@@ -1874,6 +1879,7 @@ paths:
                   summary: BUSINESS
                   value:
                     recipientId: 7aeefa7e-4e2c-4a3f-b702-61cc27f47087
+                    createdAt: '2025-02-13T21:46:37.5005701Z'
                     senderId: 55ef79b0-0f0f-459f-ad62-effcf516df7d
                     recipientType: BUSINESS
                     companyName: Overseas Inc
@@ -1978,6 +1984,7 @@ paths:
                   summary: PERSON
                   value:
                     recipientId: 6f5ba7ce-0d40-449e-81de-b12c618eb6dd
+                    createdAt: '2025-02-13T21:46:37.5005701Z'
                     senderId: 55ef79b0-0f0f-459f-ad62-effcf516df7d
                     recipientType: PERSON
                     firstName: Jennifer
@@ -1993,6 +2000,7 @@ paths:
                   summary: BUSINESS
                   value:
                     recipientId: 7aeefa7e-4e2c-4a3f-b702-61cc27f47087
+                    createdAt: '2025-02-13T21:46:37.5005701Z'
                     senderId: 55ef79b0-0f0f-459f-ad62-effcf516df7d
                     recipientType: BUSINESS
                     companyName: New Company Name
@@ -2311,6 +2319,11 @@ paths:
                         recipientAccountId:
                           type: string
                           description: "The unique identifier for the recipient's account. This ID is used to track and manage the account within the system. Example: 'e27c7395-b46a-4b9b-89fd-cd6a3da7fd85'"
+                        createdAt:
+                          type: string
+                          format: date-time
+                          nullable: true
+                          description: "The date and time when the recipient account was created. Example: '2025-02-13T21:46:37.5005701Z'"
                         accountNumber:
                           type: string
                           description: "The full account number of the recipient's account. This number is used for processing transactions and identifying the account. Example: '98237498327489273'"
@@ -2333,6 +2346,7 @@ paths:
               example:
                 accounts:
                 - recipientAccountId: e27c7395-b46a-4b9b-89fd-cd6a3da7fd85
+                  createdAt: '2025-02-13T21:46:37.5005701Z'
                   accountNumber: '98237498327489273'
                   fields:
                   - id: bankId
@@ -2454,6 +2468,11 @@ paths:
                     description: >
                       The unique identifier for the recipient's account. This ID is used to track and manage the account within the system.
                       Example: "a24d0ea7-401a-438e-8e88-0759622a9fb7"
+                  createdAt:
+                    type: string
+                    format: date-time
+                    nullable: true
+                    description: "The date and time when the recipient account was created. Example: '2025-02-13T21:46:37.5005701Z'"
                   accountNumber:
                     type: string
                     description: >
@@ -2522,6 +2541,7 @@ paths:
                 dstCountryIso3Code: CAN
                 transferMethod: BANK_ACCOUNT
                 recipientAccountId: a24d0ea7-401a-438e-8e88-0759622a9fb7
+                createdAt: '2025-02-13T21:46:37.5005701Z'
                 accountNumber: '********9012'
                 fields:
                   dstCurrencyIso3Code: USD
@@ -2623,6 +2643,11 @@ paths:
                     description: >
                       The unique identifier for the recipient's account. This ID is used to track and manage the account within the system.
                       Example: "e27c7395-b46a-4b9b-89fd-cd6a3da7fd85"
+                  createdAt:
+                    type: string
+                    format: date-time
+                    nullable: true
+                    description: "The date and time when the recipient account was created. Example: '2025-02-13T21:46:37.5005701Z'"
                   dstCountryIso3Code:
                     type: string
                     description: >
@@ -2672,6 +2697,7 @@ paths:
 
               example:
                 recipientAccountId: e27c7395-b46a-4b9b-89fd-cd6a3da7fd85
+                createdAt: '2025-02-13T21:46:37.5005701Z'
                 dstCountryIso3Code: IND
                 dstCurrencyIso3Code: INR
                 transferMethod: BANK_ACCOUNT
@@ -2764,6 +2790,7 @@ paths:
                 "$ref": "#/components/schemas/recipientAccount"
               example:
                 recipientAccountId: e27c7395-b46a-4b9b-89fd-cd6a3da7fd85
+                createdAt: '2025-02-13T21:46:37.5005701Z'
                 dstCountryIso3Code: IND
                 dstCurrencyIso3Code: INR
                 transferMethod: BANK_ACCOUNT
@@ -3516,6 +3543,11 @@ paths:
                         description: |
                             Specifies the method the customer uses to fund transactions, ensuring appropriate payment processing. Example: PREFUNDING
                             Note: This field can be ignored by API consumers.
+                    createdAt:
+                      type: string
+                      format: date-time
+                      nullable: true
+                      description: "The date and time when the sender was created. Example: '2025-02-13T21:46:37.5005701Z'"
                     fields:
                           type: array
                           description: A collection of detailed sender attributes, each providing additional information about the sender.
@@ -3527,6 +3559,7 @@ paths:
                   summary: PERSON
                   value:
                     senderId: 9b9c17ea-2c01-4607-9cc9-554e15854583
+                    createdAt: '2025-02-13T21:46:37.5005701Z'
                     senderType: PERSON
                     firstName: Herman
                     lastName: Jacobson
@@ -3605,6 +3638,7 @@ paths:
                   summary: BUSINESS
                   value:
                     senderId: 052fff36-422d-41e4-b52f-58d9840f8e49
+                    createdAt: '2025-02-13T21:46:37.5005701Z'
                     senderType: BUSINESS
                     companyName: Raynor Walker and Leffler
                     customerId: 9ce909de-f585-4233-bdc5-fdc42cbfd7c4
@@ -3740,6 +3774,7 @@ paths:
                   summary: PERSON
                   value:
                     senderId: b6f9ae79-d0cf-4816-b4d3-0bae0011053e
+                    createdAt: '2025-02-13T21:46:37.5005701Z'
                     senderType: PERSON
                     firstName: Giuseppe
                     lastName: Jakubowski
@@ -3819,6 +3854,7 @@ paths:
                   summary: BUSINESS
                   value:
                     senderId: "052fff36-422d-41e4-b52f-58d9840f8e49"
+                    createdAt: '2025-02-13T21:46:37.5005701Z'
                     senderType: "BUSINESS"
                     companyName: "Raynor Walker and Leffler"
                     customerId: "9ce909de-f585-4233-bdc5-fdc42cbfd7c4"
@@ -4056,6 +4092,7 @@ paths:
                 Person:
                   summary: PERSON
                   value:
+                    createdAt: '2025-02-13T21:46:37.5005701Z'
                     senderType: PERSON
                     fields:
                       - id: FIRST_NAME
@@ -4130,6 +4167,7 @@ paths:
                   summary: BUSINESS
                   value:
                     senderId: b6f9ae79-d0cf-4816-b4d3-0bae0011053e
+                    createdAt: '2025-02-13T21:46:37.5005701Z'
                     senderType: BUSINESS
                     companyName: Lehner Cummerata
                     customerId: 9ce909de-f585-4233-bdc5-fdc42cbfd7c4
@@ -4295,6 +4333,7 @@ paths:
                 Person:
                   summary: PERSON
                   value:
+                    createdAt: '2025-02-13T21:46:37.5005701Z'
                     senderType: PERSON
                     fields:
                       - id: FIRST_NAME
@@ -4369,6 +4408,7 @@ paths:
                   summary: BUSINESS
                   value:
                     senderId: b6f9ae79-d0cf-4816-b4d3-0bae0011053e
+                    createdAt: '2025-02-13T21:46:37.5005701Z'
                     senderType: BUSINESS
                     companyName: Lehner Cummerata
                     customerId: 9ce909de-f585-4233-bdc5-fdc42cbfd7c4
@@ -8862,6 +8902,11 @@ components:
           description: "Company name if the sender type is Business. Example: 'BWP Cruises'"
         kycStatus:
           "$ref": "#/components/schemas/kycStatuses"
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: "The date and time when the sender was created. Example: '2025-02-13T21:46:37.5005701Z'"
         fields:
           type: array
           items:
@@ -8886,12 +8931,22 @@ components:
           type: array
           items:
             "$ref": "#/components/schemas/fieldValueResponse"
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: "The date and time when the recipient was created. Example: '2025-02-13T21:46:37.5005701Z'"
     recipientAccount:
       type: object
       properties:
         recipientAccountId:
           type: string
           description: Unique identifier for the recipient's account id for Bank Account and Push to Card transactions.
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: "The date and time when the recipient account was created. Example: '2025-02-13T21:46:37.5005701Z'"
         accountNumber:
           type: string
         fields:
