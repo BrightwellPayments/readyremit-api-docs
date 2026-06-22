@@ -18,6 +18,7 @@ tags:
 - name: Recipients
 - name: Recipient Accounts
 - name: Senders
+- name: Sender Accounts
 - name: Transfers
 - name: Card Onboarding Sessions
 - name: Cards
@@ -7268,6 +7269,116 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
+  "/accounts":
+    post:
+      tags:
+      - Sender Accounts
+      summary: Create Sender Account
+      description: |
+        The `POST /accounts` endpoint creates a sender's account. The `accountId` returned by this endpoint is the source account identifier (`sourceAccountId`) referenced when creating an account funding transaction or an account funding (AFT) transfer.
+
+        **Implementation Guide:**
+        - **Field Requirements**: The `fields` required to create an account are dynamic and depend on the `accountType`, country, and currency. Retrieve the current field requirements from the `GET /account-fields` endpoint before building the request. For a `CARD` account this set includes `CARD_ID`.
+        - **Prerequisite (CARD)**: For a `CARD` account, create a card first using [`POST /cards`](#tag/Cards/operation/createCard) and pass its `id` as the `CARD_ID` field value.
+        - **Account Holder**: Set `accountHolderId` to the sender's identifier. It must belong to the authenticated sender.
+        - **Enriched Fields**: For `CARD` accounts, the response `fields` array is enriched with additional card-derived details (such as the masked payment account number, card brand, issuer, and expiration date).
+      operationId: createAccount
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/createAccountRequest"
+            examples:
+              Create Sender Card Account:
+                summary: Create Sender Card Account
+                value:
+                  accountHolderId: "fc19faf4-8381-4848-8509-4f46a7a3ea03"
+                  countryIso3Code: "USA"
+                  currencyIso3Code: "USD"
+                  accountType: "CARD"
+                  name: "Ole Adriana Tillman"
+                  fields:
+                    - id: "CARD_ID"
+                      type: "TEXT"
+                      value: "e77a2f7d-954c-4c1b-a9b2-15473e450b4c"
+      responses:
+        '201':
+          description: The sender account was successfully created.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/createAccountResponse"
+              example:
+                accountId: "6cabe87a-66ed-43a6-9dee-4ae484eecfce"
+                name: "Ole Adriana Tillman"
+                accountType: "CARD"
+                accountHolderId: "fc19faf4-8381-4848-8509-4f46a7a3ea03"
+                currencyIso3Code: "USD"
+                countryIso3Code: "USA"
+                createdAt: "2026-06-16T18:55:43.3752582Z"
+                fields:
+                  - id: "CARD_ID"
+                    name: "Card Id"
+                    type: "TEXT"
+                    value: "e77a2f7d-954c-4c1b-a9b2-15473e450b4c"
+                  - id: "PAYMENT_ACCOUNT_NUMBER"
+                    name: "Payment account number"
+                    type: "TEXT"
+                    value: "1113"
+                  - id: "EXPIRATION_DATE"
+                    name: "Expiration Date"
+                    type: "TEXT"
+                    value: "1231"
+                  - id: "CARD_HOLDER_NAME"
+                    name: "Cardholder name"
+                    type: "TEXT"
+                    value: "Ole Adriana Tillman"
+                  - id: "ISSUER_NAME"
+                    name: "Issuer name"
+                    type: "TEXT"
+                    value: "INTL HDQTRS-CENTER OWNED"
+                  - id: "CARD_BRAND"
+                    name: "Card Brand"
+                    type: "TEXT"
+                    value: "Visa"
+                  - id: "FAST_FUNDS"
+                    name: "Fast Funds"
+                    type: "BOOLEAN"
+                    value: "True"
+        '400':
+          description: The request was invalid. This response occurs when required fields are missing or invalid, when the country/currency is not a valid corridor, or when the supplied card is not found or already in use by another account.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
+              example:
+                - code: "NotEmptyValidator"
+                  message: "'Account Type' is required."
+                  fieldId: "AccountType"
+                - code: "NotEmptyValidator"
+                  message: "'Country ISO 3 Code' is required."
+                  fieldId: "CountryISO3Code"
+                - code: "NotEmptyValidator"
+                  message: "'Currency ISO 3 Code' is required."
+                  fieldId: "CurrencyISO3Code"
+        '401':
+          description: The request requires user authentication. This response occurs if the authentication token is missing or invalid.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/response401"
+        '403':
+          description: The request was valid, but the server is refusing action. This response occurs if the `accountHolderId` does not belong to the authenticated sender, or if the supplied card belongs to a different entity.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgDescObject"
+        '404':
+          description: The account could not be created because a referenced resource was not found, such as an `accountHolderId` that does not match an existing sender or a `CARD_ID` that does not match an existing card.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
   "/account-funding-transactions":
     post:
       tags:
@@ -7277,8 +7388,9 @@ paths:
         The `POST /account-funding-transactions` endpoint  executes a request to fund an account. The account to which funds are added to is defined with the sourceAccountId in the request.
 
         **Implementation Guide:**
-        - **Prerequisite**: Before submitting an account funding transaction, a `sourceAccountId` should be obtained by first getting an onboarding session [`POST /card-onboarding-sessions`](#tag/Card-Onboarding-Sessions/operation/createCardOnboardingSession), then creating a card [`POST /cards`](#tag/Cards/operation/createCard), and finally creating an account [`POST /recipients/{recipientId}/accounts`](#tag/Recipient-Accounts/operation/createRecipientAccount).
-        - **Quote Required**: Obtain a real-time quote using `GET /quote` with `transferMethod: ACCOUNT_FUNDING` before submitting. Include the returned `quoteHistoryId` in the request.
+        - **Prerequisite**: Before submitting an account funding transaction, a `sourceAccountId` should be obtained by first getting an onboarding session [`POST /card-onboarding-sessions`](#tag/Card-Onboarding-Sessions/operation/createCardOnboardingSession), then creating a card [`POST /cards`](#tag/Cards/operation/createCard), and finally creating a sender account [`POST /accounts`](#tag/Sender-Accounts/operation/createAccount). The `accountId` returned by `POST /accounts` is the `sourceAccountId`.
+        - **Quote Required**: Obtain a real-time quote using `GET /quote` with `transferMethod: ACCOUNT_FUNDING` before submitting. Include the returned `quoteId` in the request.
+        - **Optional Fields**: The `fields` array is optional. When provided for account funding, include `CARD_PROXY_NUMBER`, whose value is the proxy (pseudo account) number that identifies the sender's funding account created during onboarding.
         - **Transfer Method**: This endpoint is exclusively for the `ACCOUNT_FUNDING` transfer method. For other transfer methods, use the `POST /transfers` endpoint.
         - **Examples**: See the example request and response payloads below.
 
@@ -7294,8 +7406,11 @@ paths:
                 value:
                   quoteBy: "SEND_AMOUNT"
                   amount: 5000
-                  quoteHistoryId: "a3f92c1d-8b74-4e2a-9d35-7c81f0e4b256"
+                  quoteId: "a3f92c1d-8b74-4e2a-9d35-7c81f0e4b256"
                   sourceAccountId: "04eda1ab-664b-4983-a3a1-9c2ab9181895"
+                  fields:
+                    - id: "CARD_PROXY_NUMBER"
+                      value: "267832567846347900"
 
       responses:
         '200':
@@ -7535,11 +7650,11 @@ paths:
                   message: "'QuoteBy' must be a valid option."
                   fieldId: "QuoteBy"
                 - code: "NotEmptyValidator"
-                  message: "'Quote History Id' is required."
-                  fieldId: "QuoteHistoryId"
+                  message: "'Quote Id' is required."
+                  fieldId: "QuoteId"
                 - code: "ErrorGettingQuote"
-                  message: "The provided quote history ID is invalid or has expired."
-                  fieldId: "QuoteHistoryId"
+                  message: "The provided quote ID is invalid or has expired."
+                  fieldId: "QuoteId"
                 - code: "NotEmptyValidator"
                   message: "'Source Account Id' is required."
                   fieldId: "SourceAccountId"
@@ -7592,6 +7707,139 @@ components:
       required:
         - nonce
 
+    createAccountRequest:
+      type: object
+      properties:
+        accountHolderId:
+          type: string
+          format: uuid
+          description: >
+            The unique identifier of the account holder (the sender) who will own this account. It must belong to the authenticated sender.
+            Example: "fc19faf4-8381-4848-8509-4f46a7a3ea03"
+        countryIso3Code:
+          type: string
+          description: >
+            The ISO 3166-1 alpha-3 code of the account's country.
+            Example: "USA"
+          pattern: "^[A-Z]{3}$"
+        currencyIso3Code:
+          type: string
+          description: >
+            The ISO 4217 code of the account's currency.
+            Example: "USD"
+          pattern: "^[A-Z]{3}$"
+        accountType:
+          type: string
+          description: >
+            The type of account being created. For account funding, use `CARD`.
+            Example: "CARD"
+          enum:
+            - "CARD"
+        name:
+          type: string
+          description: >
+            Optional friendly name for the account. For `CARD` accounts, the cardholder name is used when this value is not provided.
+            Example: "Ole Adriana Tillman"
+        fields:
+          type: array
+          description: >
+            A list of dynamic fields required to create the account. The required fields depend on the `accountType`, country, and currency, and can be retrieved from the `GET /account-fields` endpoint. For a `CARD` account, this collection must include the `CARD_ID` field, whose value is the `id` returned by `POST /cards`.
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: >
+                  The unique identifier for the field. For a `CARD` account, use `CARD_ID`.
+                  Example: "CARD_ID"
+              type:
+                type: string
+                description: >
+                  The type of the field input, such as TEXT.
+                  Example: "TEXT"
+              value:
+                type: string
+                description: >
+                  The value of the field. For `CARD_ID`, this is the `id` returned by `POST /cards`.
+                  Example: "e77a2f7d-954c-4c1b-a9b2-15473e450b4c"
+      required:
+        - accountHolderId
+        - countryIso3Code
+        - currencyIso3Code
+        - accountType
+        - fields
+
+    createAccountResponse:
+      type: object
+      properties:
+        accountId:
+          type: string
+          format: uuid
+          description: >
+            The unique identifier of the created account. Use this value as the `sourceAccountId` when creating an account funding transaction or an account funding (AFT) transfer.
+            Example: "6cabe87a-66ed-43a6-9dee-4ae484eecfce"
+        name:
+          type: string
+          nullable: true
+          description: >
+            The friendly name of the account. For `CARD` accounts, this defaults to the cardholder name when not provided in the request.
+            Example: "Ole Adriana Tillman"
+        accountType:
+          type: string
+          description: >
+            The type of account that was created.
+            Example: "CARD"
+        accountHolderId:
+          type: string
+          format: uuid
+          description: >
+            The unique identifier of the account holder (the sender) who owns this account.
+            Example: "fc19faf4-8381-4848-8509-4f46a7a3ea03"
+        currencyIso3Code:
+          type: string
+          description: >
+            The ISO 4217 code of the account's currency.
+            Example: "USD"
+        countryIso3Code:
+          type: string
+          description: >
+            The ISO 3166-1 alpha-3 code of the account's country.
+            Example: "USA"
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: >
+            The date and time the account was created.
+            Example: "2026-06-16T18:55:43.3752582Z"
+        fields:
+          type: array
+          description: >
+            A list of fields associated with the account. For `CARD` accounts, this includes the submitted `CARD_ID` along with additional card-derived fields (such as the masked payment account number, card brand, issuer, and expiration date).
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: >
+                  The unique identifier for the field.
+                  Example: "PAYMENT_ACCOUNT_NUMBER"
+              name:
+                type: string
+                description: >
+                  The readable name of the field.
+                  Example: "Payment account number"
+              type:
+                type: string
+                description: >
+                  The type of the field input, such as TEXT or BOOLEAN.
+                  Example: "TEXT"
+              value:
+                type: string
+                description: >
+                  The value of the field.
+                  Example: "1113"
+
     accountFundingTransactionRequest:
       type: object
       properties:
@@ -7603,10 +7851,10 @@ components:
           description: >
             Numeric Value. The amount an account holder wishes to fund. Example: If you want to fund $30.00 USD, this would be 3000. See [how to format an amount based on the currency](https://developer.readyremit.com/reference/currencies).
             Example: 3000
-        quoteHistoryId:
+        quoteId:
           type: string
           description: >
-            The quote history ID obtained from the `GET /quote` response using `transferMethod: ACCOUNT_FUNDING`. This links the transaction to the pre-calculated rate and fee.
+            The quote ID obtained from the `GET /quote` response using `transferMethod: ACCOUNT_FUNDING`. This links the transaction to the pre-calculated rate and fee.
             Example: "a3f92c1d-8b74-4e2a-9d35-7c81f0e4b256"
         sourceAccountId:
           type: string
@@ -7620,10 +7868,16 @@ components:
           description: >
             Optional unique identifier obtained from the `GET /nonce` endpoint. Use this to prevent duplicate transaction submissions. Each nonce can only be used once per customer.
             Example: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+        fields:
+          type: array
+          description: >
+            A list of dynamic fields associated with the account funding transaction. When provided, include the `CARD_PROXY_NUMBER` field, whose value is the proxy (pseudo account) number that identifies the sender's funding account created during onboarding.
+          items:
+            "$ref": "#/components/schemas/fieldValue"
       required:
         - quoteBy
         - amount
-        - quoteHistoryId
+        - quoteId
         - sourceAccountId
 
     GetcardOnboardingSessionResponse:
