@@ -5141,7 +5141,7 @@ paths:
                           name: Phone number
                           type: PHONE_NUMBER
                           value:
-                            number: "14045558888"
+                            number: 14045558888
                             countryIso3Code: USA
                             countryPhoneCode: 1
                         - id: ID_TYPE
@@ -5361,7 +5361,7 @@ paths:
                           name: Phone number
                           type: PHONE_NUMBER
                           value:
-                            number: "14045558888"
+                            number: 14045558888
                             countryIso3Code: USA
                             countryPhoneCode: 1
                         - id: ID_TYPE
@@ -5399,7 +5399,7 @@ paths:
                           name: Mobile phone number
                           type: PHONE_NUMBER
                           value:
-                            number: "14045558888"
+                            number: 14045558888
                             countryIso3Code: MEX
                             countryPhoneCode: 52
                     disclaimers: []
@@ -9066,9 +9066,6 @@ components:
             The field's value. For most fields this is a plain string — for date fields
             use `YYYY-MM-DD` format (example: "1990-05-15"). For `PHONE_NUMBER` fields it
             is a phone number object; see the `phoneNumberValue` schema. Example: "John Doe"
-          anyOf:
-            - type: string
-            - "$ref": "#/components/schemas/phoneNumberValue"
 
     fieldValueResponse:
       type: object
@@ -9103,9 +9100,6 @@ components:
             The field's value. For most field types this is a plain string — for date
             fields use `YYYY-MM-DD` format. For `PHONE_NUMBER` fields it is a phone number
             object; see the `phoneNumberValue` schema. Example: "John Doe"
-          anyOf:
-            - type: string
-            - "$ref": "#/components/schemas/phoneNumberValue"
 
     sender:
       type: object
