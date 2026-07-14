@@ -9066,6 +9066,9 @@ components:
             The field's value. For most fields this is a plain string — for date fields
             use `YYYY-MM-DD` format (example: "1990-05-15"). For `PHONE_NUMBER` fields it
             is a phone number object; see the `phoneNumberValue` schema. Example: "John Doe"
+          anyOf:
+            - type: string
+            - "$ref": "#/components/schemas/phoneNumberValue"
 
     fieldValueResponse:
       type: object
