@@ -1814,7 +1814,7 @@ components:
         countryIso3Code:
           type: string
         countryPhoneCode:
-          type: number
+          type: integer
         number:
           type: string
     fieldValue:
