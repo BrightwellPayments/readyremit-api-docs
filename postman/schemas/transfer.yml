@@ -2330,19 +2330,9 @@ paths:
                           description: "The full account number of the recipient's account. This number is used for processing transactions and identifying the account. Example: '98237498327489273'"
                         fields:
                           type: array
-                          description: "A list of additional fields associated with the recipient's account. Each field contains specific information and attributes, such as field type and value."
+                          description: "A list of additional fields associated with the recipient's account. Each field contains specific information and attributes, such as field type and value. See the `fieldValueResponse` schema."
                           items:
-                            type: object
-                            properties:
-                              id:
-                                type: string
-                                description: "The unique identifier for the field. This ID is used to reference and manage the specific field within the system. Example: 'bankId'"
-                              type:
-                                type: string
-                                description: "The type of the field input, such as NUMBER or TEXT. This defines the kind of data expected in this field. Example: 'NUMBER'"
-                              value:
-                                type: string
-                                description: "The value of the field. This is the actual data entered for the field. Example: '78'"
+                            "$ref": "#/components/schemas/fieldValueResponse"
 
               example:
                 accounts:
@@ -2512,30 +2502,9 @@ paths:
                       fields:
                         type: array
                         description: >
-                          A list of additional fields associated with the recipient's account. Each field contains specific information and attributes, such as field type and value.
+                          A list of additional fields associated with the recipient's account. Each field contains specific information and attributes, such as field type and value. See the `fieldValueResponse` schema.
                         items:
-                          type: object
-                          properties:
-                            id:
-                              type: string
-                              description: >
-                                The unique identifier for the field. This ID is used to reference and manage the specific field within the system.
-                                Example: "BANK_ACCOUNT_NUMBER"
-                            name:
-                              type: string
-                              description: >
-                                The name of the field. This name helps in identifying the purpose or context of the field.
-                                Example: "Bank account number"
-                            type:
-                              type: string
-                              description: >
-                                The type of the field input, such as TEXT or DROPDOWN. This defines the kind of data expected in this field.
-                                Example: "TEXT"
-                            value:
-                              type: string
-                              description: >
-                                The value of the field. This is the actual data entered for the field.
-                                Example: "*************0189"
+                          "$ref": "#/components/schemas/fieldValueResponse"
 
               example:
                 dstCurrencyIso3Code: CAD
@@ -2676,25 +2645,9 @@ paths:
                   fields:
                     type: array
                     description: >
-                      A list of additional fields associated with the recipient's account. Each field contains specific information and attributes, such as field type and value.
+                      A list of additional fields associated with the recipient's account. Each field contains specific information and attributes, such as field type and value. See the `fieldValueResponse` schema.
                     items:
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                          description: >
-                            The unique identifier for the field. This ID is used to reference and manage the specific field within the system.
-                            Example: "BANK_NAME"
-                        type:
-                          type: string
-                          description: >
-                            The type of the field input, such as TEXT or NUMBER. This defines the kind of data expected in this field.
-                            Example: "TEXT"
-                        value:
-                          type: string
-                          description: >
-                            The value of the field. This is the actual data entered for the field.
-                            Example: "Bank"
+                      "$ref": "#/components/schemas/fieldValueResponse"
 
               example:
                 recipientAccountId: e27c7395-b46a-4b9b-89fd-cd6a3da7fd85
