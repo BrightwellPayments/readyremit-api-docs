@@ -7089,11 +7089,24 @@ paths:
               schema:
                 "$ref": "#/components/schemas/response401"
         '403':
-          description: The request was valid, but the server is refusing action. This response occurs if the user does not have permission to create the card onboarding session.
+          description: The request was valid, but the server is refusing action. The sender is not permitted to create a card onboarding session — either the sender has been deactivated for suspected fraud (`CardEntryBlocked`) or is otherwise forbidden (`SenderForbidden`).
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/codeMsgDescObject"
+              examples:
+                CardEntryBlocked:
+                  summary: Sender deactivated for suspected fraud
+                  value:
+                    code: CardEntryBlocked
+                    message: This account cannot be created. Please contact support.
+                    description: The sender has been deactivated for suspected fraud.
+                SenderForbidden:
+                  summary: Sender is forbidden
+                  value:
+                    code: SenderForbidden
+                    message: SenderForbidden
+                    description: The sender is not permitted to create a card onboarding session.
         '404':
           description: The card onboarding session could not be created. This response occurs if the parameters provided do not match any available onboarding options.
           content:
