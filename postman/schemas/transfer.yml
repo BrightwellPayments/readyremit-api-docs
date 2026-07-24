@@ -7412,6 +7412,13 @@ paths:
         - **Transfer Method**: This endpoint is exclusively for the `ACCOUNT_FUNDING` transfer method. For other transfer methods, use the `POST /transfers` endpoint.
         - **Examples**: See the example request and response payloads below.
 
+        **Response outcomes:**
+
+        The set of outcomes this endpoint can return depends on whether **binary response enforcement** is enabled for your customer configuration. Binary response enforcement is an opt-in setting enabled by PayMitto on a per-customer basis; it is not a field you send in the request.
+
+        - **Default (binary response enforcement disabled).** The submission resolves to one of three outcomes: **Success**, **Failure**, or **Hold**. A transaction may be accepted and then placed on an internal review hold; the hold is resolved asynchronously and the transfer is later released to success or failure. In this mode a held transaction surfaces with a `status` of `Pending` until it resolves, so your integration must track the eventual outcome after the initial response.
+        - **Binary response enforcement enabled.** The submission resolves to **Success** or **Failure** only — no Hold or intermediate state is returned. A transaction that screening would otherwise have placed on hold is canceled and returned immediately as a **Failure** (`400`) with the catch-all `code` `FundingTransactionFailFast` and message *"We are unable to fully process this funding transaction. Please contact support."*; no funds are moved. Declines that are not related to a screening hold (for example, a duplicate submission) are returned as a **Failure** with their own underlying `code` and `message`. See the `400` response examples below.
+
       operationId: createAccountFundingTransaction
       requestBody:
         content:
@@ -7432,7 +7439,8 @@ paths:
 
       responses:
         '200':
-          description: The account funding transaction was successfully executed.
+          description: |
+            The account funding transaction was successfully executed. The customer-facing `status` field reflects the transfer state — for account funding this is typically `Initiated` (accepted for processing), `Pending`, or `Complete`. A transaction placed on an internal review hold surfaces as `Pending` only when binary response enforcement is disabled; when it is enabled, the submission resolves to Success or Failure and no held/intermediate state is returned.
           content:
             application/json:
               schema:
@@ -7649,33 +7657,42 @@ paths:
                 status: "Complete"
 
         '400':
-          description: The request was invalid. This response typically occurs if required parameters are missing or invalid.
+          description: |
+            The request was invalid, or the funding transaction was declined. Validation errors occur when required parameters are missing or invalid. When binary response enforcement is enabled, a transaction that screening would otherwise have placed on hold is returned here as a `FundingTransactionFailFast` Failure carrying the catch-all message; declines unrelated to a screening hold are returned with their own underlying `code` and `message`.
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/codeMsgFieldIdObjectArray"
-              example:
-                - code: "NotEmptyValidator"
-                  message: "'Amount' is required."
-                  fieldId: "Amount"
-                - code: "GreaterThanValidator"
-                  message: "'Amount' must be greater than '0'."
-                  fieldId: "Amount"
-                - code: "NotEmptyValidator"
-                  message: "'QuoteBy' is required."
-                  fieldId: "QuoteBy"
-                - code: "InvalidEnumOption"
-                  message: "'QuoteBy' must be a valid option."
-                  fieldId: "QuoteBy"
-                - code: "NotEmptyValidator"
-                  message: "'Quote Id' is required."
-                  fieldId: "QuoteId"
-                - code: "ErrorGettingQuote"
-                  message: "The provided quote ID is invalid or has expired."
-                  fieldId: "QuoteId"
-                - code: "NotEmptyValidator"
-                  message: "'Source Account Id' is required."
-                  fieldId: "SourceAccountId"
+              examples:
+                ValidationErrors:
+                  summary: Missing or invalid request parameters
+                  value:
+                    - code: "NotEmptyValidator"
+                      message: "'Amount' is required."
+                      fieldId: "Amount"
+                    - code: "GreaterThanValidator"
+                      message: "'Amount' must be greater than '0'."
+                      fieldId: "Amount"
+                    - code: "NotEmptyValidator"
+                      message: "'QuoteBy' is required."
+                      fieldId: "QuoteBy"
+                    - code: "InvalidEnumOption"
+                      message: "'QuoteBy' must be a valid option."
+                      fieldId: "QuoteBy"
+                    - code: "NotEmptyValidator"
+                      message: "'Quote Id' is required."
+                      fieldId: "QuoteId"
+                    - code: "ErrorGettingQuote"
+                      message: "The provided quote ID is invalid or has expired."
+                      fieldId: "QuoteId"
+                    - code: "NotEmptyValidator"
+                      message: "'Source Account Id' is required."
+                      fieldId: "SourceAccountId"
+                FundingTransactionFailFast:
+                  summary: Screening hold returned as Failure (binary response enforcement enabled)
+                  value:
+                    - code: "FundingTransactionFailFast"
+                      message: "We are unable to fully process this funding transaction. Please contact support."
         '401':
           description: The request requires user authentication. This response occurs if the authentication token is missing or invalid.
           content:
