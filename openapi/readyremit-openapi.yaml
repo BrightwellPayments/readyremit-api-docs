@@ -1469,6 +1469,8 @@ paths:
               - code: NotEmptyValidator
                 message: '''Recipient Account Id'' is required.'
                 fieldId: RecipientAccountId
+              - code: CARD_VALIDATION_STOP_RETRY_LIMIT
+                message: You have hit the allowed number of attempts. Please contact support for assistance.
         "401":
           description: Unauthorized
           content:
