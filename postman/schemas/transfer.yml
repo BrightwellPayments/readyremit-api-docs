@@ -5034,7 +5034,7 @@ paths:
                         addressZipCode: "11100"
                         phoneNumber: "1-833-000-5768"
                         website: "www.customerwebsite.com"
-                      dateAvailable: "2025-02-17T21:46:37.5005701Z"
+                      dateAvailable: "2026-07-21"
                       status: "Pending"
 
                 Push to Card:
@@ -5234,7 +5234,7 @@ paths:
                       addressZipCode: 43232
                       phoneNumber: 1-833-848-5768
                       website: mydashcard.com
-                    dateAvailable: 2025-02-17T21:51:46.7327968Z
+                    dateAvailable: "2026-07-21"
                     status: Complete
                     providerResponse:
                       transactionIdentifier: 305044787080646
@@ -5427,7 +5427,7 @@ paths:
                       addressZipCode: 43232
                       phoneNumber: 1-833-848-5768
                       website: mydashcard.com
-                    dateAvailable: 2025-02-13T21:57:40.2096923Z
+                    dateAvailable: "2026-07-21"
                     status: Pending
 
         '400':
@@ -6324,7 +6324,7 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/transferResponse"
+                "$ref": "#/components/schemas/transferGetResponse"
               example:
                 transferId: d53d90ad-4de8-415d-8286-90c41853a3dd
                 confirmationNumber: 33TF041162650
@@ -6622,8 +6622,8 @@ paths:
                   addressZipCode: "11100"
                   phoneNumber: "1-833-000-5768"
                   website: "www.customerwebsite.com"
-                dateAvailable: "2025-02-17T21:46:37.5005701Z"
-                status: "Canceled"                
+                dateAvailable: "2026-07-21"
+                status: "Canceled"
   "/transfers/{transferId}/receipt":
     get:
       tags:
@@ -8472,7 +8472,7 @@ components:
         - quoteHistoryId
         - recipientId
 
-    transferResponse:
+    transferResponseBase:
       type: object
       properties:
         transferId:
@@ -8547,12 +8547,6 @@ components:
             website:
               type: string
               description: 'Website of the customer. Example: "www.customerwebsite.com"'
-        dateAvailable:
-          type: string
-          format: date-time
-          description: >
-            The date when the transfer funds are expected to be available to the recipient.
-            Example: "2025-02-17T21:46:37.5005701Z"
         status:
           type: string
           enum:
@@ -8566,6 +8560,29 @@ components:
           description: >
             The customer-facing status of the transfer.
             Example: "Pending"
+    transferResponse:
+      allOf:
+        - "$ref": "#/components/schemas/transferResponseBase"
+        - type: object
+          properties:
+            dateAvailable:
+              type: string
+              format: date
+              description: >
+                The date when the transfer funds are expected to be available to the recipient,
+                as an ISO 8601 date-only value (yyyy-MM-dd).
+                Example: "2026-07-21"
+    transferGetResponse:
+      allOf:
+        - "$ref": "#/components/schemas/transferResponseBase"
+        - type: object
+          properties:
+            dateAvailable:
+              type: string
+              description: >
+                The date when the transfer funds are expected to be available to the recipient,
+                as a short date string with no leading zeros (M/d/yyyy).
+                Example: "7/21/2026"
     transferProgressResponse:
       type: object
       properties:
