@@ -8569,8 +8569,7 @@ components:
               type: string
               format: date
               description: >
-                The date when the transfer funds are expected to be available to the recipient,
-                as an ISO 8601 date-only value (yyyy-MM-dd).
+                The date when the transfer funds are expected to be available to the recipient.
                 Example: "2026-07-21"
     transferGetResponse:
       allOf:
@@ -8581,9 +8580,7 @@ components:
               type: string
               description: >
                 The date when the transfer funds are expected to be available to the recipient,
-                as a locale-formatted short date string. The exact pattern depends on the
-                Accept-Language of the request; for the default locale (en-US) this is M/d/yyyy
-                with no leading zeros.
+                as a locale-formatted short date (e.g. M/d/yyyy for the default en-US locale).
                 Example: "7/21/2026"
     transferProgressResponse:
       type: object
