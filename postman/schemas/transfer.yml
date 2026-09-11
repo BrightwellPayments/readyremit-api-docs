@@ -8581,7 +8581,9 @@ components:
               type: string
               description: >
                 The date when the transfer funds are expected to be available to the recipient,
-                as a short date string with no leading zeros (M/d/yyyy).
+                as a locale-formatted short date string. The exact pattern depends on the
+                Accept-Language of the request; for the default locale (en-US) this is M/d/yyyy
+                with no leading zeros.
                 Example: "7/21/2026"
     transferProgressResponse:
       type: object
